@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/SmartSalah/app/src/main/res/drawable/cam_button.xml" value="0.20052083333333334" />
+        <entry key="..\:/SmartSalah/app/src/main/res/drawable/circle.xml" value="0.20052083333333334" />
+        <entry key="..\:/SmartSalah/app/src/main/res/drawable/gradient1.xml" value="0.1" />
+        <entry key="..\:/SmartSalah/app/src/main/res/drawable/rectangle.xml" value="0.1" />
+        <entry key="..\:/SmartSalah/app/src/main/res/layout/activity_changepass.xml" value="0.184375" />
+        <entry key="..\:/SmartSalah/app/src/main/res/layout/activity_login.xml" value="0.184375" />
+        <entry key="..\:/SmartSalah/app/src/main/res/layout/activity_main.xml" value="0.1507537688442211" />
+        <entry key="..\:/SmartSalah/app/src/main/res/layout/activity_posture.xml" value="0.18020833333333333" />
+        <entry key="..\:/SmartSalah/app/src/main/res/layout/activity_rakah.xml" value="0.184375" />
+        <entry key="..\:/SmartSalah/app/src/main/res/layout/activity_salah_summary.xml" value="0.18020833333333333" />
+        <entry key="..\:/SmartSalah/app/src/main/res/layout/activity_signup.xml" value="0.184375" />
+        <entry key="..\:/SmartSalah/app/src/main/res/layout/header.xml" value="0.1" />
+        <entry key="..\:/SmartSalah/app/src/main/res/menu/main_menu.xml" value="0.1" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">SmartSalah</string>
+
+    <string-array name="namaz">
+        <item>Salah</item>
+        <item>Fajar</item>
+        <item>Zuhr</item>
+        <item>Asar</item>
+        <item>Maghrib</item>
+        <item>Isha</item>
+
+    </string-array>
+
+</resources>

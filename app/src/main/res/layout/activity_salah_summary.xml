@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
+    tools:context=".SalahSummary"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Average Time Spent on Salah"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"
+            >
+        </TextView>
+
+    </LinearLayout>
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/barchart"
+        android:layout_width="match_parent"
+        android:layout_height="300dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        >
+        <Spinner
+            android:id="@+id/Select_Salah"
+            android:layout_width="150dp"
+            android:layout_height="49dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="20dp"
+            android:background="#3F4FA8"
+            >
+        </Spinner>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        >
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="55dp"
+            android:text="Track of Salah"
+            android:backgroundTint="#3F4FA8"
+            android:layout_marginLeft="100dp"
+            >
+        </Button>
+    </LinearLayout>
+
+</LinearLayout>

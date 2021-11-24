@@ -10,31 +10,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartSalah">
         <activity
-            android:name=".Rakah"
-            android:exported="false" />
-        <activity
-            android:name=".Posture"
-            android:exported="false" />
-        <activity
-            android:name=".SalahSummary"
+            android:name=".Home"
             android:exported="false" />
         <activity
             android:name=".change_pass"
             android:exported="false" />
         <activity
             android:name=".signUp"
-            android:exported="false" />
+            android:exported="true" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity
             android:name=".login"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

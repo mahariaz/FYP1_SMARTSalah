@@ -50,7 +50,7 @@
         <EditText
             android:layout_marginTop="20dp"
             android:inputType="textEmailAddress"
-            android:id="@+id/email"
+            android:id="@+id/email_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email address"
@@ -63,14 +63,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
+
             <EditText
-                android:id="@+id/password"
+                android:id="@+id/pass_field"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
                 android:inputType="textPassword"
-                android:textColorHint="@color/white"
                 android:textColor="@color/white"
+                android:textColorHint="@color/white"
                 android:textSize="15dp">
 
             </EditText>
@@ -78,7 +79,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignRight="@+id/password"
+                android:layout_alignRight="@+id/pass_field"
                 android:layout_marginTop="10dp"
                 android:text="Forgot?"
                 android:textColor="#1A2873"
@@ -87,9 +88,6 @@
                 android:textSize="15dp">
 
             </TextView>
-
-
-
         </RelativeLayout>
         <Button
             android:layout_marginTop="20dp"

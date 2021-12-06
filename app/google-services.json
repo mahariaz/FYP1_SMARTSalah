@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "605245026715",
+    "project_id": "smartsalah-18be7",
+    "storage_bucket": "smartsalah-18be7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:605245026715:android:3524593a2de93e06e6b13e",
+        "android_client_info": {
+          "package_name": "com.mahariaz.smartsalah"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "605245026715-kgte73pqr28s0urn8ben4rg42oaqndhb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVa45aCM3qJRiDTsLGI2gUCTia_To1tk4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "605245026715-kgte73pqr28s0urn8ben4rg42oaqndhb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

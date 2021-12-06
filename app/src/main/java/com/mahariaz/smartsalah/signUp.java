@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -32,6 +33,14 @@ public class signUp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 registerUser();
+            }
+        });
+        TextView login=findViewById(R.id.login);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(signUp.this,login.class);
+                startActivity(intent);
             }
         });
 
@@ -74,7 +83,7 @@ public class signUp extends AppCompatActivity {
                         if (task.isSuccessful()){
                             System.out.println("Reg done");
 
-                            // signup screen to BIO screen
+
                             Intent intent=new Intent(signUp.this,login.class);
                             startActivity(intent);
                         }else{

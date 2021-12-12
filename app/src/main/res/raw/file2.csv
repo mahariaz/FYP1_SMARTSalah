@@ -1,0 +1,23 @@
+person_id,Timestamp,Activity,Entered_Rakah,Namaz,Curr_rakah
+Amna Arshad_31,2021-11-25_08:56:35:035,Takbir,3,Maghrib,1
+Amna Arshad_31,2021-11-25_08:56:36:461,Qayam,3,Maghrib,1
+Amna Arshad_31,2021-11-25_08:56:44:243,Ruku,3,Maghrib,1
+Amna Arshad_31,2021-11-25_08:56:46:594,Qoum,3,Maghrib,1
+Amna Arshad_31,2021-11-25_08:56:49:752,Sajda1,3,Maghrib,1
+Amna Arshad_31,2021-11-25_08:56:52:195,Jalsa1,3,Maghrib,1
+Amna Arshad_31,2021-11-25_08:56:54:115,Sajda2,3,Maghrib,1
+Amna Arshad_31,2021-11-25_08:56:56:939,Jalsa2,3,Maghrib,1
+Amna Arshad_31,2021-11-25_08:57:00:901,Qayam,3,Maghrib,2
+Amna Arshad_31,2021-11-25_08:57:11:922,Ruku,3,Maghrib,2
+Amna Arshad_31,2021-11-25_08:57:14:075,Qoum,3,Maghrib,2
+Amna Arshad_31,2021-11-25_08:57:17:795,Sajda1,3,Maghrib,2
+Amna Arshad_31,2021-11-25_08:57:20:201,Jalsa1,3,Maghrib,2
+Amna Arshad_31,2021-11-25_08:57:22:139,Sajda2,3,Maghrib,2
+Amna Arshad_31,2021-11-25_08:57:24:899,Tashahud,3,Maghrib,2
+Amna Arshad_31,2021-11-25_08:57:34:112,Qayam,3,Maghrib,3
+Amna Arshad_31,2021-11-25_08:57:40:605,Ruku,3,Maghrib,3
+Amna Arshad_31,2021-11-25_08:57:42:962,Qoum,3,Maghrib,3
+Amna Arshad_31,2021-11-25_08:57:46:607,Sajda1,3,Maghrib,3
+Amna Arshad_31,2021-11-25_08:57:48:850,Jalsa1,3,Maghrib,3
+Amna Arshad_31,2021-11-25_08:57:51:079,Sajda2,3,Maghrib,3
+Amna Arshad_31,2021-11-25_08:57:53:778,Tashahud,3,Maghrib,3

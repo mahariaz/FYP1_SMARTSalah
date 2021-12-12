@@ -1,0 +1,16 @@
+person_id,Timestamp,Activity,Entered_Rakah,Namaz,Curr_rakah
+Amna Arshad_31,2021-11-25_08:49:19:648,Takbir,2,Fajar,1
+Amna Arshad_31,2021-11-25_08:49:21:471,Qayam,2,Fajar,1
+Amna Arshad_31,2021-11-25_08:49:31:096,Ruku,2,Fajar,1
+Amna Arshad_31,2021-11-25_08:49:33:987,Qoum,2,Fajar,1
+Amna Arshad_31,2021-11-25_08:49:37:437,Sajda1,2,Fajar,1
+Amna Arshad_31,2021-11-25_08:49:40:180,Jalsa1,2,Fajar,1
+Amna Arshad_31,2021-11-25_08:49:42:078,Sajda2,2,Fajar,1
+Amna Arshad_31,2021-11-25_08:49:44:642,Jalsa2,2,Fajar,1
+Amna Arshad_31,2021-11-25_08:49:49:754,Qayam,2,Fajar,2
+Amna Arshad_31,2021-11-25_08:50:01:946,Ruku,2,Fajar,2
+Amna Arshad_31,2021-11-25_08:50:04:794,Qoum,2,Fajar,2
+Amna Arshad_31,2021-11-25_08:50:08:653,Sajda1,2,Fajar,2
+Amna Arshad_31,2021-11-25_08:50:11:344,Jalsa1,2,Fajar,2
+Amna Arshad_31,2021-11-25_08:50:13:380,Sajda2,2,Fajar,2
+Amna Arshad_31,2021-11-25_08:50:16:037,Tashahud,2,Fajar,2

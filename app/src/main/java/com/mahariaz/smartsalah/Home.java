@@ -7,6 +7,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -50,31 +51,17 @@ public class Home extends AppCompatActivity {
     }
     public void selectDrawerItem(MenuItem menuItem) {
         // Create a new fragment and specify the fragment to show based on nav item clicked
-        Fragment fragment = null;
-        Class fragmentClass;
         switch(menuItem.getItemId()) {
             case R.id.fr_salah_stats:
-                fragmentClass = profile_fragment.class;
+                Intent intent=new Intent(Home.this,Calender.class);
+                startActivity(intent);
                 break;
             case R.id.fr_profile:
-                fragmentClass = profile_fragment.class;
+                Intent intent1=new Intent(Home.this,UserProfile.class);
+                startActivity(intent1);
                 break;
-            case R.id.fr_settings:
-                fragmentClass = profile_fragment.class;
-                break;
-            default:
-                fragmentClass = profile_fragment.class;
-        }
 
-        try {
-            fragment = (Fragment) fragmentClass.newInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-
-        // Insert the fragment by replacing any existing fragment
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
 
         // Highlight the selected item has been done by NavigationView
         menuItem.setChecked(true);

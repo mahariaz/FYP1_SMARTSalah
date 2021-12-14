@@ -21,19 +21,19 @@ public class DBAdapter {
     static  final String SAJDA="sajda";
     static  final String JALSA="jalsa";
     static  final String TASHAHUD="tashahud";
+    static  final String TIMESTAMP="timestamp";
     static final String TAG="DBSpinner";
 
     //db properties
     static  final String DBNAME="s_DB";
     static final String TBNAME="s_TB";
-    static final int DBVERSION='1';
+    static final int DBVERSION='3';
 
     //create tb
     static final String CREATE_TB="CREATE TABLE s_TB(id INTEGER PRIMARY KEY AUTOINCREMENT,"+
-            "user_name TEXT,namaz_name TEXT ,rakah_entered TEXT," +
-            "rakah_completed TEXT,qayam TEXT,ruku TEXT,qouma TEXT,sajda TEXT,jalsa TEXT,tashahud TEXT);";
+            "username TEXT NOT NULL,namaz_name TEXT ,rakah_entered TEXT,rakah_completed TEXT,qayam TEXT,ruku TEXT,qouma TEXT,sajda TEXT,jalsa TEXT,tashahud TEXT,timestamp TEXT);";
     final Context c;
-    SQLiteDatabase db,dbr;
+    SQLiteDatabase db;
     DBHelper helper;
 
     public DBAdapter(Context ctx) {
@@ -51,7 +51,9 @@ public class DBAdapter {
             try{
                 db.execSQL(CREATE_TB);
             }catch (SQLException e){
+                System.out.println("ERROR");
                 e.printStackTrace();
+
             }
 
         }
@@ -79,7 +81,7 @@ public class DBAdapter {
     }
     // insert into table
     public long add(String username,String namaz_name,String rakah_entered, String rakah_completed,
-                    String qayam,String ruku,String qouma,String sajda,String jalsa,String tashahud){
+                    String qayam,String ruku,String qouma,String sajda,String jalsa,String tashahud,String timestamp){
         try{
             ContentValues cv=new ContentValues();
             cv.put(USERNAME,username);
@@ -92,6 +94,7 @@ public class DBAdapter {
             cv.put(SAJDA,sajda);
             cv.put(JALSA,jalsa);
             cv.put(TASHAHUD,tashahud);
+            cv.put(TIMESTAMP,timestamp);
             return db.insert(TBNAME,ROWID,cv);
         }catch (SQLException e){
             e.printStackTrace();
@@ -100,7 +103,7 @@ public class DBAdapter {
     }
     //get all values
     public Cursor getAllValues(){
-        String[] columns={ROWID,USERNAME,NAMAZ_NAME,RAKAH_ENTERED,RAKAH_COMPLETED,QAYAM,RUKU,QOUMA,SAJDA,JALSA,TASHAHUD};
+        String[] columns={ROWID,USERNAME,NAMAZ_NAME,RAKAH_ENTERED,RAKAH_COMPLETED,QAYAM,RUKU,QOUMA,SAJDA,JALSA,TASHAHUD,TIMESTAMP};
         return db.query(TBNAME,columns,null,null,null,null,null);
 
     }
@@ -108,6 +111,9 @@ public class DBAdapter {
     public void delete_table(){
         db.execSQL("DROP TABLE IF EXISTS s_TB");
 
+    }
+    public void delete_records(){
+        db.execSQL("delete from "+ TBNAME);
     }
 
 }

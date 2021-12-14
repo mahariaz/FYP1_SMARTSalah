@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/back1"
+    android:weightSum="3.5"
+    tools:context=".Calender">
+    <LinearLayout
+        android:padding="20dp"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:weightSum="2"
+        android:layout_weight="0.5"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Salah"
+            android:layout_weight="1"
+            android:textSize="20dp">
+
+        </TextView>
+        <gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner
+            android:id="@+id/spinner_salah"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
+            app:DoneSearchTintColor="#F4C0AF"
+            app:RevealEmptyText="Touch to select"
+            app:RevealViewBackgroundColor="#F4C0AF"
+            app:SearchViewBackgroundColor="@android:color/secondary_text_dark"
+            app:ShowBorders="false"
+            app:SpinnerExpandHeight="300dp"
+            app:StartSearchTintColor="@android:color/white" />
+    </LinearLayout>
+    <LinearLayout
+        android:padding="20dp"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:weightSum="2"
+        android:layout_weight="0.5"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Rakah"
+            android:layout_weight="1"
+            android:textSize="20dp">
+
+        </TextView>
+        <gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner
+            android:id="@+id/spinner_rakah"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
+            app:DoneSearchTintColor="#F4C0AF"
+            app:RevealEmptyText="Touch to select"
+            app:RevealViewBackgroundColor="#F4C0AF"
+            app:SearchViewBackgroundColor="@android:color/secondary_text_dark"
+            app:ShowBorders="false"
+            app:SpinnerExpandHeight="300dp"
+            app:StartSearchTintColor="@android:color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="20dp"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:weightSum="2"
+        android:gravity="center"
+        android:layout_weight="2">
+        <TextView
+            android:id="@+id/date_view"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:text="Set the Date"
+            android:textColor="@android:color/background_dark"
+            android:textStyle="bold" />
+
+        <!-- Add CalendarView to display the Calendar -->
+        <CalendarView
+            android:layout_weight="1.7"
+            android:id="@+id/calendar"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+        </CalendarView>
+
+    </LinearLayout>
+    <LinearLayout
+        android:padding="20dp"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="0dp"
+        android:layout_weight="0.5">
+        <Button
+            android:id="@+id/stats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Show Stats">
+
+        </Button>
+
+    </LinearLayout>
+
+
+</LinearLayout>

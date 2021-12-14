@@ -10,25 +10,36 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartSalah">
         <activity
-            android:name=".SalahProgress"
-            android:exported="true" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            android:name=".Salah_stats_history"
+            android:exported="false" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+        <activity
+            android:name=".Calender"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
         <activity
-            android:name=".ViewSalah"
+            android:name=".Salah_Rakah_Selection"
             android:exported="true">
 
         </activity>
+        <activity
+            android:name=".SalahProgress"
+            android:exported="true" />
+        <activity
+            android:name=".ViewSalah"
+            android:exported="true" />
         <activity
             android:name=".UserProfile"
             android:exported="false" />
         <activity
             android:name=".Home"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".change_pass"
             android:exported="false" />

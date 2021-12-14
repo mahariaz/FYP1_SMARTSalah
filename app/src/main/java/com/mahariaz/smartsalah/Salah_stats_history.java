@@ -4,9 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -18,19 +16,9 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
-import com.opencsv.CSVReader;
-
-public class ViewSalah extends AppCompatActivity {
+public class Salah_stats_history extends AppCompatActivity {
     BarChart barChart;
 
     // variable for our bar data.
@@ -43,25 +31,22 @@ public class ViewSalah extends AppCompatActivity {
     ArrayList<BarEntry> barEntriesArrayList;
     ArrayList<String> labelNames;
     ArrayList<SalahPostureNames> PostureNamesArrayList=new ArrayList<SalahPostureNames>();
-    // getting chart data
-    String sel_salah,sel_rakah,rakah_per,qayam_avg,ruku_avg,qoum_avg,sajda_avg,jalsa_avg,tash_avg,get_salah,get_rakah;
-    final DBAdapter db=new DBAdapter(this);
-    TextView salah_view,rakah_view;
 
+    //db
+    final DBAdapter db=new DBAdapter(this);
+    String sel_salah,sel_rakah,date,rakah_per,qayam_avg,ruku_avg,qoum_avg,sajda_avg,jalsa_avg,tash_avg,get_salah,get_rakah;
+    TextView salah_view,rakah_view;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_salah);
-
-        // getting intents from previous activity
-        sel_salah=shared.curr_salah;
-        sel_rakah=shared.curr_rakah;
+        setContentView(R.layout.activity_salah_stats_history);
+        get_intents();
+        search_records(); // from sqlite of entered salah,rakah and date
         salah_view=findViewById(R.id.salah_view);
         rakah_view=findViewById(R.id.rakah_view);
-        get_chart_data();
+        barChart = findViewById(R.id.idBarChart);
         salah_view.setText(get_salah); //getting from db
         rakah_view.setText(get_rakah);
-        barChart = findViewById(R.id.idBarChart);
         barEntriesArrayList=new ArrayList<>();
         labelNames=new ArrayList<>();
         fillPostureList();
@@ -93,19 +78,15 @@ public class ViewSalah extends AppCompatActivity {
 
     }
 
-    private void get_chart_data() {
-
-        SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd/HH:mm:ss:SSS");
-        String temp1=input.format(new Date());
-        String curr_time[]=temp1.split("/");
+    private void search_records() {
         db.openDB();
         Cursor c=db.getAllValues();
         while(c.moveToNext()){
             String get_time=c.getString(11);
             String stored_salah=c.getString(2);
             String stored_rakah=c.getString(3);
-            String[] stored_time=get_time.split("/");
-            if(stored_time[0].equalsIgnoreCase(curr_time[0])){
+            String[] stored_date=get_time.split("/");
+            if(stored_date[0].equalsIgnoreCase(date)){
                 if(stored_salah.equalsIgnoreCase(sel_salah) && stored_rakah.equalsIgnoreCase(sel_rakah)){
                     get_salah=c.getString(2);
                     get_rakah=c.getString(3);
@@ -126,8 +107,15 @@ public class ViewSalah extends AppCompatActivity {
 
 
         }
+
     }
 
+    private void get_intents() {
+        Intent intent=getIntent();
+        date=intent.getStringExtra("date");
+        sel_salah=intent.getStringExtra("sel_salah");
+        sel_rakah=intent.getStringExtra("sel_rakah");
+    }
     private void fillPostureList(){
         PostureNamesArrayList.clear();
         PostureNamesArrayList.add(new SalahPostureNames("Qayam",Integer.parseInt(qayam_avg)));

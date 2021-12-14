@@ -1,0 +1,15 @@
+person_id,Timestamp,Activity,Entered_Rakah,Namaz,Curr_rakah
+matti ullah_16,2021-11-20_14:25:15:730,Takbir,2,Zuhr,1
+matti ullah_16,2021-11-20_14:25:17:405,Qayam,2,Zuhr,1
+matti ullah_16,2021-11-20_14:25:37:266,Ruku,2,Zuhr,1
+matti ullah_16,2021-11-20_14:25:40:256,Qoum,2,Zuhr,1
+matti ullah_16,2021-11-20_14:25:42:861,Sajda1,2,Zuhr,1
+matti ullah_16,2021-11-20_14:25:46:951,Jalsa1,2,Zuhr,1
+matti ullah_16,2021-11-20_14:25:48:894,Sajda2,2,Zuhr,1
+matti ullah_16,2021-11-20_14:25:56:786,Qayam,2,Zuhr,2
+matti ullah_16,2021-11-20_14:26:14:426,Ruku,2,Zuhr,2
+matti ullah_16,2021-11-20_14:26:17:754,Qoum,2,Zuhr,2
+matti ullah_16,2021-11-20_14:26:21:286,Sajda1,2,Zuhr,2
+matti ullah_16,2021-11-20_14:26:25:437,Jalsa1,2,Zuhr,2
+matti ullah_16,2021-11-20_14:26:27:372,Sajda2,2,Zuhr,2
+matti ullah_16,2021-11-20_14:26:32:827,Tashahud,2,Zuhr,2

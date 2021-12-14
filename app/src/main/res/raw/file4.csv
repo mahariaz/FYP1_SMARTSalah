@@ -1,0 +1,23 @@
+person_id,Timestamp,Activity,Entered_Rakah,Namaz,Curr_rakah
+Seemin Riaz_29,2021-11-24_17:32:38:990,Takbir,3,Maghrib,1
+Seemin Riaz_29,2021-11-24_17:32:40:888,Qayam,3,Maghrib,1
+Seemin Riaz_29,2021-11-24_17:33:23:520,Ruku,3,Maghrib,1
+Seemin Riaz_29,2021-11-24_17:33:27:725,Qoum,3,Maghrib,1
+Seemin Riaz_29,2021-11-24_17:33:34:308,Sajda1,3,Maghrib,1
+Seemin Riaz_29,2021-11-24_17:33:39:736,Jalsa1,3,Maghrib,1
+Seemin Riaz_29,2021-11-24_17:33:42:147,Sajda2,3,Maghrib,1
+Seemin Riaz_29,2021-11-24_17:33:48:750,Jalsa2,3,Maghrib,1
+Seemin Riaz_29,2021-11-24_17:33:52:107,Qayam,3,Maghrib,2
+Seemin Riaz_29,2021-11-24_17:34:22:939,Ruku,3,Maghrib,2
+Seemin Riaz_29,2021-11-24_17:34:27:635,Qoum,3,Maghrib,2
+Seemin Riaz_29,2021-11-24_17:34:32:128,Sajda1,3,Maghrib,2
+Seemin Riaz_29,2021-11-24_17:34:37:220,Jalsa1,3,Maghrib,2
+Seemin Riaz_29,2021-11-24_17:34:39:197,Sajda2,3,Maghrib,2
+Seemin Riaz_29,2021-11-24_17:34:45:537,Tashahud,3,Maghrib,2
+Seemin Riaz_29,2021-11-24_17:35:01:093,Qayam,3,Maghrib,3
+Seemin Riaz_29,2021-11-24_17:35:24:944,Ruku,3,Maghrib,3
+Seemin Riaz_29,2021-11-24_17:35:28:424,Qoum,3,Maghrib,3
+Seemin Riaz_29,2021-11-24_17:35:32:531,Sajda1,3,Maghrib,3
+Seemin Riaz_29,2021-11-24_17:35:35:496,Jalsa1,3,Maghrib,3
+Seemin Riaz_29,2021-11-24_17:35:37:556,Sajda2,3,Maghrib,3
+Seemin Riaz_29,2021-11-24_17:35:42:937,Tashahud,3,Maghrib,3

@@ -8,6 +8,7 @@
         <entry key="..\:/SmartSalah/app/src/main/res/drawable/gradient1.xml" value="0.1" />
         <entry key="..\:/SmartSalah/app/src/main/res/drawable/profile_icon.xml" value="0.20052083333333334" />
         <entry key="..\:/SmartSalah/app/src/main/res/drawable/rectangle.xml" value="0.1" />
+        <entry key="..\:/SmartSalah/app/src/main/res/layout/activity_calender.xml" value="0.184375" />
         <entry key="..\:/SmartSalah/app/src/main/res/layout/activity_changepass.xml" value="0.184375" />
         <entry key="..\:/SmartSalah/app/src/main/res/layout/activity_home.xml" value="0.184375" />
         <entry key="..\:/SmartSalah/app/src/main/res/layout/activity_login.xml" value="0.184375" />
@@ -15,6 +16,8 @@
         <entry key="..\:/SmartSalah/app/src/main/res/layout/activity_posture.xml" value="0.18020833333333333" />
         <entry key="..\:/SmartSalah/app/src/main/res/layout/activity_rakah.xml" value="0.184375" />
         <entry key="..\:/SmartSalah/app/src/main/res/layout/activity_salah_progress.xml" value="0.184375" />
+        <entry key="..\:/SmartSalah/app/src/main/res/layout/activity_salah_rakah_selection.xml" value="0.184375" />
+        <entry key="..\:/SmartSalah/app/src/main/res/layout/activity_salah_stats_history.xml" value="0.184375" />
         <entry key="..\:/SmartSalah/app/src/main/res/layout/activity_salah_summary.xml" value="0.18020833333333333" />
         <entry key="..\:/SmartSalah/app/src/main/res/layout/activity_signup.xml" value="0.184375" />
         <entry key="..\:/SmartSalah/app/src/main/res/layout/activity_user_profile.xml" value="0.13333333333333333" />

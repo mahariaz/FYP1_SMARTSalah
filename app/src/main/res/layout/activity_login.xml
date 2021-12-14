@@ -59,6 +59,18 @@
             android:textSize="15dp">
 
         </EditText>
+        <EditText
+            android:layout_marginTop="20dp"
+            android:inputType="text"
+            android:id="@+id/uname_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:textSize="15dp">
+
+        </EditText>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

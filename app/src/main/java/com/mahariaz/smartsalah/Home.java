@@ -10,6 +10,8 @@ import androidx.fragment.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 
 import com.google.android.material.navigation.NavigationView;
@@ -37,6 +39,12 @@ public class Home extends AppCompatActivity {
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
         // Setup drawer view
         setupDrawerContent(nvDrawer);
+        View headerView = nvDrawer.getHeaderView(0);
+        TextView userName = headerView.findViewById(R.id.uname_tview);
+        TextView userEmail = headerView.findViewById(R.id.email_tview);
+        // set user name and email
+        userName.setText(shared.username);
+        userEmail.setText(shared.email);
 
     }
     private void setupDrawerContent(NavigationView navigationView) {

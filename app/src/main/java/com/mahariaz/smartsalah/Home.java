@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -45,6 +46,14 @@ public class Home extends AppCompatActivity {
         // set user name and email
         userName.setText(shared.username);
         userEmail.setText(shared.email);
+        Button go=findViewById(R.id.go);
+        go.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Home.this,Salah_Rakah_Selection.class);
+                startActivity(intent);
+            }
+        });
 
     }
     private void setupDrawerContent(NavigationView navigationView) {

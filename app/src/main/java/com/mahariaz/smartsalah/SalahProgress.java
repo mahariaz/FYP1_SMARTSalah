@@ -264,7 +264,7 @@ public class SalahProgress extends AppCompatActivity {
         db.delete_records();*/
         SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd/HH:mm:ss:SSS");
         timestamp=input.format(new Date());
-        user_name="amna123";
+        user_name=shared.username;
         db.openDB();
         rakah_performed=sel_rakah;
         long result=db.add(user_name,

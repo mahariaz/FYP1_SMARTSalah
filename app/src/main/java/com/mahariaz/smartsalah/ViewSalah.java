@@ -94,13 +94,15 @@ public class ViewSalah extends AppCompatActivity {
     }
 
     private void get_chart_data() {
-
+        String u;
         SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd/HH:mm:ss:SSS");
         String temp1=input.format(new Date());
         String curr_time[]=temp1.split("/");
         db.openDB();
         Cursor c=db.getAllValues();
         while(c.moveToNext()){
+            u=c.getString(1);
+            System.out.println(u);
             String get_time=c.getString(11);
             String stored_salah=c.getString(2);
             String stored_rakah=c.getString(3);

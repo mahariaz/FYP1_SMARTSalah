@@ -15,6 +15,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class signUp extends AppCompatActivity {
     EditText email_field_signup,password_field_signup,confirm_field,username_field;
@@ -75,6 +80,26 @@ public class signUp extends AppCompatActivity {
             username_field.requestFocus();
             return;
         }
+        DatabaseReference ref= FirebaseDatabase.getInstance().getReference().child("UserBio").child("username");
+        ref.orderByChild("username").equalTo(username_signup).addValueEventListener(new ValueEventListener(){
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot){
+                if(dataSnapshot.exists()) {
+                    System.out.println("existsssss");
+
+                    Toast.makeText(signUp.this,"Number already exists",Toast.LENGTH_SHORT).show();
+
+                }
+     else{
+                    //add data
+                }
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         mAuth.createUserWithEmailAndPassword(email_signup,password_signup)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {

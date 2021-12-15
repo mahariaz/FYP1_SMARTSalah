@@ -68,10 +68,12 @@ public class SalahProgress extends AppCompatActivity {
     boolean is_bar1_filled=false,is_bar2_filled=false,is_bar3_filled=false,is_bar4_filled=false;
     boolean one_fill=false,two_fill=false,three_fill=false,four_fill=false;
     final DBAdapter db=new DBAdapter(this);
+    TextView tv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_salah_progress);
+        tv=findViewById(R.id.comp);
         get_intents();
         get_bar_ids();
         display_progressBars();
@@ -130,6 +132,10 @@ public class SalahProgress extends AppCompatActivity {
                             sel_rakah.equalsIgnoreCase("3") ||
                             sel_rakah.equalsIgnoreCase("4"))
                         fill_bar2(bar2);
+                    else{
+                        tv.setText("k");
+                        System.out.println("SSSSSSSSSSS");
+                    }
                 }
 
             }

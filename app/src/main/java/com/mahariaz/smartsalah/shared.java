@@ -4,5 +4,7 @@ public class shared {
     public static String username;
     public static String curr_salah;
     public static String curr_rakah;
+    public static String curr_status;
+
 
 }

@@ -128,6 +128,10 @@ public class Home extends AppCompatActivity {
                 Intent intent1=new Intent(Home.this,UserProfile.class);
                 startActivity(intent1);
                 break;
+            case R.id.fr_Notes:
+                Intent intent2=new Intent(Home.this,MyNotes.class);
+                startActivity(intent2);
+
 
         }
 

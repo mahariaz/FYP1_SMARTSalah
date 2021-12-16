@@ -42,7 +42,7 @@ public class signUp extends AppCompatActivity {
     public String dp;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-    boolean is_same_username;
+    boolean var;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,10 +52,8 @@ public class signUp extends AppCompatActivity {
         signup_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                is_same_username=false;
+                var=false;
                 registerUser();
-
-
             }
         });
         TextView login=findViewById(R.id.login);
@@ -107,11 +105,6 @@ public class signUp extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String value = snapshot.getValue(String.class);
                 System.out.println("same : " + value + " " + shared.username);
-                if(value.equalsIgnoreCase(shared.username)){
-                    is_same_username=true;
-                    System.out.println("same");
-
-                }
 
             }
 
@@ -121,7 +114,7 @@ public class signUp extends AppCompatActivity {
 
             }
         });
-        if (is_same_username){
+
         mAuth.createUserWithEmailAndPassword(email_signup, password_signup)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -137,9 +130,7 @@ public class signUp extends AppCompatActivity {
                         }
                     }
                 });
-        }else{
-            Toast.makeText(signUp.this, "Username is taken", Toast.LENGTH_SHORT).show();
-        }
+
     }
     public void register_bio(){
         StorageReference storage = FirebaseStorage.getInstance().getReference();

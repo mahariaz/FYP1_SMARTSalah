@@ -110,6 +110,7 @@
             android:text="Login">
 
         </Button>
+        <!--
         <Button
             android:layout_marginTop="10dp"
             android:id="@+id/google_login"
@@ -118,7 +119,7 @@
             android:backgroundTint="#3F4FA8"
             android:text="Sign-in with Google">
 
-        </Button>
+        </Button>-->
 
         <LinearLayout
             android:layout_width="match_parent"

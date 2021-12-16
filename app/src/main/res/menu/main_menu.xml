@@ -8,9 +8,9 @@
 
                 </item>
                 <item
-                    android:id="@+id/fr_About"
-                    android:icon="@drawable/pray"
-                    android:title="About">
+                    android:id="@+id/fr_Notes"
+                    android:icon="@drawable/sticknote"
+                    android:title="My Notes">
 
                 </item>
                 <item

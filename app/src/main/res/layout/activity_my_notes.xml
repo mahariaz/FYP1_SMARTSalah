@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="3"
+    android:background="@drawable/back1"
+    tools:context=".MyNotes">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        >
+        <ImageView
+            android:id="@+id/new_msg_bar"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/searchbar">
+
+        </ImageView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true"
+            android:weightSum="3">
+            <ImageView
+                android:layout_gravity="center_vertical"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/edit_icon"
+                android:layout_weight="0.5"
+                >
+            </ImageView>
+            <EditText
+                android:id="@+id/REACTIVESEARCHFIELD"
+                android:backgroundTint="#0000"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:hint="Search Messages"
+                android:textColor="@color/white"
+                android:gravity="center">
+
+            </EditText>
+            <ImageView
+                android:layout_gravity="center_vertical"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/search_icon"
+                android:layout_weight="0.5"
+                >
+            </ImageView>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rec_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+
+</LinearLayout>

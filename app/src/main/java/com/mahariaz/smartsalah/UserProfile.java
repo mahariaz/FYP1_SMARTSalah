@@ -40,7 +40,6 @@ import java.nio.charset.StandardCharsets;
 
 public class UserProfile extends AppCompatActivity {
     EditText fname_field, lname_field;
-    RadioButton fradio,mradio;
     public String fname, lname, gender, dp;
     Button save_button;
     FirebaseDatabase rootNode;

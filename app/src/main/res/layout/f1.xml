@@ -32,14 +32,6 @@
             android:background="@drawable/circle"
             android:id="@+id/rel"
             >
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/c1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/circle">
-
-            </de.hdodenhof.circleimageview.CircleImageView>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -58,6 +50,7 @@
                         android:layout_height="50dp"
                         android:background="@drawable/circle"
                         tools:ignore="UnknownId">
+
                         <TextView
                             android:id="@+id/s"
                             android:layout_width="wrap_content"

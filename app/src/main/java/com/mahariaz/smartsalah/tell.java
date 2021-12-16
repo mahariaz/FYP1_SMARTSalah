@@ -9,6 +9,7 @@ import android.widget.Button;
 
 public class tell extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,7 +18,7 @@ public class tell extends AppCompatActivity {
         cont.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(tell.this,tell.class);
+                Intent intent=new Intent(tell.this,WhatGender.class);
                 startActivity(intent);
             }
         });

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/back1"
+    android:weightSum="2.1"
+    tools:context=".WhatHeight">
+    <LinearLayout
+        android:padding="20dp"
+        android:layout_margin="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.1">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back_arrow"
+            >
+
+        </ImageView>
+
+    </LinearLayout>
+    <TextView
+        android:padding="20dp"
+        android:layout_margin="20dp"
+        android:layout_gravity="center"
+        android:textSize="25dp"
+        android:layout_weight="0.5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="What is your height?">
+
+    </TextView>
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner
+            android:id="@+id/spinner_ft"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            app:DoneSearchTintColor="#F4C0AF"
+            app:RevealEmptyText="Touch to select"
+            app:RevealViewBackgroundColor="#F4C0AF"
+            app:SearchViewBackgroundColor="@android:color/secondary_text_dark"
+            app:ShowBorders="false"
+            app:SpinnerExpandHeight="300dp"
+            app:StartSearchTintColor="@android:color/white" />
+        <gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner
+            android:id="@+id/spinner_in"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            app:DoneSearchTintColor="#F4C0AF"
+            app:RevealEmptyText="Touch to select"
+            app:RevealViewBackgroundColor="#F4C0AF"
+            app:SearchViewBackgroundColor="@android:color/secondary_text_dark"
+            app:ShowBorders="false"
+            app:SpinnerExpandHeight="300dp"
+            app:StartSearchTintColor="@android:color/white" />
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/cont"
+        android:padding="20dp"
+        android:layout_margin="20dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Continue"
+        android:background="@drawable/roundbtn">
+
+    </Button>
+
+
+</LinearLayout>

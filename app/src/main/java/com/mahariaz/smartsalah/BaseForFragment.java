@@ -47,14 +47,7 @@ public class BaseForFragment extends AppCompatActivity {
 
             }
         });
-        TextView login=findViewById(R.id.login);
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(BaseForFragment.this,login.class);
-                startActivity(intent);
-            }
-        });
+
         Button startNow=findViewById(R.id.start_now);
         startNow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +56,15 @@ public class BaseForFragment extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        TextView already_acc=(TextView) findViewById(R.id.already);
+        already_acc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(BaseForFragment.this,login.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
 

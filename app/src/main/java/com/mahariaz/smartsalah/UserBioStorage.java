@@ -1,9 +1,9 @@
 package com.mahariaz.smartsalah;
 
 public class UserBioStorage {
-    public UserBioStorage(String dp, String email, String username, String fname, String lname, String gender) {
-        this.fname = fname;
-        this.lname = lname;
+    public UserBioStorage(String dp, String email, String username, String height, String age, String gender) {
+        this.height = height;
+        this.age = age;
         this.email=email;
         this.username=username;
         this.dp=dp;
@@ -15,21 +15,7 @@ public class UserBioStorage {
 
     }
 
-    public String getFname() {
-        return fname;
-    }
 
-    public void setFname(String fname) {
-        this.fname = fname;
-    }
-
-    public String getLname() {
-        return lname;
-    }
-
-    public void setLname(String lname) {
-        this.lname = lname;
-    }
 
     public String getGender() {
         return gender;
@@ -39,9 +25,27 @@ public class UserBioStorage {
         this.gender = age;
     }
 
-    String fname;
-    String lname;
+
     String gender;
+
+    public String getHeight() {
+        return height;
+    }
+
+    public void setHeight(String height) {
+        this.height = height;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    String height;
+    String age;
     String email;
 
 

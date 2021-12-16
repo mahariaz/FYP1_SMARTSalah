@@ -23,7 +23,9 @@ public class shared {
     public static String email;
     public static String username;
     public static String gender;
-    public static Uri dp_uri;
+    public static String age;
+    public static String height;
+    public static Uri  selectedImage;
 
     public static final Uri getUriToDrawable(@NonNull Context context,
                                              @AnyRes int drawableId) {

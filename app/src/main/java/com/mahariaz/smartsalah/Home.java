@@ -8,6 +8,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.onesignal.OneSignal;
 import android.content.Intent;
 import android.media.Image;
 import android.os.AsyncTask;
@@ -18,6 +19,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.bumptech.glide.Glide;
@@ -36,17 +38,25 @@ import java.util.Scanner;
 public class Home extends AppCompatActivity {
     private DrawerLayout mDrawer;
     private Toolbar toolbar;
+    private static final String ONESIGNAL_APP_ID = "a827ee7e-6beb-4dd5-9c21-f281bed4c4c7";
 
     private NavigationView nvDrawer;
-
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        notifications("Track your Salah right away!");
+
         // Set a Toolbar to replace the ActionBar.
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        OneSignal.initWithContext(this);
+        OneSignal.setAppId(ONESIGNAL_APP_ID);
+
+        OneSignal.sendTag("User_ID","a@gmail.com");
+        notifications("Track your Salah right away!");
 
         // This will display an Up icon (<-), we will replace it with hamburger later
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -61,32 +71,27 @@ public class Home extends AppCompatActivity {
         TextView userName = headerView.findViewById(R.id.uname_tview);
         TextView userEmail = headerView.findViewById(R.id.email_tview);
         ImageView show_dp=headerView.findViewById(R.id.show_dp);
+        // MY SAVIOUR CODE FOR RETRIEVING A PARTICULAR INDEX FROM FIREBASE
         show_dp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("PERSON BUTTON CLICKED");
-                FirebaseDatabase dowbDB = FirebaseDatabase.getInstance();
-                DatabaseReference dbRef = dowbDB.getReference();
-                DatabaseReference getImage = dbRef.child("image");
-                dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                firebaseDatabase = FirebaseDatabase.getInstance();
+                databaseReference = firebaseDatabase.getReference("UserBio").child(shared.username).child("dp");
+                databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot ds:
-                                snapshot.getChildren()) {
-                            System.out.println(ds.getValue().toString());
-//                        ds.getValue().toString() is url for the image
-                            String url_to_str=ds.getValue().toString();
-                            String u="https://firebasestorage.googleapis.com/v0/b/smartsalah-18be7.appspot.com/o/UserDP%2Fce98980a-8036-485c-a0ea-a7b64ee35934.jpg?alt=media&token=9cd2d733-a805-4582-acf6-69937fe0a3d2";
-                            ImageView show_dp=findViewById(R.id.show_dp);
-                            Glide.with(getApplicationContext()).load(u).into(show_dp);
-                        }
+                        String value = snapshot.getValue(String.class);
+                        ImageView show_dp=findViewById(R.id.show_dp);
+                        Glide.with(getApplicationContext()).load(value).into(show_dp);
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        System.out.println("there is error");
+                        System.out.println("FAILED");
+
                     }
                 });
+
             }
         });
         // set user name and email
@@ -148,9 +153,12 @@ public class Home extends AppCompatActivity {
     {
 
 
+
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
+
+               // Toast.makeText(getApplicationContext(), "Inside Notification fun", Toast.LENGTH_SHORT).show();
                 int SDK_INT = android.os.Build.VERSION.SDK_INT;
                 if (SDK_INT > 8) {
                     StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()

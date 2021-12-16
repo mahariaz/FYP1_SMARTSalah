@@ -64,7 +64,7 @@ public class UserProfile extends AppCompatActivity {
 
                 fname = fname_field.getText().toString();
                 lname = lname_field.getText().toString();
-                register_bio();
+                //register_bio();
                 Intent intent = new Intent(UserProfile.this, Home.class);
                 startActivity(intent);
 
@@ -93,11 +93,12 @@ public class UserProfile extends AppCompatActivity {
 
         }
     }
-    public void register_bio(){
+    /*public void register_bio(){
 
         StorageReference storage = FirebaseStorage.getInstance().getReference();
         String uniqueID = UUID.randomUUID().toString();
         storage = storage.child("UserDP/"+uniqueID+".jpg");
+        System.out.println("iiiiiiiii"+selectedImage);
         storage.putFile(selectedImage)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
@@ -111,9 +112,6 @@ public class UserProfile extends AppCompatActivity {
 
                                         FirebaseDatabase fstorage = FirebaseDatabase.getInstance();
                                         DatabaseReference DBREF = fstorage.getReference("UserBio");
-                                        /*DBREF.push().setValue(
-                                                dp
-                                        );*/
                                         rootNode = FirebaseDatabase.getInstance();
                                         reference = rootNode.getInstance().getReference("UserBio");
                                         UserBioStorage userBioStorage = new UserBioStorage(dp,shared.email,shared.username, fname, lname, "male");
@@ -135,5 +133,5 @@ public class UserProfile extends AppCompatActivity {
                     }
                 });
 
-    }
+    }*/
 }

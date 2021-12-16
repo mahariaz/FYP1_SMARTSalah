@@ -12,6 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartSalah">
         <activity
+            android:name=".WhatDp"
+            android:exported="false" />
+        <activity
+            android:name=".WhatAge"
+            android:exported="false" />
+        <activity
+            android:name=".WhatHeight"
+            android:exported="false" />
+        <activity
+            android:name=".WhatGender"
+            android:exported="false" />
+        <activity
             android:name=".tell"
             android:exported="false" />
         <activity
@@ -19,7 +31,9 @@
             android:exported="false" />
         <activity
             android:name=".UserProfile"
-            android:exported="false" />
+            android:exported="true" >
+
+        </activity>
         <activity
             android:name=".Salah_stats_history"
             android:exported="false" />
@@ -37,13 +51,17 @@
             android:exported="true" />
         <activity
             android:name=".Home"
-            android:exported="true" />
+            android:exported="true" >
+
+        </activity>
         <activity
             android:name=".change_pass"
             android:exported="true" />
         <activity
             android:name=".signUp"
-            android:exported="true"></activity>
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".login"
             android:exported="true" />
@@ -55,6 +73,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
     </application>
 

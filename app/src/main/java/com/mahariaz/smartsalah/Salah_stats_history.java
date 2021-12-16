@@ -34,7 +34,7 @@ public class Salah_stats_history extends AppCompatActivity {
 
     //db
     final DBAdapter db=new DBAdapter(this);
-    String sel_salah,sel_rakah,date,rakah_per,qayam_avg,ruku_avg,qoum_avg,sajda_avg,jalsa_avg,tash_avg,get_salah,get_rakah;
+    String sel_salah,sel_rakah,date,rakah_per,qayam_avg="0",ruku_avg="0",qoum_avg="0",sajda_avg="0",jalsa_avg="0",tash_avg="0",get_salah="Missed/Qaza",get_rakah="0 Rakah";
     TextView salah_view,rakah_view;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

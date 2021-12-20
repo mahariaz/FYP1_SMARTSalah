@@ -3,6 +3,9 @@ package com.mahariaz.smartsalah;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 import android.app.Activity;
 import android.content.Intent;
@@ -79,7 +82,9 @@ public class FillNote extends AppCompatActivity {
         DatabaseReference DBREF = fstorage.getReference("Notes");
         rootNode = FirebaseDatabase.getInstance();
         reference = rootNode.getInstance().getReference("Notes");
-        UserNoteStorage userNoteStorage = new UserNoteStorage(contentw,note_name,time,"maha");
+        SimpleDateFormat input = new SimpleDateFormat("mm:ss");
+        String timestamp=input.format(new Date());
+        UserNoteStorage userNoteStorage = new UserNoteStorage(contentw,note_name,timestamp,"untitled");
         reference.child(note_name).setValue(userNoteStorage);
 
 

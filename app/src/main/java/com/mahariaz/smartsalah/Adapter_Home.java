@@ -62,13 +62,11 @@ public class Adapter_Home extends RecyclerView.Adapter<Adapter_Home.ViewHolder> 
             notetime=itemView.findViewById(R.id.time);
             notecontent=itemView.findViewById(R.id.short_note);
 
-
         }
 
         public void setData(String n_content, String note_name, String time,String uname) {
-            notename.setText(uname);
-            notetime.setText(note_name);
-            notecontent.setText(n_content);
+            notename.setText(note_name);
+            notetime.setText(time);
             notecontent.setText(n_content);
 
         }

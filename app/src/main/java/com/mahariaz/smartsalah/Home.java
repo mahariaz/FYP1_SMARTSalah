@@ -131,6 +131,9 @@ public class Home extends AppCompatActivity {
             case R.id.fr_Notes:
                 Intent intent2=new Intent(Home.this,MyNotes.class);
                 startActivity(intent2);
+            case R.id.fr_make_note:
+                Intent intent3=new Intent(Home.this,FillNote.class);
+                startActivity(intent3);
 
 
         }

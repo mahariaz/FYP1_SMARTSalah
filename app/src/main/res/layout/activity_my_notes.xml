@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:weightSum="3"
     android:background="@drawable/back1"
@@ -25,7 +25,7 @@
         </ImageView>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_centerInParent="true"
             android:weightSum="3">
@@ -41,7 +41,7 @@
                 android:id="@+id/REACTIVESEARCHFIELD"
                 android:backgroundTint="#0000"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:hint="Search Messages"
                 android:textColor="@color/white"
@@ -69,7 +69,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rec_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
         </androidx.recyclerview.widget.RecyclerView>
 

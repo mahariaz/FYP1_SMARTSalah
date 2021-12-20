@@ -40,26 +40,10 @@ public class MyNotes extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
                     String content = snapshot.child("content").getValue().toString();
-                    String notename = snapshot.child("notename").getValue().toString();
-                    String notetime = snapshot.child("notetime").getValue().toString();
+                    String notename = snapshot.child("note_name").getValue().toString();
+                    String notetime = snapshot.child("note_time").getValue().toString();
                     String nusername = snapshot.child("nusername").getValue().toString();
-
-
-
-
-                    //System.out.println("fname"+snapshot.child("fname").getValue());
-
-//                    for (ModelClass md :
-//                            userList) {
-//                        System.out.println("-" + md.getPerson_name());
-//                        System.out.println("+" + fname + " " + lname);
-//                        if (!md.getPerson_name().equals(fname + " " + lname)) {
-//                            System.out.println("not there");
-//                    userList.add(new ModelClass(R.drawable.nu, fname + " " + lname, "2:45pm", tagline));
                     userList.add(new ModelClass(content,notename,notetime,nusername));
-//                        }
-//
-//                    }
 
 
                     recyclerView = findViewById(R.id.rec_view);
@@ -81,12 +65,6 @@ public class MyNotes extends AppCompatActivity {
 
 
         userList = new ArrayList<>();
-//        userList.add(new ModelClass(R.drawable.nu,"maha","2:45pm","how are you and I"));
-//        userList.add(new ModelClass(R.drawable.nu,"abubakar2000","2:45pm","how are you and I"));
-//        userList.add(new ModelClass(R.drawable.nu,"ana","2:45pm","how are you and I"));
-//        userList.add(new ModelClass(R.drawable.nu,"ayesha","2:45pm","how are you and I"));
-//        userList.add(new ModelClass(R.drawable.nu,"aima","2:45pm","how are you and I"));
-//        userList.add(new ModelClass(R.drawable.nu,"shiza","2:45pm","how are you and I"));
 
         EditText field = findViewById(R.id.REACTIVESEARCHFIELD);
 

@@ -14,6 +14,12 @@
 
                 </item>
                 <item
+                    android:id="@+id/fr_make_note"
+                    android:icon="@drawable/sticknote"
+                    android:title="Make Notes">
+
+                </item>
+                <item
                     android:id="@+id/fr_settings"
                     android:icon="@drawable/settings_icon"
                     android:title="Settings">

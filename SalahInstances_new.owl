@@ -1,0 +1,2303 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://salahontology.com#"
+     xml:base="http://salahontology.com"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:swrla="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#">
+    <owl:Ontology rdf:about="http://salahontology.com"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled -->
+
+    <owl:AnnotationProperty rdf:about="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://salahontology.com#Contains -->
+
+    <owl:ObjectProperty rdf:about="http://salahontology.com#Contains">
+        <rdfs:domain rdf:resource="http://salahontology.com#Rakah"/>
+        <rdfs:range rdf:resource="http://salahontology.com#Postures"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://salahontology.com#Performs -->
+
+    <owl:ObjectProperty rdf:about="http://salahontology.com#Performs">
+        <owl:inverseOf rdf:resource="http://salahontology.com#isPerformedBy"/>
+        <rdfs:domain rdf:resource="http://salahontology.com#Person"/>
+        <rdfs:range rdf:resource="http://salahontology.com#Salah"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://salahontology.com#consistsOfRakah -->
+
+    <owl:ObjectProperty rdf:about="http://salahontology.com#consistsOfRakah">
+        <rdfs:domain rdf:resource="http://salahontology.com#SalahUnit"/>
+        <rdfs:range rdf:resource="http://salahontology.com#Rakah"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://salahontology.com#followedBy -->
+
+    <owl:ObjectProperty rdf:about="http://salahontology.com#followedBy">
+        <rdfs:domain rdf:resource="http://salahontology.com#Postures"/>
+        <rdfs:range rdf:resource="http://salahontology.com#Postures"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://salahontology.com#hasEnsured -->
+
+    <owl:ObjectProperty rdf:about="http://salahontology.com#hasEnsured">
+        <rdfs:domain rdf:resource="http://salahontology.com#Salah"/>
+        <rdfs:range rdf:resource="http://salahontology.com#Timeliness"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://salahontology.com#hasName -->
+
+    <owl:ObjectProperty rdf:about="http://salahontology.com#hasName">
+        <rdfs:domain rdf:resource="http://salahontology.com#Salah"/>
+        <rdfs:range rdf:resource="http://salahontology.com#SalahName"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://salahontology.com#hasSalahUnit -->
+
+    <owl:ObjectProperty rdf:about="http://salahontology.com#hasSalahUnit">
+        <rdfs:domain rdf:resource="http://salahontology.com#Salah"/>
+        <rdfs:range rdf:resource="http://salahontology.com#SalahUnit"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://salahontology.com#hasSalahUnit_Type -->
+
+    <owl:ObjectProperty rdf:about="http://salahontology.com#hasSalahUnit_Type">
+        <rdfs:domain rdf:resource="http://salahontology.com#SalahUnit"/>
+        <rdfs:range rdf:resource="http://salahontology.com#SalahUnit_Type"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://salahontology.com#isPerformedBy -->
+
+    <owl:ObjectProperty rdf:about="http://salahontology.com#isPerformedBy">
+        <rdfs:domain rdf:resource="http://salahontology.com#Salah"/>
+        <rdfs:range rdf:resource="http://salahontology.com#Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://salahontology.com#endAtTime -->
+
+    <owl:DatatypeProperty rdf:about="http://salahontology.com#endAtTime">
+        <rdfs:domain rdf:resource="http://salahontology.com#Postures"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://salahontology.com#endTime -->
+
+    <owl:DatatypeProperty rdf:about="http://salahontology.com#endTime">
+        <rdfs:domain rdf:resource="http://salahontology.com#Salah"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://salahontology.com#hasCompletionStatus -->
+
+    <owl:DatatypeProperty rdf:about="http://salahontology.com#hasCompletionStatus">
+        <rdfs:domain rdf:resource="http://salahontology.com#Salah"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://salahontology.com#hasTime -->
+
+    <owl:DatatypeProperty rdf:about="http://salahontology.com#hasTime">
+        <rdfs:domain rdf:resource="http://salahontology.com#Salah"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://salahontology.com#rakahCount -->
+
+    <owl:DatatypeProperty rdf:about="http://salahontology.com#rakahCount">
+        <rdfs:domain rdf:resource="http://salahontology.com#Salah"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://salahontology.com#startAtTime -->
+
+    <owl:DatatypeProperty rdf:about="http://salahontology.com#startAtTime">
+        <rdfs:domain rdf:resource="http://salahontology.com#Postures"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://salahontology.com#startTime -->
+
+    <owl:DatatypeProperty rdf:about="http://salahontology.com#startTime">
+        <rdfs:domain rdf:resource="http://salahontology.com#Salah"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://salahontology.com#CompletedSalahs -->
+
+    <owl:Class rdf:about="http://salahontology.com#CompletedSalahs">
+        <rdfs:subClassOf rdf:resource="http://salahontology.com#Salah"/>
+    </owl:Class>
+    
+
+
+    <!-- http://salahontology.com#Non_Obligatory -->
+
+    <owl:Class rdf:about="http://salahontology.com#Non_Obligatory">
+        <rdfs:subClassOf rdf:resource="http://salahontology.com#Salah"/>
+    </owl:Class>
+    
+
+
+    <!-- http://salahontology.com#Non_ObligatoryUnit -->
+
+    <owl:Class rdf:about="http://salahontology.com#Non_ObligatoryUnit">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://salahontology.com#hasSalahUnit_Type"/>
+                        <owl:hasValue rdf:resource="http://salahontology.com#Nafal"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://salahontology.com#hasSalahUnit_Type"/>
+                        <owl:hasValue rdf:resource="http://salahontology.com#Sunnah"/>
+                    </owl:Restriction>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://salahontology.com#SalahUnit"/>
+    </owl:Class>
+    
+
+
+    <!-- http://salahontology.com#Obligatory -->
+
+    <owl:Class rdf:about="http://salahontology.com#Obligatory">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://salahontology.com#hasName"/>
+                        <owl:hasValue rdf:resource="http://salahontology.com#Asr"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://salahontology.com#hasName"/>
+                        <owl:hasValue rdf:resource="http://salahontology.com#Isha"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://salahontology.com#hasName"/>
+                        <owl:hasValue rdf:resource="http://salahontology.com#Maghreb"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://salahontology.com#hasName"/>
+                        <owl:hasValue rdf:resource="http://salahontology.com#Zuhr"/>
+                    </owl:Restriction>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://salahontology.com#Salah"/>
+    </owl:Class>
+    
+
+
+    <!-- http://salahontology.com#ObligatoryUnit -->
+
+    <owl:Class rdf:about="http://salahontology.com#ObligatoryUnit">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://salahontology.com#hasSalahUnit_Type"/>
+                <owl:hasValue rdf:resource="http://salahontology.com#Farz"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://salahontology.com#SalahUnit"/>
+    </owl:Class>
+    
+
+
+    <!-- http://salahontology.com#Person -->
+
+    <owl:Class rdf:about="http://salahontology.com#Person">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://salahontology.com#Postures -->
+
+    <owl:Class rdf:about="http://salahontology.com#Postures">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://salahontology.com#Rakah -->
+
+    <owl:Class rdf:about="http://salahontology.com#Rakah">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://salahontology.com#Salah -->
+
+    <owl:Class rdf:about="http://salahontology.com#Salah">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://salahontology.com#SalahName -->
+
+    <owl:Class rdf:about="http://salahontology.com#SalahName">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://salahontology.com#SalahStatus -->
+
+    <owl:Class rdf:about="http://salahontology.com#SalahStatus">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://salahontology.com#SalahUnit -->
+
+    <owl:Class rdf:about="http://salahontology.com#SalahUnit">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://salahontology.com#SalahUnit_Type -->
+
+    <owl:Class rdf:about="http://salahontology.com#SalahUnit_Type">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://salahontology.com#Timeliness -->
+
+    <owl:Class rdf:about="http://salahontology.com#Timeliness">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://salahontology.com#Asr -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#Asr">
+        <rdf:type rdf:resource="http://salahontology.com#SalahName"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#Ayesha_Ahmad__18 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#Ayesha_Ahmad__18">
+        <rdf:type rdf:resource="http://salahontology.com#Person"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1">
+        <rdf:type rdf:resource="http://salahontology.com#SalahUnit"/>
+        <consistsOfRakah rdf:resource="http://salahontology.com#FZ1_rakah1"/>
+        <consistsOfRakah rdf:resource="http://salahontology.com#FZ1_rakah2"/>
+        <consistsOfRakah rdf:resource="http://salahontology.com#FZ1_rakah3"/>
+        <consistsOfRakah rdf:resource="http://salahontology.com#FZ1_rakah4"/>
+        <hasSalahUnit_Type rdf:resource="http://salahontology.com#Farz"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah1">
+        <rdf:type rdf:resource="http://salahontology.com#Rakah"/>
+        <Contains rdf:resource="http://salahontology.com#FZ1_rakah1_Jalsa1"/>
+        <Contains rdf:resource="http://salahontology.com#FZ1_rakah1_Qayam"/>
+        <Contains rdf:resource="http://salahontology.com#FZ1_rakah1_Qoum"/>
+        <Contains rdf:resource="http://salahontology.com#FZ1_rakah1_Ruku"/>
+        <Contains rdf:resource="http://salahontology.com#FZ1_rakah1_Sajda1"/>
+        <Contains rdf:resource="http://salahontology.com#FZ1_rakah1_Sajda2"/>
+        <Contains rdf:resource="http://salahontology.com#FZ1_rakah1_Takbir"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah1_Jalsa1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah1_Jalsa1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ1_rakah1_Sajda2"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_09:50:15:830</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah1_Qayam -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah1_Qayam">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ1_rakah1_Ruku"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_09:49:56:324</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah1_Qoum -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah1_Qoum">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ1_rakah1_Sajda1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_09:50:10:981</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah1_Ruku -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah1_Ruku">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ1_rakah1_Qoum"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_09:50:09:167</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah1_Sajda1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah1_Sajda1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ1_rakah1_Jalsa1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_09:50:13:432</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah1_Sajda2 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah1_Sajda2">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ1_rakah2_Qayam"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_09:50:16:878</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah1_Takbir -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah1_Takbir">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ1_rakah1_Qayam"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_09:49:54:279</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah2 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah2">
+        <rdf:type rdf:resource="http://salahontology.com#Rakah"/>
+        <Contains rdf:resource="http://salahontology.com#FZ1_rakah2_Jalsa1"/>
+        <Contains rdf:resource="http://salahontology.com#FZ1_rakah2_Qayam"/>
+        <Contains rdf:resource="http://salahontology.com#FZ1_rakah2_Qoum"/>
+        <Contains rdf:resource="http://salahontology.com#FZ1_rakah2_Ruku"/>
+        <Contains rdf:resource="http://salahontology.com#FZ1_rakah2_Sajda1"/>
+        <Contains rdf:resource="http://salahontology.com#FZ1_rakah2_Sajda2"/>
+        <Contains rdf:resource="http://salahontology.com#FZ1_rakah2_Tashahud"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah2_Jalsa1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah2_Jalsa1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ1_rakah2_Sajda2"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_09:50:36:756</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah2_Qayam -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah2_Qayam">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ1_rakah2_Ruku"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_09:50:20:805</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah2_Qoum -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah2_Qoum">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ1_rakah2_Sajda1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_09:50:31:661</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah2_Ruku -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah2_Ruku">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ1_rakah2_Qoum"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_09:50:29:479</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah2_Sajda1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah2_Sajda1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ1_rakah2_Jalsa1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_09:50:34:431</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah2_Sajda2 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah2_Sajda2">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ1_rakah2_Tashahud"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_09:50:37:894</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah2_Tashahud -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah2_Tashahud">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ1_rakah3_Qayam"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_09:50:40:472</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah3 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah3">
+        <rdf:type rdf:resource="http://salahontology.com#Rakah"/>
+        <Contains rdf:resource="http://salahontology.com#FZ1_rakah3_Jalsa1"/>
+        <Contains rdf:resource="http://salahontology.com#FZ1_rakah3_Qayam"/>
+        <Contains rdf:resource="http://salahontology.com#FZ1_rakah3_Qoum"/>
+        <Contains rdf:resource="http://salahontology.com#FZ1_rakah3_Ruku"/>
+        <Contains rdf:resource="http://salahontology.com#FZ1_rakah3_Sajda1"/>
+        <Contains rdf:resource="http://salahontology.com#FZ1_rakah3_Sajda2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah3_Jalsa1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah3_Jalsa1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ1_rakah3_Sajda2"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_09:51:05:526</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah3_Qayam -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah3_Qayam">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ1_rakah3_Ruku"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_09:50:51:708</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah3_Qoum -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah3_Qoum">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ1_rakah3_Sajda1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_09:51:00:558</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah3_Ruku -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah3_Ruku">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ1_rakah3_Qoum"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_09:50:58:607</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah3_Sajda1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah3_Sajda1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ1_rakah3_Jalsa1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_09:51:03:241</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah3_Sajda2 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah3_Sajda2">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ1_rakah4_Qayam"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_09:51:06:611</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah4 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah4">
+        <rdf:type rdf:resource="http://salahontology.com#Rakah"/>
+        <Contains rdf:resource="http://salahontology.com#FZ1_rakah4_Jalsa1"/>
+        <Contains rdf:resource="http://salahontology.com#FZ1_rakah4_Qayam"/>
+        <Contains rdf:resource="http://salahontology.com#FZ1_rakah4_Qoum"/>
+        <Contains rdf:resource="http://salahontology.com#FZ1_rakah4_Ruku"/>
+        <Contains rdf:resource="http://salahontology.com#FZ1_rakah4_Sajda1"/>
+        <Contains rdf:resource="http://salahontology.com#FZ1_rakah4_Sajda2"/>
+        <Contains rdf:resource="http://salahontology.com#FZ1_rakah4_Tashahud"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah4_Jalsa1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah4_Jalsa1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ1_rakah4_Sajda2"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_09:51:24:361</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah4_Qayam -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah4_Qayam">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ1_rakah4_Ruku"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_09:51:11:506</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah4_Qoum -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah4_Qoum">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ1_rakah4_Sajda1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_09:51:19:393</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah4_Ruku -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah4_Ruku">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ1_rakah4_Qoum"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_09:51:17:203</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah4_Sajda1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah4_Sajda1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ1_rakah4_Jalsa1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_09:51:22:118</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah4_Sajda2 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah4_Sajda2">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ1_rakah4_Tashahud"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_09:51:25:918</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ1_rakah4_Tashahud -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ1_rakah4_Tashahud">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN1_rakah1_Takbir"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_09:51:29:131</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ3 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ3">
+        <rdf:type rdf:resource="http://salahontology.com#SalahUnit"/>
+        <consistsOfRakah rdf:resource="http://salahontology.com#FZ3_rakah1"/>
+        <consistsOfRakah rdf:resource="http://salahontology.com#FZ3_rakah2"/>
+        <hasSalahUnit_Type rdf:resource="http://salahontology.com#Farz"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ3_rakah1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ3_rakah1">
+        <rdf:type rdf:resource="http://salahontology.com#Rakah"/>
+        <Contains rdf:resource="http://salahontology.com#FZ3_rakah1_Jalsa1"/>
+        <Contains rdf:resource="http://salahontology.com#FZ3_rakah1_Qayam"/>
+        <Contains rdf:resource="http://salahontology.com#FZ3_rakah1_Qoum"/>
+        <Contains rdf:resource="http://salahontology.com#FZ3_rakah1_Ruku"/>
+        <Contains rdf:resource="http://salahontology.com#FZ3_rakah1_Sajda1"/>
+        <Contains rdf:resource="http://salahontology.com#FZ3_rakah1_Sajda2"/>
+        <Contains rdf:resource="http://salahontology.com#FZ3_rakah1_Takbir"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ3_rakah1_Jalsa1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ3_rakah1_Jalsa1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ3_rakah1_Sajda2"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:39:23:800</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ3_rakah1_Qayam -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ3_rakah1_Qayam">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ3_rakah1_Ruku"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:39:07:323</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ3_rakah1_Qoum -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ3_rakah1_Qoum">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ3_rakah1_Sajda1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:39:19:392</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ3_rakah1_Ruku -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ3_rakah1_Ruku">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ3_rakah1_Qoum"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:39:17:829</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ3_rakah1_Sajda1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ3_rakah1_Sajda1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ3_rakah1_Jalsa1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:39:21:485</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ3_rakah1_Sajda2 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ3_rakah1_Sajda2">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ3_rakah2_Qayam"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:39:25:346</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ3_rakah1_Takbir -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ3_rakah1_Takbir">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ3_rakah1_Qayam"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:39:05:757</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ3_rakah2 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ3_rakah2">
+        <rdf:type rdf:resource="http://salahontology.com#Rakah"/>
+        <Contains rdf:resource="http://salahontology.com#FZ3_rakah2_Jalsa1"/>
+        <Contains rdf:resource="http://salahontology.com#FZ3_rakah2_Qayam"/>
+        <Contains rdf:resource="http://salahontology.com#FZ3_rakah2_Qoum"/>
+        <Contains rdf:resource="http://salahontology.com#FZ3_rakah2_Ruku"/>
+        <Contains rdf:resource="http://salahontology.com#FZ3_rakah2_Sajda1"/>
+        <Contains rdf:resource="http://salahontology.com#FZ3_rakah2_Sajda2"/>
+        <Contains rdf:resource="http://salahontology.com#FZ3_rakah2_Tashahud"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ3_rakah2_Jalsa1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ3_rakah2_Jalsa1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ3_rakah2_Sajda2"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:39:46:837</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ3_rakah2_Qayam -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ3_rakah2_Qayam">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ3_rakah2_Ruku"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:39:30:911</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ3_rakah2_Qoum -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ3_rakah2_Qoum">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ3_rakah2_Sajda1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:39:42:419</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ3_rakah2_Ruku -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ3_rakah2_Ruku">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ3_rakah2_Qoum"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:39:40:445</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ3_rakah2_Sajda1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ3_rakah2_Sajda1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ3_rakah2_Jalsa1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:39:44:230</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ3_rakah2_Sajda2 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ3_rakah2_Sajda2">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ3_rakah2_Tashahud"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:39:48:187</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#FZ3_rakah2_Tashahud -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#FZ3_rakah2_Tashahud">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN3_rakah1_Takbir"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:39:51:182</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#Farz -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#Farz">
+        <rdf:type rdf:resource="http://salahontology.com#SalahUnit_Type"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#Isha -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#Isha">
+        <rdf:type rdf:resource="http://salahontology.com#SalahName"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#Maghreb -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#Maghreb">
+        <rdf:type rdf:resource="http://salahontology.com#SalahName"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#NF4 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#NF4">
+        <rdf:type rdf:resource="http://salahontology.com#SalahUnit"/>
+        <consistsOfRakah rdf:resource="http://salahontology.com#NF4_rakah1"/>
+        <consistsOfRakah rdf:resource="http://salahontology.com#NF4_rakah2"/>
+        <hasSalahUnit_Type rdf:resource="http://salahontology.com#Nafal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#NF4_rakah1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#NF4_rakah1">
+        <rdf:type rdf:resource="http://salahontology.com#Rakah"/>
+        <Contains rdf:resource="http://salahontology.com#NF4_rakah1_Jalsa1"/>
+        <Contains rdf:resource="http://salahontology.com#NF4_rakah1_Qayam"/>
+        <Contains rdf:resource="http://salahontology.com#NF4_rakah1_Qoum"/>
+        <Contains rdf:resource="http://salahontology.com#NF4_rakah1_Ruku"/>
+        <Contains rdf:resource="http://salahontology.com#NF4_rakah1_Sajda1"/>
+        <Contains rdf:resource="http://salahontology.com#NF4_rakah1_Sajda2"/>
+        <Contains rdf:resource="http://salahontology.com#NF4_rakah1_Takbir"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#NF4_rakah1_Jalsa1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#NF4_rakah1_Jalsa1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#NF4_rakah1_Sajda2"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_21:42:43:687</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#NF4_rakah1_Qayam -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#NF4_rakah1_Qayam">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#NF4_rakah1_Ruku"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_21:42:13:053</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#NF4_rakah1_Qoum -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#NF4_rakah1_Qoum">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#NF4_rakah1_Sajda1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_21:42:35:980</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#NF4_rakah1_Ruku -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#NF4_rakah1_Ruku">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#NF4_rakah1_Qoum"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_21:42:32:242</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#NF4_rakah1_Sajda1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#NF4_rakah1_Sajda1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#NF4_rakah1_Jalsa1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_21:42:38:766</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#NF4_rakah1_Sajda2 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#NF4_rakah1_Sajda2">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#NF4_rakah2_Qayam"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_21:42:44:483</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#NF4_rakah1_Takbir -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#NF4_rakah1_Takbir">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#NF4_rakah1_Qayam"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_21:42:11:474</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#NF4_rakah2 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#NF4_rakah2">
+        <rdf:type rdf:resource="http://salahontology.com#Rakah"/>
+        <Contains rdf:resource="http://salahontology.com#NF4_rakah2_Jalsa1"/>
+        <Contains rdf:resource="http://salahontology.com#NF4_rakah2_Qayam"/>
+        <Contains rdf:resource="http://salahontology.com#NF4_rakah2_Qoum"/>
+        <Contains rdf:resource="http://salahontology.com#NF4_rakah2_Ruku"/>
+        <Contains rdf:resource="http://salahontology.com#NF4_rakah2_Sajda1"/>
+        <Contains rdf:resource="http://salahontology.com#NF4_rakah2_Sajda2"/>
+        <Contains rdf:resource="http://salahontology.com#NF4_rakah2_Tashahud"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#NF4_rakah2_Jalsa1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#NF4_rakah2_Jalsa1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#NF4_rakah2_Sajda2"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_21:43:19:855</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#NF4_rakah2_Qayam -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#NF4_rakah2_Qayam">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#NF4_rakah2_Ruku"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_21:42:53:713</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#NF4_rakah2_Qoum -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#NF4_rakah2_Qoum">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#NF4_rakah2_Sajda1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_21:43:12:024</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#NF4_rakah2_Ruku -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#NF4_rakah2_Ruku">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#NF4_rakah2_Qoum"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_21:43:08:658</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#NF4_rakah2_Sajda1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#NF4_rakah2_Sajda1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#NF4_rakah2_Jalsa1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_21:43:14:939</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#NF4_rakah2_Sajda2 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#NF4_rakah2_Sajda2">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#NF4_rakah2_Tashahud"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_21:43:20:662</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#NF4_rakah2_Tashahud -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#NF4_rakah2_Tashahud">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#FZ3_rakah1_Takbir"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_21:43:27:571</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#Nafal -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#Nafal">
+        <rdf:type rdf:resource="http://salahontology.com#SalahUnit_Type"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#S1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#S1">
+        <rdf:type rdf:resource="http://salahontology.com#Salah"/>
+        <hasName rdf:resource="http://salahontology.com#Zuhr"/>
+        <hasSalahUnit rdf:resource="http://salahontology.com#FZ1"/>
+        <isPerformedBy rdf:resource="http://salahontology.com#maha_Riaz__2"/>
+        <endTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_09:51:29:131</endTime>
+        <hasTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_09:49:54:279</hasTime>
+        <rakahCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</rakahCount>
+        <startTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_09:49:54:279</startTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#S2 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#S2">
+        <rdf:type rdf:resource="http://salahontology.com#Salah"/>
+        <hasName rdf:resource="http://salahontology.com#Isha"/>
+        <hasSalahUnit rdf:resource="http://salahontology.com#SN1"/>
+        <isPerformedBy rdf:resource="http://salahontology.com#mahnooor_raza_22"/>
+        <endTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_12:31:34:616</endTime>
+        <hasTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_12:28:44:532</hasTime>
+        <rakahCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</rakahCount>
+        <startTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_12:28:44:532</startTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#S3 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#S3">
+        <rdf:type rdf:resource="http://salahontology.com#Salah"/>
+        <hasName rdf:resource="http://salahontology.com#Maghreb"/>
+        <hasSalahUnit rdf:resource="http://salahontology.com#NF4"/>
+        <isPerformedBy rdf:resource="http://salahontology.com#mubeshar_raza_17"/>
+        <endTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_21:43:27:571</endTime>
+        <hasTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_21:42:11:474</hasTime>
+        <rakahCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</rakahCount>
+        <startTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_21:42:11:474</startTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#S6 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#S6">
+        <rdf:type rdf:resource="http://salahontology.com#Salah"/>
+        <hasName rdf:resource="http://salahontology.com#Zuhr"/>
+        <hasSalahUnit rdf:resource="http://salahontology.com#FZ3"/>
+        <isPerformedBy rdf:resource="http://salahontology.com#ubaid_ullah_19"/>
+        <endTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:39:51:182</endTime>
+        <hasTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:39:05:757</hasTime>
+        <rakahCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</rakahCount>
+        <startTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:39:05:757</startTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#S7 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#S7">
+        <rdf:type rdf:resource="http://salahontology.com#Salah"/>
+        <hasName rdf:resource="http://salahontology.com#Asr"/>
+        <hasSalahUnit rdf:resource="http://salahontology.com#SN3"/>
+        <isPerformedBy rdf:resource="http://salahontology.com#Ayesha_Ahmad__18"/>
+        <endTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:49:28:908</endTime>
+        <hasTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:48:00:262</hasTime>
+        <rakahCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</rakahCount>
+        <startTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:48:00:262</startTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1">
+        <rdf:type rdf:resource="http://salahontology.com#SalahUnit"/>
+        <consistsOfRakah rdf:resource="http://salahontology.com#SN1_rakah1"/>
+        <consistsOfRakah rdf:resource="http://salahontology.com#SN1_rakah2"/>
+        <consistsOfRakah rdf:resource="http://salahontology.com#SN1_rakah3"/>
+        <consistsOfRakah rdf:resource="http://salahontology.com#SN1_rakah4"/>
+        <hasSalahUnit_Type rdf:resource="http://salahontology.com#Sunnah"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah1">
+        <rdf:type rdf:resource="http://salahontology.com#Rakah"/>
+        <Contains rdf:resource="http://salahontology.com#SN1_rakah1_Jalsa1"/>
+        <Contains rdf:resource="http://salahontology.com#SN1_rakah1_Qayam"/>
+        <Contains rdf:resource="http://salahontology.com#SN1_rakah1_Qoum"/>
+        <Contains rdf:resource="http://salahontology.com#SN1_rakah1_Ruku"/>
+        <Contains rdf:resource="http://salahontology.com#SN1_rakah1_Sajda1"/>
+        <Contains rdf:resource="http://salahontology.com#SN1_rakah1_Sajda2"/>
+        <Contains rdf:resource="http://salahontology.com#SN1_rakah1_Takbir"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah1_Jalsa1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah1_Jalsa1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN1_rakah1_Sajda2"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_12:29:17:127</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah1_Qayam -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah1_Qayam">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN1_rakah1_Ruku"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_12:28:45:690</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah1_Qoum -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah1_Qoum">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN1_rakah1_Sajda1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_12:29:08:864</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah1_Ruku -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah1_Ruku">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN1_rakah1_Qoum"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_12:29:04:442</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah1_Sajda1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah1_Sajda1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN1_rakah1_Jalsa1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_12:29:12:622</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah1_Sajda2 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah1_Sajda2">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN1_rakah2_Qayam"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_12:29:19:514</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah1_Takbir -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah1_Takbir">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN1_rakah1_Qayam"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_12:28:44:532</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah2 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah2">
+        <rdf:type rdf:resource="http://salahontology.com#Rakah"/>
+        <Contains rdf:resource="http://salahontology.com#SN1_rakah2_Jalsa1"/>
+        <Contains rdf:resource="http://salahontology.com#SN1_rakah2_Qayam"/>
+        <Contains rdf:resource="http://salahontology.com#SN1_rakah2_Qoum"/>
+        <Contains rdf:resource="http://salahontology.com#SN1_rakah2_Ruku"/>
+        <Contains rdf:resource="http://salahontology.com#SN1_rakah2_Sajda1"/>
+        <Contains rdf:resource="http://salahontology.com#SN1_rakah2_Sajda2"/>
+        <Contains rdf:resource="http://salahontology.com#SN1_rakah2_Tashahud"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah2_Jalsa1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah2_Jalsa1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN1_rakah2_Sajda2"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_12:29:57:464</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah2_Qayam -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah2_Qayam">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN1_rakah2_Ruku"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_12:29:26:062</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah2_Qoum -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah2_Qoum">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN1_rakah2_Sajda1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_12:29:49:585</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah2_Ruku -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah2_Ruku">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN1_rakah2_Qoum"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_12:29:44:697</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah2_Sajda1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah2_Sajda1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN1_rakah2_Jalsa1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_12:29:52:863</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah2_Sajda2 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah2_Sajda2">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN1_rakah2_Tashahud"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_12:29:59:585</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah2_Tashahud -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah2_Tashahud">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN1_rakah3_Qayam"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_12:30:05:690</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah3 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah3">
+        <rdf:type rdf:resource="http://salahontology.com#Rakah"/>
+        <Contains rdf:resource="http://salahontology.com#SN1_rakah3_Jalsa1"/>
+        <Contains rdf:resource="http://salahontology.com#SN1_rakah3_Qayam"/>
+        <Contains rdf:resource="http://salahontology.com#SN1_rakah3_Qoum"/>
+        <Contains rdf:resource="http://salahontology.com#SN1_rakah3_Ruku"/>
+        <Contains rdf:resource="http://salahontology.com#SN1_rakah3_Sajda1"/>
+        <Contains rdf:resource="http://salahontology.com#SN1_rakah3_Sajda2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah3_Jalsa1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah3_Jalsa1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN1_rakah3_Sajda2"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_12:30:45:174</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah3_Qayam -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah3_Qayam">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN1_rakah3_Ruku"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_12:30:17:350</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah3_Qoum -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah3_Qoum">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN1_rakah3_Sajda1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_12:30:37:017</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah3_Ruku -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah3_Ruku">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN1_rakah3_Qoum"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_12:30:32:624</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah3_Sajda1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah3_Sajda1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN1_rakah3_Jalsa1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_12:30:40:517</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah3_Sajda2 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah3_Sajda2">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN1_rakah4_Qayam"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_12:30:47:611</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah4 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah4">
+        <rdf:type rdf:resource="http://salahontology.com#Rakah"/>
+        <Contains rdf:resource="http://salahontology.com#SN1_rakah4_Jalsa1"/>
+        <Contains rdf:resource="http://salahontology.com#SN1_rakah4_Qayam"/>
+        <Contains rdf:resource="http://salahontology.com#SN1_rakah4_Qoum"/>
+        <Contains rdf:resource="http://salahontology.com#SN1_rakah4_Ruku"/>
+        <Contains rdf:resource="http://salahontology.com#SN1_rakah4_Sajda1"/>
+        <Contains rdf:resource="http://salahontology.com#SN1_rakah4_Sajda2"/>
+        <Contains rdf:resource="http://salahontology.com#SN1_rakah4_Tashahud"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah4_Jalsa1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah4_Jalsa1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN1_rakah4_Sajda2"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_12:31:25:167</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah4_Qayam -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah4_Qayam">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN1_rakah4_Ruku"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_12:30:55:733</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah4_Qoum -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah4_Qoum">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN1_rakah4_Sajda1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_12:31:16:290</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah4_Ruku -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah4_Ruku">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN1_rakah4_Qoum"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_12:31:12:141</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah4_Sajda1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah4_Sajda1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN1_rakah4_Jalsa1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_12:31:19:805</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah4_Sajda2 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah4_Sajda2">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN1_rakah4_Tashahud"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_12:31:27:414</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN1_rakah4_Tashahud -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN1_rakah4_Tashahud">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#NF4_rakah1_Takbir"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-19_12:31:34:616</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3">
+        <rdf:type rdf:resource="http://salahontology.com#SalahUnit"/>
+        <consistsOfRakah rdf:resource="http://salahontology.com#SN3_rakah1"/>
+        <consistsOfRakah rdf:resource="http://salahontology.com#SN3_rakah2"/>
+        <consistsOfRakah rdf:resource="http://salahontology.com#SN3_rakah3"/>
+        <consistsOfRakah rdf:resource="http://salahontology.com#SN3_rakah4"/>
+        <hasSalahUnit_Type rdf:resource="http://salahontology.com#Sunnah"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah1">
+        <rdf:type rdf:resource="http://salahontology.com#Rakah"/>
+        <Contains rdf:resource="http://salahontology.com#SN3_rakah1_Jalsa1"/>
+        <Contains rdf:resource="http://salahontology.com#SN3_rakah1_Jalsa2"/>
+        <Contains rdf:resource="http://salahontology.com#SN3_rakah1_Qayam"/>
+        <Contains rdf:resource="http://salahontology.com#SN3_rakah1_Qoum"/>
+        <Contains rdf:resource="http://salahontology.com#SN3_rakah1_Ruku"/>
+        <Contains rdf:resource="http://salahontology.com#SN3_rakah1_Sajda1"/>
+        <Contains rdf:resource="http://salahontology.com#SN3_rakah1_Sajda2"/>
+        <Contains rdf:resource="http://salahontology.com#SN3_rakah1_Takbir"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah1_Jalsa1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah1_Jalsa1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN3_rakah1_Sajda2"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:48:15:996</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah1_Jalsa2 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah1_Jalsa2">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN3_rakah2_Qayam"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:48:19:981</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah1_Qayam -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah1_Qayam">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN3_rakah1_Ruku"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:48:02:143</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah1_Qoum -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah1_Qoum">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN3_rakah1_Sajda1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:48:11:924</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah1_Ruku -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah1_Ruku">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN3_rakah1_Qoum"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:48:10:413</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah1_Sajda1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah1_Sajda1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN3_rakah1_Jalsa1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:48:14:291</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah1_Sajda2 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah1_Sajda2">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN3_rakah1_Jalsa2"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:48:17:044</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah1_Takbir -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah1_Takbir">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN3_rakah1_Qayam"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:48:00:262</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah2 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah2">
+        <rdf:type rdf:resource="http://salahontology.com#Rakah"/>
+        <Contains rdf:resource="http://salahontology.com#SN3_rakah2_Jalsa1"/>
+        <Contains rdf:resource="http://salahontology.com#SN3_rakah2_Qayam"/>
+        <Contains rdf:resource="http://salahontology.com#SN3_rakah2_Qoum"/>
+        <Contains rdf:resource="http://salahontology.com#SN3_rakah2_Ruku"/>
+        <Contains rdf:resource="http://salahontology.com#SN3_rakah2_Sajda1"/>
+        <Contains rdf:resource="http://salahontology.com#SN3_rakah2_Sajda2"/>
+        <Contains rdf:resource="http://salahontology.com#SN3_rakah2_Tashahud"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah2_Jalsa1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah2_Jalsa1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN3_rakah2_Sajda2"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:48:38:119</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah2_Qayam -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah2_Qayam">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN3_rakah2_Ruku"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:48:22:270</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah2_Qoum -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah2_Qoum">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN3_rakah2_Sajda1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:48:33:381</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah2_Ruku -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah2_Ruku">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN3_rakah2_Qoum"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:48:32:001</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah2_Sajda1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah2_Sajda1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN3_rakah2_Jalsa1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:48:36:577</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah2_Sajda2 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah2_Sajda2">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN3_rakah2_Tashahud"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:48:39:279</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah2_Tashahud -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah2_Tashahud">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN3_rakah3_Qayam"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:48:42:015</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah3 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah3">
+        <rdf:type rdf:resource="http://salahontology.com#Rakah"/>
+        <Contains rdf:resource="http://salahontology.com#SN3_rakah3_Jalsa1"/>
+        <Contains rdf:resource="http://salahontology.com#SN3_rakah3_Jalsa2"/>
+        <Contains rdf:resource="http://salahontology.com#SN3_rakah3_Qayam"/>
+        <Contains rdf:resource="http://salahontology.com#SN3_rakah3_Qoum"/>
+        <Contains rdf:resource="http://salahontology.com#SN3_rakah3_Ruku"/>
+        <Contains rdf:resource="http://salahontology.com#SN3_rakah3_Sajda1"/>
+        <Contains rdf:resource="http://salahontology.com#SN3_rakah3_Sajda2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah3_Jalsa1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah3_Jalsa1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN3_rakah3_Sajda2"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:49:03:288</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah3_Jalsa2 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah3_Jalsa2">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN3_rakah4_Qayam"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:49:07:652</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah3_Qayam -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah3_Qayam">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN3_rakah3_Ruku"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:48:50:642</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah3_Qoum -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah3_Qoum">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN3_rakah3_Sajda1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:48:58:289</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah3_Ruku -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah3_Ruku">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN3_rakah3_Qoum"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:48:56:933</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah3_Sajda1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah3_Sajda1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN3_rakah3_Jalsa1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:49:01:058</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah3_Sajda2 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah3_Sajda2">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN3_rakah3_Jalsa2"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:49:04:482</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah4 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah4">
+        <rdf:type rdf:resource="http://salahontology.com#Rakah"/>
+        <Contains rdf:resource="http://salahontology.com#SN3_rakah4_Jalsa1"/>
+        <Contains rdf:resource="http://salahontology.com#SN3_rakah4_Qayam"/>
+        <Contains rdf:resource="http://salahontology.com#SN3_rakah4_Qoum"/>
+        <Contains rdf:resource="http://salahontology.com#SN3_rakah4_Ruku"/>
+        <Contains rdf:resource="http://salahontology.com#SN3_rakah4_Sajda1"/>
+        <Contains rdf:resource="http://salahontology.com#SN3_rakah4_Sajda2"/>
+        <Contains rdf:resource="http://salahontology.com#SN3_rakah4_Tashahud"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah4_Jalsa1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah4_Jalsa1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN3_rakah4_Sajda2"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:49:24:566</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah4_Qayam -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah4_Qayam">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN3_rakah4_Ruku"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:49:11:639</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah4_Qoum -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah4_Qoum">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN3_rakah4_Sajda1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:49:20:281</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah4_Ruku -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah4_Ruku">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN3_rakah4_Qoum"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:49:18:461</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah4_Sajda1 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah4_Sajda1">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN3_rakah4_Jalsa1"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:49:22:503</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah4_Sajda2 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah4_Sajda2">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <followedBy rdf:resource="http://salahontology.com#SN3_rakah4_Tashahud"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:49:25:727</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#SN3_rakah4_Tashahud -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#SN3_rakah4_Tashahud">
+        <rdf:type rdf:resource="http://salahontology.com#Postures"/>
+        <startAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-20_14:49:28:908</startAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#Sunnah -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#Sunnah">
+        <rdf:type rdf:resource="http://salahontology.com#SalahUnit_Type"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#Zuhr -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#Zuhr">
+        <rdf:type rdf:resource="http://salahontology.com#SalahName"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#maha_Riaz__2 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#maha_Riaz__2">
+        <rdf:type rdf:resource="http://salahontology.com#Person"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#mahnooor_raza_22 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#mahnooor_raza_22">
+        <rdf:type rdf:resource="http://salahontology.com#Person"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#mubeshar_raza_17 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#mubeshar_raza_17">
+        <rdf:type rdf:resource="http://salahontology.com#Person"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://salahontology.com#ubaid_ullah_19 -->
+
+    <owl:NamedIndividual rdf:about="http://salahontology.com#ubaid_ullah_19">
+        <rdf:type rdf:resource="http://salahontology.com#Person"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Rules
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="http://salahontology.com#s">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://salahontology.com#rc">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rule4</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://salahontology.com#Salah"/>
+                        <swrl:argument1 rdf:resource="http://salahontology.com#s"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://salahontology.com#hasName"/>
+                                <swrl:argument1 rdf:resource="http://salahontology.com#s"/>
+                                <swrl:argument2 rdf:resource="http://salahontology.com#Asr"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="http://salahontology.com#rakahCount"/>
+                                        <swrl:argument1 rdf:resource="http://salahontology.com#s"/>
+                                        <swrl:argument2 rdf:resource="http://salahontology.com#rc"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                                                <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#equal"/>
+                                                <swrl:arguments>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                        <rdf:first rdf:resource="http://salahontology.com#rc"/>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</rdf:first>
+                                                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                    </rdf:Description>
+                                                </swrl:arguments>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://salahontology.com#CompletedSalahs"/>
+                        <swrl:argument1 rdf:resource="http://salahontology.com#s"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rule1</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://salahontology.com#Salah"/>
+                        <swrl:argument1 rdf:resource="http://salahontology.com#s"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://salahontology.com#hasName"/>
+                                <swrl:argument1 rdf:resource="http://salahontology.com#s"/>
+                                <swrl:argument2 rdf:resource="http://salahontology.com#Isha"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="http://salahontology.com#rakahCount"/>
+                                        <swrl:argument1 rdf:resource="http://salahontology.com#s"/>
+                                        <swrl:argument2 rdf:resource="http://salahontology.com#rc"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                                                <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#equal"/>
+                                                <swrl:arguments>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                        <rdf:first rdf:resource="http://salahontology.com#rc"/>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</rdf:first>
+                                                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                    </rdf:Description>
+                                                </swrl:arguments>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://salahontology.com#CompletedSalahs"/>
+                        <swrl:argument1 rdf:resource="http://salahontology.com#s"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rule3</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://salahontology.com#Salah"/>
+                        <swrl:argument1 rdf:resource="http://salahontology.com#s"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://salahontology.com#hasName"/>
+                                <swrl:argument1 rdf:resource="http://salahontology.com#s"/>
+                                <swrl:argument2 rdf:resource="http://salahontology.com#Maghreb"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="http://salahontology.com#rakahCount"/>
+                                        <swrl:argument1 rdf:resource="http://salahontology.com#s"/>
+                                        <swrl:argument2 rdf:resource="http://salahontology.com#rc"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                                                <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#equal"/>
+                                                <swrl:arguments>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                        <rdf:first rdf:resource="http://salahontology.com#rc"/>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</rdf:first>
+                                                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                    </rdf:Description>
+                                                </swrl:arguments>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://salahontology.com#CompletedSalahs"/>
+                        <swrl:argument1 rdf:resource="http://salahontology.com#s"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rule2</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://salahontology.com#Salah"/>
+                        <swrl:argument1 rdf:resource="http://salahontology.com#s"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://salahontology.com#hasName"/>
+                                <swrl:argument1 rdf:resource="http://salahontology.com#s"/>
+                                <swrl:argument2 rdf:resource="http://salahontology.com#Zuhr"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="http://salahontology.com#rakahCount"/>
+                                        <swrl:argument1 rdf:resource="http://salahontology.com#s"/>
+                                        <swrl:argument2 rdf:resource="http://salahontology.com#rc"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                                                <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#equal"/>
+                                                <swrl:arguments>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                        <rdf:first rdf:resource="http://salahontology.com#rc"/>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</rdf:first>
+                                                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                    </rdf:Description>
+                                                </swrl:arguments>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://salahontology.com#CompletedSalahs"/>
+                        <swrl:argument1 rdf:resource="http://salahontology.com#s"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

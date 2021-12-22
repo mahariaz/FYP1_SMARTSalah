@@ -1,14 +1,6 @@
-# SMD_project_SMARTSalah
+# SMARTSalah Development - Phase - I
 
-Layout files in this prject includes following designs uptill now:
+In order to see the fully implemented code, refer to FYP_Branch2. 
 
-Login/Sign-up/Forgot password
-
-Splash Screen
-
-Graph and bar charts
-
-Side navigation pane 
-
-only .xml files have been built uptill now
+This branch is temporary branch for testing. 
 

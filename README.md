@@ -1,14 +1,12 @@
 # SMD_project_SMARTSalah
 
-Layout files in this prject includes following designs uptill now:
+This repository have two more sub-branches:
+FYP_Branch ()testing Branch)
+FYP_Branch2 (Implementation Branch)
 
-Login/Sign-up/Forgot password
+The master contains:
+Initial and Basic layout files
+#Knowledge Graph Code
+#Machine Learning Models
 
-Splash Screen
-
-Graph and bar charts
-
-Side navigation pane 
-
-only .xml files have been built uptill now
-
+Note: Refer to FYP_Branch2 to see the implemented code of SMARTSalah Development Phase- I. 

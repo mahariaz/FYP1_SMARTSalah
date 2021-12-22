@@ -1,4 +1,4 @@
-#FYP SMARTSalah phase- I
+#FYP SMARTSalah Development phase- I
 
 This branch contains the implementation of Smartphone android based application i-e SMARTSalah.
 

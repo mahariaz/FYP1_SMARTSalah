@@ -1,14 +1,28 @@
-# SMD_project_SMARTSalah
+#FYP SMARTSalah phase- I
 
-Layout files in this prject includes following designs uptill now:
+This branch contains the implementation of Smartphone android based application i-e SMARTSalah.
 
-Login/Sign-up/Forgot password
+This is the first iteration/phase of the application development. 
 
-Splash Screen
+Here goes the major feature list that are implemented uptill now. 
 
-Graph and bar charts
+Layout Designing (Navigation Bars, Tab Layouts, Side Drawer)
 
-Side navigation pane 
+Tracking Salah : Generation of bar graphs which shows the average time spent on Salah posture wise. 
 
-only .xml files have been built uptill now
+User Personalization : Firebase Integration where the bio data of the user is stored in cloud storage. 
+
+Salah History: The history means the statistics of performed Salah (average time). It is stored in SQLite. 
+
+Technology/Tools used:
+Firebase
+SQLite
+Android Studio 
+Figma for prototyping 
+
+
+
+
+
+
 

@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back1"
     tools:context=".login"
     android:orientation="vertical"
    >
-
+    <!--
     <ImageView
         android:id="@+id/logo"
         android:layout_width="250dp"
@@ -17,16 +16,14 @@
         android:layout_gravity="center"
         android:src="@drawable/logo1">
 
-    </ImageView>
+    </ImageView> -->
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/logo"
-        android:layout_marginTop="-78dp"
-        android:layout_marginBottom="100dp"
         android:fontFamily="cursive"
         android:gravity="center"
+        android:layout_centerInParent="true"
         android:text="SMARTSalah"
         android:textColor="#FF5722"
         android:textSize="45dp"

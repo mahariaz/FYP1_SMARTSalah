@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back1"
     tools:context=".signUp"
     android:orientation="vertical"
     android:weightSum="2"
@@ -63,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Change your passwrd here ..."
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="15dp">
 
         </TextView>
@@ -75,8 +74,8 @@
             android:layout_marginTop="20dp"
             android:hint="Last Remember Password"
             android:inputType="textPassword"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textSize="15dp">
 
         </EditText>
@@ -88,8 +87,8 @@
             android:layout_marginTop="20dp"
             android:hint="New Password"
             android:inputType="textPassword"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textSize="15dp">
 
         </EditText>
@@ -101,19 +100,20 @@
             android:layout_marginTop="20dp"
             android:hint="Confirm Password"
             android:inputType="textPassword"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textSize="15dp">
 
         </EditText>
 
         <Button
             android:id="@+id/change_button"
-            android:layout_width="match_parent"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:backgroundTint="#3F4FA8"
-            android:text="Change Password">
+            android:text="Show Stats"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/teal_200"
+            android:background="@drawable/roundbtn">
 
         </Button>
 

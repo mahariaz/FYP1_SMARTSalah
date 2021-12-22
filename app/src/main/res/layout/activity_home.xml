@@ -10,66 +10,48 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:weightSum="2"
         android:orientation="vertical">
 
-        <!-- The ActionBar displayed at the top -->
-        <include
-            layout="@layout/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <!-- The main content view where fragments are loaded
-        <FrameLayout
-
-            android:id="@+id/flContent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="3"
+           android:layout_weight="0.7"
             android:orientation="vertical"
-            android:background="@drawable/back1">
-            <TextView
-                android:gravity="center"
-                android:textStyle="bold"
-                android:fontFamily="cursive"
-                android:textColor="#FF5722"
+            >
+            <androidx.cardview.widget.CardView
+                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="SMARTSalah"
-                android:textSize="35dp">
-
-            </TextView>
-            <TextView
-                android:layout_weight="1"
-                android:padding="50dp"
-                android:layout_margin="10dp"
-                android:textStyle="italic"
-                android:textSize="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:text="A chance to judge yourself\nOn how close you are to Allah\nHow much do you want jannah?\n
-Enough to leave your tasks\nAnd prostrate to your Lord?">
-
-            </TextView>
-            <Button
-                android:layout_gravity="center"
-                android:layout_weight="0.2"
-                android:id="@+id/go"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:text="Track Your Salah">
-
-            </Button>
+                android:orientation="vertical"
+                app:cardElevation="0dp">
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
-    </LinearLayout>
+        <LinearLayout
+                android:layout_marginTop="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:weightSum="1"
+                android:orientation="vertical"
+                android:layout_weight="1.3">
+                <androidx.cardview.widget.CardView
+                    android:layout_weight="1"
+                    app:cardCornerRadius="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rec_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
-    <!-- The navigation drawer that comes from the left -->
-    <!-- Note that `android:layout_gravity` needs to be set to 'start' -->
+
+        </LinearLayout>
+
+
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nvView"
         android:layout_width="wrap_content"

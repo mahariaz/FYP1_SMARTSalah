@@ -4,71 +4,353 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/back1"
     android:weightSum="3.5"
     tools:context=".Calender">
+
+<androidx.appcompat.widget.Toolbar
+    android:id="@+id/my_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:elevation="4dp"
+    app:titleTextColor="@color/black"
+    app:title="Salah History"
+    android:background="#009688"
+    />
     <LinearLayout
+        android:layout_weight="0.5"
+        android:layout_width="wrap_content"
+        android:weightSum="5"
         android:padding="20dp"
         android:layout_margin="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:weightSum="2"
-        android:layout_weight="0.5"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select Salah"
+        android:orientation="horizontal"
+        android:layout_height="0dp">
+        <RelativeLayout
             android:layout_weight="1"
-            android:textSize="20dp">
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
 
-        </TextView>
-        <gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner
-            android:id="@+id/spinner_salah"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/fajar_circle"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@color/white"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FF000000"/>
+
+
+            <TextView
+                android:id="@+id/fajar_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/fajar_circle"
+                android:layout_alignTop="@id/fajar_circle"
+                android:layout_alignRight="@id/fajar_circle"
+                android:layout_alignBottom="@id/fajar_circle"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Fajar"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+        <RelativeLayout
             android:layout_weight="1"
-            android:layout_marginLeft="20dp"
-            app:DoneSearchTintColor="#F4C0AF"
-            app:RevealEmptyText="Touch to select"
-            app:RevealViewBackgroundColor="#F4C0AF"
-            app:SearchViewBackgroundColor="@android:color/secondary_text_dark"
-            app:ShowBorders="false"
-            app:SpinnerExpandHeight="300dp"
-            app:StartSearchTintColor="@android:color/white" />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/zuhr_circle"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@color/white"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FF000000"/>
+
+
+            <TextView
+                android:id="@+id/zuhr_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/zuhr_circle"
+                android:layout_alignTop="@id/zuhr_circle"
+                android:layout_alignRight="@id/zuhr_circle"
+                android:layout_alignBottom="@id/zuhr_circle"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Zuhr"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/asr_circle"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@color/white"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FF000000"/>
+
+
+            <TextView
+                android:id="@+id/asr_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/asr_circle"
+                android:layout_alignLeft="@id/asr_circle"
+                android:layout_alignRight="@id/asr_circle"
+                android:layout_alignTop="@id/asr_circle"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:text="Asr" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/maghreb_circle"
+                android:layout_width="86dp"
+                android:layout_height="85dp"
+                android:src="@color/white"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FF000000"/>
+
+
+            <TextView
+                android:id="@+id/maghreb_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/maghreb_circle"
+                android:layout_alignTop="@id/maghreb_circle"
+                android:layout_alignRight="@id/maghreb_circle"
+                android:layout_alignBottom="@id/maghreb_circle"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Mghrb"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/isha_circle"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@color/white"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FF000000"/>
+
+
+            <TextView
+                android:id="@+id/isha_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/isha_circle"
+                android:layout_alignLeft="@id/isha_circle"
+                android:layout_alignRight="@id/isha_circle"
+                android:layout_alignTop="@id/isha_circle"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:text="Isha" />
+
+        </RelativeLayout>
     </LinearLayout>
     <LinearLayout
+        android:layout_weight="0.5"
+        android:layout_width="wrap_content"
+        android:weightSum="5"
         android:padding="20dp"
         android:layout_margin="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:weightSum="2"
-        android:layout_weight="0.5"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select Rakah"
+        android:orientation="horizontal"
+        android:layout_height="0dp">
+        <RelativeLayout
             android:layout_weight="1"
-            android:textSize="20dp">
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
 
-        </TextView>
-        <gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner
-            android:id="@+id/spinner_rakah"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/r1_circle"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@color/white"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FF000000"/>
+
+
+            <TextView
+                android:id="@+id/r1_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/r1_circle"
+                android:layout_alignTop="@id/r1_circle"
+                android:layout_alignRight="@id/r1_circle"
+                android:layout_alignBottom="@id/r1_circle"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="1"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+        <RelativeLayout
             android:layout_weight="1"
-            android:layout_marginLeft="20dp"
-            app:DoneSearchTintColor="#F4C0AF"
-            app:RevealEmptyText="Touch to select"
-            app:RevealViewBackgroundColor="#F4C0AF"
-            app:SearchViewBackgroundColor="@android:color/secondary_text_dark"
-            app:ShowBorders="false"
-            app:SpinnerExpandHeight="300dp"
-            app:StartSearchTintColor="@android:color/white" />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/r2_circle"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@color/white"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FF000000"/>
+
+
+            <TextView
+                android:id="@+id/r2_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/r2_circle"
+                android:layout_alignTop="@id/r2_circle"
+                android:layout_alignRight="@id/r2_circle"
+                android:layout_alignBottom="@id/r2_circle"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="2"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/r3_circle"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@color/white"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FF000000"/>
+
+
+            <TextView
+                android:id="@+id/r3_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/r3_circle"
+                android:layout_alignLeft="@id/r3_circle"
+                android:layout_alignRight="@id/r3_circle"
+                android:layout_alignTop="@id/r3_circle"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:text="3" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/r4_circle"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@color/white"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FF000000"/>
+
+
+            <TextView
+                android:id="@+id/r4_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/r4_circle"
+                android:layout_alignLeft="@id/r4_circle"
+                android:layout_alignRight="@id/r4_circle"
+                android:layout_alignTop="@id/r4_circle"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:text="4" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/r5_circle"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@color/white"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FF000000"/>
+
+
+            <TextView
+                android:id="@+id/r5_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/r5_circle"
+                android:layout_alignLeft="@id/r5_circle"
+                android:layout_alignRight="@id/r5_circle"
+                android:layout_alignTop="@id/r5_circle"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:text="Isha" />
+
+        </RelativeLayout>
     </LinearLayout>
+
+
+
+
+
 
     <LinearLayout
         android:padding="20dp"
@@ -108,7 +390,9 @@
             android:id="@+id/stats"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Show Stats">
+            android:text="Show Stats"
+            android:backgroundTint="@color/teal_200"
+            android:background="@drawable/roundbtn">
 
         </Button>
 

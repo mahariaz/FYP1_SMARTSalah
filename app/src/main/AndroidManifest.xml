@@ -11,21 +11,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartSalah">
-        <activity
-            android:name=".FillNote"
-            android:exported="true" >
 
-        </activity>
         <activity
-            android:name=".WritingNotes"
-            android:exported="true" >
-
-        </activity>
+            android:name=".Settings"
+            android:exported="false" />
         <activity
-            android:name=".MyNotes"
-            android:exported="true">
-
-        </activity>
+            android:name=".About"
+            android:exported="false" />
+        <activity
+            android:name=".Supplications"
+            android:exported="false" />
+        <activity
+            android:name=".SalahTimings"
+            android:exported="false" />
+        <activity
+            android:name=".Highlights"
+            android:exported="false" />
         <activity
             android:name=".WhatDp"
             android:exported="false" />
@@ -52,10 +53,10 @@
             android:exported="false" />
         <activity
             android:name=".Calender"
-            android:exported="true" />
+            android:exported="true"></activity>
         <activity
             android:name=".Salah_Rakah_Selection"
-            android:exported="true" />
+            android:exported="true"></activity>
         <activity
             android:name=".SalahProgress"
             android:exported="true" />
@@ -64,7 +65,9 @@
             android:exported="true" />
         <activity
             android:name=".Home"
-            android:exported="true" />
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".change_pass"
             android:exported="true" />
@@ -73,10 +76,12 @@
             android:exported="true" />
         <activity
             android:name=".login"
-            android:exported="true" />
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
+            android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 

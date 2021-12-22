@@ -8,21 +8,15 @@
 
                 </item>
                 <item
-                    android:id="@+id/fr_Notes"
-                    android:icon="@drawable/sticknote"
-                    android:title="My Notes">
-
-                </item>
-                <item
-                    android:id="@+id/fr_make_note"
-                    android:icon="@drawable/sticknote"
-                    android:title="Make Notes">
-
-                </item>
-                <item
                     android:id="@+id/fr_settings"
                     android:icon="@drawable/settings_icon"
                     android:title="Settings">
+
+                </item>
+                <item
+                    android:id="@+id/fr_about"
+                    android:icon="@drawable/pray"
+                    android:title="About">
 
                 </item>
 
@@ -35,12 +29,6 @@
                                     android:id="@+id/fr_profile"
                                     android:icon="@drawable/person_icon"
                                     android:title="My Profile">
-
-                                </item>
-                                <item
-                                    android:id="@+id/fr_salah_stats"
-                                    android:icon="@drawable/bar_chart_icon"
-                                    android:title="Salah Stats">
 
                                 </item>
 

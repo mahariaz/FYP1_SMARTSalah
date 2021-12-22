@@ -1,10 +1,13 @@
 package com.mahariaz.smartsalah;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -20,7 +23,7 @@ import java.util.ArrayList;
 
 public class Salah_stats_history extends AppCompatActivity {
     BarChart barChart;
-
+    private Toolbar mTopToolbar;
     // variable for our bar data.
     BarData barData;
 
@@ -40,6 +43,8 @@ public class Salah_stats_history extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_salah_stats_history);
+        mTopToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(mTopToolbar);
         get_intents();
         search_records(); // from sqlite of entered salah,rakah and date
         salah_view=findViewById(R.id.salah_view);
@@ -124,5 +129,29 @@ public class Salah_stats_history extends AppCompatActivity {
         PostureNamesArrayList.add(new SalahPostureNames("Sajda",Integer.parseInt(sajda_avg)));
         PostureNamesArrayList.add(new SalahPostureNames("Jalsa",Integer.parseInt(jalsa_avg)));
         PostureNamesArrayList.add(new SalahPostureNames("Tashahud",Integer.parseInt(tash_avg)));
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu1, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_favorite) {
+            //Toast.makeText(Calender.this, "Action clicked", Toast.LENGTH_LONG).show();
+            Intent intent=new Intent(Salah_stats_history.this,Home.class);
+            startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

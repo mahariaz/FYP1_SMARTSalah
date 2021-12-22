@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back1"
     tools:context=".signUp"
     android:orientation="vertical"
     android:weightSum="2"
@@ -12,6 +11,15 @@
 
 
     >
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="4dp"
+        app:titleTextColor="@color/black"
+        app:title="Sign Up"
+        android:background="#009688"
+        />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -26,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="SMARTSalah Account!"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="25dp"
             android:textStyle="bold">
 
@@ -35,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Create your account here..."
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="15dp"
 >
 
@@ -59,8 +67,8 @@
             android:layout_marginTop="20dp"
             android:hint="Username"
             android:inputType="textPersonName"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textSize="15dp">
         </EditText>
         <EditText
@@ -70,8 +78,8 @@
             android:layout_marginTop="20dp"
             android:hint="Email address"
             android:inputType="textEmailAddress"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textSize="15dp">
         </EditText>
         <EditText
@@ -81,8 +89,8 @@
             android:layout_marginTop="20dp"
             android:hint="Password"
             android:inputType="textPassword"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textSize="15dp">
 
         </EditText>
@@ -93,19 +101,21 @@
             android:layout_marginTop="20dp"
             android:hint="Confirm Password"
             android:inputType="textPassword"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textSize="15dp">
 
         </EditText>
 
         <Button
             android:id="@+id/signup_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
             android:layout_marginTop="20dp"
-            android:backgroundTint="#3F4FA8"
-            android:text="sign up">
+            android:layout_height="wrap_content"
+            android:text="Sign up"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/teal_200"
+            android:background="@drawable/roundbtn">
 
         </Button>
 
@@ -116,7 +126,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:text="Login"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="20dp"
             android:textStyle="bold">
 

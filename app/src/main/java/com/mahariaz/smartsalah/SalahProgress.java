@@ -1,12 +1,15 @@
 package com.mahariaz.smartsalah;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -40,7 +43,7 @@ import java.util.TimerTask;
 import com.opencsv.CSVReader;
 
 public class SalahProgress extends AppCompatActivity {
-
+    private Toolbar mTopToolbar;
     /* for slpitting the times min:sec from timestamp*/
     String []split_qayam_time;
     String []split_ruku_time;
@@ -73,6 +76,8 @@ public class SalahProgress extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_salah_progress);
+        mTopToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(mTopToolbar);
         tv=findViewById(R.id.comp);
         get_intents();
         get_bar_ids();
@@ -306,14 +311,38 @@ public class SalahProgress extends AppCompatActivity {
     private void file_reading() {
         //reading csv file Amna Arshad Fajar
 
-        InputStream is = getResources().openRawResource(R.raw.file1);
-        BufferedReader reader = new BufferedReader(
-                new InputStreamReader(is, Charset.forName("UTF-8")));
+        InputStream is;
+        BufferedReader reader;
+        if(shared.username.equalsIgnoreCase("anam12")) {
+            is = getResources().openRawResource(R.raw.file1);
+            reader = new BufferedReader(
+                    new InputStreamReader(is, Charset.forName("UTF-8")));
+            filereading(reader);
+
+        }
+        else if(shared.username.equalsIgnoreCase("Mahnoor")) {
+            is = getResources().openRawResource(R.raw.file2);
+            reader = new BufferedReader(
+                    new InputStreamReader(is, Charset.forName("UTF-8")));
+            filereading(reader);
+        }
+        else if(shared.username.equalsIgnoreCase("bush4")) {
+            is = getResources().openRawResource(R.raw.file3);
+            reader = new BufferedReader(
+                    new InputStreamReader(is, Charset.forName("UTF-8")));
+            filereading(reader);
+        }else{
+            is = getResources().openRawResource(R.raw.file4);
+            reader = new BufferedReader(
+                    new InputStreamReader(is, Charset.forName("UTF-8")));
+            filereading(reader);
+
+        }
+
+    }
+
+    private void filereading(BufferedReader reader) {
         String line = "";
-
-
-
-
         try {
             while ((line = reader.readLine()) != null) {
                 // Split the line into different tokens (using the comma as a separator).
@@ -370,9 +399,7 @@ public class SalahProgress extends AppCompatActivity {
             Log.e("ViewSalah", "Error" + line, e1);
             e1.printStackTrace();
         }
-
     }
-
     private int calculate_posture_avg_time(ArrayList<String> curr,ArrayList<String>next) {
         int posture_avg_time=0,atime,var1,var2;
         for (int i=0;i<curr.size();i++){
@@ -390,6 +417,30 @@ public class SalahProgress extends AppCompatActivity {
         }
         return posture_avg_time/curr.size();
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu1, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_favorite) {
+            //Toast.makeText(Calender.this, "Action clicked", Toast.LENGTH_LONG).show();
+            Intent intent=new Intent(SalahProgress.this,Home.class);
+            startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.onesignal.OneSignal;
+
+import android.content.ContentResolver;
 import android.content.Intent;
-import android.media.Image;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -19,7 +21,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.bumptech.glide.Glide;
@@ -33,9 +34,12 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
-public class Home extends AppCompatActivity {
+public class Home extends AppCompatActivity implements RecyclerViewAdapter.OnTileListner{
     private DrawerLayout mDrawer;
     private Toolbar toolbar;
     private static final String ONESIGNAL_APP_ID = "a827ee7e-6beb-4dd5-9c21-f281bed4c4c7";
@@ -43,23 +47,44 @@ public class Home extends AppCompatActivity {
     private NavigationView nvDrawer;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+
+    //recyclerview things
+    private RecyclerView recyclerView;
+    LinearLayoutManager layoutManager;
+    RecyclerViewAdapter recyclerViewAdapter;
+    ArrayList<Uri> images = new ArrayList<Uri>();
+    ArrayList<String> headings = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        List<String> heading_list = Arrays.asList("Highlights","Track Salah","Salah History",
+                "Supplications","Salah Timings");
+        // getting the list of URIs of png Images
+        List<Uri> imguri_list=list_uri();
+        images.addAll(imguri_list);
+        headings.addAll(heading_list);
+        // setting of recyclerView
+        recyclerView = findViewById(R.id.rec_view);
+        layoutManager = new LinearLayoutManager(getApplicationContext());
+        layoutManager.setOrientation(RecyclerView.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerViewAdapter = new RecyclerViewAdapter(images,headings,getApplicationContext(),this);
+        recyclerView.setAdapter(recyclerViewAdapter);
+        recyclerViewAdapter.notifyDataSetChanged();
 
         // Set a Toolbar to replace the ActionBar.
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
         OneSignal.initWithContext(this);
         OneSignal.setAppId(ONESIGNAL_APP_ID);
 
         OneSignal.sendTag("User_ID","a@gmail.com");
-        notifications("Track your Salah right away!");
+        //notifications("Track your Salah right away!");
 
         // This will display an Up icon (<-), we will replace it with hamburger later
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Find our drawer view
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -97,14 +122,34 @@ public class Home extends AppCompatActivity {
         // set user name and email
         userName.setText(shared.username);
         userEmail.setText(shared.email);
-        Button go=findViewById(R.id.go);
+        /*Button go=findViewById(R.id.go);
         go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Home.this,Salah_Rakah_Selection.class);
                 startActivity(intent);
             }
-        });
+        });*/
+
+    }
+
+    private List<Uri> list_uri() {
+        Uri uri_i1= get_uri(R.drawable.analytics_img);
+        Uri uri_i2= get_uri(R.drawable.salah_img);
+        Uri uri_i3= get_uri(R.drawable.history_img);
+        Uri uri_i4= get_uri(R.drawable.supp_img);
+        Uri uri_i5= get_uri(R.drawable.clock_img);
+        List<Uri> uri_list = Arrays.asList(uri_i1,uri_i2,uri_i3,uri_i4
+                ,uri_i5);
+        return uri_list;
+    }
+    // Typical code for changing PNG  into URI
+    public Uri get_uri(int id){
+        Uri uri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE +
+                "://" + getResources().getResourcePackageName(id)
+                + '/' + getResources().getResourceTypeName(id) + '/' + getResources().getResourceEntryName(id) );
+
+        return uri;
 
     }
     private void setupDrawerContent(NavigationView navigationView) {
@@ -120,20 +165,18 @@ public class Home extends AppCompatActivity {
     public void selectDrawerItem(MenuItem menuItem) {
         // Create a new fragment and specify the fragment to show based on nav item clicked
         switch(menuItem.getItemId()) {
-            case R.id.fr_salah_stats:
-                Intent intent=new Intent(Home.this,Calender.class);
+            case R.id.fr_about:
+                Intent intent=new Intent(Home.this,About.class);
                 startActivity(intent);
                 break;
             case R.id.fr_profile:
                 Intent intent1=new Intent(Home.this,UserProfile.class);
                 startActivity(intent1);
                 break;
-            case R.id.fr_Notes:
-                Intent intent2=new Intent(Home.this,MyNotes.class);
+            case R.id.fr_settings:
+                Intent intent2=new Intent(Home.this,Settings.class);
                 startActivity(intent2);
-            case R.id.fr_make_note:
-                Intent intent3=new Intent(Home.this,FillNote.class);
-                startActivity(intent3);
+
 
 
         }
@@ -232,5 +275,32 @@ public class Home extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onTileClick(int position) {
+        System.out.println("onclick listner");
+        System.out.println("POSITION : "+headings.get(position));
+        System.out.println("INDEX 1 :"+headings.get(1));
+        if (headings.get(position).equalsIgnoreCase(headings.get(0))){
+            Intent intent=new Intent(this,Highlights.class);
+            startActivity(intent);
+        }
+        else if (headings.get(position).equalsIgnoreCase(headings.get(1))){
+            Intent intent=new Intent(this,Salah_Rakah_Selection.class);
+            startActivity(intent);
+        }
+        else if (headings.get(position).equalsIgnoreCase(headings.get(2))){
+            Intent intent=new Intent(Home.this,Calender.class);
+            startActivity(intent);
+        }
+        else if (headings.get(position).equalsIgnoreCase(headings.get(3))){
+            Intent intent=new Intent(this,Supplications.class);
+            startActivity(intent);
+        }
+        else if (headings.get(position).equalsIgnoreCase(headings.get(4))){
+            Intent intent=new Intent(this,SalahTimings.class);
+            startActivity(intent);
+        }
     }
 }

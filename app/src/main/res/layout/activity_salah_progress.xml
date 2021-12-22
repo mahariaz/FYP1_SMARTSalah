@@ -7,8 +7,16 @@
     android:orientation="vertical"
     android:weightSum="4"
 
-    android:background="@drawable/back1"
     tools:context=".SalahProgress">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="4dp"
+        app:titleTextColor="@color/black"
+        app:title="Rakah Progress"
+        android:background="#009688"
+        />
     <TextView
         android:layout_margin="20dp"
         android:padding="20dp"
@@ -144,20 +152,24 @@
 
         <Button
             android:id="@+id/end_salah_btn"
+            android:layout_width="150dp"
             android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="End Salah"
             android:layout_gravity="center"
-            android:text="End Salah">
+            android:backgroundTint="@color/teal_200"
+            android:background="@drawable/roundbtn">
 
         </Button>
         <Button
             android:id="@+id/view_salah_btn"
+            android:layout_width="150dp"
             android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="View Salah"
             android:layout_gravity="center"
-            android:text="View Salah">
+            android:backgroundTint="@color/teal_200"
+            android:background="@drawable/roundbtn">
 
         </Button>
 

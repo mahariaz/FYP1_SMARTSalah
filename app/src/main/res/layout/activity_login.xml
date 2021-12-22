@@ -4,13 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back1"
     tools:context=".login"
     android:orientation="vertical"
     android:weightSum="2"
 
 
     >
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="4dp"
+        app:titleTextColor="@color/black"
+        app:title="Login"
+        android:background="#009688"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -34,7 +42,7 @@
             android:layout_height="wrap_content"
             android:text="LOGIN"
             android:textStyle="bold"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="25dp">
 
         </TextView>
@@ -43,7 +51,7 @@
             android:layout_height="wrap_content"
             android:text="Please login to your account"
             android:textSize="15dp"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             >
 
         </TextView>
@@ -54,8 +62,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email address"
-            android:textColorHint="@color/white"
-            android:textColor="@color/white"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
             android:textSize="15dp">
 
         </EditText>
@@ -66,8 +74,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Username"
-            android:textColorHint="@color/white"
-            android:textColor="@color/white"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
             android:textSize="15dp">
 
         </EditText>
@@ -82,8 +90,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Password"
                 android:inputType="textPassword"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
                 android:textSize="15dp">
 
             </EditText>
@@ -102,12 +110,14 @@
             </TextView>
         </RelativeLayout>
         <Button
-            android:layout_marginTop="20dp"
             android:id="@+id/login_button"
-            android:layout_width="match_parent"
+            android:layout_width="150dp"
+            android:layout_marginTop="20dp"
             android:layout_height="wrap_content"
-            android:backgroundTint="#3F4FA8"
-            android:text="Login">
+            android:text="Login"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/teal_200"
+            android:background="@drawable/roundbtn">
 
         </Button>
         <!--
@@ -132,7 +142,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Don't have an account?"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="15dp"
                 android:layout_gravity="center">
 

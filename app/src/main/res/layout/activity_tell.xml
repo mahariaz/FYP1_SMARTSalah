@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/back1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -37,12 +36,13 @@
     </TextView>
     <Button
         android:id="@+id/cont"
+        android:layout_width="150dp"
+        android:layout_marginTop="20dp"
         android:padding="20dp"
-        android:layout_margin="20dp"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Continue"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/teal_200"
         android:background="@drawable/roundbtn">
 
     </Button>

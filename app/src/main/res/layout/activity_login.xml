@@ -9,6 +9,7 @@
     android:weightSum="2"
 
 
+
     >
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -33,7 +34,7 @@
         android:orientation="vertical"
         android:gravity="center_vertical"
         android:layout_margin="50dp"
-        android:layout_weight="1.1"
+        android:layout_weight="1.5"
         >
 
 
@@ -120,16 +121,16 @@
             android:background="@drawable/roundbtn">
 
         </Button>
-        <!--
         <Button
-            android:layout_marginTop="10dp"
             android:id="@+id/google_login"
-            android:layout_width="match_parent"
+            android:layout_width="150dp"
+            android:layout_marginTop="20dp"
             android:layout_height="wrap_content"
-            android:backgroundTint="#3F4FA8"
-            android:text="Sign-in with Google">
+            android:text="Google"
+            android:layout_gravity="center"
+            android:background="@drawable/roundbtn">
 
-        </Button>-->
+        </Button>
 
         <LinearLayout
             android:layout_width="match_parent"

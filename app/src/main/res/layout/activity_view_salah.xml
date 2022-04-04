@@ -26,77 +26,7 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         android:layout_weight="0.5">
-        <TextView
-            android:layout_weight="2"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:text="Salah Average Time">
 
-        </TextView>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:weightSum="2"
-            android:orientation="horizontal"
-            >
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Prayed Salah">
-
-            </TextView>
-            <TextView
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/salah_view">
-
-            </TextView>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:weightSum="2"
-            android:orientation="horizontal"
-            >
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Rakah Count">
-
-            </TextView>
-            <TextView
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/rakah_view">
-
-            </TextView>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            >
-            <TextView
-                android:gravity="center"
-                android:layout_weight="1"
-                android:text="Completed"
-                android:textSize="15dp"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/comp_view">
-
-            </TextView>
-        </LinearLayout>
 
 
     </LinearLayout>

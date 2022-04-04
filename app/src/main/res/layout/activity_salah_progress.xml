@@ -17,18 +17,35 @@
         app:title="Rakah Progress"
         android:background="#009688"
         />
-    <TextView
+
+    <LinearLayout
         android:layout_margin="20dp"
         android:padding="20dp"
+        android:weightSum="2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Track your Salah!"
-        android:textSize="25dp"
-        android:layout_weight="0.2"
-        >
+        android:orientation="vertical"
+        android:layout_weight="0.7">
 
-    </TextView>
+        <ImageView
+            android:id="@+id/posturepic"
+            android:layout_width="70dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:src="@drawable/rukupic"
+            android:layout_weight="1.5"
+            >
+        </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:text="PostureName"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:layout_weight="0.5">
 
+        </TextView>
+    </LinearLayout>
     <LinearLayout
         android:layout_margin="20dp"
         android:padding="20dp"
@@ -114,34 +131,7 @@
 
         </ProgressBar>
     </LinearLayout>
-    <LinearLayout
-        android:layout_margin="20dp"
-        android:padding="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="0.5">
-        <!--
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="25dp"
-            android:text="Current Posture">
 
-        </TextView>
-
-        -->
-        <TextView
-            android:id="@+id/comp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="25dp"
-           >
-
-        </TextView>
-    </LinearLayout>
     <LinearLayout
         android:layout_margin="20dp"
         android:padding="20dp"

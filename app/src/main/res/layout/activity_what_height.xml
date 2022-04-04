@@ -5,29 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="2.1"
+    android:weightSum="2"
     tools:context=".WhatHeight">
-    <LinearLayout
-        android:padding="20dp"
-        android:layout_margin="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.1">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/back_arrow"
-            >
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="4dp"
+        app:titleTextColor="@color/black"
+        app:title="Height"
+        android:background="#009688"
+        />
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_weight="0.2"
+    android:layout_height="wrap_content">
 
-        </ImageView>
-
-    </LinearLayout>
+</LinearLayout>
     <TextView
+
         android:padding="20dp"
         android:layout_margin="20dp"
         android:layout_gravity="center"
         android:textSize="25dp"
-        android:layout_weight="0.5"
+        android:layout_weight="0.2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="What is your height?">
@@ -39,29 +40,67 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="1.5">
+            <TextView
+                android:id="@+id/feet"
+                android:padding="20dp"
+                android:layout_margin="20dp"
+                android:layout_gravity="center"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="feet"
+                android:backgroundTint="#009688"
+                android:background="@drawable/roundbtn">
 
-        <gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner
-            android:id="@+id/spinner_ft"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            app:DoneSearchTintColor="#F4C0AF"
-            app:RevealEmptyText="Touch to select"
-            app:RevealViewBackgroundColor="#F4C0AF"
-            app:SearchViewBackgroundColor="@android:color/secondary_text_dark"
-            app:ShowBorders="false"
-            app:SpinnerExpandHeight="300dp"
-            app:StartSearchTintColor="@android:color/white" />
-        <gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner
-            android:id="@+id/spinner_in"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            app:DoneSearchTintColor="#F4C0AF"
-            app:RevealEmptyText="Touch to select"
-            app:RevealViewBackgroundColor="#F4C0AF"
-            app:SearchViewBackgroundColor="@android:color/secondary_text_dark"
-            app:ShowBorders="false"
-            app:SpinnerExpandHeight="300dp"
-            app:StartSearchTintColor="@android:color/white" />
+            </TextView>
+            <gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner
+                android:id="@+id/spinner_ft"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                app:DoneSearchTintColor="#009688"
+                app:RevealEmptyText="Touch to select"
+                app:RevealViewBackgroundColor="#009688"
+                app:SearchViewBackgroundColor="@android:color/secondary_text_dark"
+                app:ShowBorders="false"
+                app:SpinnerExpandHeight="300dp"
+                app:StartSearchTintColor="@android:color/white" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="1.5"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/in"
+                android:padding="20dp"
+                android:layout_margin="20dp"
+                android:layout_gravity="center"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="in"
+                android:backgroundTint="#009688"
+                android:background="@drawable/roundbtn">
+
+            </TextView>
+            <gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner
+                android:id="@+id/spinner_in"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                app:DoneSearchTintColor="#009688"
+                app:RevealEmptyText="Touch to select"
+                app:RevealViewBackgroundColor="#009688"
+                app:SearchViewBackgroundColor="@android:color/secondary_text_dark"
+                app:ShowBorders="false"
+                app:SpinnerExpandHeight="300dp"
+                app:StartSearchTintColor="@android:color/white" />
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
     <Button

@@ -17,4 +17,18 @@
         android:background="#009688"
         />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lineChart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

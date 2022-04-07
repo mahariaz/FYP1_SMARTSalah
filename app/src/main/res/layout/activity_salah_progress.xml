@@ -22,11 +22,24 @@
         android:layout_margin="20dp"
         android:padding="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Track your Salah!"
-        android:textSize="25dp"
-        android:layout_weight="0.2"
-        >
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:weightSum="2"
+        android:gravity="center"
+        android:layout_weight="2.7">
+
+        <ImageView
+            android:id="@+id/posturepic"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1.9"
+            >
+        </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"
+            android:text="posture">
 
         </TextView>
     </LinearLayout>
@@ -37,12 +50,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:weightSum="4"
-        android:layout_weight="2.5">
+ >
         <TextView
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Rakah1"
             android:id="@+id/rakah1"
             android:textSize="15dp"
             android:visibility="gone">
@@ -50,9 +62,8 @@
         </TextView>
         <ProgressBar
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_weight="1"
             android:id="@+id/bar1"
             android:visibility="gone">
 
@@ -120,8 +131,8 @@
         android:layout_margin="20dp"
         android:padding="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.3"
+        android:layout_height="0dp"
+        android:layout_weight="1.3"
         android:orientation="vertical">
 
         <Button
@@ -141,6 +152,7 @@
             android:layout_marginTop="10dp"
             android:layout_height="wrap_content"
             android:text="View Salah"
+            android:enabled="false"
             android:layout_gravity="center"
             android:backgroundTint="@color/teal_200"
             android:background="@drawable/roundbtn">

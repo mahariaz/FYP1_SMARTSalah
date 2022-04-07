@@ -4,17 +4,38 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+
 public class Highlights extends AppCompatActivity {
+
 
     final DBAdapter db=new DBAdapter(this);
     String t4,t5,t6,t7,t8,t9;
     String h4,h5,h6,h7,h8,h9;
     String f4,f5,f6,f7,f8,f9;
-    int two_rakah=0,temp1=0,c1=0;
-    int three_rakah=0,temp2=0,c2=0;
-    int four_rakah=0,temp3=0,c3=0;
+    int two_rakah=0,temp1=0,c1=1;
+    int three_rakah=0,temp2=0,c2=1;
+    int four_rakah=0,temp3=0,c3=1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,4 +162,20 @@ public class Highlights extends AppCompatActivity {
 //        System.out.println("fourrrr"+four_rakah);
 
     }
+
+    private List<Entry> getPostureAverageTime() {
+        ArrayList<Entry> posture = new ArrayList<>();
+
+        posture.add(new Entry(1, 12));
+        posture.add(new Entry(2, 2));
+        posture.add(new Entry(3, 2));
+        posture.add(new Entry(4, 3));
+        posture.add(new Entry(5, 2));
+        posture.add(new Entry(6, 12));
+
+
+        return posture.subList(0, 6);
+    }
+
+
 }

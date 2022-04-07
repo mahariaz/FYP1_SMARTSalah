@@ -39,6 +39,10 @@ import java.util.TimerTask;
 
 public class SalahProgress extends AppCompatActivity {
     private Toolbar mTopToolbar;
+    ArrayList<Integer> array_image = new ArrayList<Integer>();
+//    List<Integer> img = Arrays.asList(R.drawable.rukupic,R.drawable.sajdapic,R.drawable.tashpic
+//    ,R.drawable.qayampic);
+
     /* for slpitting the times min:sec from timestamp*/
     String []split_qayam_time;
     String []split_ruku_time;
@@ -77,7 +81,7 @@ public class SalahProgress extends AppCompatActivity {
 //        tv=findViewById(R.id.comp);
         get_intents();
         get_bar_ids();
-        display_progressBars();
+        //display_progressBars();
         // filling progress bars
         fill_bar1(bar1);
 
@@ -102,6 +106,7 @@ public class SalahProgress extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 sqlite_storage();
+                view_salah.setEnabled(true);
 
             }
         });
@@ -115,17 +120,36 @@ public class SalahProgress extends AppCompatActivity {
 
             }
         });
+
+        // Posture image change according to readings
+        ImageView posturepic=findViewById(R.id.posturepic);
+        AnimationDrawable animation = new AnimationDrawable();
+        animation.addFrame(getResources().getDrawable(R.drawable.qayampic), 3000);
+        animation.addFrame(getResources().getDrawable(R.drawable.rukupic), 3000);
+        animation.addFrame(getResources().getDrawable(R.drawable.qoumapic), 3000);
+        animation.addFrame(getResources().getDrawable(R.drawable.sajdapic), 3000);
+        animation.addFrame(getResources().getDrawable(R.drawable.tashpic), 3000);
+        animation.setOneShot(false);
+        posturepic.setBackgroundDrawable(animation);
+
+        // start the animation!
+        animation.start();
+
+
+
+
     }
 
 
     private void fill_bar1(ProgressBar bar) {
-
+        rakah1.setVisibility(View.VISIBLE);
+        bar1.setVisibility(View.VISIBLE);
         final Timer t=new Timer();
         TimerTask tt=new TimerTask() {
             int counter=0;
             @Override
             public void run() {
-                counter+=10;
+                counter+=5;
                 bar.setProgress(counter);
                 if(counter==100){
                     t.cancel();
@@ -133,31 +157,63 @@ public class SalahProgress extends AppCompatActivity {
                     if (sel_rakah.equalsIgnoreCase("2") ||
                             sel_rakah.equalsIgnoreCase("3") ||
                             sel_rakah.equalsIgnoreCase("4"))
+                        runOnUiThread(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                bar1.setVisibility(View.GONE);
+                                rakah1.setVisibility(View.GONE);
+                                // Stuff that updates the UI
+
+                            }
+                        });
+
                         fill_bar2(bar2);
-                    else{
-                        tv.setText("k");
-                        System.out.println("SSSSSSSSSSS");
-                    }
+
                 }
 
             }
         };
         t.schedule(tt,0,100);
-
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        hide_bar(bar1,rakah1);
     }
     private void fill_bar2(ProgressBar bar) {
+        runOnUiThread(new Runnable() {
+
+            @Override
+            public void run() {
+                rakah2.setVisibility(View.VISIBLE);
+                bar2.setVisibility(View.VISIBLE);
+
+            }
+        });
 
         final Timer t=new Timer();
         TimerTask tt=new TimerTask() {
             int counter=0;
             @Override
             public void run() {
-                counter+=10;
+                counter+=5;
                 bar.setProgress(counter);
                 if(counter==100){
                     t.cancel();
                     if (sel_rakah.equalsIgnoreCase("3") ||
                             sel_rakah.equalsIgnoreCase("4")){
+                        runOnUiThread(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                bar2.setVisibility(View.GONE);
+                                rakah2.setVisibility(View.GONE);
+                                // Stuff that updates the UI
+
+                            }
+                        });
                         fill_bar3(bar3);
                     }
                 }
@@ -165,37 +221,79 @@ public class SalahProgress extends AppCompatActivity {
             }
         };
         t.schedule(tt,0,100);
-
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        hide_bar(bar2,rakah2);
     }
     private void fill_bar3(ProgressBar bar) {
+        runOnUiThread(new Runnable() {
 
+            @Override
+            public void run() {
+                rakah3.setVisibility(View.VISIBLE);
+                bar3.setVisibility(View.VISIBLE);
+
+            }
+        });
         final Timer t=new Timer();
         TimerTask tt=new TimerTask() {
             int counter=0;
             @Override
             public void run() {
-                counter+=10;
+                counter+=5;
                 bar.setProgress(counter);
                 if(counter==100){
                     t.cancel();
                     if (sel_rakah.equalsIgnoreCase("4")){
+                        runOnUiThread(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                bar3.setVisibility(View.GONE);
+                                rakah3.setVisibility(View.GONE);
+                                // Stuff that updates the UI
+
+                            }
+                        });
                         fill_bar4(bar4);
+
+
+
                     }
                 }
 
             }
         };
         t.schedule(tt,0,100);
-
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        hide_bar(bar3,rakah3);
     }
-    private void fill_bar4(ProgressBar bar) {
 
+
+
+    private void fill_bar4(ProgressBar bar) {
+        runOnUiThread(new Runnable() {
+
+            @Override
+            public void run() {
+                rakah4.setVisibility(View.VISIBLE);
+                bar4.setVisibility(View.VISIBLE);
+
+            }
+        });
         final Timer t=new Timer();
         TimerTask tt=new TimerTask() {
             int counter=0;
             @Override
             public void run() {
-                counter+=10;
+                counter+=5;
                 bar.setProgress(counter);
                 if(counter==100){
                     t.cancel();
@@ -204,9 +302,25 @@ public class SalahProgress extends AppCompatActivity {
             }
         };
         t.schedule(tt,0,100);
-
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        hide_bar(bar4,rakah4);
     }
+    private void hide_bar(ProgressBar bar,TextView tv) {
+        runOnUiThread(new Runnable() {
 
+            @Override
+            public void run() {
+                bar.setVisibility(View.GONE);
+                tv.setVisibility(View.GONE);
+                // Stuff that updates the UI
+
+            }
+        });
+    }
 
     private void get_intents() {
         Intent intent=getIntent();

@@ -9,13 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class salahdua4 extends Fragment {
+public class morningDua4 extends Fragment {
     CardView cardView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.fragment_salahdua4, container, false);
+        View view= inflater.inflate(R.layout.fragment_morning_dua4, container, false);
         cardView = view.findViewById(R.id.dua_cardview);
         cardView.setBackgroundResource(R.drawable.upper_roundedcorners);
         return view;

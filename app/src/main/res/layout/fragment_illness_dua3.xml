@@ -7,7 +7,7 @@
     android:weightSum="2"
     android:orientation="vertical"
     android:background="@color/asparagus"
-    tools:context=".salahdua4">
+    tools:context=".illnessDua3">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -35,7 +35,7 @@
                 android:textStyle="bold"
                 android:gravity="center"
                 android:textColor="@color/black"
-                android:text="اللّهُمَّ أَحْيِنِي عَلى ما أَحْيَيْتَ عَلَيْهِ عَلِيَّ بْنَ أَبِي طالِبٍ وَأَمِتْنِي عَلى ما ماتَ عَلَيْهِ عَلِيُّ بْنُ أَبِي طالِبٍ عليه‌السلام"
+                android:text="اللَّهُمَّ ربَّ النَّاسِ ، أَذْهِب الْبَأسَ ، واشْفِ ، أَنْتَ الشَّافي لا شِفَاءَ إِلاَّ شِفَاؤُكَ ، شِفاءً لا يُغَادِرُ سقَماً"
                 >
 
             </TextView>
@@ -45,8 +45,7 @@
                 android:gravity="center"
                 android:padding="0dp"
                 android:layout_margin="10dp"
-                android:text="O Allah, (please) make me live carrying the conducts on which You made `Ali the son of Abu-Talib live
-and make me die on the principles for which `Ali the son of Abu-Talib—peace be upon him—died."
+                android:text="O Allah, Lord of mankind, do away with my suffering. Heal (me) as You are the only Healer and there is no cure except that of Yours, it is that which leaves no ailment behind"
 
                 >
 

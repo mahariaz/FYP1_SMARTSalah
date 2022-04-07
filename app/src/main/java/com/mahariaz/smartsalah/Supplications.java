@@ -72,6 +72,17 @@ insert it into list and return that list
             Intent intent=new Intent(this,salah_duas.class);
             startActivity(intent);
         }
-
+        if (duaTopic.get(position).equalsIgnoreCase(duaTopic.get(1))){
+            Intent intent=new Intent(this,morning_duas.class);
+            startActivity(intent);
+        }
+        if (duaTopic.get(position).equalsIgnoreCase(duaTopic.get(2))){
+            Intent intent=new Intent(this,morning_duas.class);
+            startActivity(intent);
+        }
+        if (duaTopic.get(position).equalsIgnoreCase(duaTopic.get(3))){
+            Intent intent=new Intent(this,illness_duas.class);
+            startActivity(intent);
+        }
     }
 }

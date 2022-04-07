@@ -6,8 +6,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:weightSum="2"
     android:orientation="vertical"
-    android:background="@color/asparagus"
-    tools:context=".salahdua4">
+    android:background="@color/antique_fuchsia"
+    tools:context=".morningDua3">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -35,7 +35,7 @@
                 android:textStyle="bold"
                 android:gravity="center"
                 android:textColor="@color/black"
-                android:text="اللّهُمَّ أَحْيِنِي عَلى ما أَحْيَيْتَ عَلَيْهِ عَلِيَّ بْنَ أَبِي طالِبٍ وَأَمِتْنِي عَلى ما ماتَ عَلَيْهِ عَلِيُّ بْنُ أَبِي طالِبٍ عليه‌السلام"
+                android:text="الْحَمْدُ لِلَّهِ الَّذِي أَقَالَنَا يَوْمَنَا هَذَا وَلَمْ يُهْلِكْنَا بِذُنُوبِنَا (مُسْلِمْ)"
                 >
 
             </TextView>
@@ -45,9 +45,7 @@
                 android:gravity="center"
                 android:padding="0dp"
                 android:layout_margin="10dp"
-                android:text="O Allah, (please) make me live carrying the conducts on which You made `Ali the son of Abu-Talib live
-and make me die on the principles for which `Ali the son of Abu-Talib—peace be upon him—died."
-
+                android:text="All praise be to Allah who has forgiven us today and not destroyed us due to our sin."
                 >
 
             </TextView>

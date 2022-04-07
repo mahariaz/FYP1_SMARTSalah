@@ -21,22 +21,38 @@
             android:layout_weight="1.5"
             android:id="@+id/dua_cardview"
             >
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="50dp"
-                    android:textStyle="bold"
-                    android:layout_gravity="center">
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:layout_margin="10dp"
+                        >
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="25dp"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:text="اَللَّهُمَّ صَلِّ علَىٰ مُحَمَّد وَآلِ مُحَمَّد وَٱهْدِنِي لِمَا ٱخْتُلِفَ فِيهِ مِنَ ٱلحَقِّ بِإِذْنِكَ إِنَّكَ تَهْدي مَنْ تَشَاءُ إِلَىٰ صِرَاطٍ مُسْتَقِيمٍ"
+                            >
 
-                </TextView>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="50dp"
-                    android:textStyle="bold"
-                    android:layout_gravity="center">
+                        </TextView>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:padding="0dp"
+                            android:layout_margin="10dp"
+                            android:text="O Allah, send blessings to Muhammad and the Household of Muhammad
+and guide me, by Your permission, to the right about which discrepancies have taken place.
+Verily, You guide him whom You wish to a straight path."
+>
 
-                </TextView>
+                        </TextView>
+                </LinearLayout>
+
 
         </androidx.cardview.widget.CardView>
 

@@ -12,10 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartSalah">
         <activity
+            android:name=".illness_duas"
+            android:exported="false" />
+        <activity
+            android:name=".morning_duas"
+            android:exported="false" />
+        <activity
             android:name=".salah_duas"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".Settings"
             android:exported="false" />
@@ -25,14 +29,18 @@
         <activity
             android:name=".Supplications"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".SalahTimings"
             android:exported="false" />
         <activity
             android:name=".Highlights"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".WhatDp"
             android:exported="false" />
@@ -65,19 +73,13 @@
             android:exported="true" />
         <activity
             android:name=".SalahProgress"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ViewSalah"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".Home"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".change_pass"
             android:exported="true" />
@@ -86,10 +88,10 @@
             android:exported="true" />
         <activity
             android:name=".login"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>

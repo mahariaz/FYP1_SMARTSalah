@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="2"
-    tools:context=".salah_duas">
+    tools:context=".illness_duas">
 
 
     <androidx.viewpager.widget.ViewPager

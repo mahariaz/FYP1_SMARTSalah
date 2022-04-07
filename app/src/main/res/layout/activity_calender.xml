@@ -145,7 +145,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="Mghrb"
+                android:text="Mgb"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
 
@@ -333,16 +333,16 @@
                 android:id="@+id/r5_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/r5_circle"
                 android:layout_alignLeft="@id/r5_circle"
-                android:layout_alignRight="@id/r5_circle"
                 android:layout_alignTop="@id/r5_circle"
+                android:layout_alignRight="@id/r5_circle"
+                android:layout_alignBottom="@id/r5_circle"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:padding="10dp"
-                android:textStyle="bold"
+                android:text="Isha"
                 android:textColor="@color/black"
-                android:text="Isha" />
+                android:textStyle="bold" />
 
         </RelativeLayout>
     </LinearLayout>

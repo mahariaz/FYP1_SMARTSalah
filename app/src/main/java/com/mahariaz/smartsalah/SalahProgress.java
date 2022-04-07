@@ -4,43 +4,38 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.components.Description;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
+
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.opencsv.CSVReader;
+
 
 public class SalahProgress extends AppCompatActivity {
     private Toolbar mTopToolbar;
@@ -71,14 +66,15 @@ public class SalahProgress extends AppCompatActivity {
     boolean is_bar1_filled=false,is_bar2_filled=false,is_bar3_filled=false,is_bar4_filled=false;
     boolean one_fill=false,two_fill=false,three_fill=false,four_fill=false;
     final DBAdapter db=new DBAdapter(this);
-    TextView tv;
+//    TextView tv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_salah_progress);
+//        array_image.addAll(img);
         mTopToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(mTopToolbar);
-        tv=findViewById(R.id.comp);
+//        tv=findViewById(R.id.comp);
         get_intents();
         get_bar_ids();
         display_progressBars();
@@ -120,6 +116,7 @@ public class SalahProgress extends AppCompatActivity {
             }
         });
     }
+
 
     private void fill_bar1(ProgressBar bar) {
 
@@ -215,6 +212,8 @@ public class SalahProgress extends AppCompatActivity {
         Intent intent=getIntent();
         sel_salah=intent.getStringExtra("sel_salah");
         sel_rakah=intent.getStringExtra("sel_rakah");
+        sel_salah="zuhr";
+        sel_rakah="4";
     }
 
     private void get_bar_ids() {
@@ -269,6 +268,10 @@ public class SalahProgress extends AppCompatActivity {
 
         }
     }
+
+
+
+
 
     private void sqlite_storage() {
         /*db.openDB();
@@ -332,7 +335,7 @@ public class SalahProgress extends AppCompatActivity {
                     new InputStreamReader(is, Charset.forName("UTF-8")));
             filereading(reader);
         }else{
-            is = getResources().openRawResource(R.raw.file4);
+            is = getResources().openRawResource(R.raw.file5);
             reader = new BufferedReader(
                     new InputStreamReader(is, Charset.forName("UTF-8")));
             filereading(reader);

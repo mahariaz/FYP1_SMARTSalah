@@ -1,100 +1,360 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:weightSum="2"
-
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true"
     tools:context=".Salah_stats_history">
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/my_toolbar"
+
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:elevation="4dp"
-        app:titleTextColor="@color/black"
-        app:title="Salah Statistics"
-        android:background="#009688"
-        />
-    <LinearLayout
-        android:padding="20dp"
-        android:layout_margin="20dp"
+        android:layout_height="wrap_content"
         android:weightSum="4"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:layout_weight="0.5">
-        <TextView
-            android:layout_weight="2"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:text="Salah Statistics">
+        android:stretchColumns="1">
 
-        </TextView>
-
-        <LinearLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/my_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="?attr/actionBarSize"
+            android:elevation="4dp"
+            app:titleTextColor="@color/black"
+            app:title="Salah Profile"
+            android:background="#009688"
+            />
+        <LinearLayout
+            android:layout_margin="10dp"
             android:layout_weight="1"
-            android:weightSum="2"
-            android:orientation="horizontal"
-            >
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Prayed Salah">
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/lineChart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
-            </TextView>
-            <TextView
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/salah_view">
-
-            </TextView>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:weightSum="2"
-            android:orientation="horizontal"
+            android:orientation="vertical"
+            android:layout_weight="3"
             >
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Rakah Count">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                app:cardElevation="10dp"
+                app:cardCornerRadius="20dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardMaxElevation="12dp"
+                app:cardPreventCornerOverlap="true"
+                app:cardUseCompatPadding="true"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_margin="20dp"
+                        android:id="@+id/salahName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Zuhr"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
+                    </TextView>
 
-            </TextView>
-            <TextView
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/rakah_view">
+                    <TextView
+                        android:id="@+id/rakahPrayed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:text="4"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
 
-            </TextView>
+                    </TextView>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="200dp"
+                    android:layout_height="220dp"
+                    app:cardElevation="10dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardMaxElevation="12dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_margin="20dp"
+                            android:id="@+id/hor1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Completness"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+                        </TextView>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="200dp"
+                    android:layout_height="220dp"
+                    app:cardElevation="10dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardMaxElevation="12dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_margin="20dp"
+                            android:id="@+id/hor2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Correctness"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+                        </TextView>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="600dp"
+                app:cardElevation="10dp"
+                app:cardCornerRadius="20dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardMaxElevation="12dp"
+                app:cardPreventCornerOverlap="true"
+                app:cardUseCompatPadding="true"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:weightSum="4">
+                    <RelativeLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_margin="20dp"
+                            android:id="@+id/heading3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Details"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+                        </TextView>
+                        <ImageView
+                            android:id="@+id/reportpic"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/black_barchart"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            >
+
+                        </ImageView>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_margin="20dp"
+                            android:id="@+id/dateH"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Details"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignRight="@+id/dateH"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="-77dp"
+                            android:text="21-02-2000">
+
+                        </TextView>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_margin="20dp"
+                            android:id="@+id/rakah1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rakah 1 "
+                            android:textColor="@color/black"
+                            >
+                        </TextView>
+
+                        <ImageView
+                            android:id="@+id/ticR1"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignRight="@+id/rakah1"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="-77dp"
+                            android:src="@drawable/tic">
+
+                        </ImageView>
+
+                        <TextView
+                            android:id="@+id/posmissedR1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignRight="@+id/ticR1"
+                            android:layout_marginRight="-77dp"
+                            android:layout_marginTop="20dp"
+                            android:text=""
+                            android:textColor="@color/black">
+
+                        </TextView>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_margin="20dp"
+                            android:id="@+id/rakah2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rakah 2 "
+                            android:textColor="@color/black"
+                            >
+                        </TextView>
+                        <ImageView
+                            android:id="@+id/ticR2"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignRight="@+id/rakah2"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="-77dp">
+
+                        </ImageView>
+                        <TextView
+                            android:id="@+id/posmissedR2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignRight="@+id/ticR2"
+                            android:layout_marginRight="-77dp"
+                            android:layout_marginTop="20dp"
+                            android:text="sajda2 missed "
+                            android:textColor="@android:color/holo_red_dark">
+
+                        </TextView>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_margin="20dp"
+                            android:id="@+id/rakah3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rakah 3 "
+                            android:textColor="@color/black"
+                            >
+                        </TextView>
+                        <ImageView
+                            android:id="@+id/ticR3"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignRight="@+id/rakah3"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="-77dp"
+                            android:src="@drawable/tic">
+
+                        </ImageView>
+                        <TextView
+                            android:id="@+id/posmissedR3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignRight="@+id/ticR3"
+                            android:layout_marginRight="-77dp"
+                            android:layout_marginTop="20dp"
+                            android:text=""
+                            android:textColor="@color/black">
+
+                        </TextView>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/rakah4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:text="Rakah 4 "
+                            android:textColor="@color/black">
+
+                        </TextView>
+                        <ImageView
+                            android:id="@+id/ticR4"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignRight="@+id/rakah4"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="-77dp"
+                            android:src="@drawable/tic">
+
+                        </ImageView>
+                        <TextView
+                            android:id="@+id/posmissedR4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignRight="@+id/ticR4"
+                            android:layout_marginRight="-77dp"
+                            android:layout_marginTop="20dp"
+                            android:text=""
+                            android:textColor="@color/black">
+
+                        </TextView>
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
         </LinearLayout>
 
-    </LinearLayout>
-    <LinearLayout
-        android:padding="20dp"
-        android:layout_margin="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.5">
-        <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/idBarChart"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </LinearLayout>
 
 
-
-
-</LinearLayout>
+    </TableLayout>
+</ScrollView>

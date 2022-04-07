@@ -5,21 +5,30 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Salah_stats_history extends AppCompatActivity {
     BarChart barChart;
@@ -39,6 +48,10 @@ public class Salah_stats_history extends AppCompatActivity {
     final DBAdapter db=new DBAdapter(this);
     String sel_salah,sel_rakah,date,rakah_per,qayam_avg="0",ruku_avg="0",qoum_avg="0",sajda_avg="0",jalsa_avg="0",tash_avg="0",get_salah="Missed/Qaza",get_rakah="0 Rakah";
     TextView salah_view,rakah_view;
+    // graph
+    ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+    List<String> xAxisValues = new ArrayList<>(Arrays.asList("Takbir","Qayam", "Ruku", "Qouma", "Sajda", "Tashahud"));
+    List<Entry> postures;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,40 +60,86 @@ public class Salah_stats_history extends AppCompatActivity {
         setSupportActionBar(mTopToolbar);
         get_intents();
         search_records(); // from sqlite of entered salah,rakah and date
-        salah_view=findViewById(R.id.salah_view);
-        rakah_view=findViewById(R.id.rakah_view);
-        barChart = findViewById(R.id.idBarChart);
-        salah_view.setText(get_salah); //getting from db
-        rakah_view.setText(get_rakah);
-        barEntriesArrayList=new ArrayList<>();
-        labelNames=new ArrayList<>();
-        fillPostureList();
-        for (int i=0;i<PostureNamesArrayList.size();i++){
-            String postures=PostureNamesArrayList.get(i).getPostureName();
-            int avgPostureTime=PostureNamesArrayList.get(i).getAvgPostureTime();
-            barEntriesArrayList.add(new BarEntry(i,avgPostureTime));
-            labelNames.add(postures);
-        }
-        BarDataSet barDataSet=new BarDataSet(barEntriesArrayList,"Postures");
-        barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-        Description description=new Description();
-        description.setText("");
-        barChart.setDescription(description);
-        BarData barData=new BarData(barDataSet);
-        barChart.setData(barData);
-        XAxis xAxis=barChart.getXAxis();
-        xAxis.setValueFormatter(new IndexAxisValueFormatter(labelNames));
-        xAxis.setPosition(XAxis.XAxisPosition.TOP_INSIDE);
-        xAxis.setDrawGridLines(false);
-        xAxis.setDrawAxisLine(false);
-        xAxis.setDrawGridLinesBehindData(false);
+        salah_view=findViewById(R.id.salahName);
+        rakah_view=findViewById(R.id.rakahPrayed);
+        // making graph
+        postures = getPostureAverageTime();
+        dataSets = new ArrayList<>();
+        makeGraph();
+
+    }
+
+    private void makeGraph() {
+        LineDataSet set1;
+
+        set1 = new LineDataSet(postures, "Postures");
+        set1.setColor(Color.rgb(65, 168, 121));
+        set1.setValueTextColor(Color.rgb(55, 70, 73));
+        set1.setValueTextSize(10f);
+        set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+        set1.setDrawFilled(true);
+        set1.setFillColor(getResources().getColor(R.color.teal_200));
+        dataSets.add(set1);
+
+//customization
+        LineChart mLineGraph = findViewById(R.id.lineChart);
+        mLineGraph.setTouchEnabled(true);
+        mLineGraph.setDragEnabled(true);
+        mLineGraph.setScaleEnabled(true);
+        mLineGraph.setPinchZoom(true);
+        mLineGraph.setDrawGridBackground(true);
+        mLineGraph.setExtraLeftOffset(15);
+        mLineGraph.setExtraRightOffset(15);
+//to hide background lines
+        mLineGraph.getXAxis().setDrawGridLines(true);
+        mLineGraph.getAxisLeft().setDrawGridLines(true);
+        mLineGraph.getAxisRight().setDrawGridLines(true);
+
+//to hide right Y and top X border
+        YAxis rightYAxis = mLineGraph.getAxisRight();
+        rightYAxis.setEnabled(false);
+        YAxis leftYAxis = mLineGraph.getAxisLeft();
+        leftYAxis.setEnabled(true);
+        XAxis topXAxis = mLineGraph.getXAxis();
+        topXAxis.setEnabled(true);
+
+
+        XAxis xAxis = mLineGraph.getXAxis();
         xAxis.setGranularity(1f);
-        xAxis.setLabelCount(labelNames.size());
-        xAxis.setLabelRotationAngle(360);
-        barChart.animateY(2000);
-        barChart.invalidate();
+        xAxis.setCenterAxisLabels(true);
+        xAxis.setEnabled(true);
+        xAxis.setDrawGridLines(true);
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+
+        set1.setLineWidth(4f);
+        set1.setCircleRadius(3f);
+        set1.setDrawValues(false);
+        set1.setCircleHoleColor(getResources().getColor(R.color.teal_200));
+        set1.setCircleColor(getResources().getColor(R.color.black));
+
+//String setter in x-Axis
+        mLineGraph.getXAxis().setValueFormatter(new com.github.mikephil.charting.formatter.IndexAxisValueFormatter(xAxisValues));
+
+        LineData data = new LineData(dataSets);
+        mLineGraph.setData(data);
+        mLineGraph.animateX(2000);
+        mLineGraph.invalidate();
+        mLineGraph.getLegend().setEnabled(true);
+        mLineGraph.getDescription().setEnabled(false);
+
+    }
+    private List<Entry> getPostureAverageTime() {
+        ArrayList<Entry> posture = new ArrayList<>();
+
+        posture.add(new Entry(1, 12));
+        posture.add(new Entry(2, 2));
+        posture.add(new Entry(3, 2));
+        posture.add(new Entry(4, 3));
+        posture.add(new Entry(5, 2));
+        posture.add(new Entry(6, 12));
 
 
+        return posture.subList(0, 6);
     }
 
     private void search_records() {
@@ -121,15 +180,7 @@ public class Salah_stats_history extends AppCompatActivity {
         sel_salah=intent.getStringExtra("sel_salah");
         sel_rakah=intent.getStringExtra("sel_rakah");
     }
-    private void fillPostureList(){
-        PostureNamesArrayList.clear();
-        PostureNamesArrayList.add(new SalahPostureNames("Qayam",Integer.parseInt(qayam_avg)));
-        PostureNamesArrayList.add(new SalahPostureNames("Ruku",Integer.parseInt(ruku_avg)));
-        PostureNamesArrayList.add(new SalahPostureNames("Qouma",Integer.parseInt(qoum_avg)));
-        PostureNamesArrayList.add(new SalahPostureNames("Sajda",Integer.parseInt(sajda_avg)));
-        PostureNamesArrayList.add(new SalahPostureNames("Jalsa",Integer.parseInt(jalsa_avg)));
-        PostureNamesArrayList.add(new SalahPostureNames("Tashahud",Integer.parseInt(tash_avg)));
-    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

@@ -17,7 +17,8 @@
         app:title="Rakah Progress"
         android:background="#009688"
         />
-    <TextView
+
+    <LinearLayout
         android:layout_margin="20dp"
         android:padding="20dp"
         android:layout_width="match_parent"
@@ -27,8 +28,8 @@
         android:layout_weight="0.2"
         >
 
-    </TextView>
-
+        </TextView>
+    </LinearLayout>
     <LinearLayout
         android:layout_margin="20dp"
         android:padding="20dp"
@@ -114,34 +115,7 @@
 
         </ProgressBar>
     </LinearLayout>
-    <LinearLayout
-        android:layout_margin="20dp"
-        android:padding="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="0.5">
-        <!--
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="25dp"
-            android:text="Current Posture">
 
-        </TextView>
-
-        -->
-        <TextView
-            android:id="@+id/comp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="25dp"
-           >
-
-        </TextView>
-    </LinearLayout>
     <LinearLayout
         android:layout_margin="20dp"
         android:padding="20dp"

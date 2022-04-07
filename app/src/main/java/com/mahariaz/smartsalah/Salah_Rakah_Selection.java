@@ -58,6 +58,10 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
                 r2_circle.setColorFilter(Color.MAGENTA, PorterDuff.Mode.SRC_ATOP);
                 r3_circle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
                 r4_circle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
+                r3_circle.setEnabled(false);
+                r4_circle.setEnabled(false);
+                r1_circle.setEnabled(false);
+                r2_circle.setEnabled(true);
             }
         });
         zuhr_circle.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +78,11 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
                 r2_circle.setColorFilter(Color.MAGENTA, PorterDuff.Mode.SRC_ATOP);
                 r3_circle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
                 r4_circle.setColorFilter(Color.MAGENTA, PorterDuff.Mode.SRC_ATOP);
+                r3_circle.setEnabled(false);
+                r1_circle.setEnabled(false);
+                r2_circle.setEnabled(true);
+                r4_circle.setEnabled(true);
+
 
             }
         });
@@ -91,6 +100,10 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
                 r2_circle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
                 r3_circle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
                 r4_circle.setColorFilter(Color.MAGENTA, PorterDuff.Mode.SRC_ATOP);
+                r4_circle.setEnabled(true);
+                r3_circle.setEnabled(false);
+                r2_circle.setEnabled(false);
+                r1_circle.setEnabled(false);
             }
         });
         maghreb_circle.setOnClickListener(new View.OnClickListener() {
@@ -104,9 +117,13 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
                 isha_circle.setColorFilter(0,PorterDuff.Mode.SRC_ATOP);
                 nafl_circle.setColorFilter(0,PorterDuff.Mode.SRC_ATOP);
                 r1_circle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
-                r2_circle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
+                r2_circle.setColorFilter(Color.MAGENTA, PorterDuff.Mode.SRC_ATOP);
                 r3_circle.setColorFilter(Color.MAGENTA, PorterDuff.Mode.SRC_ATOP);
                 r4_circle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
+                r4_circle.setEnabled(false);
+                r1_circle.setEnabled(false);
+                r3_circle.setEnabled(true);
+                r2_circle.setEnabled(true);
             }
         });
         isha_circle.setOnClickListener(new View.OnClickListener() {
@@ -123,6 +140,10 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
                 r2_circle.setColorFilter(Color.MAGENTA, PorterDuff.Mode.SRC_ATOP);
                 r3_circle.setColorFilter(Color.MAGENTA, PorterDuff.Mode.SRC_ATOP);
                 r4_circle.setColorFilter(Color.MAGENTA, PorterDuff.Mode.SRC_ATOP);
+                r1_circle.setEnabled(false);
+                r2_circle.setEnabled(true);
+                r4_circle.setEnabled(true);
+                r3_circle.setEnabled(true);
             }
         });
         nafl_circle.setOnClickListener(new View.OnClickListener() {
@@ -139,6 +160,10 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
                 r2_circle.setColorFilter(Color.MAGENTA, PorterDuff.Mode.SRC_ATOP);
                 r3_circle.setColorFilter(Color.MAGENTA, PorterDuff.Mode.SRC_ATOP);
                 r4_circle.setColorFilter(Color.MAGENTA, PorterDuff.Mode.SRC_ATOP);
+                r1_circle.setEnabled(true);
+                r2_circle.setEnabled(true);
+                r3_circle.setEnabled(true);
+                r4_circle.setEnabled(true);
 
             }
         });

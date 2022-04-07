@@ -7,19 +7,19 @@
     android:orientation="vertical"
     android:weightSum="2.1"
     tools:context=".WhatAge">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="4dp"
+        app:titleTextColor="@color/black"
+        app:title="Age"
+        android:background="#009688"
+        />
     <LinearLayout
-        android:padding="20dp"
-        android:layout_margin="20dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.1">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/back_arrow"
-            >
-
-        </ImageView>
+        android:layout_weight="0.2"
+        android:layout_height="wrap_content">
 
     </LinearLayout>
     <TextView
@@ -27,7 +27,7 @@
         android:layout_margin="20dp"
         android:layout_gravity="center"
         android:textSize="25dp"
-        android:layout_weight="0.5"
+        android:layout_weight="0.2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="How much old are you?">
@@ -38,15 +38,28 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:weightSum="1.8"
         android:layout_weight="1">
+        <TextView
+            android:id="@+id/age"
+            android:padding="20dp"
+            android:layout_margin="20dp"
+            android:layout_gravity="center"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Age"
+            android:backgroundTint="#009688"
+            android:background="@drawable/roundbtn">
+
+        </TextView>
 
         <gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner
             android:id="@+id/spinner_age"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            app:DoneSearchTintColor="#F4C0AF"
+            app:DoneSearchTintColor="#009688"
             app:RevealEmptyText="Touch to select"
-            app:RevealViewBackgroundColor="#F4C0AF"
+            app:RevealViewBackgroundColor="#009688"
             app:SearchViewBackgroundColor="@android:color/secondary_text_dark"
             app:ShowBorders="false"
             app:SpinnerExpandHeight="300dp"

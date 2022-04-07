@@ -60,6 +60,7 @@ public class BaseForFragment extends AppCompatActivity {
         already_acc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Intent intent=new Intent(BaseForFragment.this,login.class);
                 Intent intent=new Intent(BaseForFragment.this,login.class);
                 startActivity(intent);
             }

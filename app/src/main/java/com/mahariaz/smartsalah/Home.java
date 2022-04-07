@@ -5,9 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.tabs.TabLayout;
 import com.onesignal.OneSignal;
 
 import android.content.ContentResolver;
@@ -38,8 +41,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.TimerTask;
 
 public class Home extends AppCompatActivity implements RecyclerViewAdapter.OnTileListner{
+    private List<The_Slide_Items_Model_Class> listItems;
+    private ViewPager page;
+    private TabLayout tabLayout;
+
     private DrawerLayout mDrawer;
     private Toolbar toolbar;
     private static final String ONESIGNAL_APP_ID = "a827ee7e-6beb-4dd5-9c21-f281bed4c4c7";
@@ -58,6 +66,18 @@ public class Home extends AppCompatActivity implements RecyclerViewAdapter.OnTil
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        page = findViewById(R.id.viewPager) ;
+        tabLayout = findViewById(R.id.tabLayout);
+        listItems = new ArrayList<>() ;
+        listItems.add(new The_Slide_Items_Model_Class(R.drawable.item1,"Slider 1 Title"));
+        listItems.add(new The_Slide_Items_Model_Class(R.drawable.item2,"Slider 2 Title"));
+        listItems.add(new The_Slide_Items_Model_Class(R.drawable.item3,"Slider 3 Title"));
+        listItems.add(new The_Slide_Items_Model_Class(R.drawable.item4,"Slider 4 Title"));
+        listItems.add(new The_Slide_Items_Model_Class(R.drawable.item5,"Slider 5 Title"));
+        The_Slide_items_Pager_Adapter itemsPager_adapter = new The_Slide_items_Pager_Adapter(this, listItems);
+        page.setAdapter(itemsPager_adapter);
+        tabLayout.setupWithViewPager(page,true);
+
         List<String> heading_list = Arrays.asList("Highlights","Track Salah","Salah History",
                 "Supplications","Salah Timings");
         // getting the list of URIs of png Images
@@ -130,6 +150,10 @@ public class Home extends AppCompatActivity implements RecyclerViewAdapter.OnTil
                 startActivity(intent);
             }
         });*/
+        java.util.Timer timer = new java.util.Timer();
+        timer.scheduleAtFixedRate(new The_slide_timer(),2000,3000);
+        tabLayout.setupWithViewPager(page,true);
+
 
     }
 
@@ -176,6 +200,9 @@ public class Home extends AppCompatActivity implements RecyclerViewAdapter.OnTil
             case R.id.fr_settings:
                 Intent intent2=new Intent(Home.this,Settings.class);
                 startActivity(intent2);
+            case R.id.fr_rate:
+                Intent intent3=new Intent(Home.this,RateUs.class);
+                startActivity(intent3);
 
 
 
@@ -303,4 +330,22 @@ public class Home extends AppCompatActivity implements RecyclerViewAdapter.OnTil
             startActivity(intent);
         }
     }
+    public class The_slide_timer extends TimerTask {
+        @Override
+        public void run() {
+
+            Home.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (page.getCurrentItem()< listItems.size()-1) {
+                        page.setCurrentItem(page.getCurrentItem()+1);
+                    }
+                    else
+                        page.setCurrentItem(0);
+                }
+            });
+        }
+    }
 }
+
+

@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "605245026715",
+    "firebase_url": "https://smartsalah-18be7-default-rtdb.firebaseio.com",
     "project_id": "smartsalah-18be7",
     "storage_bucket": "smartsalah-18be7.appspot.com"
   },
@@ -14,8 +15,12 @@
       },
       "oauth_client": [
         {
-          "client_id": "605245026715-kgte73pqr28s0urn8ben4rg42oaqndhb.apps.googleusercontent.com",
-          "client_type": 3
+          "client_id": "605245026715-u2h9rgkmj8od2a97tv55epmisla5vmii.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mahariaz.smartsalah",
+            "certificate_hash": "d4b789b69aeb738ee4b7696e0ecfa3ee816fbe2a"
+          }
         }
       ],
       "api_key": [

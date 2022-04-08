@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     >
+
     <RelativeLayout
         android:id="@+id/tileColor"
         android:layout_margin="10dp"
@@ -12,7 +13,6 @@
         android:background="@color/light_teal"
         android:orientation="vertical"
         >
-
         <TextView
             android:id="@+id/topic"
             android:layout_width="wrap_content"
@@ -23,9 +23,7 @@
             android:padding="10dp"
             android:text="Salah"
             android:textStyle="bold">
-
         </TextView>
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,18 +33,14 @@
             android:layout_marginRight="10dp"
             android:layout_marginBottom="-24dp"
             android:text="Suplications">
-
         </TextView>
-
         <ImageView
             android:id="@+id/topicPic"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
             android:layout_margin="10dp">
-
         </ImageView>
-
     </RelativeLayout>
 
 

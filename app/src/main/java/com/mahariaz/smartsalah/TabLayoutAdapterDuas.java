@@ -118,6 +118,82 @@ class TabLayoutAdapterIllness  extends FragmentPagerAdapter {
     }
 
 }
+class TabLayoutAdapterJob  extends FragmentPagerAdapter {
+    private Context myContext;
+    int totalTabs;
+    public TabLayoutAdapterJob(Context context, FragmentManager fm, int totalTabs){
+        super(fm);
+        myContext=context;
+        this.totalTabs=totalTabs;
+    }
+    //This is for fragment tabs
+    @Override
+    public Fragment getItem(int position) {
+        switch(position){
+            case 0:
+                jobDua1 jobDua1=new jobDua1();
+                return jobDua1;
+            case 1:
+                jobDua2 jobDua2=new jobDua2();
+                return jobDua2;
+            case 2:
+                jobDua3 jobDua3=new jobDua3();
+                return jobDua3;
+            case 3:
+                jobDua4 jobDua4=new jobDua4();
+                return jobDua4;
+            default:
+                return null;
+
+        }
+
+    }
+
+    @Override
+    public int getCount() {
+        return totalTabs;
+    }
+
+}
+class TabLayoutAdapterForgive  extends FragmentPagerAdapter {
+    private Context myContext;
+    int totalTabs;
+    public TabLayoutAdapterForgive(Context context, FragmentManager fm, int totalTabs){
+        super(fm);
+        myContext=context;
+        this.totalTabs=totalTabs;
+    }
+    //This is for fragment tabs
+    @Override
+    public Fragment getItem(int position) {
+        switch(position){
+            case 0:
+                jobDua1 jobDua1=new jobDua1();
+                return jobDua1;
+            case 1:
+                jobDua2 jobDua2=new jobDua2();
+                return jobDua2;
+            case 2:
+                jobDua3 jobDua3=new jobDua3();
+                return jobDua3;
+            case 3:
+                jobDua4 jobDua4=new jobDua4();
+                return jobDua4;
+            default:
+                return null;
+
+        }
+
+    }
+
+    @Override
+    public int getCount() {
+        return totalTabs;
+    }
+
+}
+
+
 
 
 

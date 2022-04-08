@@ -7,9 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.net.URI;
@@ -53,14 +55,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView small_img_view;
         TextView heading_view;
+        CardView relativeLayoutColor;
         OnTileListner onTileListner;
 
         public MyViewHolder(@NonNull  View itemView,OnTileListner onTileListner) {
             super(itemView);
             heading_view=itemView.findViewById(R.id.heading);
             small_img_view=itemView.findViewById(R.id.small_iv);
+            relativeLayoutColor=itemView.findViewById(R.id.tiletap);
             this.onTileListner=onTileListner;
-            heading_view.setOnClickListener(this);
+            relativeLayoutColor.setOnClickListener(this);
 
         }
 

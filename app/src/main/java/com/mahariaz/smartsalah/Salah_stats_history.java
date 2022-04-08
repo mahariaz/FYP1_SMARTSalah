@@ -52,6 +52,7 @@ public class Salah_stats_history extends AppCompatActivity {
     ArrayList<ILineDataSet> dataSets = new ArrayList<>();
     List<String> xAxisValues = new ArrayList<>(Arrays.asList("Takbir","Qayam", "Ruku", "Qouma", "Sajda", "Tashahud"));
     List<Entry> postures;
+    TextView sel_date;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +67,8 @@ public class Salah_stats_history extends AppCompatActivity {
         postures = getPostureAverageTime();
         dataSets = new ArrayList<>();
         makeGraph();
+        sel_date=findViewById(R.id.sel_date);
+        sel_date.setText(date);
 
     }
 

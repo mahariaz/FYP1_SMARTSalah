@@ -21,11 +21,13 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner;
 
 public class Calender extends AppCompatActivity {
+    Boolean rakah_nd_salah_selected=false;
     CalendarView calendar;
     TextView date_view;
     String Date,sel_salah,sel_rakah;
     CircleImageView fajar_circle,zuhr_circle,asr_circle,maghreb_circle,isha_circle;
     CircleImageView r1_circle,r2_circle,r3_circle,r4_circle;
+    private Button stats;
     private Toolbar mTopToolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +36,7 @@ public class Calender extends AppCompatActivity {
 
         mTopToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(mTopToolbar);
-
+        stats=findViewById(R.id.stats);
         fajar_circle=findViewById(R.id.fajar_circle);
         zuhr_circle=findViewById(R.id.zuhr_circle);
         asr_circle=findViewById(R.id.asr_circle);
@@ -123,6 +125,7 @@ public class Calender extends AppCompatActivity {
         r1_circle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                rakah_nd_salah_selected=true;
                 sel_rakah="1";
                 r1_circle.setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
             }
@@ -130,6 +133,7 @@ public class Calender extends AppCompatActivity {
         r2_circle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                rakah_nd_salah_selected=true;
                 sel_rakah="2";
                 r2_circle.setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
             }
@@ -137,6 +141,7 @@ public class Calender extends AppCompatActivity {
         r3_circle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                rakah_nd_salah_selected=true;
                 sel_rakah="3";
                 r3_circle.setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
             }
@@ -144,6 +149,8 @@ public class Calender extends AppCompatActivity {
         r4_circle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                rakah_nd_salah_selected=true;
+
                 sel_rakah="4";
                 r4_circle.setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
             }
@@ -159,9 +166,12 @@ public class Calender extends AppCompatActivity {
                 Date= year + "-"+ (month + 1) + "-" + dayOfMonth;
                 // set this date in TextView for Display
                 date_view.setText(Date);
+                if (rakah_nd_salah_selected){
+                    stats.setEnabled(true);
+                }
             }
         });
-        Button stats=findViewById(R.id.stats);
+
         stats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

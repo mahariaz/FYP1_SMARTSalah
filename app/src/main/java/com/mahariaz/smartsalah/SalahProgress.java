@@ -19,7 +19,15 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -30,7 +38,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -38,7 +48,9 @@ import java.util.TimerTask;
 
 
 public class SalahProgress extends AppCompatActivity {
+    String url = "https://deploy-flask-app.herokuapp.com/predict";
     private Toolbar mTopToolbar;
+    TextView posName;
     ArrayList<Integer> array_image = new ArrayList<Integer>();
 //    List<Integer> img = Arrays.asList(R.drawable.rukupic,R.drawable.sajdapic,R.drawable.tashpic
 //    ,R.drawable.qayampic);
@@ -75,15 +87,14 @@ public class SalahProgress extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_salah_progress);
-//        array_image.addAll(img);
+        posName=findViewById(R.id.posName);
         mTopToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(mTopToolbar);
-//        tv=findViewById(R.id.comp);
         get_intents();
         get_bar_ids();
-        //display_progressBars();
-        // filling progress bars
         fill_bar1(bar1);
+
+
 
 
         file_reading();
@@ -103,10 +114,49 @@ public class SalahProgress extends AppCompatActivity {
         Button view_salah=findViewById(R.id.view_salah_btn);
 
         end_salah.setOnClickListener(new View.OnClickListener() {
+
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 sqlite_storage();
                 view_salah.setEnabled(true);
+                        // hit the API -> Volley
+                        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                                new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+
+                                        try {
+                                            JSONObject jsonObject = new JSONObject(response);
+                                            String data = jsonObject.getString("posture");
+                                            posName.setText(data);
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                    }
+                                },
+                                new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Toast.makeText(SalahProgress.this, "ERROR!!!", Toast.LENGTH_SHORT).show();
+                                    }
+                                }){
+
+                            @Override
+                            protected Map<String,String> getParams(){
+                                Map<String,String> params = new HashMap<String,String>();
+                                params.put("x","0.876");
+                                params.put("y","0.7654");
+                                params.put("z","0.7643");
+
+                                return params;
+                            }
+
+                        };
+                        RequestQueue queue = Volley.newRequestQueue(SalahProgress.this);
+                        queue.add(stringRequest);
+
+
 
             }
         });

@@ -206,6 +206,7 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
                 Intent intent=new Intent(Salah_Rakah_Selection.this,SalahProgress.class);
                 intent.putExtra("sel_salah",sel_salah);
                 intent.putExtra("sel_rakah",sel_rakah);
+
                 startActivity(intent);
             }
         });

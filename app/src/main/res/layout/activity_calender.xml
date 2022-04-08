@@ -145,7 +145,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="Mghrb"
+                android:text="Mgb"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
 
@@ -390,6 +390,8 @@
             android:id="@+id/stats"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:enabled="false"
             android:text="Show Stats"
             android:backgroundTint="@color/teal_200"
             android:background="@drawable/roundbtn">

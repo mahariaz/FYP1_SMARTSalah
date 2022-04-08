@@ -18,12 +18,11 @@ public class Supplications extends AppCompatActivity implements RecyclerViewAdap
     RecyclerView.LayoutManager lm;
     RecyclerViewAdapterDuas rec_view_adp;
     ArrayList<String> duaTopic = new ArrayList<String>();
-    ArrayList<Integer> tileColor = new ArrayList<Integer>();
+    ArrayList<String> tileColor = new ArrayList<String>();
     ArrayList<Uri> uri_img = new ArrayList<Uri>();
     List<String> topic = Arrays.asList("Salah","Morning","Evening",
-            "Ailment","Istikhara","Forgiveness");
-    List<Integer> color = Arrays.asList(R.color.blue,R.color.aqua,R.color.algae_green,
-            R.color.air_force_blue,R.color.banana_mania,R.color.alice_blue);
+            "Ailment","Job Seeking","Forgiveness");
+  List<String> color = Arrays.asList("#89CFF0","#BF94E4","#D19FE8","#E2A76F","#536872","#E4717A");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,12 +45,12 @@ public class Supplications extends AppCompatActivity implements RecyclerViewAdap
 insert it into list and return that list
  */
     public List<Uri> list_uri(){
-        Uri uri_i1= get_uri(R.drawable.sun);
-        Uri uri_i2= get_uri(R.drawable.moon);
-        Uri uri_i3= get_uri(R.drawable.flower);
+        Uri uri_i1= get_uri(R.drawable.pray);
+        Uri uri_i2= get_uri(R.drawable.sun);
+        Uri uri_i3= get_uri(R.drawable.moon);
         Uri uri_i4= get_uri(R.drawable.flower);
-        Uri uri_i5= get_uri(R.drawable.flower);
-        Uri uri_i6= get_uri(R.drawable.flower);
+        Uri uri_i5= get_uri(R.drawable.jobpic);
+        Uri uri_i6= get_uri(R.drawable.flower2);
         List<Uri> uri_list = Arrays.asList(uri_i1,uri_i2,uri_i3,uri_i4
                 ,uri_i5,uri_i6);
         return uri_list;
@@ -82,6 +81,14 @@ insert it into list and return that list
         }
         if (duaTopic.get(position).equalsIgnoreCase(duaTopic.get(3))){
             Intent intent=new Intent(this,illness_duas.class);
+            startActivity(intent);
+        }
+        if (duaTopic.get(position).equalsIgnoreCase(duaTopic.get(4))){
+            Intent intent=new Intent(this,job_duas.class);
+            startActivity(intent);
+        }
+        if (duaTopic.get(position).equalsIgnoreCase(duaTopic.get(5))){
+            Intent intent=new Intent(this,forgive_duas.class);
             startActivity(intent);
         }
     }

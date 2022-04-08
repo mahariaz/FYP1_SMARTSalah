@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartSalah">
         <activity
+            android:name=".forgive_duas"
+            android:exported="false" />
+        <activity
+            android:name=".job_duas"
+            android:exported="false" />
+        <activity
             android:name=".illness_duas"
             android:exported="false" />
         <activity
@@ -29,11 +35,7 @@
         <activity
             android:name=".Supplications"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".SalahTimings"
@@ -79,7 +81,13 @@
             android:exported="true" />
         <activity
             android:name=".Home"
-            android:exported="true" />
+            android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity
             android:name=".change_pass"
             android:exported="true" />

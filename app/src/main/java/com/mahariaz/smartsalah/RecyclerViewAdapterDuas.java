@@ -1,6 +1,7 @@
 package com.mahariaz.smartsalah;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -17,7 +19,7 @@ import java.util.ArrayList;
 public class RecyclerViewAdapterDuas extends RecyclerView.Adapter<RecyclerViewAdapterDuas.MyViewHolder> {
     Context context;
     private RecyclerViewAdapterDuas.OnTileListner tonTileListner;
-    public RecyclerViewAdapterDuas(ArrayList<String> duaTopic,ArrayList<Integer>  tileColor, ArrayList<Uri> uri_img ,Context context,OnTileListner onTileListner) {
+    public RecyclerViewAdapterDuas(ArrayList<String> duaTopic,ArrayList<String>  tileColor, ArrayList<Uri> uri_img ,Context context,OnTileListner onTileListner) {
 
         this.img_uri = uri_img;
         this.duaTopic=duaTopic;
@@ -28,7 +30,7 @@ public class RecyclerViewAdapterDuas extends RecyclerView.Adapter<RecyclerViewAd
     }
 
     ArrayList<String>duaTopic;
-    ArrayList<Integer>tileColor;
+    ArrayList<String>tileColor;
     ArrayList<Uri>img_uri;
     @NonNull
     @Override
@@ -42,7 +44,8 @@ public class RecyclerViewAdapterDuas extends RecyclerView.Adapter<RecyclerViewAd
     public void onBindViewHolder(@NonNull RecyclerViewAdapterDuas.MyViewHolder holder, int position) {
         holder.topic.setText(duaTopic.get(position));
         holder.topicPic.setImageURI(img_uri.get(position));
-        holder.relativeLayoutColor.setBackgroundColor(tileColor.get(position));
+        holder.relativeLayoutColor.setBackgroundColor(Color.parseColor(tileColor.get(position)));
+
 
     }
 

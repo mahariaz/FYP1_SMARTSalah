@@ -79,7 +79,7 @@ public class Home extends AppCompatActivity implements RecyclerViewAdapter.OnTil
         tabLayout.setupWithViewPager(page,true);
 
         List<String> heading_list = Arrays.asList("Highlights","Track Salah","Salah History",
-                "Supplications","Salah Timings");
+                "Supplications");
         // getting the list of URIs of png Images
         List<Uri> imguri_list=list_uri();
         images.addAll(imguri_list);
@@ -325,10 +325,10 @@ public class Home extends AppCompatActivity implements RecyclerViewAdapter.OnTil
             Intent intent=new Intent(this,Supplications.class);
             startActivity(intent);
         }
-        else if (headings.get(position).equalsIgnoreCase(headings.get(4))){
-            Intent intent=new Intent(this,SalahTimings.class);
-            startActivity(intent);
-        }
+//        else if (headings.get(position).equalsIgnoreCase(headings.get(4))){
+//            Intent intent=new Intent(this,SalahTimings.class);
+//            startActivity(intent);
+//        }
     }
     public class The_slide_timer extends TimerTask {
         @Override

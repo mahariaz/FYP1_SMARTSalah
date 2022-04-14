@@ -14,7 +14,7 @@
         android:layout_height="?attr/actionBarSize"
         android:elevation="4dp"
         app:titleTextColor="@color/black"
-        app:title="Rakah Progress"
+        app:title="Salah Progress"
         android:background="#009688"
         />
 

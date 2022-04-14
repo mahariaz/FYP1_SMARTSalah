@@ -7,9 +7,19 @@ import android.net.Uri;
 import androidx.annotation.AnyRes;
 import androidx.annotation.NonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class shared {
+    // color pallette
+    ArrayList<String> mycolor = new ArrayList<String>();
+    List<String> color = Arrays.asList("#89CFF0","#BF94E4","#D19FE8","#E2A76F","#536872","#E4717A");
+
     public shared(Context context) {
+
         this.context = context;
+        mycolor.addAll(color);
     }
 
 
@@ -17,7 +27,6 @@ public class shared {
 
     public static String curr_salah="Fajr";
     public static String curr_rakah="1";
-    public static String curr_status;
 
     //userbio
     public static String email="maha7@gmail.com";
@@ -27,12 +36,8 @@ public class shared {
     public static String height="4.10";
     public static Uri  selectedImage;
 
-    public static final Uri getUriToDrawable(@NonNull Context context,
-                                             @AnyRes int drawableId) {
-        Uri imageUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE
-                + "://" + context.getResources().getResourcePackageName(drawableId)
-                + '/' + context.getResources().getResourceTypeName(drawableId)
-                + '/' + context.getResources().getResourceEntryName(drawableId) );
-        return imageUri;
-    }
+    //wich screen
+    String which_screen;
+
+
 }

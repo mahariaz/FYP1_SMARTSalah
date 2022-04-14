@@ -3,8 +3,11 @@ package com.mahariaz.smartsalah;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -19,6 +22,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -30,6 +34,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -51,34 +56,13 @@ public class SalahProgress extends AppCompatActivity {
     String url = "https://deploy-flask-app.herokuapp.com/predict";
     private Toolbar mTopToolbar;
     TextView posName;
-    ArrayList<Integer> array_image = new ArrayList<Integer>();
-//    List<Integer> img = Arrays.asList(R.drawable.rukupic,R.drawable.sajdapic,R.drawable.tashpic
-//    ,R.drawable.qayampic);
+    List<String> pics = new ArrayList<>(Arrays.asList("Takbir","Qayam", "Ruku", "Qouma", "Sajda", "Tashahud"));
 
-    /* for slpitting the times min:sec from timestamp*/
-    String []split_qayam_time;
-    String []split_ruku_time;
-    String []split_qoum_time;
-    String []split_sajda1_time;
-    String []split_sajda2_time;
-    String []split_jalsa1_time;
-    String []split_tash_time;
-
-    /*for saving all min:sec of each posture*/
-    ArrayList<String> qayam_time=new ArrayList<>();
-    ArrayList<String> ruku_time=new ArrayList<>();
-    ArrayList<String> qoum_time=new ArrayList<>();
-    ArrayList<String> sajda1_time=new ArrayList<>();
-    ArrayList<String> sajda2_time=new ArrayList<>();
-    ArrayList<String> jalsa1_time=new ArrayList<>();
-    ArrayList<String> tash_time=new ArrayList<>();
-    /* for average time*/
-    int qayam_avg,ruku_avg,qoum_avg,sajda_avg,jalsa_avg,tash_avg;
-
+    ArrayList<String> postureName2 = new ArrayList<String>();
     String sel_salah,sel_rakah,rakah_performed,user_name,timestamp;
     TextView rakah1,rakah2,rakah3,rakah4;
     ProgressBar bar1,bar2,bar3,bar4;
-
+    ImageView posturepic;
     boolean is_bar1_filled=false,is_bar2_filled=false,is_bar3_filled=false,is_bar4_filled=false;
     boolean one_fill=false,two_fill=false,three_fill=false,four_fill=false;
     final DBAdapter db=new DBAdapter(this);
@@ -87,79 +71,68 @@ public class SalahProgress extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_salah_progress);
+        postureName2.addAll(pics);
         posName=findViewById(R.id.posName);
         mTopToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(mTopToolbar);
         get_intents();
         get_bar_ids();
-        fill_bar1(bar1);
-
-
-
-
-        file_reading();
-        qayam_avg=calculate_posture_avg_time(qayam_time,ruku_time);
-        //System.out.println("avg_qayam_time : "+qayam_avg);
-        ruku_avg=calculate_posture_avg_time(ruku_time,qoum_time);
-        //System.out.println("avg_ruku_time : "+ruku_avg);
-        qoum_avg=calculate_posture_avg_time(qoum_time,sajda1_time);
-        //System.out.println("avg_qoum_time : "+qoum_avg);
-        sajda_avg=calculate_posture_avg_time(sajda1_time,jalsa1_time);
-        //System.out.println("avg_sajda_time : "+sajda_avg);
-        jalsa_avg=calculate_posture_avg_time(jalsa1_time,sajda2_time);
-        //System.out.println("avg_jalsa_time : "+jalsa_avg);
-        tash_avg=12;
-        //populating values in database sqlite
-        Button end_salah=findViewById(R.id.end_salah_btn);
-        Button view_salah=findViewById(R.id.view_salah_btn);
-
-        end_salah.setOnClickListener(new View.OnClickListener() {
-
+         posturepic=findViewById(R.id.posturepic);
+        final Runnable runnable = new Runnable() {
             @Override
-            public void onClick(View view) {
-                sqlite_storage();
-                view_salah.setEnabled(true);
-                        // hit the API -> Volley
-                        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                                new Response.Listener<String>() {
-                                    @Override
-                                    public void onResponse(String response) {
+            public void run() {
+                Handler handler1 = new Handler();
+                for (int i=0;i<postureName2.size();i++){
 
-                                        try {
-                                            JSONObject jsonObject = new JSONObject(response);
-                                            String data = jsonObject.getString("posture");
-                                            posName.setText(data);
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-
-                                    }
-                                },
-                                new Response.ErrorListener() {
-                                    @Override
-                                    public void onErrorResponse(VolleyError error) {
-                                        Toast.makeText(SalahProgress.this, "ERROR!!!", Toast.LENGTH_SHORT).show();
-                                    }
-                                }){
+                    if(postureName2.get(i).equalsIgnoreCase("Qayam")){
+                        handler1.postDelayed(new Runnable() {
 
                             @Override
-                            protected Map<String,String> getParams(){
-                                Map<String,String> params = new HashMap<String,String>();
-                                params.put("x","0.876");
-                                params.put("y","0.7654");
-                                params.put("z","0.7643");
-
-                                return params;
+                            public void run() {
+                                posturepic.setImageDrawable(getResources().getDrawable(R.drawable.qayampic));
                             }
+                        }, 1000 * i);
+                    }
+                    else if(postureName2.get(i).equalsIgnoreCase("Ruku")){
+                        handler1.postDelayed(new Runnable() {
 
-                        };
-                        RequestQueue queue = Volley.newRequestQueue(SalahProgress.this);
-                        queue.add(stringRequest);
+                            @Override
+                            public void run() {
+                                posturepic.setImageDrawable(getResources().getDrawable(R.drawable.rukupic));
+                            }
+                        }, 1000 * i);
+                    }
+                    else if(postureName2.get(i).equalsIgnoreCase("Qoum")){
+                        handler1.postDelayed(new Runnable() {
 
+                            @Override
+                            public void run() {
+                                posturepic.setImageDrawable(getResources().getDrawable(R.drawable.qoumapic));
+                            }
+                        }, 1000 * i);
+                    }
+                    else if(postureName2.get(i).equalsIgnoreCase("Sajda")){
+                        handler1.postDelayed(new Runnable() {
 
+                            @Override
+                            public void run() {
+                                posturepic.setImageDrawable(getResources().getDrawable(R.drawable.sajdapic));
+                            }
+                        }, 1000 * i);
+                    }
 
+                }
             }
-        });
+        };
+        final Handler handler = new Handler();
+        handler.postDelayed(runnable, 5000);
+
+        //fill_bar1(bar1);
+
+        //populating values in database sqlite
+        Button view_salah=findViewById(R.id.view_salah_btn);
+
+
         view_salah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -171,24 +144,86 @@ public class SalahProgress extends AppCompatActivity {
             }
         });
 
-        // Posture image change according to readings
-        ImageView posturepic=findViewById(R.id.posturepic);
-        AnimationDrawable animation = new AnimationDrawable();
-        animation.addFrame(getResources().getDrawable(R.drawable.qayampic), 3000);
-        animation.addFrame(getResources().getDrawable(R.drawable.rukupic), 3000);
-        animation.addFrame(getResources().getDrawable(R.drawable.qoumapic), 3000);
-        animation.addFrame(getResources().getDrawable(R.drawable.sajdapic), 3000);
-        animation.addFrame(getResources().getDrawable(R.drawable.tashpic), 3000);
-        animation.setOneShot(false);
-        posturepic.setBackgroundDrawable(animation);
+        InputStream is;
+        BufferedReader reader;
+        is = getResources().openRawResource(R.raw.file3);
+        reader = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
 
-        // start the animation!
-        animation.start();
+        String line = "";
+        try {
+            while ((line = reader.readLine()) != null) {
+                // Split the line into different tokens (using the comma as a separator).
+                String[] tokens = line.split("\n");
+                for (int i = 0; i < tokens.length; i++) {
+
+                    String[] tokens2 = tokens[i].split(",");
+                    String x = tokens2[0];
+                    String y = tokens2[1];
+                    String z = tokens2[2];
+                    StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+
+                                    try {
+                                        JSONObject jsonObject = new JSONObject(response);
+                                        String data = jsonObject.getString("posture");
+                                        // result.setText(data);
+                                        data = data + "\n";
+                                        //filesaving(data);
+                                        System.out.println(data);
 
 
+//
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
 
+                                }
+                            },
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Toast.makeText(SalahProgress.this, "ERROR!!!", Toast.LENGTH_SHORT).show();
+                                }
+                            }) {
 
+                        @Override
+                        protected Map<String, String> getParams() {
+                            Map<String, String> params = new HashMap<String, String>();
+                            params.put("x", x);
+                            params.put("y", y);
+                            params.put("z", z);
+
+                            return params;
+                        }
+
+                    };
+                    RequestQueue queue = Volley.newRequestQueue(SalahProgress.this);
+                    queue.add(stringRequest);
+                    stringRequest.setShouldCache(false);// no caching url...
+                    stringRequest.setRetryPolicy(
+                            new DefaultRetryPolicy(
+                                    1000,//time to wait for it in this case 20s
+                                    20,//tries in case of error
+                                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+                            )
+                    );
+
+                }
+
+            }
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
     }
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+    }
+
+
 
 
     private void fill_bar1(ProgressBar bar) {
@@ -376,8 +411,10 @@ public class SalahProgress extends AppCompatActivity {
         Intent intent=getIntent();
         sel_salah=intent.getStringExtra("sel_salah");
         sel_rakah=intent.getStringExtra("sel_rakah");
-        sel_salah="zuhr";
-        sel_rakah="4";
+        shared.curr_rakah=sel_rakah;
+        shared.curr_salah=sel_salah;
+        System.out.println("sel_rakah : "+shared.curr_rakah+"  sel_salaah : "+shared.curr_salah);
+
     }
 
     private void get_bar_ids() {
@@ -437,154 +474,6 @@ public class SalahProgress extends AppCompatActivity {
 
 
 
-    private void sqlite_storage() {
-        /*db.openDB();
-        db.delete_records();*/
-        SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd/HH:mm:ss:SSS");
-        timestamp=input.format(new Date());
-        user_name=shared.username;
-        db.openDB();
-        rakah_performed=sel_rakah;
-        long result=db.add(user_name,
-                sel_salah,
-                sel_rakah,
-                rakah_performed,
-                String.valueOf(qayam_avg),
-                String.valueOf(ruku_avg),
-                String.valueOf(qoum_avg),
-                String.valueOf(sajda_avg),
-                String.valueOf(jalsa_avg),
-                String.valueOf(tash_avg),
-                timestamp.toString()
-        );
-        if(result!=0){
-
-        }else{
-            Toast.makeText(SalahProgress.this,"Failure",Toast.LENGTH_LONG);
-
-        }
-        //to see the records
-        /*db.openDB();
-        Cursor c=db.getAllValues();
-        while(c.moveToNext()){
-            String get_time=c.getString(11);
-            System.out.println("time : "+get_time);
-        }*/
-
-
-
-    }
-
-    private void file_reading() {
-        //reading csv file Amna Arshad Fajar
-
-        InputStream is;
-        BufferedReader reader;
-        if(shared.username.equalsIgnoreCase("anam12")) {
-            is = getResources().openRawResource(R.raw.file1);
-            reader = new BufferedReader(
-                    new InputStreamReader(is, Charset.forName("UTF-8")));
-            filereading(reader);
-
-        }
-        else if(shared.username.equalsIgnoreCase("Mahnoor")) {
-            is = getResources().openRawResource(R.raw.file2);
-            reader = new BufferedReader(
-                    new InputStreamReader(is, Charset.forName("UTF-8")));
-            filereading(reader);
-        }
-        else if(shared.username.equalsIgnoreCase("bush4")) {
-            is = getResources().openRawResource(R.raw.file3);
-            reader = new BufferedReader(
-                    new InputStreamReader(is, Charset.forName("UTF-8")));
-            filereading(reader);
-        }else{
-            is = getResources().openRawResource(R.raw.file5);
-            reader = new BufferedReader(
-                    new InputStreamReader(is, Charset.forName("UTF-8")));
-            filereading(reader);
-
-        }
-
-    }
-
-    private void filereading(BufferedReader reader) {
-        String line = "";
-        try {
-            while ((line = reader.readLine()) != null) {
-                // Split the line into different tokens (using the comma as a separator).
-                String[] tokens = line.split("\n");
-                for (int i=0;i<tokens.length;i++){
-                    //System.out.println(tokens[i]);
-                    String[] tokens2 = tokens[i].split(",");
-                    for (int j=0;j<tokens2.length;j++){
-                        //System.out.println(tokens2[j]);
-                        if(tokens2[2].equalsIgnoreCase("Qayam")){
-
-                            split_qayam_time=tokens2[1].split(":");
-                            //System.out.println("Qayam : "+tokens2[1]+" min: "+split_qayam_time[1]+" sec: "+split_qayam_time[2]);
-                            qayam_time.add(split_qayam_time[1]+":"+split_qayam_time[2]);
-                        }
-                        if(tokens2[2].equalsIgnoreCase("Ruku")){
-                            split_ruku_time=tokens2[1].split(":");
-                            //System.out.println("Ruku : "+tokens2[1]+" min: "+split_ruku_time[1]+" sec: "+split_ruku_time[2]);
-                            ruku_time.add(split_ruku_time[1]+":"+split_ruku_time[2]);
-                        }
-                        if(tokens2[2].equalsIgnoreCase("Qoum")){
-                            split_qoum_time=tokens2[1].split(":");
-                            qoum_time.add(split_qoum_time[1]+":"+split_qoum_time[2]);
-                        }
-                        if(tokens2[2].equalsIgnoreCase("Sajda1")){
-                            split_sajda1_time=tokens2[1].split(":");
-                            sajda1_time.add(split_sajda1_time[1]+":"+split_sajda1_time[2]);
-                        }
-                        if(tokens2[2].equalsIgnoreCase("Sajda2")){
-                            split_sajda2_time=tokens2[1].split(":");
-                            sajda2_time.add(split_sajda2_time[1]+":"+split_sajda2_time[2]);
-                        }
-                        if(tokens2[2].equalsIgnoreCase("jalsa1")){
-                            split_jalsa1_time=tokens2[1].split(":");
-                            jalsa1_time.add(split_jalsa1_time[1]+":"+split_jalsa1_time[2]);
-                        }
-                        if(tokens2[2].equalsIgnoreCase("Tashahud")){
-                            split_tash_time=tokens2[1].split(":");
-                            tash_time.add(split_tash_time[1]+":"+split_tash_time[2]);
-                        }
-
-                        break;
-
-                    }
-
-
-                }
-
-            }
-
-
-
-        } catch (IOException e1) {
-            Log.e("ViewSalah", "Error" + line, e1);
-            e1.printStackTrace();
-        }
-    }
-    private int calculate_posture_avg_time(ArrayList<String> curr,ArrayList<String>next) {
-        int posture_avg_time=0,atime,var1,var2;
-        for (int i=0;i<curr.size();i++){
-            String[] curr_posture=curr.get(i).split(":");
-            String[] next_posture=next.get(i).split(":");
-            var1=Integer.parseInt(next_posture[0])-Integer.parseInt(curr_posture[0]); //min diff
-            var2=Integer.parseInt(next_posture[1])-Integer.parseInt(curr_posture[1]); // sec diff
-            if (var1==0){
-                atime=var2;
-            }
-            else{
-                atime=10;
-            }
-            posture_avg_time+=atime;
-        }
-        return posture_avg_time/curr.size();
-
-    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -608,6 +497,21 @@ public class SalahProgress extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    public List<Uri> list_uri(){
+        Uri uri_i1= get_uri(R.drawable.qayampic);
+        Uri uri_i2= get_uri(R.drawable.rukupic);
+        List<Uri> uri_list = Arrays.asList(uri_i1,uri_i2);
+        return uri_list;
+    }
+    // Typical code for changing PNG  into URI
+    public Uri get_uri(int id){
+        Uri uri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE +
+                "://" + getResources().getResourcePackageName(id)
+                + '/' + getResources().getResourceTypeName(id) + '/' + getResources().getResourceEntryName(id) );
+
+        return uri;
+
     }
 
 }

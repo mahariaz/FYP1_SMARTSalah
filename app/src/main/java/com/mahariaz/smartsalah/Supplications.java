@@ -1,6 +1,7 @@
 package com.mahariaz.smartsalah;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -8,12 +9,15 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class Supplications extends AppCompatActivity implements RecyclerViewAdapterDuas.OnTileListner {
+    private Toolbar mTopToolbar;
     private RecyclerView rec_view;
     RecyclerView.LayoutManager lm;
     RecyclerViewAdapterDuas rec_view_adp;
@@ -27,6 +31,8 @@ public class Supplications extends AppCompatActivity implements RecyclerViewAdap
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_supplications);
+        mTopToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(mTopToolbar);
         // getting the list of URIs of png Images
         List<Uri> img_uri_list=list_uri();
         // populating the ArrayList with temporary lists
@@ -40,6 +46,7 @@ public class Supplications extends AppCompatActivity implements RecyclerViewAdap
         rec_view_adp=new RecyclerViewAdapterDuas(duaTopic,tileColor,uri_img,getApplicationContext(),this);
         rec_view.setAdapter(rec_view_adp);
         rec_view.setHasFixedSize(true);
+
     }
     /* Get the URI of png image and then
 insert it into list and return that list
@@ -92,4 +99,30 @@ insert it into list and return that list
             startActivity(intent);
         }
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu1, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_favorite) {
+            //Toast.makeText(Calender.this, "Action clicked", Toast.LENGTH_LONG).show();
+            Intent intent=new Intent(Supplications.this,Home.class);
+            startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
 }

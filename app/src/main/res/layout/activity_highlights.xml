@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="3"
+    android:weightSum="2"
     tools:context=".Highlights">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -16,19 +16,22 @@
         app:title="Highlights"
         android:background="#009688"
         />
-
-    <LinearLayout
-        android:padding="10dp"
-        android:layout_margin="10dp"
-        android:layout_weight="1"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/lineChart"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+        android:layout_height="0dp"
+        android:layout_weight="0.2">
 
-    </LinearLayout>
+    </com.google.android.material.tabs.TabLayout>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.8">
+
+    </androidx.viewpager.widget.ViewPager>
+
+
 
 
 </LinearLayout>

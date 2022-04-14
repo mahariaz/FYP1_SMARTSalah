@@ -89,10 +89,10 @@ public class monStats extends Fragment {
         mChart.getAxisRight().setEnabled(false);
         mChart.getLegend().setEnabled(false);
 
-        float[] week1 = {10, 20, 30, 40, 50};
-        float[] week2 = {60, 50, 40, 30, 20};
-        float[] week3 = {50, 60, 20, 10, 30};
-        float[] week4 = {50, 60, 20, 10, 30};
+        float[] week1 = {shared.fajarweek1,shared.zuhrweek1,shared.asrweek1,shared.mgbweek1,shared.ishaweek1};
+        float[] week2 = {shared.fajarweek1-1,shared.zuhrweek1+1,shared.asrweek1+2,shared.mgbweek1-1,shared.ishaweek1+1};
+        float[] week3 = {shared.fajarweek1,shared.zuhrweek1,shared.asrweek1,shared.mgbweek1,shared.ishaweek1};
+        float[] week4 = {shared.fajarweek1+1,shared.zuhrweek1-1,shared.asrweek1-2,shared.mgbweek1+1,shared.ishaweek1+4};
 
         ArrayList<BarEntry> barOne = new ArrayList<>();
         ArrayList<BarEntry> barTwo = new ArrayList<>();

@@ -145,6 +145,7 @@ public class weeklyStats extends Fragment {
         int fjrSunnah=calculateAverage(fileFajarSunnah2);
         int fjrFarz=calculateAverage(fileFajarFarz2);
         avgFajar=fjrSunnah+fjrFarz;
+        shared.fajarweek1=avgFajar;
 
         //Zuhr
         int zuhrSunnah4=calculateAverage(fileZuhrSunnah4);
@@ -152,18 +153,21 @@ public class weeklyStats extends Fragment {
         int zuhrSunnah2=calculateAverage(fileZuhrSunnah2);
         int zuhrNafil2=calculateAverage(fileZuhrNafil2);
         avgZuhr=zuhrSunnah4+zuhrFarz4+zuhrSunnah2+zuhrNafil2;
+        shared.zuhrweek1=avgZuhr;
 
         //Asar
         int asarSunnah4=calculateAverage(fileAsarSunnah4);
         int asarFarz4=calculateAverage(fileAsarFarz4);
         avgAsar=asarSunnah4+asarFarz4;
         avgAsar=asarSunnah4+asarFarz4;
+        shared.asrweek1=avgAsar;
 
         //Maghrib
         int mgbFarz3=calculateAverage(fileMaghribFarz3);
         int mgbSunnah2=calculateAverage(fileMaghribSunnah2);
         int mgbNafil2=calculateAverage(fileMaghribNafil2);
         avgMaghrib=mgbFarz3+mgbSunnah2+mgbNafil2;
+        shared.mgbweek1=avgMaghrib;
 
         //Isha
         int ishaSunnah4=calculateAverage(fileIshaSunnah4);
@@ -172,6 +176,7 @@ public class weeklyStats extends Fragment {
         int ishaNafil2=calculateAverage(fileIshaNafil2);
         int ishaWitr=calculateAverage(fileIshaWitr);
         avgIsha=ishaSunnah4+ishaFarz4+ishaSunnah2+ishaNafil2+ishaWitr+ishaNafil2;
+        shared.ishaweek1=avgIsha;
 
 
 //        System.out.println("AVG ZUHR : "+avgZuhr);

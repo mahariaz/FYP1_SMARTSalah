@@ -15,7 +15,7 @@ public class shared {
     // color pallette
     ArrayList<String> mycolor = new ArrayList<String>();
     List<String> color = Arrays.asList("#89CFF0","#BF94E4","#D19FE8","#E2A76F","#536872","#E4717A");
-
+    public static int fajarweek1=0,zuhrweek1=0,asrweek1=0,mgbweek1=0,ishaweek1=0;
     public shared(Context context) {
 
         this.context = context;
@@ -38,6 +38,7 @@ public class shared {
 
     //wich screen
     String which_screen;
+
 
 
 }

@@ -56,7 +56,7 @@ public class SalahProgress extends AppCompatActivity {
     String url = "https://deploy-flask-app.herokuapp.com/predict";
     private Toolbar mTopToolbar;
     TextView posName;
-    List<String> pics = new ArrayList<>(Arrays.asList("Takbir","Qayam", "Ruku", "Qouma", "Sajda", "Tashahud"));
+    List<String> pics = new ArrayList<>(Arrays.asList(" ","Qayam", "Ruku", "Qouma", "Sajda", "Tashahud"));
 
     ArrayList<String> postureName2 = new ArrayList<String>();
     String sel_salah,sel_rakah,rakah_performed,user_name,timestamp;
@@ -65,8 +65,8 @@ public class SalahProgress extends AppCompatActivity {
     ImageView posturepic;
     boolean is_bar1_filled=false,is_bar2_filled=false,is_bar3_filled=false,is_bar4_filled=false;
     boolean one_fill=false,two_fill=false,three_fill=false,four_fill=false;
-    final DBAdapter db=new DBAdapter(this);
-//    TextView tv;
+    int qayamAvg=12;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -127,95 +127,103 @@ public class SalahProgress extends AppCompatActivity {
         final Handler handler = new Handler();
         handler.postDelayed(runnable, 5000);
 
-        //fill_bar1(bar1);
-
-        //populating values in database sqlite
+        fill_bar1(bar1);
         Button view_salah=findViewById(R.id.view_salah_btn);
-
-
+        Button end_salah=findViewById(R.id.end_salah_btn);
+        end_salah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                view_salah.setEnabled(true);
+            }
+        });
         view_salah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shared.curr_rakah=sel_rakah;
-                shared.curr_salah=sel_salah;
                 Intent intent=new Intent(SalahProgress.this,ViewSalah.class);
+                intent.putExtra("sel_salah",sel_salah);
+                intent.putExtra("sel_rakah",sel_rakah);
+                intent.putExtra("qayamAvg",String.valueOf(qayamAvg));
+                intent.putExtra("rukuAvg",String.valueOf(qayamAvg));
+                intent.putExtra("qoumAvg",String.valueOf(qayamAvg));
+                intent.putExtra("sajdaAvg",String.valueOf(qayamAvg));
+                intent.putExtra("tashAvg",String.valueOf(qayamAvg));
                 startActivity(intent);
 
             }
         });
 
-        InputStream is;
-        BufferedReader reader;
-        is = getResources().openRawResource(R.raw.file3);
-        reader = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-
-        String line = "";
-        try {
-            while ((line = reader.readLine()) != null) {
-                // Split the line into different tokens (using the comma as a separator).
-                String[] tokens = line.split("\n");
-                for (int i = 0; i < tokens.length; i++) {
-
-                    String[] tokens2 = tokens[i].split(",");
-                    String x = tokens2[0];
-                    String y = tokens2[1];
-                    String z = tokens2[2];
-                    StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                            new Response.Listener<String>() {
-                                @Override
-                                public void onResponse(String response) {
-
-                                    try {
-                                        JSONObject jsonObject = new JSONObject(response);
-                                        String data = jsonObject.getString("posture");
-                                        // result.setText(data);
-                                        data = data + "\n";
-                                        //filesaving(data);
-                                        System.out.println(data);
-
-
+//        InputStream is;
+//        BufferedReader reader;
+//        is = getResources().openRawResource(R.raw.file3);
+//        reader = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
 //
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-
-                                }
-                            },
-                            new Response.ErrorListener() {
-                                @Override
-                                public void onErrorResponse(VolleyError error) {
-                                    Toast.makeText(SalahProgress.this, "ERROR!!!", Toast.LENGTH_SHORT).show();
-                                }
-                            }) {
-
-                        @Override
-                        protected Map<String, String> getParams() {
-                            Map<String, String> params = new HashMap<String, String>();
-                            params.put("x", x);
-                            params.put("y", y);
-                            params.put("z", z);
-
-                            return params;
-                        }
-
-                    };
-                    RequestQueue queue = Volley.newRequestQueue(SalahProgress.this);
-                    queue.add(stringRequest);
-                    stringRequest.setShouldCache(false);// no caching url...
-                    stringRequest.setRetryPolicy(
-                            new DefaultRetryPolicy(
-                                    1000,//time to wait for it in this case 20s
-                                    20,//tries in case of error
-                                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
-                            )
-                    );
-
-                }
-
-            }
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
+//        String line = "";
+//        try {
+//            while ((line = reader.readLine()) != null) {
+//                // Split the line into different tokens (using the comma as a separator).
+//                String[] tokens = line.split("\n");
+//                for (int i = 0; i < tokens.length; i++) {
+//
+//                    String[] tokens2 = tokens[i].split(",");
+//                    String x = tokens2[0];
+//                    String y = tokens2[1];
+//                    String z = tokens2[2];
+//                    StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+//                            new Response.Listener<String>() {
+//                                @Override
+//                                public void onResponse(String response) {
+//
+//                                    try {
+//                                        JSONObject jsonObject = new JSONObject(response);
+//                                        String data = jsonObject.getString("posture");
+//                                        // result.setText(data);
+//                                        data = data + "\n";
+//                                        //filesaving(data);
+//                                        System.out.println(data);
+//
+//
+////
+//                                    } catch (JSONException e) {
+//                                        e.printStackTrace();
+//                                    }
+//
+//                                }
+//                            },
+//                            new Response.ErrorListener() {
+//                                @Override
+//                                public void onErrorResponse(VolleyError error) {
+//                                    Toast.makeText(SalahProgress.this, "ERROR!!!", Toast.LENGTH_SHORT).show();
+//                                }
+//                            }) {
+//
+//                        @Override
+//                        protected Map<String, String> getParams() {
+//                            Map<String, String> params = new HashMap<String, String>();
+//                            params.put("x", x);
+//                            params.put("y", y);
+//                            params.put("z", z);
+//
+//                            return params;
+//                        }
+//
+//                    };
+//                    RequestQueue queue = Volley.newRequestQueue(SalahProgress.this);
+//                    queue.add(stringRequest);
+//                    stringRequest.setShouldCache(false);// no caching url...
+//                    stringRequest.setRetryPolicy(
+//                            new DefaultRetryPolicy(
+//                                    1000,//time to wait for it in this case 20s
+//                                    20,//tries in case of error
+//                                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+//                            )
+//                    );
+//
+//                }
+//
+//            }
+//        } catch (IOException e1) {
+//            e1.printStackTrace();
+//        }
     }
     @Override
     protected void onStart()

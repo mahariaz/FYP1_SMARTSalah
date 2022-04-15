@@ -2,6 +2,7 @@ package com.mahariaz.smartsalah;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,6 +15,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -48,149 +52,195 @@ import com.opencsv.CSVReader;
 public class ViewSalah extends AppCompatActivity {
     private Toolbar mTopToolbar;
 
+
     // getting chart data
-    String sel_salah,sel_rakah,rakah_per,qayam_avg,ruku_avg,qoum_avg,sajda_avg,jalsa_avg,tash_avg,get_salah,get_rakah;
-    final DBAdapter db=new DBAdapter(this);
+    String sel_salah,sel_rakah;
     TextView salah_view,rakah_view;
     // graph
     ArrayList<ILineDataSet> dataSets = new ArrayList<>();
-    List<String> xAxisValues = new ArrayList<>(Arrays.asList("Takbir","Qayam", "Ruku", "Qouma", "Sajda", "Tashahud"));
-    List<Entry> postures;
-    String whichScreen;
     Intent intent;
-
+    BarChart barChart;
+    ArrayList<BarEntry> barEntriesArrayList;
+    ArrayList<String> labelNames;
+    ArrayList<SalahPostureNames> PostureNamesArrayList=new ArrayList<SalahPostureNames>();
+    String qayamAvg,rukuAvg,qoumAvg,sajdaAvg,tashAvg;
+    TextView posmissedR1,posmissedR2,posmissedR3,posmissedR4;
+    RelativeLayout rakah1Box,rakah2Box,rakah3Box,rakah4Box;
+    ImageView ticR1,ticR2,ticR3,ticR4;
+    CardView compltenessTile,correctnessTile;
+    String completeness="",correctness="";
+    ImageView ticInsideComp,ticInsideCorr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_salah);
         mTopToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        posmissedR1=findViewById(R.id.posmissedR1);
+        posmissedR2=findViewById(R.id.posmissedR2);
+        posmissedR3=findViewById(R.id.posmissedR3);
+        posmissedR4=findViewById(R.id.posmissedR4);
+        rakah1Box=findViewById(R.id.rakah1Box);
+        rakah2Box=findViewById(R.id.rakah2Box);
+        rakah3Box=findViewById(R.id.rakah3Box);
+        rakah4Box=findViewById(R.id.rakah4Box);
+        ticR1=findViewById(R.id.ticR1);
+        ticR2=findViewById(R.id.ticR2);
+        ticR3=findViewById(R.id.ticR3);
+        ticR4=findViewById(R.id.ticR4);
+        compltenessTile=findViewById(R.id.completenessTile);
+        correctnessTile=findViewById(R.id.correctnessTile);
+        ticInsideComp=findViewById(R.id.ticInsideCompTile);
+        ticInsideCorr=findViewById(R.id.ticInsideCorrTile);
         setSupportActionBar(mTopToolbar);
-        // making graph
+        // getting intents from previous activity
         intent=getIntent();
-        whichScreen=intent.getStringExtra("whichScreen");
+        sel_salah=intent.getStringExtra("sel_salah");
+        sel_rakah=intent.getStringExtra("sel_rakah");
+        qayamAvg=intent.getStringExtra("qayamAvg");
+        rukuAvg=intent.getStringExtra("rukuAvg");
+        qoumAvg=intent.getStringExtra("qoumAvg");
+        sajdaAvg=intent.getStringExtra("sajdaAvg");
+        tashAvg=intent.getStringExtra("tashAvg");
 
-        System.out.println("whichScreen"+whichScreen);
-        if (whichScreen.equalsIgnoreCase("dailySalah")){
-            postures = getPostureAverageTime2();
-            System.out.println("inside 222");
+        completeness=intent.getStringExtra("completeness");
+        correctness=intent.getStringExtra("correctness");
 
-
-        }else{
-            postures = getPostureAverageTime();
-            System.out.println("OMGGG 222");
-        }
-
+        displayRakahNum();
+        checkMissed();
+        fillbox();
+        // make graph
         dataSets = new ArrayList<>();
         makeGraph();
-
-
-
-        // getting intents from previous activity
-        sel_salah=shared.curr_salah;
-        sel_rakah=shared.curr_rakah;
         salah_view=findViewById(R.id.salahName);
         rakah_view=findViewById(R.id.rakahPrayed);
-        salah_view.setText(sel_salah); //getting from db
+        salah_view.setText(sel_salah);
         rakah_view.setText(sel_rakah);
+    }
 
+    private void fillbox() {
+        if(correctness.equalsIgnoreCase("Yes")){
+            correctnessTile.setCardBackgroundColor(getResources().getColor(R.color.alien_green));
+            ticInsideCorr.setImageDrawable(getResources().getDrawable(R.drawable.tic));
+
+        }else if(correctness.equalsIgnoreCase("No")){
+            correctnessTile.setCardBackgroundColor(getResources().getColor(R.color.bean_red));
+
+        }
+        if(completeness.equalsIgnoreCase("Yes")){
+            compltenessTile.setCardBackgroundColor(getResources().getColor(R.color.alien_green));
+            ticInsideComp.setImageDrawable(getResources().getDrawable(R.drawable.tic));
+        }else if(completeness.equalsIgnoreCase("No")){
+            compltenessTile.setCardBackgroundColor(getResources().getColor(R.color.bean_red));
+
+        }
+    }
+
+    private void displayRakahNum() {
+        if (sel_rakah.equalsIgnoreCase("2")) {
+            rakah1Box.setVisibility(View.VISIBLE);
+            rakah2Box.setVisibility(View.VISIBLE);
+
+        }
+        if (sel_rakah.equalsIgnoreCase("3")) {
+            rakah1Box.setVisibility(View.VISIBLE);
+            rakah2Box.setVisibility(View.VISIBLE);
+            rakah3Box.setVisibility(View.VISIBLE);
+
+        }
+        if (sel_rakah.equalsIgnoreCase("4")) {
+            rakah1Box.setVisibility(View.VISIBLE);
+            rakah2Box.setVisibility(View.VISIBLE);
+            rakah3Box.setVisibility(View.VISIBLE);
+            rakah4Box.setVisibility(View.VISIBLE);
+
+        }
+    }
+
+    private void checkMissed() {
+        if (sel_salah.equalsIgnoreCase("Fajar")){
+            ticR1.setImageDrawable(getResources().getDrawable(R.drawable.tic));
+            ticR2.setImageDrawable(getResources().getDrawable(R.drawable.tic));
+        }
+
+        if (sel_salah.equalsIgnoreCase("Zuhr")){
+            if(rukuAvg.equalsIgnoreCase("0")){
+                posmissedR2.setText("Ruku Missed");
+
+            }
+            ticR1.setImageDrawable(getResources().getDrawable(R.drawable.tic));
+            ticR3.setImageDrawable(getResources().getDrawable(R.drawable.tic));
+            ticR4.setImageDrawable(getResources().getDrawable(R.drawable.tic));
+        }
+        if (sel_salah.equalsIgnoreCase("Asr")){
+            ticR1.setImageDrawable(getResources().getDrawable(R.drawable.tic));
+            ticR2.setImageDrawable(getResources().getDrawable(R.drawable.tic));
+            ticR3.setImageDrawable(getResources().getDrawable(R.drawable.tic));
+            ticR4.setImageDrawable(getResources().getDrawable(R.drawable.tic));
+        }
+        if (sel_salah.equalsIgnoreCase("Maghrib")){
+            ticR1.setImageDrawable(getResources().getDrawable(R.drawable.tic));
+            ticR2.setImageDrawable(getResources().getDrawable(R.drawable.tic));
+            ticR3.setImageDrawable(getResources().getDrawable(R.drawable.tic));
+        }
+        if (sel_salah.equalsIgnoreCase("Isha")){
+            if(qoumAvg.equalsIgnoreCase("0")){
+                posmissedR1.setText("Qouma Missed");
+                posmissedR3.setText("Sajda Missed");
+            }
+            if(sajdaAvg.equalsIgnoreCase("0")){
+                posmissedR3.setText("Sajda Missed");
+            }
+            ticR4.setImageDrawable(getResources().getDrawable(R.drawable.tic));
+            ticR2.setImageDrawable(getResources().getDrawable(R.drawable.tic));
+        }
 
     }
 
     private void makeGraph() {
-        LineDataSet set1;
+        barChart = findViewById(R.id.idBarChart);
+        barEntriesArrayList=new ArrayList<>();
+        labelNames=new ArrayList<>();
+        fillPostureList2();
 
-        set1 = new LineDataSet(postures, "postures");
-        set1.setColor(Color.rgb(65, 168, 121));
-        set1.setValueTextColor(Color.rgb(55, 70, 73));
-        set1.setValueTextSize(10f);
-        set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);
-        set1.setDrawFilled(true);
-        set1.setFillColor(getResources().getColor(R.color.teal_200));
-        dataSets.add(set1);
-
-//customization
-        LineChart mLineGraph = findViewById(R.id.lineChart);
-        mLineGraph.setTouchEnabled(true);
-        mLineGraph.setDragEnabled(true);
-        mLineGraph.setScaleEnabled(true);
-        mLineGraph.setPinchZoom(true);
-        mLineGraph.setDrawGridBackground(true);
-        mLineGraph.setExtraLeftOffset(15);
-        mLineGraph.setExtraRightOffset(15);
-//to hide background lines
-        mLineGraph.getXAxis().setDrawGridLines(true);
-        mLineGraph.getAxisLeft().setDrawGridLines(true);
-        mLineGraph.getAxisRight().setDrawGridLines(true);
-
-//to hide right Y and top X border
-        YAxis rightYAxis = mLineGraph.getAxisRight();
+        for (int i=0;i<PostureNamesArrayList.size();i++){
+            String postures=PostureNamesArrayList.get(i).getPostureName();
+            int avgPostureTime=PostureNamesArrayList.get(i).getAvgPostureTime();
+            barEntriesArrayList.add(new BarEntry(i,avgPostureTime));
+            labelNames.add(postures);
+        }
+        BarDataSet barDataSet=new BarDataSet(barEntriesArrayList,"Postures");
+        barDataSet.setColors(ColorTemplate.PASTEL_COLORS);
+        Description description=new Description();
+        description.setText("");
+        barChart.setDescription(description);
+        BarData barData=new BarData(barDataSet);
+        barChart.setData(barData);
+        XAxis xAxis=barChart.getXAxis();
+        YAxis rightYAxis = barChart.getAxisRight();
         rightYAxis.setEnabled(false);
-        YAxis leftYAxis = mLineGraph.getAxisLeft();
-        leftYAxis.setEnabled(true);
-        XAxis topXAxis = mLineGraph.getXAxis();
-        topXAxis.setEnabled(true);
-
-
-        XAxis xAxis = mLineGraph.getXAxis();
-        xAxis.setGranularity(1f);
-        xAxis.setCenterAxisLabels(true);
-        xAxis.setEnabled(true);
-        xAxis.setDrawGridLines(true);
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(labelNames));
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setDrawGridLines(true);
+        xAxis.setDrawAxisLine(false);
+        xAxis.setDrawGridLinesBehindData(false);
+        xAxis.setGranularity(1f);
+        xAxis.setLabelCount(labelNames.size());
+        xAxis.setLabelRotationAngle(360);
+        barChart.animateY(2000);
+        barChart.invalidate();
 
-        set1.setLineWidth(4f);
-        set1.setCircleRadius(3f);
-        set1.setDrawValues(false);
-        set1.setCircleHoleColor(getResources().getColor(R.color.teal_200));
-        set1.setCircleColor(getResources().getColor(R.color.black));
-
-//String setter in x-Axis
-        mLineGraph.getXAxis().setValueFormatter(new com.github.mikephil.charting.formatter.IndexAxisValueFormatter(xAxisValues));
-
-        LineData data = new LineData(dataSets);
-        mLineGraph.setData(data);
-        mLineGraph.animateX(2000);
-        mLineGraph.invalidate();
-        mLineGraph.getLegend().setEnabled(false);
-        mLineGraph.getDescription().setEnabled(false);
 
     }
-
-    private List<Entry> getPostureAverageTime() {
-        ArrayList<Entry> posture = new ArrayList<>();
-
-        posture.add(new Entry(1, 12));
-        posture.add(new Entry(2, 2));
-        posture.add(new Entry(3, 2));
-        posture.add(new Entry(4, 3));
-        posture.add(new Entry(5, 2));
-        posture.add(new Entry(6, 12));
-
-
-        return posture.subList(0, 6);
+    private void fillPostureList2(){
+        PostureNamesArrayList.clear();
+        PostureNamesArrayList.add(new SalahPostureNames("Qayam",Integer.parseInt(qayamAvg)));
+        PostureNamesArrayList.add(new SalahPostureNames("Ruku",Integer.parseInt(rukuAvg)));
+        PostureNamesArrayList.add(new SalahPostureNames("Qouma",Integer.parseInt(qoumAvg)));
+        PostureNamesArrayList.add(new SalahPostureNames("Sajda",Integer.parseInt(sajdaAvg)));
+        PostureNamesArrayList.add(new SalahPostureNames("Tashahud",Integer.parseInt(tashAvg)));
     }
-    private List<Entry> getPostureAverageTime2() {
-        qayam_avg=intent.getStringExtra("qayam_avg");
-        ruku_avg=intent.getStringExtra("ruku_avg");
-        qoum_avg=intent.getStringExtra("qoum_avg");
-        sajda_avg=intent.getStringExtra("sajda_avg");
-        jalsa_avg=intent.getStringExtra("jalsa_avg");
-        tash_avg=intent.getStringExtra("tash_avg");
-        ArrayList<Entry> posture = new ArrayList<>();
 
-        posture.add(new Entry(1, Integer.parseInt(qayam_avg)));
-        posture.add(new Entry(2, Integer.parseInt(ruku_avg)));
-        posture.add(new Entry(3, Integer.parseInt(qoum_avg)));
-        posture.add(new Entry(4, Integer.parseInt(sajda_avg)));
-        posture.add(new Entry(5, Integer.parseInt(jalsa_avg)));
-        posture.add(new Entry(6, Integer.parseInt(tash_avg)));
-
-
-
-
-        return posture.subList(0, 6);
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -216,6 +266,9 @@ public class ViewSalah extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
 
 
 

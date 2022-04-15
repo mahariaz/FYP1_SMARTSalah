@@ -27,8 +27,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp">
 
-            <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/lineChart"
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/idBarChart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp" />
@@ -118,11 +118,13 @@
 
             </androidx.cardview.widget.CardView>
             <LinearLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="2">
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/completenessTile"
                     android:layout_width="200dp"
                     android:layout_height="220dp"
                     app:cardElevation="10dp"
@@ -146,8 +148,16 @@
                         </TextView>
 
                     </LinearLayout>
+                    <ImageView
+                        android:id="@+id/ticInsideCompTile"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center">
+
+                    </ImageView>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/correctnessTile"
                     android:layout_width="200dp"
                     android:layout_height="220dp"
                     app:cardElevation="10dp"
@@ -172,6 +182,13 @@
                         </TextView>
 
                     </LinearLayout>
+                    <ImageView
+                        android:id="@+id/ticInsideCorrTile"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center">
+
+                    </ImageView>
 
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
@@ -216,18 +233,23 @@
                         </ImageView>
                     </RelativeLayout>
                     <RelativeLayout
+                        android:visibility="invisible"
+                        android:id="@+id/rakah1Box"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
+
                         <TextView
-                            android:layout_margin="20dp"
+
                             android:id="@+id/rakah1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginBottom="20dp"
                             android:text="Rakah 1 "
-                            android:textColor="@color/black"
-                            >
-                        </TextView>
+                            android:textColor="@color/black"></TextView>
 
                         <ImageView
                             android:id="@+id/ticR1"
@@ -235,8 +257,7 @@
                             android:layout_height="30dp"
                             android:layout_alignRight="@+id/rakah1"
                             android:layout_marginTop="10dp"
-                            android:layout_marginRight="-77dp"
-                            android:src="@drawable/tic">
+                            android:layout_marginRight="-77dp">
 
                         </ImageView>
 
@@ -247,12 +268,13 @@
                             android:layout_alignRight="@+id/ticR1"
                             android:layout_marginRight="-77dp"
                             android:layout_marginTop="20dp"
-                            android:text=""
-                            android:textColor="@color/black">
+                            android:textColor="@android:color/holo_red_dark">
 
                         </TextView>
                     </RelativeLayout>
                     <RelativeLayout
+                        android:visibility="invisible"
+                        android:id="@+id/rakah2Box"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -265,6 +287,7 @@
                             android:textColor="@color/black"
                             >
                         </TextView>
+
                         <ImageView
                             android:id="@+id/ticR2"
                             android:layout_width="30dp"
@@ -274,19 +297,21 @@
                             android:layout_marginRight="-77dp">
 
                         </ImageView>
+
                         <TextView
                             android:id="@+id/posmissedR2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignRight="@+id/ticR2"
-                            android:layout_marginRight="-77dp"
                             android:layout_marginTop="20dp"
-                            android:text="sajda2 missed "
+                            android:layout_marginRight="-77dp"
                             android:textColor="@android:color/holo_red_dark">
 
                         </TextView>
                     </RelativeLayout>
                     <RelativeLayout
+                        android:visibility="invisible"
+                        android:id="@+id/rakah3Box"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -299,6 +324,7 @@
                             android:textColor="@color/black"
                             >
                         </TextView>
+
                         <ImageView
                             android:id="@+id/ticR3"
                             android:layout_width="30dp"
@@ -306,7 +332,7 @@
                             android:layout_alignRight="@+id/rakah3"
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="-77dp"
-                            android:src="@drawable/tic">
+                            >
 
                         </ImageView>
                         <TextView
@@ -317,11 +343,13 @@
                             android:layout_marginRight="-77dp"
                             android:layout_marginTop="20dp"
                             android:text=""
-                            android:textColor="@color/black">
+                            android:textColor="@android:color/holo_red_dark">
 
                         </TextView>
                     </RelativeLayout>
                     <RelativeLayout
+                        android:visibility="invisible"
+                        android:id="@+id/rakah4Box"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -338,6 +366,7 @@
                             android:textColor="@color/black">
 
                         </TextView>
+
                         <ImageView
                             android:id="@+id/ticR4"
                             android:layout_width="30dp"
@@ -345,7 +374,7 @@
                             android:layout_alignRight="@+id/rakah4"
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="-77dp"
-                            android:src="@drawable/tic">
+                            >
 
                         </ImageView>
                         <TextView
@@ -356,7 +385,7 @@
                             android:layout_marginRight="-77dp"
                             android:layout_marginTop="20dp"
                             android:text=""
-                            android:textColor="@color/black">
+                            android:textColor="@android:color/holo_red_dark">
 
                         </TextView>
                     </RelativeLayout>

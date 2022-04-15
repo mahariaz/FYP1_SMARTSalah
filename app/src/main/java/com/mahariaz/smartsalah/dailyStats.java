@@ -36,6 +36,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -44,48 +45,50 @@ import java.util.Locale;
 
 
 public class dailyStats extends Fragment {
-    int avgQayam=0,avgRuku=0,avgQoum=0,avgSajda=0,avgJalsa=0,avgTashahud=0;
+    int fileFajarFarz2[]={R.raw.user1_file1_2};
+    int fileFajarSunnah2[]={R.raw.user1_file1_2};
+    int fileZuhrSunnah4[]={R.raw.user1_file1_zuhr_s};
+    int fileZuhrFarz4[]={R.raw.user1_file1_zuhr_s};
+    int fileZuhrSunnah2[]={R.raw.user1_file1_2};
+    int fileZuhrNafil2[]={R.raw.user1_file1_2};
+    int fileAsarFarz4[]={R.raw.user1_file1_zuhr_s};
+    int fileAsarSunnah4[]={R.raw.user1_file1_zuhr_s};
+    int fileIshaSunnah4[]={R.raw.user1_file1_zuhr_s};
+    int fileIshaFarz4[]={R.raw.user1_file1_zuhr_s};
+    int fileIshaSunnah2[]={R.raw.user1_file1_2};
+    int fileIshaNafil2[]={R.raw.user1_file1_2};
+    int fileIshaWitr[]={R.raw.user1_file1_3};
+    int fileMaghribFarz3[]={R.raw.user1_file1_3};
+    int fileMaghribSunnah2[]={R.raw.user1_file1_2};
+    int fileMaghribNafil2[]={R.raw.user1_file1_2};
+
+    int fjrTime=0,zuhrTime=0,asrTime=0,mgbTime=0,ishaTime=0;
+
+    int qayamAvg=1,rukuAvg=2,qoumAvg=3,sajdaAvg=5,tashAvg=12;
     String lastTime[];
     BarChart barChart;
-    // variable for our bar data.
-    BarData barData;
-    // variable for our bar data set.
-    BarDataSet barDataSet;
-    // array list for storing entries.
     ArrayList<BarEntry> barEntriesArrayList;
     ArrayList<String> labelNames;
     ArrayList<SalahPostureNames> PostureNamesArrayList=new ArrayList<SalahPostureNames>();
-    CardView fjrTile;
-    /* for slpitting the times min:sec from timestamp*/
-    String []split_qayam_time;
-    String []split_ruku_time;
-    String []split_qoum_time;
-    String []split_sajda_time;
-    String []split_jalsa_time;
-    String []split_tash_time;
+    CardView fjrTile,zuhrTile,asrTile,mgbTile,ishaTile;
+    String completeness="No",correctness="No";
+    String []split_time1;
+    String []split_time2;
+    InputStream inputStream;
+    BufferedReader reader;
+    int qayamT=0,rukuT=0,qoumT=0,sajdaT=0,jalsaT=0,tashT=0;
+    String s1="";
+    String s2="";
+    String t1="";
+    String t2="";
+    String token_value="";
+    String token_name="";
+    int total_qayam=0,total_ruku=0,total_qoum=0,total_sajda=0,total_jalsa=0,total_tash=0;
 
-    /*for saving all min:sec of each posture*/
-    ArrayList<String> qayam_time=new ArrayList<>();
-    ArrayList<String> ruku_time=new ArrayList<>();
-    ArrayList<String> qoum_time=new ArrayList<>();
-    ArrayList<String> sajda_time=new ArrayList<>();
-    ArrayList<String> jalsa_time=new ArrayList<>();
-    ArrayList<String> tash_time=new ArrayList<>();
-    /* for average time*/
-    int qayam_avg,ruku_avg,qoum_avg,sajda_avg,jalsa_avg,tash_avg;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        file_reading();
-//        qayam_avg=calculate_posture_avg_time(qayam_time,ruku_time);
-//        //System.out.println("avg_qayam_time : "+qayam_avg);
-//        ruku_avg=calculate_posture_avg_time(ruku_time,qoum_time);
-//        //System.out.println("avg_ruku_time : "+ruku_avg);
-//        qoum_avg=calculate_posture_avg_time(qoum_time,sajda_time);
-//        //System.out.println("avg_qoum_time : "+qoum_avg);
-//        sajda_avg=calculate_posture_avg_time(sajda_time,jalsa_time);
-//        //System.out.println("avg_sajda_time : "+sajda_avg);
-//        tash_avg=12;
     }
 
     @Override
@@ -94,19 +97,105 @@ public class dailyStats extends Fragment {
 
         View view= inflater.inflate(R.layout.fragment_daily_stats, container, false);
 
+        SalahTimes();
+
 
         fjrTile=view.findViewById(R.id.fjrTile);
         fjrTile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getAvgTime(fileFajarFarz2);
+                // read fajar file and pass averages to viewsalah screen
                 Intent intent=new Intent(getActivity(),ViewSalah.class);
-                intent.putExtra("whichScreen","dailySalah");
-                intent.putExtra("qayam_avg",qayam_avg);
-                intent.putExtra("ruku_avg",ruku_avg);
-                intent.putExtra("qoum_avg",qoum_avg);
-                intent.putExtra("sajda_avg",sajda_avg);
-                intent.putExtra("jalsa",jalsa_avg);
-                intent.putExtra("tash_avg",tash_avg);
+                intent.putExtra("sel_salah","Fajar");
+                intent.putExtra("sel_rakah","2");
+                intent.putExtra("qayamAvg",String.valueOf(total_qayam));
+                intent.putExtra("rukuAvg",String.valueOf(total_ruku));
+                intent.putExtra("qoumAvg",String.valueOf(total_qoum));
+                intent.putExtra("sajdaAvg",String.valueOf(total_sajda));
+                intent.putExtra("tashAvg",String.valueOf(total_tash));
+                intent.putExtra("completeness","Yes");
+                intent.putExtra("correctness","Yes");
+                startActivity(intent);
+
+            }
+        });
+        zuhrTile=view.findViewById(R.id.ZhrTile);
+        zuhrTile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getAvgTime(fileZuhrFarz4);
+                // read zuhr file and pass averages to viewsalah screen
+                Intent intent=new Intent(getActivity(),ViewSalah.class);
+                intent.putExtra("sel_salah","Zuhr");
+                intent.putExtra("sel_rakah","4");
+                intent.putExtra("qayamAvg",String.valueOf(total_qayam));
+                intent.putExtra("rukuAvg",String.valueOf(0));
+                intent.putExtra("qoumAvg",String.valueOf(total_qoum));
+                intent.putExtra("sajdaAvg",String.valueOf(total_sajda));
+                intent.putExtra("tashAvg",String.valueOf(total_tash));
+                intent.putExtra("completeness","Yes");
+                intent.putExtra("correctness","No");
+                startActivity(intent);
+
+            }
+        });
+        asrTile=view.findViewById(R.id.AsrTile);
+        asrTile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getAvgTime(fileAsarFarz4);
+                // read asr file and pass averages to viewsalah screen
+                Intent intent=new Intent(getActivity(),ViewSalah.class);
+                intent.putExtra("sel_salah","Asr");
+                intent.putExtra("sel_rakah","4");
+                intent.putExtra("qayamAvg",String.valueOf(total_qayam));
+                intent.putExtra("rukuAvg",String.valueOf(total_ruku));
+                intent.putExtra("qoumAvg",String.valueOf(total_qoum));
+                intent.putExtra("sajdaAvg",String.valueOf(total_sajda));
+                intent.putExtra("tashAvg",String.valueOf(total_tash));
+                intent.putExtra("completeness","Yes");
+                intent.putExtra("correctness","Yes");
+                startActivity(intent);
+
+            }
+        });
+        mgbTile=view.findViewById(R.id.MgbTile);
+        mgbTile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getAvgTime(fileMaghribFarz3);
+                // read mgb file and pass averages to viewsalah screen
+                Intent intent=new Intent(getActivity(),ViewSalah.class);
+                intent.putExtra("sel_salah","Maghrib");
+                intent.putExtra("sel_rakah","3");
+                intent.putExtra("qayamAvg",String.valueOf(total_qayam));
+                intent.putExtra("rukuAvg",String.valueOf(total_ruku));
+                intent.putExtra("qoumAvg",String.valueOf(total_qoum));
+                intent.putExtra("sajdaAvg",String.valueOf(total_sajda));
+                intent.putExtra("tashAvg",String.valueOf(total_tash));
+                intent.putExtra("completeness","Yes");
+                intent.putExtra("correctness","Yes");
+                startActivity(intent);
+
+            }
+        });
+        ishaTile=view.findViewById(R.id.IshaTile);
+        ishaTile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getAvgTime(fileIshaFarz4);
+                // read isha file and pass averages to viewsalah screen
+                Intent intent=new Intent(getActivity(),ViewSalah.class);
+                intent.putExtra("sel_salah","Isha");
+                intent.putExtra("sel_rakah","4");
+                intent.putExtra("qayamAvg",String.valueOf(total_qayam));
+                intent.putExtra("rukuAvg",String.valueOf(total_qoum));
+                intent.putExtra("qoumAvg",String.valueOf(0));
+                intent.putExtra("sajdaAvg",String.valueOf(0));
+                intent.putExtra("tashAvg",String.valueOf(total_tash));
+                intent.putExtra("completeness","Yes");
+                intent.putExtra("correctness","No");
                 startActivity(intent);
 
             }
@@ -145,175 +234,212 @@ public class dailyStats extends Fragment {
     }
     private void fillPostureList(){
         PostureNamesArrayList.clear();
-        PostureNamesArrayList.add(new SalahPostureNames("Fajar",12));
-        PostureNamesArrayList.add(new SalahPostureNames("Zuhr",3));
-        PostureNamesArrayList.add(new SalahPostureNames("Asar",2));
-        PostureNamesArrayList.add(new SalahPostureNames("Maghrib",5));
-        PostureNamesArrayList.add(new SalahPostureNames("Isha",2));
+        PostureNamesArrayList.add(new SalahPostureNames("Fajar",fjrTime));
+        PostureNamesArrayList.add(new SalahPostureNames("Zuhr",zuhrTime));
+        PostureNamesArrayList.add(new SalahPostureNames("Asar",asrTime));
+        PostureNamesArrayList.add(new SalahPostureNames("Maghrib",mgbTime));
+        PostureNamesArrayList.add(new SalahPostureNames("Isha",ishaTime));
     }
-    private void getLastLine(){
-        String lastline = "";
-        String lastlineF = "";
-        String tmp1[];
+    private void getAvgTime(int [] array){
+
+
+        inputStream = getResources().openRawResource(array[0]);
+        reader = new BufferedReader(new InputStreamReader(inputStream, Charset.forName("UTF-8")));
+        String line = "";
+        String line1 = "";
+        try {
+
+            while ((line = reader.readLine()) != null) {
+
+                // Split the line into different tokens (using the comma as a separator).
+                String[] tokens = line.split("\n");
+
+                for (int i = 0; i < tokens.length; i++) {
+                    String[] tokens2 = tokens[i].split(",");
+                    token_value=tokens2[0];
+                    token_name=tokens2[1];
+                    if(!s1.equals(tokens2[1]) & s1=="" & t1=="") {
+                        t1 = tokens2[0];
+                        s1 = tokens2[1];
+
+
+
+                    } else if (!s1.equals(tokens2[1]) & s2=="" & t2=="") {
+                        t2 = tokens2[0];
+                        s2 = tokens2[1];
+                        split_time1=t1.split(":");
+                        split_time2=t2.split(":");
+                        int a=Integer.parseInt(split_time1[2]);
+                        int b=Integer.parseInt(split_time2[2]);
+                        if(s1.equals("Qayam")) {
+
+
+                            if((b-a)>0) {
+                                qayamT=b-a;
+                            }
+                            System.out.println("qayam : "+qayamT);
+                            total_qayam+=qayamT;
+                            //qayamT=0;
+                        }
+                        if(s1.equals("Ruku")) {
+                            if((b-a)>0) {
+                                rukuT = b - a;
+                            }
+                            System.out.println("ruku : "+rukuT);
+                            total_ruku+=rukuT;
+                            //rukuT=0;
+                        }
+                        if(s1.equals("Qoum")) {
+                            if((b-a)>0) {
+                                qoumT = b - a;
+                            }
+                            System.out.println("qoum : "+qoumT);
+                            total_qoum+=qoumT;
+                            //qoumT=0;
+
+                        }
+                        if(s1.equals("Sajda")) {
+                            if((b-a)>0) {
+                                sajdaT = b - a;
+                            }
+                            System.out.println("sajda : "+sajdaT);
+                            total_sajda+=sajdaT;
+                            //sajdaT=0;
+                        }
+                        if(s1.equals("Jalsa")) {
+                            if((b-a)>0) {
+                                jalsaT = b - a;
+                            }
+                            System.out.println("jalsa : "+jalsaT);
+                            total_jalsa+=jalsaT;
+                            //jalsaT=0;
+                        }
+                        if(s1.equals("Tashahud")) {
+                            if((b-a)>0) {
+                                tashT = b - a;
+                            }
+                            System.out.println("tashahud : "+tashT);
+                            total_tash+=tashT;
+                            //tashT=0;
+                        }
+                        line1=t2;
+                        s1=s2;
+                        t1=t2;
+                        s2="";
+                        t2="";
+
+                    }
+
+                }
+
+            }
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        System.out.println("line : "+line1);
+        System.out.println("token : "+token_value);
+        split_time1=line1.split(":");
+        split_time2=token_value.split(":");
+        int a=Integer.parseInt(split_time1[2]);
+        int b=Integer.parseInt(split_time2[2]);
+        tashT=b-a;
+        System.out.println("tashahud : "+tashT);
+
+        total_tash+=tashT;
+
+        total_qayam=total_qayam/2;
+        total_ruku=total_ruku/2;
+        total_qoum=total_qoum/2;
+        total_sajda=total_sajda/2;
+        total_jalsa=total_jalsa/2;
+        total_tash=total_tash/2;
+        System.out.println("avg qayam: "+total_qayam);
+        System.out.println("avg ruku: "+total_ruku);
+        System.out.println("avg qoum: "+total_qoum);
+        System.out.println("avg sajda: "+total_sajda);
+        System.out.println("avg jalsa: "+total_jalsa);
+        System.out.println("avg jalsa: "+total_tash);
+    }
+    private void SalahTimes(){
+        // fajar
+        int fjrSunnah=calculatTime(fileFajarSunnah2);
+        int fjrFarz=calculatTime(fileFajarFarz2);
+        fjrTime=fjrSunnah+fjrFarz;
+        //Zuhr
+        int zuhrSunnah4=calculatTime(fileZuhrSunnah4);
+        int zuhrFarz4=calculatTime(fileZuhrFarz4);
+        int zuhrSunnah2=calculatTime(fileZuhrSunnah2);
+        int zuhrNafil2=calculatTime(fileZuhrNafil2);
+        zuhrTime=zuhrSunnah4+zuhrFarz4+zuhrSunnah2+zuhrNafil2;
+        //Asar
+        int asarSunnah4=calculatTime(fileAsarSunnah4);
+        int asarFarz4=calculatTime(fileAsarFarz4);
+        asrTime=asarSunnah4+asarFarz4;
+        //Maghrib
+        int mgbFarz3=calculatTime(fileMaghribFarz3);
+        int mgbSunnah2=calculatTime(fileMaghribSunnah2);
+        int mgbNafil2=calculatTime(fileMaghribNafil2);
+        mgbTime=mgbFarz3+mgbSunnah2+mgbNafil2;
+        //Isha
+        int ishaSunnah4=calculatTime(fileIshaSunnah4);
+        int ishaFarz4=calculatTime(fileIshaFarz4);
+        int ishaSunnah2=calculatTime(fileIshaSunnah2);
+        int ishaNafil2=calculatTime(fileIshaNafil2);
+        int ishaWitr=calculatTime(fileIshaWitr);
+        ishaTime=ishaSunnah4+ishaFarz4+ishaSunnah2+ishaNafil2+ishaWitr+ishaNafil2;
+
+    }
+    private int calculatTime(int [] array){
         InputStream is;
         BufferedReader reader;
+        int unitSum=0;
+            is = getResources().openRawResource(array[0]);
+            reader = new BufferedReader(
+                    new InputStreamReader(is, Charset.forName("UTF-8")));
+            // diffmin is returning minutes by extracting them from file
+            long diffmin=filereading(reader);
+            unitSum+=diffmin;
+        return unitSum;
 
-        is = getResources().openRawResource(R.raw.maha_rakah2);
-        reader = new BufferedReader(
-                new InputStreamReader(is, Charset.forName("UTF-8")));
+    }
+    private long filereading(BufferedReader reader) {
+
+        String firstLine="",firstLineF="",lastline="",lastlineF="";
+        String firstTime[],lastTime[];
+        String startTime="",endTime="";
+
+        // first line
+        try {
+            while ((firstLine = reader.readLine()) != null) {
+                firstLineF=firstLine;
+                break;
+            }
+            firstTime=firstLineF.split(",");
+            startTime = firstTime[0];
+        } catch (IOException e1) {        }
+        // last line
 
         try {
             while ((lastline = reader.readLine()) != null) {
                 lastlineF=lastline;
             }
-            tmp1=lastlineF.split(",");
-            lastTime=tmp1[0].split(":");
-            System.out.println(lastTime[2]);
-        } catch (IOException e1) {
-            Log.e("ViewSalah", "Error" + lastlineF, e1);
-            e1.printStackTrace();
-        }
-
-    }
-    private void file_reading() {
-        getLastLine();
-        InputStream is;
-        BufferedReader reader;
-
-        is = getResources().openRawResource(R.raw.maha_rakah2);
-        reader = new BufferedReader(
-                new InputStreamReader(is, Charset.forName("UTF-8")));
-
-        filereading(reader);
-
-
-
-    }
-
-    private void filereading(BufferedReader reader) {
-        int qayamT=0,rukuT=0,qoumT=0,sajdaT=0,jalsaT=0,tashT=0;
-        int qayamTime=0,rukuTime=0,qoumTime=0,sajdaTime=0,jalsaTime=0,tashTime=0;
-        String line = "";
+            lastTime=lastlineF.split(",");
+            endTime = lastTime[0];
+        } catch (IOException e1){        }
+        SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
+        Date d1 = null;
+        Date d2 = null;
         try {
-            while ((line = reader.readLine()) != null) {
-                // Split the line into different tokens (using the comma as a separator).
-                String[] tokens = line.split("\n");
-                for (int i=0;i<tokens.length;i++){
-                    String[] tokens2 = tokens[i].split(",");
-//                    for (int j=0;j<tokens2.length;j++){
-                        //configuring the activity/posture
-                        String s1=tokens2[1];
-
-                        if(tokens2[1].equalsIgnoreCase("Qayam")){
-                            split_qayam_time=tokens2[0].split(":");
-                            // saving inutes and seconds in qayam_time
-                            qayam_time.add(split_qayam_time[1]+":"+split_qayam_time[2]);
-                            String a[]=qayam_time.get(0).split(":");
-                            qayamT=Integer.parseInt(a[1]);
-                            System.out.println("qayam1 : "+qayamT);
-
-
-
-                        }
-                        if(tokens2[1].equalsIgnoreCase("Ruku")){
-                            qayam_time.add("qayam1Done");
-                            split_ruku_time=tokens2[0].split(":");
-                            //System.out.println("Ruku : "+tokens2[1]+" min: "+split_ruku_time[1]+" sec: "+split_ruku_time[2]);
-                            ruku_time.add(split_ruku_time[1]+":"+split_ruku_time[2]);
-                            String a[]=ruku_time.get(0).split(":");
-                            rukuT=Integer.parseInt(a[1]);
-                            System.out.println("ruku1 : "+rukuT);
-                             qayamTime=rukuT-qayamT;
-                            System.out.println("qayamTime"+qayamTime);
-
-                        }
-                        if(tokens2[1].equalsIgnoreCase("Qoum")){
-                            split_qoum_time=tokens2[0].split(":");
-                            qoum_time.add(split_qoum_time[1]+":"+split_qoum_time[2]);
-                            String a[]=qoum_time.get(0).split(":");
-                             qoumT=Integer.parseInt(a[1]);
-                            System.out.println("qoum1 : "+qoumT);
-                             rukuTime=qoumT-rukuT;
-
-                        }
-                        if(tokens2[1].equalsIgnoreCase("Sajda")){
-                            split_sajda_time=tokens2[0].split(":");
-                            sajda_time.add(split_sajda_time[1]+":"+split_sajda_time[2]);
-                            String a[]=sajda_time.get(0).split(":");
-                             sajdaT=Integer.parseInt(a[1]);
-                            System.out.println("sajda1 : "+sajdaT);
-                             qoumTime=sajdaT-qoumT;
-
-                        }
-                        if(tokens2[1].equalsIgnoreCase("Jalsa")){
-                            split_jalsa_time=tokens2[0].split(":");
-                            jalsa_time.add(split_jalsa_time[1]+":"+split_jalsa_time[2]);
-                            String a[]=jalsa_time.get(0).split(":");
-                            int jalsa1=Integer.parseInt(a[1]);
-                            System.out.println("jalsa1 : "+jalsa1);
-                             sajdaTime=jalsaT-sajdaT;
-
-                        }
-                        if(tokens2[1].equalsIgnoreCase("Tashahud")){
-                            split_tash_time=tokens2[0].split(":");
-                            tash_time.add(split_tash_time[1]+":"+split_tash_time[2]);
-                            String a[]=tash_time.get(0).split(":");
-                            int tash1=Integer.parseInt(a[1]);
-                            System.out.println("qayam1 : "+tash1);
-                             tashTime=23-tashT;
-//
-                        }
-                        avgQayam+=qayamTime;
-                        avgRuku+=rukuTime;
-                        avgQoum+=qoumTime;
-                        avgSajda+=sajdaTime;
-                        avgJalsa+=jalsaTime;
-                        avgTashahud+=tashTime;
-                        qayamTime=0;
-                        rukuTime=0;
-                        qoumTime=0;
-                        sajdaTime=0;
-                        jalsaTime=0;
-                        tashTime=0;
-
-                        break;
-
-                   // }
-
-
-                }
-
-            }
-
-
-
-        } catch (IOException e1) {
-            Log.e("ViewSalah", "Error" + line, e1);
-            e1.printStackTrace();
+            d1 = format.parse(startTime);
+            d2 = format.parse(endTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
-        System.out.println("QAYAM AVG T : "+avgQayam/2);
-        System.out.println("RUKU AVG T : "+avgRuku/2);
-        System.out.println("QOUM AVG T : "+avgQoum/2);
-        System.out.println("SAJDA AVG T : "+avgSajda/2);
-        System.out.println("JALSA AVG T : "+avgJalsa/2);
-        System.out.println("TASH AVG T : "+avgTashahud/2);
+        long diff = d2.getTime() - d1.getTime();
+        long diffSeconds = diff / 1000 % 60;
+        long diffMinutes = diff / (60 * 1000) % 60;
+        long diffHours = diff / (60 * 60 * 1000);
+        return diffMinutes;
     }
-    private int calculate_posture_avg_time(ArrayList<String> curr,ArrayList<String>next) {
-        int posture_avg_time=0,atime,var1,var2;
-        for (int i=0;i<curr.size();i++){
-            String[] curr_posture=curr.get(i).split(":");
-            String[] next_posture=next.get(i).split(":");
-            var1=Integer.parseInt(next_posture[0])-Integer.parseInt(curr_posture[0]); //min diff
-            var2=Integer.parseInt(next_posture[1])-Integer.parseInt(curr_posture[1]); // sec diff
-            if (var1==0){
-                atime=var2;
-            }
-            else{
-                atime=10;
-            }
-            posture_avg_time+=atime;
-        }
-        return posture_avg_time/curr.size();
 
-    }
 }

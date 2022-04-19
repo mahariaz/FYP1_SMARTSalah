@@ -140,7 +140,7 @@ public class MainActivity2 extends AppCompatActivity  {
 
         float groupSpace = 0f;
         float barSpace = 0f;
-        float barWidth = 0.1f;
+        float barWidth = 0.8f;
         barChartView.groupBars(1f, groupSpace, barSpace);
 
         barData.setBarWidth(barWidth);

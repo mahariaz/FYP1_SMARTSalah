@@ -3,6 +3,7 @@ package com.mahariaz.smartsalah;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentActivity;
@@ -10,11 +11,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.github.mikephil.charting.animation.Easing;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LegendEntry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.tabs.TabLayout;
 import com.onesignal.OneSignal;
 
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -43,11 +54,13 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.TimerTask;
 
-public class Home extends AppCompatActivity implements RecyclerViewAdapter.OnTileListner{
+public class Home extends AppCompatActivity {
     private List<The_Slide_Items_Model_Class> listItems;
     private ViewPager page;
     private TabLayout tabLayout;
-
+    private PieChart pieChartFarz;
+    private PieChart pieChartSunnah;
+    private PieChart weekPie;
     private DrawerLayout mDrawer;
     private Toolbar toolbar;
     private static final String ONESIGNAL_APP_ID = "a827ee7e-6beb-4dd5-9c21-f281bed4c4c7";
@@ -56,12 +69,7 @@ public class Home extends AppCompatActivity implements RecyclerViewAdapter.OnTil
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
-    //recyclerview things
-    private RecyclerView recyclerView;
-    LinearLayoutManager layoutManager;
-    RecyclerViewAdapter recyclerViewAdapter;
-    ArrayList<Uri> images = new ArrayList<Uri>();
-    ArrayList<String> headings = new ArrayList<String>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,35 +81,20 @@ public class Home extends AppCompatActivity implements RecyclerViewAdapter.OnTil
         listItems.add(new The_Slide_Items_Model_Class(R.drawable.item2,"Slider 2 Title"));
         listItems.add(new The_Slide_Items_Model_Class(R.drawable.item3,"Slider 3 Title"));
         listItems.add(new The_Slide_Items_Model_Class(R.drawable.item4,"Slider 4 Title"));
-        listItems.add(new The_Slide_Items_Model_Class(R.drawable.item5,"Slider 5 Title"));
+        listItems.add(new The_Slide_Items_Model_Class(R.drawable.hadith1,"Slider 5 Title"));
         The_Slide_items_Pager_Adapter itemsPager_adapter = new The_Slide_items_Pager_Adapter(this, listItems);
         page.setAdapter(itemsPager_adapter);
         tabLayout.setupWithViewPager(page,true);
 
-        List<String> heading_list = Arrays.asList("Highlights","Track Salah","Salah History",
-                "Supplications");
-        // getting the list of URIs of png Images
-        List<Uri> imguri_list=list_uri();
-        images.addAll(imguri_list);
-        headings.addAll(heading_list);
-        // setting of recyclerView
-        recyclerView = findViewById(R.id.rec_view);
-        layoutManager = new LinearLayoutManager(getApplicationContext());
-        layoutManager.setOrientation(RecyclerView.VERTICAL);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerViewAdapter = new RecyclerViewAdapter(images,headings,getApplicationContext(),this);
-        recyclerView.setAdapter(recyclerViewAdapter);
-        recyclerViewAdapter.notifyDataSetChanged();
+        pieChartFarz = findViewById(R.id.farzPie);
+        pieChartSunnah = findViewById(R.id.sunnahPie);
+        weekPie = findViewById(R.id.weekPie);
+        setupPieChartFarz();
+        setupPieChartSunnah();
+        weekStatusPieChart();
 
-        // Set a Toolbar to replace the ActionBar.
-        //toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
 
-        OneSignal.initWithContext(this);
-        OneSignal.setAppId(ONESIGNAL_APP_ID);
 
-        OneSignal.sendTag("User_ID","a@gmail.com");
-        //notifications("Track your Salah right away!");
 
         // This will display an Up icon (<-), we will replace it with hamburger later
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -142,40 +135,93 @@ public class Home extends AppCompatActivity implements RecyclerViewAdapter.OnTil
         // set user name and email
         userName.setText(shared.username);
         userEmail.setText(shared.email);
-        /*Button go=findViewById(R.id.go);
-        go.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(Home.this,Salah_Rakah_Selection.class);
-                startActivity(intent);
-            }
-        });*/
+
         java.util.Timer timer = new java.util.Timer();
         timer.scheduleAtFixedRate(new The_slide_timer(),2000,3000);
         tabLayout.setupWithViewPager(page,true);
 
+        CardView todayStats=findViewById(R.id.todayStats);
+        todayStats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Home.this,Highlights.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
 
-    private List<Uri> list_uri() {
-        Uri uri_i1= get_uri(R.drawable.analytics_img);
-        Uri uri_i2= get_uri(R.drawable.salah_img);
-        Uri uri_i3= get_uri(R.drawable.history_img);
-        Uri uri_i4= get_uri(R.drawable.supp_img);
-        Uri uri_i5= get_uri(R.drawable.clock_img);
-        List<Uri> uri_list = Arrays.asList(uri_i1,uri_i2,uri_i3,uri_i4
-                ,uri_i5);
-        return uri_list;
-    }
-    // Typical code for changing PNG  into URI
-    public Uri get_uri(int id){
-        Uri uri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE +
-                "://" + getResources().getResourcePackageName(id)
-                + '/' + getResources().getResourceTypeName(id) + '/' + getResources().getResourceEntryName(id) );
+    private void setupPieChartFarz() {
+        ArrayList<PieEntry> entries = new ArrayList<>();
+        entries.add(new PieEntry(17, "Total Farz"));
+        entries.add(new PieEntry(15, "Prayed"));
+        ArrayList<Integer> colors = new ArrayList<>();
+        for (int color: ColorTemplate.MATERIAL_COLORS) {
+            colors.add(color);
+        }
+        for (int color: ColorTemplate.VORDIPLOM_COLORS) {
+            colors.add(color);
+        }
+        PieDataSet dataSet = new PieDataSet(entries, "");
+        dataSet.setColors(colors);
+        PieData data = new PieData(dataSet);
+        pieChartFarz.setData(data);
+        pieChartFarz.invalidate();
+        pieChartFarz.animateY(1400, Easing.EaseInOutQuad);
+        pieChartFarz.setDrawHoleEnabled(true);
+        pieChartFarz.getDescription().setEnabled(false);
+        pieChartFarz.setDrawSliceText(false);
 
-        return uri;
+
 
     }
+    private void setupPieChartSunnah() {
+        ArrayList<PieEntry> entries = new ArrayList<>();
+        entries.add(new PieEntry(12, "Total Sunnah"));
+        entries.add(new PieEntry(5, "Prayed"));
+        ArrayList<Integer> colors = new ArrayList<>();
+        for (int color: ColorTemplate.MATERIAL_COLORS) {
+            colors.add(color);
+        }
+        for (int color: ColorTemplate.VORDIPLOM_COLORS) {
+            colors.add(color);
+        }
+        PieDataSet dataSet = new PieDataSet(entries, "");
+        dataSet.setColors(colors);
+        PieData data = new PieData(dataSet);
+        pieChartSunnah.setData(data);
+        pieChartSunnah.invalidate();
+        pieChartSunnah.animateY(1400, Easing.EaseInOutQuad);
+        pieChartSunnah.setDrawHoleEnabled(true);
+        pieChartSunnah.getDescription().setEnabled(false);
+        pieChartSunnah.setDrawSliceText(false);
+    }
+    private void weekStatusPieChart() {
+        ArrayList<PieEntry> entries = new ArrayList<>();
+        entries.add(new PieEntry(0.3f, "Complete"));
+        entries.add(new PieEntry(0.3f, "Correct"));
+        entries.add(new PieEntry(0.7f, "Missed"));
+        ArrayList<Integer> colors = new ArrayList<>();
+        for (int color: ColorTemplate.MATERIAL_COLORS) {
+            colors.add(color);
+        }
+        for (int color: ColorTemplate.VORDIPLOM_COLORS) {
+            colors.add(color);
+        }
+
+        PieDataSet dataSet = new PieDataSet(entries, "");
+        dataSet.setColors(colors);
+        PieData data = new PieData(dataSet);
+        data.setValueFormatter(new PercentFormatter(weekPie));
+        weekPie.setData(data);
+        weekPie.invalidate();
+        weekPie.animateY(1400, Easing.EaseInOutQuad);
+        weekPie.setDrawHoleEnabled(false);
+        weekPie.getDescription().setEnabled(false);
+        weekPie.setDrawSliceText(false);
+    }
+
     private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
@@ -226,110 +272,7 @@ public class Home extends AppCompatActivity implements RecyclerViewAdapter.OnTil
 
         return super.onOptionsItemSelected(item);
     }
-    private void notifications(String msg)
-    {
 
-
-
-        AsyncTask.execute(new Runnable() {
-            @Override
-            public void run() {
-
-               // Toast.makeText(getApplicationContext(), "Inside Notification fun", Toast.LENGTH_SHORT).show();
-                int SDK_INT = android.os.Build.VERSION.SDK_INT;
-                if (SDK_INT > 8) {
-                    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-                            .permitAll().build();
-                    StrictMode.setThreadPolicy(policy);
-                    String send_email;
-
-                   /* //This is a Simple Logic to Send Notification different Device Programmatically....
-                    if (MainActivity.LoggedIn_User_Email.equals("user1@gmail.com")) {
-                        send_email = "user2@gmail.com";
-                    } else {
-                        send_email = "user1@gmail.com";
-                    }*/
-
-                    send_email="a@gmail.com";
-                    try {
-                        String jsonResponse;
-
-                        URL url = new URL("https://onesignal.com/api/v1/notifications");
-                        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-                        con.setUseCaches(false);
-                        con.setDoOutput(true);
-                        con.setDoInput(true);
-
-                        con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-                        con.setRequestProperty("Authorization", "Basic NDFkOTNiZjQtMDdhOC00NThlLTljZTEtZGJhMjE2MDdmZTM5");
-                        con.setRequestMethod("POST");
-
-                        String strJsonBody = "{"
-                                + "\"app_id\": \"a827ee7e-6beb-4dd5-9c21-f281bed4c4c7\","
-
-                                + "\"filters\": [{\"field\": \"tag\", \"key\": \"User_ID\", \"relation\": \"=\", \"value\": \"" + send_email + "\"}],"
-
-                                + "\"data\": {\"foo\": \"bar\"},"
-                                + "\"contents\": {\"en\": \""+msg+"\"}"
-                                + "}";
-
-
-
-                        byte[] sendBytes = strJsonBody.getBytes("UTF-8");
-                        con.setFixedLengthStreamingMode(sendBytes.length);
-
-                        OutputStream outputStream = con.getOutputStream();
-                        outputStream.write(sendBytes);
-
-                        int httpResponse = con.getResponseCode();
-                        System.out.println("httpResponse: " + httpResponse);
-
-                        if (httpResponse >= HttpURLConnection.HTTP_OK
-                                && httpResponse < HttpURLConnection.HTTP_BAD_REQUEST) {
-                            Scanner scanner = new Scanner(con.getInputStream(), "UTF-8");
-                            jsonResponse = scanner.useDelimiter("\\A").hasNext() ? scanner.next() : "";
-                            scanner.close();
-                        } else {
-                            Scanner scanner = new Scanner(con.getErrorStream(), "UTF-8");
-                            jsonResponse = scanner.useDelimiter("\\A").hasNext() ? scanner.next() : "";
-                            scanner.close();
-                        }
-
-                        //Toast.makeText(getApplicationContext(), jsonResponse, Toast.LENGTH_SHORT).show();
-                    } catch (Throwable t) {
-                        t.printStackTrace();
-                    }
-                }
-            }
-        });
-    }
-
-    @Override
-    public void onTileClick(int position) {
-        System.out.println("onclick listner");
-        System.out.println("POSITION : "+headings.get(position));
-        System.out.println("INDEX 1 :"+headings.get(1));
-        if (headings.get(position).equalsIgnoreCase(headings.get(0))){
-            Intent intent=new Intent(this,Highlights.class);
-            startActivity(intent);
-        }
-        else if (headings.get(position).equalsIgnoreCase(headings.get(1))){
-            Intent intent=new Intent(this,Salah_Rakah_Selection.class);
-            startActivity(intent);
-        }
-        else if (headings.get(position).equalsIgnoreCase(headings.get(2))){
-            Intent intent=new Intent(Home.this,Calender.class);
-            startActivity(intent);
-        }
-        else if (headings.get(position).equalsIgnoreCase(headings.get(3))){
-            Intent intent=new Intent(this,Supplications.class);
-            startActivity(intent);
-        }
-//        else if (headings.get(position).equalsIgnoreCase(headings.get(4))){
-//            Intent intent=new Intent(this,SalahTimings.class);
-//            startActivity(intent);
-//        }
-    }
     public class The_slide_timer extends TimerTask {
         @Override
         public void run() {
@@ -346,6 +289,7 @@ public class Home extends AppCompatActivity implements RecyclerViewAdapter.OnTil
             });
         }
     }
+
 }
 
 

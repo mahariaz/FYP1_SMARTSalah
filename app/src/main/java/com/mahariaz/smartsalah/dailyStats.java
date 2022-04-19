@@ -29,6 +29,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.io.BufferedReader;
@@ -84,7 +85,7 @@ public class dailyStats extends Fragment {
     String token_value="";
     String token_name="";
     int total_qayam=0,total_ruku=0,total_qoum=0,total_sajda=0,total_jalsa=0,total_tash=0;
-
+    BarChart mChart;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -100,7 +101,7 @@ public class dailyStats extends Fragment {
         SalahTimes();
 
 
-        fjrTile=view.findViewById(R.id.fjrTile);
+       /* fjrTile=view.findViewById(R.id.fjrTile);
         fjrTile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -200,45 +201,95 @@ public class dailyStats extends Fragment {
 
             }
         });
-        barChart = view.findViewById(R.id.idBarChart);
-        barEntriesArrayList=new ArrayList<>();
-        labelNames=new ArrayList<>();
-        fillPostureList();
-        for (int i=0;i<PostureNamesArrayList.size();i++){
-            String postures=PostureNamesArrayList.get(i).getPostureName();
-            int avgPostureTime=PostureNamesArrayList.get(i).getAvgPostureTime();
-            barEntriesArrayList.add(new BarEntry(i,avgPostureTime));
-            labelNames.add(postures);
-        }
-        BarDataSet barDataSet=new BarDataSet(barEntriesArrayList,"Postures");
-        barDataSet.setColors(ColorTemplate.PASTEL_COLORS);
-        Description description=new Description();
-        description.setText("");
-        barChart.setDescription(description);
-        BarData barData=new BarData(barDataSet);
-        barChart.setData(barData);
-        XAxis xAxis=barChart.getXAxis();
-        YAxis rightYAxis = barChart.getAxisRight();
-        rightYAxis.setEnabled(false);
-        xAxis.setValueFormatter(new IndexAxisValueFormatter(labelNames));
+        */
+
+        mChart = (BarChart) view.findViewById(R.id.mChart);
+        mChart.setDrawBarShadow(false);
+        mChart.getDescription().setEnabled(false);
+        mChart.setPinchZoom(false);
+
+        // empty labels so that the names are spread evenly
+        String[] labels = {"", "Fajar", "Zuhr", "Asar", "Maghrib", "Isha", ""};
+        XAxis xAxis = mChart.getXAxis();
+        xAxis.setCenterAxisLabels(true);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setDrawGridLines(true);
-        xAxis.setDrawAxisLine(false);
-        xAxis.setDrawGridLinesBehindData(false);
-        xAxis.setGranularity(1f);
-        xAxis.setLabelCount(labelNames.size());
+        xAxis.setGranularity(1f); // only intervals of 1 day
+
+
+
+        xAxis.setAxisMinimum(1f);
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));
         xAxis.setLabelRotationAngle(360);
-        barChart.animateY(2000);
-        barChart.invalidate();
+        mChart.animateY(2000);
+        YAxis leftAxis = mChart.getAxisLeft();
+        mChart.setFitBars(true);
+
+
+        mChart.getAxisRight().setEnabled(true);
+        mChart.getAxisLeft().setEnabled(false);
+        mChart.getLegend().setEnabled(false);
+
+        float[] farz4 = {0,4,4,0,4};
+        float[] farz3 = {0,0,0,3,4};
+        float[] farz2 = {2,0,0,0,0};
+        float[] sunnah4 = {0,5,5,0,5};
+        float[] sunnah2 = {2,2,0,3,2};
+        float[] nafal2 = {0,2,0,1,2};
+
+        ArrayList<BarEntry> farzbar4 = new ArrayList<>();
+        ArrayList<BarEntry> farzbar3 = new ArrayList<>();
+        ArrayList<BarEntry> farzbar2 = new ArrayList<>();
+        ArrayList<BarEntry> sunnahbar4 = new ArrayList<>();
+        ArrayList<BarEntry> sunnahbar2 = new ArrayList<>();
+        ArrayList<BarEntry> nafalbar = new ArrayList<>();
+        for (int i = 0; i < farz4.length; i++) {
+            farzbar4.add(new BarEntry(i, farz4[i]));
+            farzbar3.add(new BarEntry(i, farz3[i]));
+            farzbar2.add(new BarEntry(i, farz2[i]));
+            sunnahbar4.add(new BarEntry(i, sunnah4[i]));
+            sunnahbar2.add(new BarEntry(i, sunnah2[i]));
+            nafalbar.add(new BarEntry(i, nafal2[i]));
+        }
+
+        BarDataSet set1 = new BarDataSet(farzbar4, "barOne");
+        set1.setColor(Color.parseColor("#FFA6C9"));
+        BarDataSet set2 = new BarDataSet(farzbar3, "barTwo");
+        set2.setColor(Color.parseColor("#FAD6A5"));
+        BarDataSet set3 = new BarDataSet(farzbar2, "barTwo");
+        set3.setColor(Color.parseColor("#CD5B45"));
+        BarDataSet set4 = new BarDataSet(sunnahbar4, "barTwo");
+        set4.setColor(Color.parseColor("#98817B"));
+        BarDataSet set5 = new BarDataSet(sunnahbar2, "barTwo");
+        set5.setColor(Color.parseColor("#F778A1"));
+        BarDataSet set6 = new BarDataSet(nafalbar, "barTwo");
+        set6.setColor(Color.parseColor("#4997D0"));
+
+
+        ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
+        dataSets.add(set1);
+        dataSets.add(set2);
+        dataSets.add(set3);
+        dataSets.add(set4);
+        dataSets.add(set5);
+        dataSets.add(set6);
+
+        BarData data = new BarData(dataSets);
+        float groupSpace = 0.2f;
+        float barSpace = 0f;
+        float barWidth = 0.2f;
+        // (barSpace + barWidth) * 2 + groupSpace = 1
+        data.setBarWidth(barWidth);
+        // so that the entire chart is shown when scrolled from right to left
+        xAxis.setAxisMaximum(labels.length - 1.1f);
+        mChart.setData(data);
+        mChart.setScaleEnabled(false);
+        mChart.setVisibleXRangeMaximum(6f);
+        mChart.groupBars(1f, groupSpace, barSpace);
+
+        mChart.invalidate();
+
         return view;
-    }
-    private void fillPostureList(){
-        PostureNamesArrayList.clear();
-        PostureNamesArrayList.add(new SalahPostureNames("Fajar",fjrTime));
-        PostureNamesArrayList.add(new SalahPostureNames("Zuhr",zuhrTime));
-        PostureNamesArrayList.add(new SalahPostureNames("Asar",asrTime));
-        PostureNamesArrayList.add(new SalahPostureNames("Maghrib",mgbTime));
-        PostureNamesArrayList.add(new SalahPostureNames("Isha",ishaTime));
     }
     private void getAvgTime(int [] array){
 

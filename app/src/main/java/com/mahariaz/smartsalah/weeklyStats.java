@@ -129,6 +129,13 @@ public class weeklyStats extends Fragment {
         xAxis.setLabelCount(labelNames.size());
         xAxis.setLabelRotationAngle(360);
         barChart.animateY(2000);
+        barChart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(),Home.class);
+                startActivity(intent);
+            }
+        });
         barChart.invalidate();
         return view;
     }

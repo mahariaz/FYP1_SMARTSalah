@@ -12,6 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartSalah">
         <activity
+            android:name=".MainActivity2"
+            android:exported="true">
+
+        </activity>
+        <activity
             android:name=".forgive_duas"
             android:exported="false" />
         <activity
@@ -34,17 +39,13 @@
             android:exported="false" />
         <activity
             android:name=".Supplications"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".SalahTimings"
             android:exported="false" />
         <activity
             android:name=".Highlights"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".WhatDp"
             android:exported="false" />
@@ -77,9 +78,7 @@
             android:exported="true" />
         <activity
             android:name=".SalahProgress"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".ViewSalah"
             android:exported="true" />
@@ -91,19 +90,16 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".change_pass"
             android:exported="true" />
         <activity
             android:name=".signUp"
-            android:exported="true" />
+            android:exported="true"></activity>
         <activity
             android:name=".login"
-            android:exported="true" >
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".MainActivity"
             android:exported="true" />

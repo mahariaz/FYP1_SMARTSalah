@@ -36,9 +36,18 @@ public class shared {
     public static String height="4.10";
     public static Uri  selectedImage;
 
-    //wich screen
-    String which_screen;
+
+
+    public static final Uri getUriToDrawable(@NonNull Context context,
+                                             @AnyRes int drawableId) {
+        Uri imageUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE
+                + "://" + context.getResources().getResourcePackageName(drawableId)
+                + '/' + context.getResources().getResourceTypeName(drawableId)
+                + '/' + context.getResources().getResourceEntryName(drawableId) );
+        return imageUri;
+    }
 
 
 
 }
+

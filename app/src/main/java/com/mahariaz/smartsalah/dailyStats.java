@@ -265,6 +265,7 @@ public class dailyStats extends Fragment {
         BarDataSet set2 = new BarDataSet(farzbar3, "barTwo");
         set2.setColor(Color.parseColor("#eac4d5"));
 
+
         ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
         dataSets.add(set5);
         dataSets.add(set6);

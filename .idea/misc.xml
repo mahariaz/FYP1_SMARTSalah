@@ -25,6 +25,7 @@
         <entry key="..\:/SmartSalah/app/src/main/res/drawable/tab_indicator_default.xml" value="0.20052083333333334" />
         <entry key="..\:/SmartSalah/app/src/main/res/drawable/tab_indicator_selected.xml" value="0.20052083333333334" />
         <entry key="..\:/SmartSalah/app/src/main/res/drawable/tab_selector.xml" value="0.20052083333333334" />
+        <entry key="..\:/SmartSalah/app/src/main/res/drawable/tic.xml" value="0.20052083333333334" />
         <entry key="..\:/SmartSalah/app/src/main/res/drawable/upper_image.xml" value="0.10052083333333334" />
         <entry key="..\:/SmartSalah/app/src/main/res/drawable/upper_roundedcorners.xml" value="0.20052083333333334" />
         <entry key="..\:/SmartSalah/app/src/main/res/layout/activity_about.xml" value="0.184375" />
@@ -62,6 +63,7 @@
         <entry key="..\:/SmartSalah/app/src/main/res/layout/activity_what_gender.xml" value="0.184375" />
         <entry key="..\:/SmartSalah/app/src/main/res/layout/activity_what_height.xml" value="0.184375" />
         <entry key="..\:/SmartSalah/app/src/main/res/layout/box_view.xml" value="0.12" />
+        <entry key="..\:/SmartSalah/app/src/main/res/layout/daily_rv_box.xml" value="0.184375" />
         <entry key="..\:/SmartSalah/app/src/main/res/layout/duatile_view.xml" value="0.184375" />
         <entry key="..\:/SmartSalah/app/src/main/res/layout/f1.xml" value="0.1" />
         <entry key="..\:/SmartSalah/app/src/main/res/layout/f2.xml" value="0.184375" />

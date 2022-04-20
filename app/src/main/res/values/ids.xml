@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="sunnah4Rakah1Qoum" type="id"/>
+    <item name="sunnah4Rakah1Sajda" type="id"/>
+    <item name="sunnah4Rakah1Jalsa" type="id"/>
+    <item name="sunnah4Rakah1Qayam" type="id"/>
+    <item name="sunnah4Rakah1Ruku" type="id"/>
+
+</resources>

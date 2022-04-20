@@ -21,17 +21,21 @@ import java.util.ArrayList;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
     Context context;
     private OnTileListner tonTileListner;
-    public RecyclerViewAdapter(ArrayList<Uri> img_uri, ArrayList<String> head, Context context,OnTileListner onTileListner) {
+    public RecyclerViewAdapter(ArrayList<Uri> statusIcon, ArrayList<String> complete, ArrayList<String> correct,ArrayList<String> salahName, Context context,OnTileListner onTileListner) {
 
-        this.img_uri = img_uri;
-        this.head=head;
+        this.complete=complete;
+        this.correct=correct;
+        this.salahName=salahName;
+        this.statusIcon = statusIcon;
         this.context=context;
         this.tonTileListner=onTileListner;
 
     }
 
-    ArrayList<String>head;
-    ArrayList<Uri>img_uri;
+    ArrayList<String>complete;
+    ArrayList<String>correct;
+    ArrayList<String>salahName;
+    ArrayList<Uri>statusIcon;
 
 
     @NonNull
@@ -45,27 +49,33 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.heading_view.setText(head.get(position));
-        holder.small_img_view.setImageURI(img_uri.get(position));
+        holder.salahNameTv.setText(salahName.get(position));
+        holder.completeTv.setText(complete.get(position));
+        holder.correctTv.setText(correct.get(position));
+        holder.statusIconIv.setImageURI(statusIcon.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return head.size();
+        return salahName.size();
     }
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        ImageView small_img_view;
-        TextView heading_view;
-        CardView relativeLayoutColor;
+        ImageView statusIconIv;
+        TextView salahNameTv;
+        TextView completeTv;
+        TextView correctTv;
+        CardView salahCv;
         OnTileListner onTileListner;
 
         public MyViewHolder(@NonNull  View itemView,OnTileListner onTileListner) {
             super(itemView);
-            heading_view=itemView.findViewById(R.id.heading);
-            small_img_view=itemView.findViewById(R.id.small_iv);
-            relativeLayoutColor=itemView.findViewById(R.id.tiletap);
+            salahNameTv=itemView.findViewById(R.id.salahNameTv);
+            completeTv=itemView.findViewById(R.id.completeTv);
+            correctTv=itemView.findViewById(R.id.correctTv);
+            statusIconIv=itemView.findViewById(R.id.statusIconIv);
+            salahCv=itemView.findViewById(R.id.salahCv);
             this.onTileListner=onTileListner;
-            relativeLayoutColor.setOnClickListener(this);
+            salahCv.setOnClickListener(this);
 
         }
 

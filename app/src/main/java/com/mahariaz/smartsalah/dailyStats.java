@@ -71,7 +71,7 @@ public class dailyStats extends Fragment {
     ArrayList<BarEntry> barEntriesArrayList;
     ArrayList<String> labelNames;
     ArrayList<SalahPostureNames> PostureNamesArrayList=new ArrayList<SalahPostureNames>();
-    CardView fjrTile,zuhrTile,asrTile,mgbTile,ishaTile;
+    CardView fajrStats,zuhrStats,asrStats,maghribStats,ishaStats;
     String completeness="No",correctness="No";
     String []split_time1;
     String []split_time2;
@@ -101,28 +101,28 @@ public class dailyStats extends Fragment {
         SalahTimes();
 
 
-       /* fjrTile=view.findViewById(R.id.fjrTile);
-        fjrTile.setOnClickListener(new View.OnClickListener() {
+        fajrStats=view.findViewById(R.id.fajrStats);
+        fajrStats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getAvgTime(fileFajarFarz2);
                 // read fajar file and pass averages to viewsalah screen
                 Intent intent=new Intent(getActivity(),ViewSalah.class);
-                intent.putExtra("sel_salah","Fajar");
+                intent.putExtra("sel_salah","Fajr");
                 intent.putExtra("sel_rakah","2");
-                intent.putExtra("qayamAvg",String.valueOf(total_qayam));
-                intent.putExtra("rukuAvg",String.valueOf(total_ruku));
-                intent.putExtra("qoumAvg",String.valueOf(total_qoum));
-                intent.putExtra("sajdaAvg",String.valueOf(total_sajda));
-                intent.putExtra("tashAvg",String.valueOf(total_tash));
+//                intent.putExtra("qayamAvg",String.valueOf(total_qayam));
+//                intent.putExtra("rukuAvg",String.valueOf(total_ruku));
+//                intent.putExtra("qoumAvg",String.valueOf(total_qoum));
+//                intent.putExtra("sajdaAvg",String.valueOf(total_sajda));
+//                intent.putExtra("tashAvg",String.valueOf(total_tash));
                 intent.putExtra("completeness","Yes");
                 intent.putExtra("correctness","Yes");
                 startActivity(intent);
 
             }
         });
-        zuhrTile=view.findViewById(R.id.ZhrTile);
-        zuhrTile.setOnClickListener(new View.OnClickListener() {
+        zuhrStats=view.findViewById(R.id.zuhrStats);
+        zuhrStats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getAvgTime(fileZuhrFarz4);
@@ -130,19 +130,19 @@ public class dailyStats extends Fragment {
                 Intent intent=new Intent(getActivity(),ViewSalah.class);
                 intent.putExtra("sel_salah","Zuhr");
                 intent.putExtra("sel_rakah","4");
-                intent.putExtra("qayamAvg",String.valueOf(total_qayam));
-                intent.putExtra("rukuAvg",String.valueOf(0));
-                intent.putExtra("qoumAvg",String.valueOf(total_qoum));
-                intent.putExtra("sajdaAvg",String.valueOf(total_sajda));
-                intent.putExtra("tashAvg",String.valueOf(total_tash));
-                intent.putExtra("completeness","Yes");
+//                intent.putExtra("qayamAvg",String.valueOf(total_qayam));
+//                intent.putExtra("rukuAvg",String.valueOf(0));
+//                intent.putExtra("qoumAvg",String.valueOf(total_qoum));
+//                intent.putExtra("sajdaAvg",String.valueOf(total_sajda));
+//                intent.putExtra("tashAvg",String.valueOf(total_tash));
+                intent.putExtra("completeness","No");
                 intent.putExtra("correctness","No");
                 startActivity(intent);
 
             }
         });
-        asrTile=view.findViewById(R.id.AsrTile);
-        asrTile.setOnClickListener(new View.OnClickListener() {
+        asrStats=view.findViewById(R.id.asrStats);
+        asrStats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getAvgTime(fileAsarFarz4);
@@ -150,19 +150,19 @@ public class dailyStats extends Fragment {
                 Intent intent=new Intent(getActivity(),ViewSalah.class);
                 intent.putExtra("sel_salah","Asr");
                 intent.putExtra("sel_rakah","4");
-                intent.putExtra("qayamAvg",String.valueOf(total_qayam));
-                intent.putExtra("rukuAvg",String.valueOf(total_ruku));
-                intent.putExtra("qoumAvg",String.valueOf(total_qoum));
-                intent.putExtra("sajdaAvg",String.valueOf(total_sajda));
-                intent.putExtra("tashAvg",String.valueOf(total_tash));
+//                intent.putExtra("qayamAvg",String.valueOf(total_qayam));
+//                intent.putExtra("rukuAvg",String.valueOf(total_ruku));
+//                intent.putExtra("qoumAvg",String.valueOf(total_qoum));
+//                intent.putExtra("sajdaAvg",String.valueOf(total_sajda));
+//                intent.putExtra("tashAvg",String.valueOf(total_tash));
                 intent.putExtra("completeness","Yes");
-                intent.putExtra("correctness","Yes");
+                intent.putExtra("correctness","No");
                 startActivity(intent);
 
             }
         });
-        mgbTile=view.findViewById(R.id.MgbTile);
-        mgbTile.setOnClickListener(new View.OnClickListener() {
+        maghribStats=view.findViewById(R.id.mgbStats);
+        maghribStats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getAvgTime(fileMaghribFarz3);
@@ -170,19 +170,19 @@ public class dailyStats extends Fragment {
                 Intent intent=new Intent(getActivity(),ViewSalah.class);
                 intent.putExtra("sel_salah","Maghrib");
                 intent.putExtra("sel_rakah","3");
-                intent.putExtra("qayamAvg",String.valueOf(total_qayam));
-                intent.putExtra("rukuAvg",String.valueOf(total_ruku));
-                intent.putExtra("qoumAvg",String.valueOf(total_qoum));
-                intent.putExtra("sajdaAvg",String.valueOf(total_sajda));
-                intent.putExtra("tashAvg",String.valueOf(total_tash));
+//                intent.putExtra("qayamAvg",String.valueOf(total_qayam));
+//                intent.putExtra("rukuAvg",String.valueOf(total_ruku));
+//                intent.putExtra("qoumAvg",String.valueOf(total_qoum));
+//                intent.putExtra("sajdaAvg",String.valueOf(total_sajda));
+//                intent.putExtra("tashAvg",String.valueOf(total_tash));
                 intent.putExtra("completeness","Yes");
-                intent.putExtra("correctness","Yes");
+                intent.putExtra("correctness","No");
                 startActivity(intent);
 
             }
         });
-        ishaTile=view.findViewById(R.id.IshaTile);
-        ishaTile.setOnClickListener(new View.OnClickListener() {
+        ishaStats=view.findViewById(R.id.ishaStats);
+        ishaStats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getAvgTime(fileIshaFarz4);
@@ -190,18 +190,18 @@ public class dailyStats extends Fragment {
                 Intent intent=new Intent(getActivity(),ViewSalah.class);
                 intent.putExtra("sel_salah","Isha");
                 intent.putExtra("sel_rakah","4");
-                intent.putExtra("qayamAvg",String.valueOf(total_qayam));
-                intent.putExtra("rukuAvg",String.valueOf(total_qoum));
-                intent.putExtra("qoumAvg",String.valueOf(0));
-                intent.putExtra("sajdaAvg",String.valueOf(0));
-                intent.putExtra("tashAvg",String.valueOf(total_tash));
+//                intent.putExtra("qayamAvg",String.valueOf(total_qayam));
+//                intent.putExtra("rukuAvg",String.valueOf(total_qoum));
+//                intent.putExtra("qoumAvg",String.valueOf(0));
+//                intent.putExtra("sajdaAvg",String.valueOf(0));
+//                intent.putExtra("tashAvg",String.valueOf(total_tash));
                 intent.putExtra("completeness","Yes");
                 intent.putExtra("correctness","No");
                 startActivity(intent);
 
             }
         });
-        */
+
 
         mChart = (BarChart) view.findViewById(R.id.mChart);
         mChart.setDrawBarShadow(false);
@@ -209,7 +209,7 @@ public class dailyStats extends Fragment {
         mChart.setPinchZoom(false);
 
         // empty labels so that the names are spread evenly
-        String[] labels = {"", "Fajar", "Zuhr", "Asar", "Maghrib", "Isha", ""};
+        String[] labels = {"","Fajar","Zuhr","Asar","Maghrib","Isha", ""};
         XAxis xAxis = mChart.getXAxis();
         xAxis.setCenterAxisLabels(true);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -224,55 +224,55 @@ public class dailyStats extends Fragment {
         mChart.animateY(2000);
         YAxis leftAxis = mChart.getAxisLeft();
         mChart.setFitBars(true);
+        leftAxis.setLabelCount(8, true);
 
 
-        mChart.getAxisRight().setEnabled(true);
+
         mChart.getAxisLeft().setEnabled(false);
         mChart.getLegend().setEnabled(false);
 
         float[] farz4 = {0,4,4,0,4};
-        float[] farz3 = {0,0,0,3,4};
-        float[] farz2 = {2,0,0,0,0};
         float[] sunnah4 = {0,5,5,0,5};
         float[] sunnah2 = {2,2,0,3,2};
-        float[] nafal2 = {0,2,0,1,2};
+        float[] nafal2 = {2,2,0,1,2};
+        float[] farz3 = {0,0,0,3,4};
+
+
+
 
         ArrayList<BarEntry> farzbar4 = new ArrayList<>();
         ArrayList<BarEntry> farzbar3 = new ArrayList<>();
-        ArrayList<BarEntry> farzbar2 = new ArrayList<>();
         ArrayList<BarEntry> sunnahbar4 = new ArrayList<>();
         ArrayList<BarEntry> sunnahbar2 = new ArrayList<>();
         ArrayList<BarEntry> nafalbar = new ArrayList<>();
+
         for (int i = 0; i < farz4.length; i++) {
             farzbar4.add(new BarEntry(i, farz4[i]));
             farzbar3.add(new BarEntry(i, farz3[i]));
-            farzbar2.add(new BarEntry(i, farz2[i]));
             sunnahbar4.add(new BarEntry(i, sunnah4[i]));
             sunnahbar2.add(new BarEntry(i, sunnah2[i]));
             nafalbar.add(new BarEntry(i, nafal2[i]));
+//
         }
-
-        BarDataSet set1 = new BarDataSet(farzbar4, "barOne");
-        set1.setColor(Color.parseColor("#FFA6C9"));
-        BarDataSet set2 = new BarDataSet(farzbar3, "barTwo");
-        set2.setColor(Color.parseColor("#FAD6A5"));
-        BarDataSet set3 = new BarDataSet(farzbar2, "barTwo");
-        set3.setColor(Color.parseColor("#CD5B45"));
-        BarDataSet set4 = new BarDataSet(sunnahbar4, "barTwo");
-        set4.setColor(Color.parseColor("#98817B"));
         BarDataSet set5 = new BarDataSet(sunnahbar2, "barTwo");
-        set5.setColor(Color.parseColor("#F778A1"));
+        set5.setColor(Color.parseColor("#809bce"));
         BarDataSet set6 = new BarDataSet(nafalbar, "barTwo");
-        set6.setColor(Color.parseColor("#4997D0"));
-
+        set6.setColor(Color.parseColor("#95b8d1"));
+        BarDataSet set1 = new BarDataSet(farzbar4, "barOne");
+        set1.setColor(Color.parseColor("#b8e0d2"));
+        BarDataSet set4 = new BarDataSet(sunnahbar4, "barTwo");
+        set4.setColor(Color.parseColor("#d6eadf"));
+        BarDataSet set2 = new BarDataSet(farzbar3, "barTwo");
+        set2.setColor(Color.parseColor("#eac4d5"));
 
         ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
-        dataSets.add(set1);
-        dataSets.add(set2);
-        dataSets.add(set3);
-        dataSets.add(set4);
         dataSets.add(set5);
         dataSets.add(set6);
+        dataSets.add(set1);
+        dataSets.add(set4);
+        dataSets.add(set2);
+
+
 
         BarData data = new BarData(dataSets);
         float groupSpace = 0.2f;
@@ -281,7 +281,7 @@ public class dailyStats extends Fragment {
         // (barSpace + barWidth) * 2 + groupSpace = 1
         data.setBarWidth(barWidth);
         // so that the entire chart is shown when scrolled from right to left
-        xAxis.setAxisMaximum(labels.length - 1.1f);
+        xAxis.setAxisMaximum(labels.length);
         mChart.setData(data);
         mChart.setScaleEnabled(false);
         mChart.setVisibleXRangeMaximum(6f);

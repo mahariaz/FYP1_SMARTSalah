@@ -81,7 +81,7 @@ public class Home extends AppCompatActivity {
         listItems.add(new The_Slide_Items_Model_Class(R.drawable.item2,"Slider 2 Title"));
         listItems.add(new The_Slide_Items_Model_Class(R.drawable.item3,"Slider 3 Title"));
         listItems.add(new The_Slide_Items_Model_Class(R.drawable.item4,"Slider 4 Title"));
-        listItems.add(new The_Slide_Items_Model_Class(R.drawable.hadith1,"Slider 5 Title"));
+        listItems.add(new The_Slide_Items_Model_Class(R.drawable.item5,"Slider 5 Title"));
         The_Slide_items_Pager_Adapter itemsPager_adapter = new The_Slide_items_Pager_Adapter(this, listItems);
         page.setAdapter(itemsPager_adapter);
         tabLayout.setupWithViewPager(page,true);
@@ -157,12 +157,9 @@ public class Home extends AppCompatActivity {
         entries.add(new PieEntry(17, "Total Farz"));
         entries.add(new PieEntry(15, "Prayed"));
         ArrayList<Integer> colors = new ArrayList<>();
-        for (int color: ColorTemplate.MATERIAL_COLORS) {
-            colors.add(color);
-        }
-        for (int color: ColorTemplate.VORDIPLOM_COLORS) {
-            colors.add(color);
-        }
+        colors.add(Color.parseColor("#95b8d1"));
+        colors.add(Color.parseColor("#b8e0d2"));
+
         PieDataSet dataSet = new PieDataSet(entries, "");
         dataSet.setColors(colors);
         PieData data = new PieData(dataSet);
@@ -181,12 +178,8 @@ public class Home extends AppCompatActivity {
         entries.add(new PieEntry(12, "Total Sunnah"));
         entries.add(new PieEntry(5, "Prayed"));
         ArrayList<Integer> colors = new ArrayList<>();
-        for (int color: ColorTemplate.MATERIAL_COLORS) {
-            colors.add(color);
-        }
-        for (int color: ColorTemplate.VORDIPLOM_COLORS) {
-            colors.add(color);
-        }
+        colors.add(Color.parseColor("#95b8d1"));
+        colors.add(Color.parseColor("#b8e0d2"));
         PieDataSet dataSet = new PieDataSet(entries, "");
         dataSet.setColors(colors);
         PieData data = new PieData(dataSet);
@@ -203,12 +196,9 @@ public class Home extends AppCompatActivity {
         entries.add(new PieEntry(0.3f, "Correct"));
         entries.add(new PieEntry(0.7f, "Missed"));
         ArrayList<Integer> colors = new ArrayList<>();
-        for (int color: ColorTemplate.MATERIAL_COLORS) {
-            colors.add(color);
-        }
-        for (int color: ColorTemplate.VORDIPLOM_COLORS) {
-            colors.add(color);
-        }
+        colors.add(Color.parseColor("#B8D8BE"));
+        colors.add(Color.parseColor("#d1cfe2"));
+        colors.add(Color.parseColor("#f6ac69"));
 
         PieDataSet dataSet = new PieDataSet(entries, "");
         dataSet.setColors(colors);

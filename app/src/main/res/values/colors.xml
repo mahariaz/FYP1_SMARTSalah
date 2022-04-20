@@ -265,4 +265,17 @@
     <color name="deep_coffee">#704241</color>
     <color name="deep_fuchsia">#C154C1</color>
     <color name="deep_jungle_green">#004B49</color>
+
+
+    <color name="cameo_pink">#d4afb9</color>
+    <color name="mauv_purple">#d1cfe2 </color>
+    <color name="blue_purple2">#9cadce</color>
+    <color name="ferozi_teal">#7ec4cf</color>
+    <color name="max_blue">#52b2cf</color>
+
+    <color name="dark_blue_purple">#809bce</color>
+    <color name="sky_blue">#95b8d1</color>
+    <color name="light_ferozi">#b8e0d2</color>
+    <color name="light_light_ferozi">#d6eadf</color>
+    <color name="onion_pink">#eac4d5</color>
 </resources>

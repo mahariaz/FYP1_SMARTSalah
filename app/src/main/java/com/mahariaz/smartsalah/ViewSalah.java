@@ -12,11 +12,14 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -55,7 +58,6 @@ public class ViewSalah extends AppCompatActivity {
 
     // getting chart data
     String sel_salah,sel_rakah;
-    TextView salah_view,rakah_view;
     // graph
     ArrayList<ILineDataSet> dataSets = new ArrayList<>();
     Intent intent;
@@ -63,142 +65,108 @@ public class ViewSalah extends AppCompatActivity {
     ArrayList<BarEntry> barEntriesArrayList;
     ArrayList<String> labelNames;
     ArrayList<SalahPostureNames> PostureNamesArrayList=new ArrayList<SalahPostureNames>();
-    String qayamAvg,rukuAvg,qoumAvg,sajdaAvg,tashAvg;
-    TextView posmissedR1,posmissedR2,posmissedR3,posmissedR4;
-    RelativeLayout rakah1Box,rakah2Box,rakah3Box,rakah4Box;
-    ImageView ticR1,ticR2,ticR3,ticR4;
-    CardView compltenessTile,correctnessTile;
+    String qayamAvg="12",rukuAvg="2",qoumAvg="1",sajdaAvg="3",tashAvg="10";
     String completeness="",correctness="";
-    ImageView ticInsideComp,ticInsideCorr;
+    TextView salahNameTv,postureDict;
+    ImageView iconStatusIv;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_salah);
         mTopToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        posmissedR1=findViewById(R.id.posmissedR1);
-        posmissedR2=findViewById(R.id.posmissedR2);
-        posmissedR3=findViewById(R.id.posmissedR3);
-        posmissedR4=findViewById(R.id.posmissedR4);
-        rakah1Box=findViewById(R.id.rakah1Box);
-        rakah2Box=findViewById(R.id.rakah2Box);
-        rakah3Box=findViewById(R.id.rakah3Box);
-        rakah4Box=findViewById(R.id.rakah4Box);
-        ticR1=findViewById(R.id.ticR1);
-        ticR2=findViewById(R.id.ticR2);
-        ticR3=findViewById(R.id.ticR3);
-        ticR4=findViewById(R.id.ticR4);
-        compltenessTile=findViewById(R.id.completenessTile);
-        correctnessTile=findViewById(R.id.correctnessTile);
-        ticInsideComp=findViewById(R.id.ticInsideCompTile);
-        ticInsideCorr=findViewById(R.id.ticInsideCorrTile);
+        postureDict=findViewById(R.id.postureDict);
+        String sourceString = "<b>Q</b>"+"ayam "+"<b>R</b>"+"uku "+"<b>K</b>"+"ouma "+"<b>S</b>"+"ajda "+"<b>T</b>"+"ashahud";
+        postureDict.setText(Html.fromHtml(sourceString));
+
+
+        getIntents();
+        populate();
+
         setSupportActionBar(mTopToolbar);
         // getting intents from previous activity
-        intent=getIntent();
-        sel_salah=intent.getStringExtra("sel_salah");
-        sel_rakah=intent.getStringExtra("sel_rakah");
-        qayamAvg=intent.getStringExtra("qayamAvg");
-        rukuAvg=intent.getStringExtra("rukuAvg");
-        qoumAvg=intent.getStringExtra("qoumAvg");
-        sajdaAvg=intent.getStringExtra("sajdaAvg");
-        tashAvg=intent.getStringExtra("tashAvg");
+
+//        qayamAvg=intent.getStringExtra("qayamAvg");
+//        rukuAvg=intent.getStringExtra("rukuAvg");
+//        qoumAvg=intent.getStringExtra("qoumAvg");
+//        sajdaAvg=intent.getStringExtra("sajdaAvg");
+//        tashAvg=intent.getStringExtra("tashAvg");
 
         completeness=intent.getStringExtra("completeness");
         correctness=intent.getStringExtra("correctness");
 
-        displayRakahNum();
-        checkMissed();
-        fillbox();
+
+
         // make graph
         dataSets = new ArrayList<>();
         makeGraph();
-        salah_view=findViewById(R.id.salahName);
-        rakah_view=findViewById(R.id.rakahPrayed);
-        salah_view.setText(sel_salah);
-        rakah_view.setText(sel_rakah);
+
     }
 
-    private void fillbox() {
-        if(correctness.equalsIgnoreCase("Yes")){
-            correctnessTile.setCardBackgroundColor(getResources().getColor(R.color.alien_green));
-            ticInsideCorr.setImageDrawable(getResources().getDrawable(R.drawable.tic));
-
-        }else if(correctness.equalsIgnoreCase("No")){
-            correctnessTile.setCardBackgroundColor(getResources().getColor(R.color.bean_red));
-
-        }
-        if(completeness.equalsIgnoreCase("Yes")){
-            compltenessTile.setCardBackgroundColor(getResources().getColor(R.color.alien_green));
-            ticInsideComp.setImageDrawable(getResources().getDrawable(R.drawable.tic));
-        }else if(completeness.equalsIgnoreCase("No")){
-            compltenessTile.setCardBackgroundColor(getResources().getColor(R.color.bean_red));
-
-        }
+    private void getIntents() {
+        intent=getIntent();
+        sel_salah=intent.getStringExtra("sel_salah");
+        sel_rakah=intent.getStringExtra("sel_rakah");
     }
 
-    private void displayRakahNum() {
-        if (sel_rakah.equalsIgnoreCase("2")) {
-            rakah1Box.setVisibility(View.VISIBLE);
-            rakah2Box.setVisibility(View.VISIBLE);
+    private void populate() {
+        salahNameTv=findViewById(R.id.salahNameTv);
+        iconStatusIv=findViewById(R.id.iconStatusIv);
+        LinearLayout sunnah4LL=findViewById(R.id.sunnah4LL);
+        LinearLayout farz4LL=findViewById(R.id.farz4LL);
+        LinearLayout farz3LL=findViewById(R.id.farz3LL);
+        LinearLayout sunnah2LL=findViewById(R.id.sunnah2LL);
+        LinearLayout nafal2LL=findViewById(R.id.nafal2LL);
+        // getting id of nafal2 to use it as farz2
+        TextView nafal2Heading;
+        if (sel_salah.equalsIgnoreCase("Fajr")){
+            salahNameTv.setText("Fajr");
+            iconStatusIv.setImageDrawable(getResources().getDrawable(R.drawable.tic));
+            sunnah2LL.setVisibility(View.VISIBLE);
+            nafal2LL.setVisibility(View.VISIBLE);
+            nafal2Heading=findViewById(R.id.nafal2Heading);
+            nafal2Heading.setText("Farz 2");
 
         }
-        if (sel_rakah.equalsIgnoreCase("3")) {
-            rakah1Box.setVisibility(View.VISIBLE);
-            rakah2Box.setVisibility(View.VISIBLE);
-            rakah3Box.setVisibility(View.VISIBLE);
-
-        }
-        if (sel_rakah.equalsIgnoreCase("4")) {
-            rakah1Box.setVisibility(View.VISIBLE);
-            rakah2Box.setVisibility(View.VISIBLE);
-            rakah3Box.setVisibility(View.VISIBLE);
-            rakah4Box.setVisibility(View.VISIBLE);
-
-        }
-    }
-
-    private void checkMissed() {
-        if (sel_salah.equalsIgnoreCase("Fajar")){
-            ticR1.setImageDrawable(getResources().getDrawable(R.drawable.tic));
-            ticR2.setImageDrawable(getResources().getDrawable(R.drawable.tic));
-        }
-
         if (sel_salah.equalsIgnoreCase("Zuhr")){
-            if(rukuAvg.equalsIgnoreCase("0")){
-                posmissedR2.setText("Ruku Missed");
+            salahNameTv.setText("Zuhr");
+            iconStatusIv.setImageDrawable(getResources().getDrawable(R.drawable.cross));
+            sunnah4LL.setVisibility(View.VISIBLE);
+            farz4LL.setVisibility(View.VISIBLE);
+            sunnah2LL.setVisibility(View.VISIBLE);
+            nafal2LL.setVisibility(View.VISIBLE);
 
-            }
-            ticR1.setImageDrawable(getResources().getDrawable(R.drawable.tic));
-            ticR3.setImageDrawable(getResources().getDrawable(R.drawable.tic));
-            ticR4.setImageDrawable(getResources().getDrawable(R.drawable.tic));
         }
         if (sel_salah.equalsIgnoreCase("Asr")){
-            ticR1.setImageDrawable(getResources().getDrawable(R.drawable.tic));
-            ticR2.setImageDrawable(getResources().getDrawable(R.drawable.tic));
-            ticR3.setImageDrawable(getResources().getDrawable(R.drawable.tic));
-            ticR4.setImageDrawable(getResources().getDrawable(R.drawable.tic));
+            salahNameTv.setText("Asr");
+            iconStatusIv.setImageDrawable(getResources().getDrawable(R.drawable.error));
+            sunnah4LL.setVisibility(View.VISIBLE);
+            farz4LL.setVisibility(View.VISIBLE);
+
         }
         if (sel_salah.equalsIgnoreCase("Maghrib")){
-            ticR1.setImageDrawable(getResources().getDrawable(R.drawable.tic));
-            ticR2.setImageDrawable(getResources().getDrawable(R.drawable.tic));
-            ticR3.setImageDrawable(getResources().getDrawable(R.drawable.tic));
+            salahNameTv.setText("Maghrib");
+            iconStatusIv.setImageDrawable(getResources().getDrawable(R.drawable.error));
+            farz3LL.setVisibility(View.VISIBLE);
+            sunnah2LL.setVisibility(View.VISIBLE);
+            nafal2LL.setVisibility(View.VISIBLE);
+
         }
         if (sel_salah.equalsIgnoreCase("Isha")){
-            if(qoumAvg.equalsIgnoreCase("0")){
-                posmissedR1.setText("Qouma Missed");
-                posmissedR3.setText("Sajda Missed");
-            }
-            if(sajdaAvg.equalsIgnoreCase("0")){
-                posmissedR3.setText("Sajda Missed");
-            }
-            ticR4.setImageDrawable(getResources().getDrawable(R.drawable.tic));
-            ticR2.setImageDrawable(getResources().getDrawable(R.drawable.tic));
+            salahNameTv.setText("Isha");
+            iconStatusIv.setImageDrawable(getResources().getDrawable(R.drawable.error));
+            farz4LL.setVisibility(View.VISIBLE);
+            sunnah2LL.setVisibility(View.VISIBLE);
+            farz3LL.setVisibility(View.VISIBLE);
+
         }
 
     }
 
+
     private void makeGraph() {
-        barChart = findViewById(R.id.idBarChart);
+        barChart = findViewById(R.id.barChart);
         barEntriesArrayList=new ArrayList<>();
         labelNames=new ArrayList<>();
         fillPostureList2();

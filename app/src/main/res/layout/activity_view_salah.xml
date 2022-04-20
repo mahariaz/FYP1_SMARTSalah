@@ -1,404 +1,1871 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:fillViewport="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="2"
+    android:background="@color/white"
     tools:context=".ViewSalah">
-
-    <TableLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="4"
-        android:stretchColumns="1">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/my_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:elevation="4dp"
-            app:titleTextColor="@color/black"
-            app:title="Salah Profile"
-            android:background="#009688"
-            />
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="4dp"
+        app:titleTextColor="@color/black"
+        app:title="Salah Profile"
+        android:background="#009688"
+        />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/fajrStats"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="20dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardMaxElevation="12dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        >
         <RelativeLayout
-            android:layout_margin="10dp"
-            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_height="wrap_content">
 
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/idBarChart"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp" />
-
-            <TextView
+            <RelativeLayout
+                android:id="@+id/fjrRel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:text="Seconds"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="10dp"
-                android:textStyle="bold">
+                android:layout_marginTop="20dp"
+                android:padding="10dp">
 
-            </TextView>
+                <ImageView
+                    android:id="@+id/fjrmoon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/supp_img">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="50dp"
-                android:text="Posture Average Time"
-                android:textStyle="bold"></TextView>
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/salahNameTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/fjrmoon"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="bold">
+
+                </TextView>
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/iconStatusIv"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="20dp"
+                >
+
+            </ImageView>
 
 
         </RelativeLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/lineChart"
-            android:gravity="center"
-            android:text="Posture"
-            android:textStyle="bold">
 
-        </TextView>
+    </androidx.cardview.widget.CardView>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            android:layout_weight="3"
-            >
-
-
-
-            <androidx.cardview.widget.CardView
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:padding="10dp"
+                android:layout_margin="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                app:cardElevation="10dp"
-                app:cardCornerRadius="20dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardMaxElevation="12dp"
-                app:cardPreventCornerOverlap="true"
-                app:cardUseCompatPadding="true"
-                >
-                <RelativeLayout
+                android:layout_height="200dp">
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/barChart"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/postureDict"
+                android:textColor="@color/black"
+                android:textStyle="italic"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </TextView>
+
+            <LinearLayout
+                android:layout_marginTop="30dp"
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:id="@+id/sunnah4LL">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sunnah 4"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="16dp"
+                    android:layout_gravity="center">
+
+                </TextView>
+                <RelativeLayout
+                    android:id="@+id/sunnah4Rakah1rel"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    >
 
                     <TextView
-                        android:id="@+id/salahName"
+                        android:id="@+id/sunnah4Rakah1Tv"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:text="Zuhr"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"></TextView>
+                        android:layout_height="wrap_content"
 
-                    <TextView
-                        android:id="@+id/rakahPrayed"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:text="4"
-                        android:textColor="@color/black"
-                        android:textStyle="bold">
+
+                        android:text="Rakah1">
 
                     </TextView>
+
+                    <RelativeLayout
+                        android:id="@+id/sunnah4Rakah1bar"
+                        android:layout_width="200dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@+id/sunnah4Rakah1Tv"
+                      >
+
+                        <TextView
+                            android:id="@+id/sunnah4Rakah1Qayam"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="Q"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:layout_toRightOf="@+id/sunnah4Rakah1Qayam"
+                            android:id="@+id/sunnah4Rakah1Ruku"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:text="R"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:background="@color/algae_green">
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/sunnah4Rakah1Qoum"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/sunnah4Rakah1Ruku"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="K"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/sunnah4Rakah1Sajda1"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/sunnah4Rakah1Qoum"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/sunnah4Rakah1Jalsa"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/sunnah4Rakah1Sajda1"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="J"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:id="@+id/sunnah4Rakah1Sajda2"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/sunnah4Rakah1Jalsa"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/sunnah4Rakah2rel"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    >
+
+                    <TextView
+                        android:id="@+id/sunnah4Rakah2Tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rakah2">
+
+                    </TextView>
+
+                    <RelativeLayout
+                        android:id="@+id/sunnah4Rakah2bar"
+                        android:layout_width="200dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@+id/sunnah4Rakah2Tv"
+                      >
+
+                        <TextView
+                            android:id="@+id/sunnah4Rakah2Qayam"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="Q"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:layout_toRightOf="@+id/sunnah4Rakah2Qayam"
+                            android:id="@+id/sunnah4Rakah2Ruku"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:text="R"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:background="@color/algae_green">
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/sunnah4Rakah2Qoum"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/sunnah4Rakah2Ruku"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="K"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/sunnah4Rakah2Sajda1"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/sunnah4Rakah2Qoum"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/sunnah4Rakah2Jalsa"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/sunnah4Rakah2Sajda1"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="J"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:id="@+id/sunnah4Rakah2Sajda2"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/sunnah4Rakah2Jalsa"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:id="@+id/sunnah4Rakah2Tashahud"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/sunnah4Rakah2Sajda2"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="T"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+
+
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/sunnah4Rakah3rel"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    >
+
+                    <TextView
+                        android:id="@+id/sunnah4Rakah3Tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rakah3">
+
+                    </TextView>
+
+                    <RelativeLayout
+                        android:id="@+id/sunnah4Rakah3bar"
+                        android:layout_width="200dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@+id/sunnah4Rakah3Tv"
+                      >
+
+                        <TextView
+                            android:id="@+id/sunnah4Rakah3Qayam"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="Q"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:layout_toRightOf="@+id/sunnah4Rakah3Qayam"
+                            android:id="@+id/sunnah4Rakah3Ruku"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:text="R"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:background="@color/algae_green">
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/sunnah4Rakah3Qoum"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/sunnah4Rakah3Ruku"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="K"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/sunnah4Rakah3Sajda1"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/sunnah4Rakah3Qoum"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/sunnah4Rakah3Jalsa"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/sunnah4Rakah3Sajda1"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="J"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:id="@+id/sunnah4Rakah3Sajda2"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/sunnah4Rakah3Jalsa"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+
+
+
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/sunnah4Rakah4rel"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    >
+
+                    <TextView
+                        android:id="@+id/sunnah4Rakah4Tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rakah3">
+
+                    </TextView>
+
+                    <RelativeLayout
+                        android:id="@+id/sunnah4Rakah4bar"
+                        android:layout_width="200dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@+id/sunnah4Rakah4Tv"
+                      >
+
+                        <TextView
+                            android:id="@+id/sunnah4Rakah4Qayam"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="Q"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:layout_toRightOf="@+id/sunnah4Rakah4Qayam"
+                            android:id="@+id/sunnah4Rakah4Ruku"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:text="R"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:background="@color/algae_green">
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/sunnah4Rakah4Qoum"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/sunnah4Rakah4Ruku"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="K"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/sunnah4Rakah4Sajda1"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/sunnah4Rakah4Qoum"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/sunnah4Rakah4Jalsa"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/sunnah4Rakah4Sajda1"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="J"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:id="@+id/sunnah4Rakah4Sajda2"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/sunnah4Rakah4Jalsa"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:id="@+id/sunnah4Rakah4Tashahud"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/sunnah4Rakah4Sajda2"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="T"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+
+
+
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:id="@+id/farz4LL">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Farz 4"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="16dp"
+                    android:layout_gravity="center">
+
+                </TextView>
+                <RelativeLayout
+                    android:id="@+id/farz4Rakah1rel"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    >
+
+                    <TextView
+                        android:id="@+id/farz4Rakah1Tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+
+                        android:text="Rakah1">
+
+                    </TextView>
+
+                    <RelativeLayout
+                        android:id="@+id/farz4Rakah1bar"
+                        android:layout_width="200dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@+id/farz4Rakah1Tv"
+                      >
+
+                        <TextView
+                            android:id="@+id/farz4Rakah1Qayam"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="Q"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:layout_toRightOf="@+id/farz4Rakah1Qayam"
+                            android:id="@+id/farz4Rakah1Ruku"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:text="R"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:background="@color/algae_green">
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/farz4Rakah1Qoum"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz4Rakah1Ruku"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="K"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/farz4Rakah1Sajda1"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz4Rakah1Qoum"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/farz4Rakah1Jalsa"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz4Rakah1Sajda1"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="J"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:id="@+id/farz4Rakah1Sajda2"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz4Rakah1Jalsa"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/farz4Rakah2rel"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    >
+
+                    <TextView
+                        android:id="@+id/farz4Rakah2Tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rakah2">
+
+                    </TextView>
+
+                    <RelativeLayout
+                        android:id="@+id/farz4Rakah2bar"
+                        android:layout_width="200dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@+id/farz4Rakah2Tv">
+
+                        <TextView
+                            android:id="@+id/farz4Rakah2Qayam"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="Q"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/farz4Rakah2Ruku"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz4Rakah2Qayam"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="R"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"></TextView>
+
+                        <TextView
+                            android:id="@+id/farz4Rakah2Qoum"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz4Rakah2Ruku"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="K"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/farz4Rakah2Sajda1"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz4Rakah2Qoum"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/farz4Rakah2Jalsa"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz4Rakah2Sajda1"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="J"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/farz4Rakah2Sajda2"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz4Rakah2Jalsa"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/farz4Rakah2Tashahud"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz4Rakah2Sajda2"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="T"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/farz4Rakah3rel"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    >
+
+                    <TextView
+                        android:id="@+id/farz4Rakah3Tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rakah3">
+
+                    </TextView>
+
+                    <RelativeLayout
+                        android:id="@+id/farz4Rakah3bar"
+                        android:layout_width="200dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@+id/farz4Rakah3Tv"
+                      >
+
+                        <TextView
+                            android:id="@+id/farz4Rakah3Qayam"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="Q"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:layout_toRightOf="@+id/farz4Rakah3Qayam"
+                            android:id="@+id/farz4Rakah3Ruku"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:text="R"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:background="@color/algae_green">
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/farz4Rakah3Qoum"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz4Rakah3Ruku"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="K"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/farz4Rakah3Sajda1"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz4Rakah3Qoum"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/farz4Rakah3Jalsa"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz4Rakah3Sajda1"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="J"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:id="@+id/farz4Rakah3Sajda2"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz4Rakah3Jalsa"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+
+
+
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/farz4Rakah4rel"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    >
+
+                    <TextView
+                        android:id="@+id/farz4Rakah4Tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rakah3">
+
+                    </TextView>
+
+                    <RelativeLayout
+                        android:id="@+id/farz4Rakah4bar"
+                        android:layout_width="200dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@+id/farz4Rakah4Tv"
+                      >
+
+                        <TextView
+                            android:id="@+id/farz4Rakah4Qayam"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="Q"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:layout_toRightOf="@+id/farz4Rakah4Qayam"
+                            android:id="@+id/farz4Rakah4Ruku"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:text="R"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:background="@color/algae_green">
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/farz4Rakah4Qoum"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz4Rakah4Ruku"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="K"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/farz4Rakah4Sajda1"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz4Rakah4Qoum"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/farz4Rakah4Jalsa"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz4Rakah4Sajda1"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="J"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:id="@+id/farz4Rakah4Sajda2"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz4Rakah4Jalsa"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:id="@+id/farz4Rakah4Tashahud"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz4Rakah4Sajda2"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="T"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+
+
+
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_gravity="center"
+                android:id="@+id/farz3LL">
+                <TextView
+                    android:id="@+id/farz3Heading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Farz 3"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="16dp"
+                    android:layout_gravity="center">
+
+                </TextView>
+                <RelativeLayout
+                    android:id="@+id/farz3Rakah1rel"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    >
+
+                    <TextView
+                        android:id="@+id/farz3Rakah1Tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+
+                        android:text="Rakah1">
+
+                    </TextView>
+
+                    <RelativeLayout
+                        android:id="@+id/farz3Rakah1bar"
+                        android:layout_width="200dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@+id/farz3Rakah1Tv"
+                      >
+
+                        <TextView
+                            android:id="@+id/farz3Rakah1Qayam"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="Q"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:layout_toRightOf="@+id/farz3Rakah1Qayam"
+                            android:id="@+id/farz3Rakah1Ruku"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:text="R"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:background="@color/algae_green">
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/farz3Rakah1Qoum"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz3Rakah1Ruku"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="K"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/farz3Rakah1Sajda1"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz3Rakah1Qoum"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/farz3Rakah1Jalsa"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz3Rakah1Sajda1"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="J"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:id="@+id/farz3Rakah1Sajda2"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz3Rakah1Jalsa"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/farz3Rakah2rel"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    >
+
+                    <TextView
+                        android:id="@+id/farz3Rakah2Tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rakah2">
+
+                    </TextView>
+
+                    <RelativeLayout
+                        android:id="@+id/farz3Rakah2bar"
+                        android:layout_width="200dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@+id/farz3Rakah2Tv">
+
+                        <TextView
+                            android:id="@+id/farz3Rakah2Qayam"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="Q"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/farz3Rakah2Ruku"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz3Rakah2Qayam"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="R"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"></TextView>
+
+                        <TextView
+                            android:id="@+id/farz3Rakah2Qoum"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz3Rakah2Ruku"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="K"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/farz3Rakah2Sajda1"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz3Rakah2Qoum"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/farz3Rakah2Jalsa"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz3Rakah2Sajda1"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="J"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/farz3Rakah2Sajda2"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz3Rakah2Jalsa"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/farz3Rakah2Tashahud"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz3Rakah2Sajda2"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="T"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/farz3Rakah3rel"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    >
+
+                    <TextView
+                        android:id="@+id/farz3Rakah3Tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rakah3">
+
+                    </TextView>
+
+                    <RelativeLayout
+                        android:id="@+id/farz3Rakah3bar"
+                        android:layout_width="200dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@+id/farz3Rakah3Tv"
+                      >
+
+                        <TextView
+                            android:id="@+id/farz3Rakah3Qayam"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="Q"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:layout_toRightOf="@+id/farz3Rakah3Qayam"
+                            android:id="@+id/farz3Rakah3Ruku"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:text="R"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:background="@color/algae_green">
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/farz3Rakah3Qoum"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz3Rakah3Ruku"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="K"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/farz3Rakah3Sajda1"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz3Rakah3Qoum"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/farz3Rakah3Jalsa"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz3Rakah3Sajda1"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="J"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/farz3Rakah3Sajda2"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz3Rakah3Jalsa"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+
+
+
+
+                    </RelativeLayout>
+
                 </RelativeLayout>
 
 
-            </androidx.cardview.widget.CardView>
-            <LinearLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2">
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/completenessTile"
-                    android:layout_width="200dp"
-                    android:layout_height="220dp"
-                    app:cardElevation="10dp"
-                    app:cardCornerRadius="20dp"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardMaxElevation="12dp"
-                    app:cardPreventCornerOverlap="true"
-                    app:cardUseCompatPadding="true"
-                    >
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_margin="20dp"
-                            android:id="@+id/hor1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Completness"
-                            android:textColor="@color/black"
-                            android:textStyle="bold">
-                        </TextView>
-
-                    </LinearLayout>
-                    <ImageView
-                        android:id="@+id/ticInsideCompTile"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center">
-
-                    </ImageView>
-                </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/correctnessTile"
-                    android:layout_width="200dp"
-                    android:layout_height="220dp"
-                    app:cardElevation="10dp"
-                    app:cardCornerRadius="20dp"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardMaxElevation="12dp"
-                    app:cardPreventCornerOverlap="true"
-                    app:cardUseCompatPadding="true"
-                    >
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_margin="20dp"
-                            android:id="@+id/hor2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Correctness"
-                            android:textColor="@color/black"
-                            android:textStyle="bold">
-                        </TextView>
-
-                    </LinearLayout>
-                    <ImageView
-                        android:id="@+id/ticInsideCorrTile"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center">
-
-                    </ImageView>
-
-                </androidx.cardview.widget.CardView>
             </LinearLayout>
-            <androidx.cardview.widget.CardView
+            <LinearLayout
+                android:visibility="gone"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="600dp"
-                app:cardElevation="10dp"
-                app:cardCornerRadius="20dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardMaxElevation="12dp"
-                app:cardPreventCornerOverlap="true"
-                app:cardUseCompatPadding="true"
-                >
-                <LinearLayout
-                    android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:id="@+id/sunnah2LL">
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:weightSum="4">
+                    android:text="Sunnah 2"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="16dp"
+                    android:layout_gravity="center">
+
+                </TextView>
+                <RelativeLayout
+                    android:id="@+id/sunnah2Rakah1rel"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    >
+
+                    <TextView
+                        android:id="@+id/sunnah2Rakah1Tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+
+                        android:text="Rakah1">
+
+                    </TextView>
+
                     <RelativeLayout
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:id="@+id/sunnah2Rakah1bar"
+                        android:layout_width="200dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@+id/sunnah2Rakah1Tv"
+                      >
+
                         <TextView
-                            android:layout_margin="20dp"
-                            android:id="@+id/heading3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Details"
+                            android:id="@+id/sunnah2Rakah1Qayam"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="Q"
                             android:textColor="@color/black"
                             android:textStyle="bold">
+
                         </TextView>
-                        <ImageView
-                            android:id="@+id/reportpic"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/black_barchart"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            >
-
-                        </ImageView>
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:visibility="invisible"
-                        android:id="@+id/rakah1Box"
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
                         <TextView
-
-                            android:id="@+id/rakah1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginEnd="20dp"
-                            android:layout_marginBottom="20dp"
-                            android:text="Rakah 1 "
-                            android:textColor="@color/black"></TextView>
-
-                        <ImageView
-                            android:id="@+id/ticR1"
+                            android:layout_toRightOf="@+id/sunnah2Rakah1Qayam"
+                            android:id="@+id/sunnah2Rakah1Ruku"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:layout_alignRight="@+id/rakah1"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="-77dp">
-
-                        </ImageView>
-
-                        <TextView
-                            android:id="@+id/posmissedR1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignRight="@+id/ticR1"
-                            android:layout_marginRight="-77dp"
-                            android:layout_marginTop="20dp"
-                            android:textColor="@android:color/holo_red_dark">
-
-                        </TextView>
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:visibility="invisible"
-                        android:id="@+id/rakah2Box"
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_margin="20dp"
-                            android:id="@+id/rakah2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Rakah 2 "
+                            android:text="R"
+                            android:gravity="center"
                             android:textColor="@color/black"
-                            >
+                            android:textStyle="bold"
+                            android:background="@color/algae_green">
                         </TextView>
 
-                        <ImageView
-                            android:id="@+id/ticR2"
+                        <TextView
+                            android:id="@+id/sunnah2Rakah1Qoum"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:layout_alignRight="@+id/rakah2"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="-77dp">
-
-                        </ImageView>
-
-                        <TextView
-                            android:id="@+id/posmissedR2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignRight="@+id/ticR2"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="-77dp"
-                            android:textColor="@android:color/holo_red_dark">
-
-                        </TextView>
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:visibility="invisible"
-                        android:id="@+id/rakah3Box"
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_margin="20dp"
-                            android:id="@+id/rakah3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Rakah 3 "
+                            android:layout_toRightOf="@+id/sunnah2Rakah1Ruku"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="K"
                             android:textColor="@color/black"
-                            >
+                            android:textStyle="bold">
+
                         </TextView>
 
-                        <ImageView
-                            android:id="@+id/ticR3"
+                        <TextView
+                            android:id="@+id/sunnah2Rakah1Sajda1"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:layout_alignRight="@+id/rakah3"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="-77dp"
-                            >
-
-                        </ImageView>
-                        <TextView
-                            android:id="@+id/posmissedR3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignRight="@+id/ticR3"
-                            android:layout_marginRight="-77dp"
-                            android:layout_marginTop="20dp"
-                            android:text=""
-                            android:textColor="@android:color/holo_red_dark">
+                            android:layout_toRightOf="@+id/sunnah2Rakah1Qoum"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
 
                         </TextView>
+
+                        <TextView
+                            android:id="@+id/sunnah2Rakah1Jalsa"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/sunnah2Rakah1Sajda1"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="J"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:id="@+id/sunnah2Rakah1Sajda2"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/sunnah2Rakah1Jalsa"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+
+
                     </RelativeLayout>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/sunnah2Rakah2rel"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    >
+
+                    <TextView
+                        android:id="@+id/sunnah2Rakah2Tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rakah2">
+
+                    </TextView>
+
                     <RelativeLayout
-                        android:visibility="invisible"
-                        android:id="@+id/rakah4Box"
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:id="@+id/sunnah2Rakah2bar"
+                        android:layout_width="200dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@+id/sunnah2Rakah2Tv">
 
                         <TextView
-                            android:id="@+id/rakah4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginEnd="20dp"
-                            android:layout_marginBottom="20dp"
-                            android:text="Rakah 4 "
-                            android:textColor="@color/black">
-
-                        </TextView>
-
-                        <ImageView
-                            android:id="@+id/ticR4"
+                            android:id="@+id/sunnah2Rakah2Qayam"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:layout_alignRight="@+id/rakah4"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="-77dp"
-                            >
-
-                        </ImageView>
-                        <TextView
-                            android:id="@+id/posmissedR4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignRight="@+id/ticR4"
-                            android:layout_marginRight="-77dp"
-                            android:layout_marginTop="20dp"
-                            android:text=""
-                            android:textColor="@android:color/holo_red_dark">
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="Q"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
 
                         </TextView>
+
+                        <TextView
+                            android:id="@+id/sunnah2Rakah2Ruku"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/sunnah2Rakah2Qayam"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="R"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"></TextView>
+
+                        <TextView
+                            android:id="@+id/sunnah2Rakah2Qoum"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/sunnah2Rakah2Ruku"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="K"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/sunnah2Rakah2Sajda1"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/sunnah2Rakah2Qoum"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/sunnah2Rakah2Jalsa"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/sunnah2Rakah2Sajda1"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="J"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/sunnah2Rakah2Sajda2"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/sunnah2Rakah2Jalsa"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/sunnah2Rakah2Tashahud"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/sunnah2Rakah2Sajda2"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="T"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+
                     </RelativeLayout>
 
+                </RelativeLayout>
 
-                </LinearLayout>
 
 
-            </androidx.cardview.widget.CardView>
+            </LinearLayout>
+            <LinearLayout
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:id="@+id/nafal2LL">
+                <TextView
+                    android:id="@+id/nafal2Heading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nafal 2"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="16dp"
+                    android:layout_gravity="center">
+
+                </TextView>
+                <RelativeLayout
+                    android:id="@+id/nafal2Rakah1rel"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    >
+
+                    <TextView
+                        android:id="@+id/nafal2Rakah1Tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+
+                        android:text="Rakah1">
+
+                    </TextView>
+
+                    <RelativeLayout
+                        android:id="@+id/nafal2Rakah1bar"
+                        android:layout_width="200dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@+id/nafal2Rakah1Tv"
+                      >
+
+                        <TextView
+                            android:id="@+id/nafal2Rakah1Qayam"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="Q"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:layout_toRightOf="@+id/nafal2Rakah1Qayam"
+                            android:id="@+id/nafal2Rakah1Ruku"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:text="R"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:background="@color/algae_green">
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/nafal2Rakah1Qoum"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/nafal2Rakah1Ruku"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="K"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/nafal2Rakah1Sajda1"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/nafal2Rakah1Qoum"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/nafal2Rakah1Jalsa"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/nafal2Rakah1Sajda1"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="J"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:id="@+id/nafal2Rakah1Sajda2"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/nafal2Rakah1Jalsa"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/nafal2Rakah2rel"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    >
+
+                    <TextView
+                        android:id="@+id/nafal2Rakah2Tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rakah2">
+
+                    </TextView>
+
+                    <RelativeLayout
+                        android:id="@+id/nafal2Rakah2bar"
+                        android:layout_width="200dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@+id/nafal2Rakah2Tv">
+
+                        <TextView
+                            android:id="@+id/nafal2Rakah2Qayam"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="Q"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/nafal2Rakah2Ruku"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/nafal2Rakah2Qayam"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="R"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"></TextView>
+
+                        <TextView
+                            android:id="@+id/nafal2Rakah2Qoum"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/nafal2Rakah2Ruku"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="K"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/nafal2Rakah2Sajda1"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/nafal2Rakah2Qoum"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/nafal2Rakah2Jalsa"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/nafal2Rakah2Sajda1"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="J"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/nafal2Rakah2Sajda2"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/nafal2Rakah2Jalsa"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/nafal2Rakah2Tashahud"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/nafal2Rakah2Sajda2"
+                            android:background="@color/algae_green"
+                            android:gravity="center"
+                            android:text="T"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+
+
+            </LinearLayout>
 
         </LinearLayout>
 
+    </ScrollView>
 
 
-    </TableLayout>
-</ScrollView>
+
+</LinearLayout>

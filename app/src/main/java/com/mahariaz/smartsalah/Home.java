@@ -108,30 +108,8 @@ public class Home extends AppCompatActivity {
         View headerView = nvDrawer.getHeaderView(0);
         TextView userName = headerView.findViewById(R.id.uname_tview);
         TextView userEmail = headerView.findViewById(R.id.email_tview);
-        ImageView show_dp=headerView.findViewById(R.id.show_dp);
-        // MY SAVIOUR CODE FOR RETRIEVING A PARTICULAR INDEX FROM FIREBASE
-        show_dp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                firebaseDatabase = FirebaseDatabase.getInstance();
-                databaseReference = firebaseDatabase.getReference("UserBio").child(shared.username).child("dp");
-                databaseReference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        String value = snapshot.getValue(String.class);
-                        ImageView show_dp=findViewById(R.id.show_dp);
-                        Glide.with(getApplicationContext()).load(value).into(show_dp);
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        System.out.println("FAILED");
 
-                    }
-                });
-
-            }
-        });
         // set user name and email
         userName.setText(shared.username);
         userEmail.setText(shared.email);
@@ -145,6 +123,14 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Home.this,Highlights.class);
+                startActivity(intent);
+            }
+        });
+        CardView trackSalah=findViewById(R.id.trackSalah);
+        trackSalah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Home.this,Salah_Rakah_Selection.class);
                 startActivity(intent);
             }
         });
@@ -279,6 +265,7 @@ public class Home extends AppCompatActivity {
             });
         }
     }
+
 
 }
 

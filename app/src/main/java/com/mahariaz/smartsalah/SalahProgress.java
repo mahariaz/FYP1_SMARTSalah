@@ -78,56 +78,57 @@ public class SalahProgress extends AppCompatActivity {
         get_intents();
         get_bar_ids();
          posturepic=findViewById(R.id.posturepic);
-        final Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                Handler handler1 = new Handler();
-                for (int i=0;i<postureName2.size();i++){
+         // changing the pictures
+//        final Runnable runnable = new Runnable() {
+//            @Override
+//            public void run() {
+//                Handler handler1 = new Handler();
+//                for (int i=0;i<postureName2.size();i++){
+//
+//                    if(postureName2.get(i).equalsIgnoreCase("Qayam")){
+//                        handler1.postDelayed(new Runnable() {
+//
+//                            @Override
+//                            public void run() {
+//                                posturepic.setImageDrawable(getResources().getDrawable(R.drawable.qayampic));
+//                            }
+//                        }, 1000 * i);
+//                    }
+//                    else if(postureName2.get(i).equalsIgnoreCase("Ruku")){
+//                        handler1.postDelayed(new Runnable() {
+//
+//                            @Override
+//                            public void run() {
+//                                posturepic.setImageDrawable(getResources().getDrawable(R.drawable.rukupic));
+//                            }
+//                        }, 1000 * i);
+//                    }
+//                    else if(postureName2.get(i).equalsIgnoreCase("Qoum")){
+//                        handler1.postDelayed(new Runnable() {
+//
+//                            @Override
+//                            public void run() {
+//                                posturepic.setImageDrawable(getResources().getDrawable(R.drawable.qoumapic));
+//                            }
+//                        }, 1000 * i);
+//                    }
+//                    else if(postureName2.get(i).equalsIgnoreCase("Sajda")){
+//                        handler1.postDelayed(new Runnable() {
+//
+//                            @Override
+//                            public void run() {
+//                                posturepic.setImageDrawable(getResources().getDrawable(R.drawable.sajdapic));
+//                            }
+//                        }, 1000 * i);
+//                    }
+//
+//                }
+//            }
+//        };
+//        final Handler handler = new Handler();
+//        handler.postDelayed(runnable, 5000);
 
-                    if(postureName2.get(i).equalsIgnoreCase("Qayam")){
-                        handler1.postDelayed(new Runnable() {
-
-                            @Override
-                            public void run() {
-                                posturepic.setImageDrawable(getResources().getDrawable(R.drawable.qayampic));
-                            }
-                        }, 1000 * i);
-                    }
-                    else if(postureName2.get(i).equalsIgnoreCase("Ruku")){
-                        handler1.postDelayed(new Runnable() {
-
-                            @Override
-                            public void run() {
-                                posturepic.setImageDrawable(getResources().getDrawable(R.drawable.rukupic));
-                            }
-                        }, 1000 * i);
-                    }
-                    else if(postureName2.get(i).equalsIgnoreCase("Qoum")){
-                        handler1.postDelayed(new Runnable() {
-
-                            @Override
-                            public void run() {
-                                posturepic.setImageDrawable(getResources().getDrawable(R.drawable.qoumapic));
-                            }
-                        }, 1000 * i);
-                    }
-                    else if(postureName2.get(i).equalsIgnoreCase("Sajda")){
-                        handler1.postDelayed(new Runnable() {
-
-                            @Override
-                            public void run() {
-                                posturepic.setImageDrawable(getResources().getDrawable(R.drawable.sajdapic));
-                            }
-                        }, 1000 * i);
-                    }
-
-                }
-            }
-        };
-        final Handler handler = new Handler();
-        handler.postDelayed(runnable, 5000);
-
-        fill_bar1(bar1);
+//        fill_bar1(bar1);
         Button view_salah=findViewById(R.id.view_salah_btn);
         Button end_salah=findViewById(R.id.end_salah_btn);
         end_salah.setOnClickListener(new View.OnClickListener() {
@@ -152,78 +153,7 @@ public class SalahProgress extends AppCompatActivity {
             }
         });
 
-//        InputStream is;
-//        BufferedReader reader;
-//        is = getResources().openRawResource(R.raw.file3);
-//        reader = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-//
-//        String line = "";
-//        try {
-//            while ((line = reader.readLine()) != null) {
-//                // Split the line into different tokens (using the comma as a separator).
-//                String[] tokens = line.split("\n");
-//                for (int i = 0; i < tokens.length; i++) {
-//
-//                    String[] tokens2 = tokens[i].split(",");
-//                    String x = tokens2[0];
-//                    String y = tokens2[1];
-//                    String z = tokens2[2];
-//                    StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-//                            new Response.Listener<String>() {
-//                                @Override
-//                                public void onResponse(String response) {
-//
-//                                    try {
-//                                        JSONObject jsonObject = new JSONObject(response);
-//                                        String data = jsonObject.getString("posture");
-//                                        // result.setText(data);
-//                                        data = data + "\n";
-//                                        //filesaving(data);
-//                                        System.out.println(data);
-//
-//
-////
-//                                    } catch (JSONException e) {
-//                                        e.printStackTrace();
-//                                    }
-//
-//                                }
-//                            },
-//                            new Response.ErrorListener() {
-//                                @Override
-//                                public void onErrorResponse(VolleyError error) {
-//                                    Toast.makeText(SalahProgress.this, "ERROR!!!", Toast.LENGTH_SHORT).show();
-//                                }
-//                            }) {
-//
-//                        @Override
-//                        protected Map<String, String> getParams() {
-//                            Map<String, String> params = new HashMap<String, String>();
-//                            params.put("x", x);
-//                            params.put("y", y);
-//                            params.put("z", z);
-//
-//                            return params;
-//                        }
-//
-//                    };
-//                    RequestQueue queue = Volley.newRequestQueue(SalahProgress.this);
-//                    queue.add(stringRequest);
-//                    stringRequest.setShouldCache(false);// no caching url...
-//                    stringRequest.setRetryPolicy(
-//                            new DefaultRetryPolicy(
-//                                    1000,//time to wait for it in this case 20s
-//                                    20,//tries in case of error
-//                                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
-//                            )
-//                    );
-//
-//                }
-//
-//            }
-//        } catch (IOException e1) {
-//            e1.printStackTrace();
-//        }
+
     }
     @Override
     protected void onStart()

@@ -1,290 +1,805 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="2"
-    android:background="@color/white"
-    tools:context=".weeklyStats">
+    android:fillViewport="true">
 
 
     <LinearLayout
-        android:padding="10dp"
-        android:layout_margin="10dp"
-        android:layout_weight="1"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/idBarChart"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="3">
+        android:weightSum="2"
+        android:background="@color/white"
+        tools:context=".weeklyStats">
+
         <LinearLayout
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-            <androidx.cardview.widget.CardView
-                android:layout_weight="1"
-                android:id="@+id/fjrTile"
-                android:layout_width="250dp"
-                android:layout_height="120dp"
-                app:cardElevation="10dp"
-                app:cardCornerRadius="20dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardMaxElevation="12dp"
-                app:cardPreventCornerOverlap="true"
-                app:cardUseCompatPadding="true"
-                >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:orientation="vertical"
-                    android:weightSum="2"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Fajar"
-                        android:textColor="@color/black"
-                        android:textStyle="bold">
-                    </TextView>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-
-                        <TextView
-                            android:id="@+id/cmp1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_marginLeft="20dp"
-                            android:text="5"
-                            android:textStyle="bold">
-
-                        </TextView>
-
-
-                    </RelativeLayout>
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:layout_weight="1"
-                android:id="@+id/ZhrTile"
-                android:layout_width="250dp"
-                android:layout_height="120dp"
-                app:cardElevation="10dp"
-                app:cardCornerRadius="20dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardMaxElevation="12dp"
-                app:cardPreventCornerOverlap="true"
-                app:cardUseCompatPadding="true"
-                >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:orientation="vertical"
-                    android:weightSum="2"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Zuhr"
-                        android:textColor="@color/black"
-                        android:textStyle="bold">
-                    </TextView>
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-                        <TextView
-                            android:id="@+id/cmp2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_marginLeft="20dp"
-                            android:text="3"
-                            android:textStyle="bold">
-
-                        </TextView>
-
-
-                    </RelativeLayout>
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_height="0dp"
-            android:weightSum="2"
-            android:layout_weight="1">
-            <androidx.cardview.widget.CardView
-                android:layout_weight="1"
-                android:id="@+id/AsrTile"
-                android:layout_width="250dp"
-                android:layout_height="120dp"
-                app:cardElevation="10dp"
-                app:cardCornerRadius="20dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardMaxElevation="12dp"
-                app:cardPreventCornerOverlap="true"
-                app:cardUseCompatPadding="true"
-                >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:orientation="vertical"
-                    android:weightSum="2"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Asar"
-                        android:textColor="@color/black"
-                        android:textStyle="bold">
-                    </TextView>
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-                        <TextView
-                            android:id="@+id/cmp3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_marginLeft="20dp"
-                            android:text="3"
-                            android:textStyle="bold">
-
-                        </TextView>
-
-
-                    </RelativeLayout>
-
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:layout_weight="1"
-                android:id="@+id/MgbTile"
-                android:layout_width="250dp"
-                android:layout_height="120dp"
-                app:cardElevation="10dp"
-                app:cardCornerRadius="20dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardMaxElevation="12dp"
-                app:cardPreventCornerOverlap="true"
-                app:cardUseCompatPadding="true"
-                >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:orientation="vertical"
-                    android:weightSum="2"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Maghrib"
-                        android:textColor="@color/black"
-                        android:textStyle="bold">
-                    </TextView>
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-                        <TextView
-                            android:id="@+id/cmp4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_marginLeft="20dp"
-                            android:text="4"
-                            android:textStyle="bold">
-
-                        </TextView>
-
-
-                    </RelativeLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_height="0dp"
-            android:weightSum="2"
-            android:layout_weight="1">
-            <androidx.cardview.widget.CardView
-                android:layout_weight="1"
-                android:id="@+id/IshaTile"
+            android:layout_height="300dp">
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/idBarChart"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                app:cardElevation="10dp"
-                app:cardCornerRadius="20dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardMaxElevation="12dp"
-                app:cardPreventCornerOverlap="true"
-                app:cardUseCompatPadding="true"
-                >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:orientation="vertical"
-                    android:weightSum="2"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Isha"
-                        android:textColor="@color/black"
-                        android:textStyle="bold">
-                    </TextView>
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-                        <TextView
-                            android:id="@+id/cmp5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_marginLeft="20dp"
-                            android:text="3"
-                            android:textStyle="bold">
-
-                        </TextView>
-
-
-                    </RelativeLayout>
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                android:layout_height="match_parent" />
 
         </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#855EB362"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Correct Prayers "
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    >
+                </TextView>
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5/6"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    >
+                </TextView>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Completed Prayers"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    >
+                </TextView>
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5/6"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    >
+                </TextView>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Missed Salah "
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    >
+                </TextView>
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    >
+                </TextView>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weekly Missed Salah"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                >
+
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/missed">
+
+
+            <RelativeLayout
+                android:id="@+id/Monday"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                >
+
+                <TextView
+                    android:id="@+id/mon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+
+                    android:text="Mon">
+
+                </TextView>
+
+                <RelativeLayout
+                    android:id="@+id/fajar_mon"
+                    android:layout_width="200dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/mon">
+
+                    <TextView
+                        android:id="@+id/fajar_mon1"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@color/algae_green"
+                        android:gravity="center"
+                        android:text="F"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/zuhr_mon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_toRightOf="@+id/fajar_mon1"
+                        android:background="@color/algae_green"
+                        android:gravity="center"
+                        android:text="Z"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/asr_mon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_toRightOf="@+id/zuhr_mon"
+                        android:background="@color/algae_green"
+                        android:gravity="center"
+                        android:text="A"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/magh_mon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_toRightOf="@+id/asr_mon"
+                        android:background="@color/algae_green"
+                        android:gravity="center"
+                        android:text="M"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/isha_mon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_toRightOf="@+id/magh_mon"
+                        android:background="@color/algae_green"
+                        android:gravity="center"
+                        android:text="I"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
+
+                    </TextView>
+                </RelativeLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/Tuesday"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                >
+
+                <TextView
+                    android:id="@+id/tue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+
+                    android:text="Tue">
+
+                </TextView>
+
+                <RelativeLayout
+                    android:id="@+id/fajar_tue"
+                    android:layout_width="200dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/tue"
+                    >
+
+                    <TextView
+                        android:id="@+id/fajar_tue1"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@color/algae_green"
+                        android:gravity="center"
+                        android:text="F"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
+
+                    </TextView>
+                    <TextView
+                        android:layout_toRightOf="@+id/fajar_tue1"
+                        android:id="@+id/zuhr_tue"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:text="Z"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:background="@color/algae_green">
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/asr_tue"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_toRightOf="@+id/zuhr_tue"
+                        android:background="@color/algae_green"
+                        android:gravity="center"
+                        android:text="A"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/magh_tue"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_toRightOf="@+id/asr_tue"
+                        android:background="@color/algae_green"
+                        android:gravity="center"
+                        android:text="M"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/isha_tue"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_toRightOf="@+id/magh_tue"
+                        android:background="@color/algae_green"
+                        android:gravity="center"
+                        android:text="I"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
+
+                    </TextView>
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/Wednesday"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                >
+
+                <TextView
+                    android:id="@+id/wed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+
+                    android:text="Wed">
+
+                </TextView>
+
+                <RelativeLayout
+                    android:id="@+id/fajar_wed"
+                    android:layout_width="200dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/wed"
+                    >
+
+                    <TextView
+                        android:id="@+id/fajar_wed1"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@color/algae_green"
+                        android:gravity="center"
+                        android:text="F"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
+
+                    </TextView>
+                    <TextView
+                        android:layout_toRightOf="@+id/fajar_wed1"
+                        android:id="@+id/zuhr_wed"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:text="Z"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:background="@color/algae_green">
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/asr_wed"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_toRightOf="@+id/zuhr_wed"
+                        android:background="@color/algae_green"
+                        android:gravity="center"
+                        android:text="A"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/magh_wed"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_toRightOf="@+id/asr_wed"
+                        android:background="@color/algae_green"
+                        android:gravity="center"
+                        android:text="M"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/isha_wed"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_toRightOf="@+id/magh_wed"
+                        android:background="@color/algae_green"
+                        android:gravity="center"
+                        android:text="I"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
+
+                    </TextView>
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/Thursday"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                >
+
+                <TextView
+                    android:id="@+id/thr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+
+                    android:text="Thurs">
+
+                </TextView>
+
+                <RelativeLayout
+                    android:id="@+id/fajar_thr"
+                    android:layout_width="200dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/thr"
+                    >
+
+                    <TextView
+                        android:id="@+id/fajar_thr1"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@color/algae_green"
+                        android:gravity="center"
+                        android:text="F"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
+
+                    </TextView>
+                    <TextView
+                        android:layout_toRightOf="@+id/fajar_thr1"
+                        android:id="@+id/zuhr_thr"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:text="Z"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:background="@color/algae_green">
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/asr_thr"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_toRightOf="@+id/zuhr_thr"
+                        android:background="@color/algae_green"
+                        android:gravity="center"
+                        android:text="A"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/magh_thr"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_toRightOf="@+id/asr_thr"
+                        android:background="@color/algae_green"
+                        android:gravity="center"
+                        android:text="M"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/isha_thr"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_toRightOf="@+id/magh_thr"
+                        android:background="@color/algae_green"
+                        android:gravity="center"
+                        android:text="I"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
+
+                    </TextView>
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/Friday"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                >
+
+                <TextView
+                    android:id="@+id/fri"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+
+                    android:text="Fri">
+
+                </TextView>
+
+                <RelativeLayout
+                    android:id="@+id/fajar_fri"
+                    android:layout_width="200dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/fri"
+                    >
+
+                    <TextView
+                        android:id="@+id/fajar_fri1"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@color/algae_green"
+                        android:gravity="center"
+                        android:text="F"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
+
+                    </TextView>
+                    <TextView
+                        android:layout_toRightOf="@+id/fajar_fri1"
+                        android:id="@+id/zuhr_fri"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:text="Z"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:background="@color/algae_green">
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/asr_fri"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_toRightOf="@+id/zuhr_fri"
+                        android:background="@color/algae_green"
+                        android:gravity="center"
+                        android:text="A"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/magh_fri"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_toRightOf="@+id/asr_fri"
+                        android:background="@color/algae_green"
+                        android:gravity="center"
+                        android:text="M"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/isha_fri"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_toRightOf="@+id/magh_fri"
+                        android:background="@color/algae_green"
+                        android:gravity="center"
+                        android:text="I"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
+
+                    </TextView>
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/Saturday"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                >
+
+                <TextView
+                    android:id="@+id/sat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+
+                    android:text="Sat">
+
+                </TextView>
+
+                <RelativeLayout
+                    android:id="@+id/fajar_sat"
+                    android:layout_width="200dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/sat"
+                    >
+
+                    <TextView
+                        android:id="@+id/fajar_sat1"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@color/algae_green"
+                        android:gravity="center"
+                        android:text="F"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
+
+                    </TextView>
+                    <TextView
+                        android:layout_toRightOf="@+id/fajar_sat1"
+                        android:id="@+id/zuhr_sat"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:text="Z"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:background="@color/algae_green">
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/asr_sat"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_toRightOf="@+id/zuhr_sat"
+                        android:background="@color/algae_green"
+                        android:gravity="center"
+                        android:text="A"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/magh_sat"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_toRightOf="@+id/asr_sat"
+                        android:background="@color/algae_green"
+                        android:gravity="center"
+                        android:text="M"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/isha_sat"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_toRightOf="@+id/magh_sat"
+                        android:background="@color/algae_green"
+                        android:gravity="center"
+                        android:text="I"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
+
+                    </TextView>
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/Sunday"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                >
+
+                <TextView
+                    android:id="@+id/sun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+
+                    android:text="Sun">
+
+                </TextView>
+
+                <RelativeLayout
+                    android:id="@+id/fajar_sun"
+                    android:layout_width="200dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/sun"
+                    >
+
+                    <TextView
+                        android:id="@+id/fajar_sun1"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@color/algae_green"
+                        android:gravity="center"
+                        android:text="F"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
+
+                    </TextView>
+                    <TextView
+                        android:layout_toRightOf="@+id/fajar_sun1"
+                        android:id="@+id/zuhr_sun"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:text="Z"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:background="@color/algae_green">
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/asr_sun"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_toRightOf="@+id/zuhr_sun"
+                        android:background="@color/algae_green"
+                        android:gravity="center"
+                        android:text="A"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/magh_sun"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_toRightOf="@+id/asr_sun"
+                        android:background="@color/algae_green"
+                        android:gravity="center"
+                        android:text="M"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/isha_sun"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_toRightOf="@+id/magh_sun"
+                        android:background="@color/algae_green"
+                        android:gravity="center"
+                        android:text="I"
+                        android:textColor="@color/black"
+                        android:textStyle="bold">
+
+                    </TextView>
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+
+
+
     </LinearLayout>
-
-
-
-</LinearLayout>
+</ScrollView>

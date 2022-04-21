@@ -1,5 +1,6 @@
 package com.mahariaz.smartsalah;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,11 +33,17 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URL;
 import java.nio.charset.Charset;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -62,6 +70,8 @@ public class dailyStats extends Fragment {
     int fileMaghribFarz3[]={R.raw.user1_file1_3};
     int fileMaghribSunnah2[]={R.raw.user1_file1_2};
     int fileMaghribNafil2[]={R.raw.user1_file1_2};
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
 
     int fjrTime=0,zuhrTime=0,asrTime=0,mgbTime=0,ishaTime=0;
 
@@ -86,7 +96,8 @@ public class dailyStats extends Fragment {
     String token_name="";
     int total_qayam=0,total_ruku=0,total_qoum=0,total_sajda=0,total_jalsa=0,total_tash=0;
     BarChart mChart;
-
+    String mlUrl = "https://mlint.herokuapp.com/val";
+    String reasonerUrl = "https://mlint.herokuapp.com/reasoner";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,6 +110,7 @@ public class dailyStats extends Fragment {
         View view= inflater.inflate(R.layout.fragment_daily_stats, container, false);
 
         SalahTimes();
+        //save_data();
 
 
         fajrStats=view.findViewById(R.id.fajrStats);
@@ -492,6 +504,28 @@ public class dailyStats extends Fragment {
         long diffMinutes = diff / (60 * 1000) % 60;
         long diffHours = diff / (60 * 60 * 1000);
         return diffMinutes;
+    }
+    private void save_data(){
+    firebaseDatabase = FirebaseDatabase.getInstance();
+    databaseReference = firebaseDatabase.getReference("UserBio").child("huma24");
+    databaseReference.addValueEventListener(new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+//            String value = snapshot.getValue(String.class);
+//            System.out.println("AAAAAAA : "+value);
+
+
+
+
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+            System.out.println("FAILED");
+
+        }
+    });
+
     }
 
 }

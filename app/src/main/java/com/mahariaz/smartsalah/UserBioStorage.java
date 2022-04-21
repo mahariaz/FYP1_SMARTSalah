@@ -28,6 +28,9 @@ public class UserBioStorage {
 
     String gender;
 
+    String height;
+    String age;
+    String email;
     public String getHeight() {
         return height;
     }
@@ -44,9 +47,6 @@ public class UserBioStorage {
         this.age = age;
     }
 
-    String height;
-    String age;
-    String email;
 
 
     public String getDp() {

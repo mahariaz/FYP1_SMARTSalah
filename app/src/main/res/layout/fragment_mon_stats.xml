@@ -23,7 +23,31 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="The Percentage of your Correct Salahs"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:background="#94DAB444">
+
+        </TextView>
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/monPie"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="80dp">
+
+        </com.github.mikephil.charting.charts.PieChart>
+
+    </LinearLayout>
 
 
 

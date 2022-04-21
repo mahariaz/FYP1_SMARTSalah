@@ -7,7 +7,9 @@ import androidx.core.content.ContextCompat;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +18,15 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,6 +41,7 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
     CircleImageView fajar_circle,zuhr_circle,asr_circle,maghreb_circle,isha_circle,nafl_circle;
     CircleImageView r1_circle,r2_circle,r3_circle,r4_circle;
     Boolean isSalahSelected=false;
+    String mlURL="https://mlint.herokuapp.com/val";
 
     private Toolbar mTopToolbar;
     @Override
@@ -248,6 +260,12 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // create object of MyAsyncTasks class and execute it
+//                MyAsyncTasks myAsyncTasks = new MyAsyncTasks();
+//                myAsyncTasks.execute();
+                String data = DataRepo.getData();
+                Log.d("maha : tag",data);
+
 
                 Intent intent=new Intent(Salah_Rakah_Selection.this,SalahProgress.class);
                 intent.putExtra("sel_salah",sel_salah);
@@ -282,6 +300,39 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+//    public class MyAsyncTasks extends AsyncTask<String, String, String> {
+//
+//        @Override
+//        protected String doInBackground(String... params ) {
+//            StringRequest stringRequest = new StringRequest(Request.Method.POST, mlURL,
+//                                    new Response.Listener<String>() {
+//                                        @Override
+//                                        public void onResponse(String response) {
+//
+//                                            try {
+//                                                JSONObject jsonObject = new JSONObject(response);
+//                                                String data = jsonObject.getString("posture");
+//                                                // result.setText(data)
+//                                                System.out.println(data);
+//
+////
+//                                            } catch (JSONException e) {
+//                                                e.printStackTrace();
+//                                            }
+//
+//                                        }
+//                                    },
+//                                    new Response.ErrorListener() {
+//                                        @Override
+//                                        public void onErrorResponse(VolleyError error) {
+//                                            Toast.makeText(Salah_Rakah_Selection.this, "ERROR!!!", Toast.LENGTH_SHORT).show();
+//                                        }
+//                                    });
+////
+//            return null;
+//        }
+//    }
+
 
 
 

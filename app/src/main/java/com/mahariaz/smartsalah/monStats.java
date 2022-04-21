@@ -14,9 +14,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -25,7 +28,11 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
@@ -38,6 +45,9 @@ import java.util.Locale;
 
 
 public class monStats extends Fragment {
+    private PieChart weekPie;
+
+
 
     BarChart mChart;
     // variable for our bar data.
@@ -56,8 +66,9 @@ public class monStats extends Fragment {
                              Bundle savedInstanceState) {
 
         View view= inflater.inflate(R.layout.fragment_mon_stats, container, false);
+        weekPie = view.findViewById(R.id.monPie);
 
-
+        weekStatusPieChart();
 
         mChart = (BarChart) view.findViewById(R.id.idBarChart);
         mChart.setDrawBarShadow(false);
@@ -139,5 +150,36 @@ public class monStats extends Fragment {
 
         return view;
     }
+
+    private void weekStatusPieChart() {
+        ArrayList<PieEntry> entries = new ArrayList<>();
+        entries.add(new PieEntry( 0.3f, "Complete"));
+        entries.add(new PieEntry(0.3f, "Correct"));
+        entries.add(new PieEntry(0.4f, "Missed"));
+        ArrayList<Integer> colors = new ArrayList<>();
+
+        for (int color: ColorTemplate.MATERIAL_COLORS) {
+            colors.add(color);
+        }
+        for (int color: ColorTemplate.VORDIPLOM_COLORS) {
+            colors.add(color);
+        }
+
+        PieDataSet dataSet = new PieDataSet(entries, "");
+        dataSet.setColors(colors);
+        PieData data = new PieData(dataSet);
+        data.setValueFormatter(new PercentFormatter(weekPie));
+        data.setValueTextSize(12f);
+        data.setValueFormatter(new PercentFormatter(weekPie));
+        weekPie.setData(data);
+        weekPie.invalidate();
+
+        weekPie.animateY(1400, Easing.EaseInOutQuad);
+        weekPie.setDrawHoleEnabled(false);
+        weekPie.getDescription().setEnabled(false);
+        weekPie.setDrawSliceText(false);
+    }
+
+
 
 }

@@ -51,11 +51,12 @@
                         android:layout_marginTop="20dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
+
                         <ImageView
                             android:id="@+id/fjrmoon"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:src="@drawable/supp_img">
+                            android:src="@drawable/moon">
 
                         </ImageView>
 
@@ -108,11 +109,12 @@
                         android:layout_marginTop="20dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
+
                         <ImageView
                             android:id="@+id/zuhrIcon"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:src="@drawable/supp_img">
+                            android:src="@drawable/sunn">
 
                         </ImageView>
                         <TextView
@@ -130,13 +132,13 @@
                     </RelativeLayout>
 
                     <ImageView
-                        android:layout_marginTop="30dp"
                         android:id="@+id/zuhrtic"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_alignParentRight="true"
+                        android:layout_marginTop="30dp"
                         android:layout_marginRight="20dp"
-                        android:src="@drawable/tic">
+                        android:src="@drawable/error">
 
                     </ImageView>
 
@@ -164,11 +166,12 @@
                         android:layout_marginTop="20dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
+
                         <ImageView
                             android:id="@+id/asrIcon"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:src="@drawable/supp_img">
+                            android:src="@drawable/miday">
 
                         </ImageView>
                         <TextView
@@ -220,11 +223,12 @@
                         android:layout_marginTop="20dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
+
                         <ImageView
                             android:id="@+id/mgbIcon"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:src="@drawable/supp_img">
+                            android:src="@drawable/sunset2">
 
                         </ImageView>
                         <TextView
@@ -276,23 +280,25 @@
                         android:layout_marginTop="20dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
+
                         <ImageView
                             android:id="@+id/ishaIcon"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:src="@drawable/supp_img">
+                            android:src="@drawable/night">
 
                         </ImageView>
+
                         <TextView
-                            android:layout_toRightOf="@+id/ishaIcon"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="20dp"
                             android:layout_marginLeft="20dp"
                             android:layout_marginTop="10dp"
+                            android:layout_toRightOf="@+id/ishaIcon"
+                            android:text="Isha"
                             android:textColor="@color/black"
-                            android:textStyle="bold"
-                            android:text="Maghrib">
+                            android:textSize="20dp"
+                            android:textStyle="bold">
 
                         </TextView>
                     </RelativeLayout>

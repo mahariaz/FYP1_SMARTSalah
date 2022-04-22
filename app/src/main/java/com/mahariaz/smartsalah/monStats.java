@@ -154,25 +154,41 @@ public class monStats extends Fragment {
     private void weekStatusPieChart() {
         ArrayList<PieEntry> entries = new ArrayList<>();
         entries.add(new PieEntry( 0.3f, "Complete"));
-        entries.add(new PieEntry(0.3f, "Correct"));
+        entries.add(new PieEntry(0.3f, "Error"));
         entries.add(new PieEntry(0.4f, "Missed"));
-        ArrayList<Integer> colors = new ArrayList<>();
+       /* ArrayList<Integer> colors = new ArrayList<>();
 
         for (int color: ColorTemplate.MATERIAL_COLORS) {
             colors.add(color);
         }
         for (int color: ColorTemplate.VORDIPLOM_COLORS) {
             colors.add(color);
-        }
+        }*/
+
+
+        ArrayList<Integer> colors = new ArrayList<>();
+        colors.add(Color.parseColor("#B8D8BE"));
+        colors.add(Color.parseColor("#d1cfe2"));
+        colors.add(Color.parseColor("#f6ac69"));
+
 
         PieDataSet dataSet = new PieDataSet(entries, "");
         dataSet.setColors(colors);
         PieData data = new PieData(dataSet);
         data.setValueFormatter(new PercentFormatter(weekPie));
-        data.setValueTextSize(12f);
+        data.setValueTextSize(20f);
         data.setValueFormatter(new PercentFormatter(weekPie));
         weekPie.setData(data);
         weekPie.invalidate();
+
+
+        Legend legend = weekPie.getLegend();
+        legend.setForm(Legend.LegendForm.CIRCLE);
+        legend.setTextSize(17);
+        legend.setFormSize(20);
+        legend.setFormToTextSpace(2);
+
+
 
         weekPie.animateY(1400, Easing.EaseInOutQuad);
         weekPie.setDrawHoleEnabled(false);

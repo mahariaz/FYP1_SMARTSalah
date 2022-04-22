@@ -2,6 +2,7 @@ package com.mahariaz.smartsalah;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
@@ -36,12 +37,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner;
 
 public class Salah_Rakah_Selection extends AppCompatActivity {
-    String sel_salah="",sel_rakah="";
+    String sel_salah="",sel_rakah="",sel_unit="";
     Button start;
     CircleImageView fajar_circle,zuhr_circle,asr_circle,maghreb_circle,isha_circle,nafl_circle;
     CircleImageView r1_circle,r2_circle,r3_circle,r4_circle;
+    CircleImageView sunnahCircle,farzCircle,nafl2Circle,witrCircle;
     Boolean isSalahSelected=false;
-    String mlURL="https://mlint.herokuapp.com/val";
+    String fileNumber;
+
 
     private Toolbar mTopToolbar;
     @Override
@@ -60,13 +63,17 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
         r2_circle=findViewById(R.id.r2_circle);
         r3_circle=findViewById(R.id.r3_circle);
         r4_circle=findViewById(R.id.r4_circle);
+        sunnahCircle=findViewById(R.id.sunnah_circle);
+        farzCircle=findViewById(R.id.farz_circle);
+        nafl2Circle=findViewById(R.id.nafl2_circle);
+        witrCircle=findViewById(R.id.witr_circle);
 
 
         fajar_circle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sel_salah="Fajar";
-                fajar_circle.setColorFilter(Color.MAGENTA, PorterDuff.Mode.SRC_ATOP);
+                fajar_circle.setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
                 zuhr_circle.setColorFilter(0,PorterDuff.Mode.SRC_ATOP);
                 asr_circle.setColorFilter(0,PorterDuff.Mode.SRC_ATOP);
                 maghreb_circle.setColorFilter(0,PorterDuff.Mode.SRC_ATOP);
@@ -80,6 +87,10 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
                 r4_circle.setEnabled(false);
                 r1_circle.setEnabled(false);
                 r2_circle.setEnabled(true);
+                farzCircle.setEnabled(true);
+                sunnahCircle.setEnabled(true);
+                witrCircle.setEnabled(false);
+                nafl2Circle.setEnabled(false);
                 isSalahSelected=true;
                 start.setEnabled(false);
             }
@@ -102,6 +113,11 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
                 r1_circle.setEnabled(false);
                 r2_circle.setEnabled(true);
                 r4_circle.setEnabled(true);
+                farzCircle.setEnabled(true);
+                sunnahCircle.setEnabled(true);
+                nafl2Circle.setEnabled(true);
+                witrCircle.setEnabled(false);
+
                 isSalahSelected=true;
                 start.setEnabled(false);
             }
@@ -124,6 +140,10 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
                 r3_circle.setEnabled(false);
                 r2_circle.setEnabled(false);
                 r1_circle.setEnabled(false);
+                farzCircle.setEnabled(true);
+                sunnahCircle.setEnabled(true);
+                nafl2Circle.setEnabled(false);
+                witrCircle.setEnabled(false);
                 isSalahSelected=true;
                 start.setEnabled(false);
             }
@@ -146,6 +166,10 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
                 r1_circle.setEnabled(false);
                 r3_circle.setEnabled(true);
                 r2_circle.setEnabled(true);
+                farzCircle.setEnabled(true);
+                sunnahCircle.setEnabled(true);
+                nafl2Circle.setEnabled(true);
+                witrCircle.setEnabled(false);
                 isSalahSelected=true;
                 start.setEnabled(false);
             }
@@ -168,6 +192,10 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
                 r2_circle.setEnabled(true);
                 r4_circle.setEnabled(true);
                 r3_circle.setEnabled(true);
+                sunnahCircle.setEnabled(true);
+                farzCircle.setEnabled(true);
+                nafl2Circle.setEnabled(true);
+                witrCircle.setEnabled(true);
                 isSalahSelected=true;
                 start.setEnabled(false);
             }
@@ -190,6 +218,10 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
                 r2_circle.setEnabled(true);
                 r3_circle.setEnabled(true);
                 r4_circle.setEnabled(true);
+                nafl2Circle.setEnabled(true);
+                farzCircle.setEnabled(false);
+                sunnahCircle.setEnabled(false);
+                witrCircle.setEnabled(false);
                 isSalahSelected=true;
                 start.setEnabled(false);
 
@@ -253,6 +285,59 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
                 r1_circle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
             }
         });
+        farzCircle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (sel_rakah.equalsIgnoreCase("4")){
+                    fileNumber="3";
+                }
+                sel_unit="Farz";
+                farzCircle.setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
+                nafl2Circle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
+                sunnahCircle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
+                witrCircle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
+
+            }
+        });
+        sunnahCircle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (sel_rakah.equalsIgnoreCase("4")){
+                    fileNumber="1";
+                }
+                if (sel_rakah.equalsIgnoreCase("2")){
+                    fileNumber="6";
+                }
+                sel_unit="Sunnah";
+                sunnahCircle.setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
+                farzCircle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
+                nafl2Circle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
+                witrCircle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
+            }
+        });
+        nafl2Circle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (sel_rakah.equalsIgnoreCase("2")){
+                    fileNumber="2";
+                }
+                sel_unit="Nafl";
+                nafl2Circle.setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
+                farzCircle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
+                sunnahCircle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
+                witrCircle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
+            }
+        });
+        witrCircle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sel_unit="Witr";
+                witrCircle.setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
+                farzCircle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
+                nafl2Circle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
+                sunnahCircle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
+            }
+        });
 
 
 
@@ -270,6 +355,8 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
                 Intent intent=new Intent(Salah_Rakah_Selection.this,SalahProgress.class);
                 intent.putExtra("sel_salah",sel_salah);
                 intent.putExtra("sel_rakah",sel_rakah);
+                intent.putExtra("sel_unit",sel_unit);
+                intent.putExtra("fileNumber",fileNumber);
 
 
                 startActivity(intent);
@@ -300,38 +387,6 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-//    public class MyAsyncTasks extends AsyncTask<String, String, String> {
-//
-//        @Override
-//        protected String doInBackground(String... params ) {
-//            StringRequest stringRequest = new StringRequest(Request.Method.POST, mlURL,
-//                                    new Response.Listener<String>() {
-//                                        @Override
-//                                        public void onResponse(String response) {
-//
-//                                            try {
-//                                                JSONObject jsonObject = new JSONObject(response);
-//                                                String data = jsonObject.getString("posture");
-//                                                // result.setText(data)
-//                                                System.out.println(data);
-//
-////
-//                                            } catch (JSONException e) {
-//                                                e.printStackTrace();
-//                                            }
-//
-//                                        }
-//                                    },
-//                                    new Response.ErrorListener() {
-//                                        @Override
-//                                        public void onErrorResponse(VolleyError error) {
-//                                            Toast.makeText(Salah_Rakah_Selection.this, "ERROR!!!", Toast.LENGTH_SHORT).show();
-//                                        }
-//                                    });
-////
-//            return null;
-//        }
-//    }
 
 
 

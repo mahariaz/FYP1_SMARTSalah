@@ -1,103 +1,76 @@
 package com.mahariaz.smartsalah;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
-
+import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Color;
-import android.os.AsyncTask;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
-import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.mahariaz.smartsalah.firebase.FirebasePrayer;
+import com.mahariaz.smartsalah.firebase.FirebaseUser;
+import com.mahariaz.smartsalah.firebase.PModel;
+
+import org.apache.commons.io.FileUtils;
+import org.json.JSONArray;
+import org.json.CDL;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URL;
 import java.nio.charset.Charset;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.Locale;
+import java.util.Scanner;
 
 
 public class dailyStats extends Fragment {
-    int fileFajarFarz2[]={R.raw.user1_file1_2};
-    int fileFajarSunnah2[]={R.raw.user1_file1_2};
-    int fileZuhrSunnah4[]={R.raw.user1_file1_zuhr_s};
-    int fileZuhrFarz4[]={R.raw.user1_file1_zuhr_s};
-    int fileZuhrSunnah2[]={R.raw.user1_file1_2};
-    int fileZuhrNafil2[]={R.raw.user1_file1_2};
-    int fileAsarFarz4[]={R.raw.user1_file1_zuhr_s};
-    int fileAsarSunnah4[]={R.raw.user1_file1_zuhr_s};
-    int fileIshaSunnah4[]={R.raw.user1_file1_zuhr_s};
-    int fileIshaFarz4[]={R.raw.user1_file1_zuhr_s};
-    int fileIshaSunnah2[]={R.raw.user1_file1_2};
-    int fileIshaNafil2[]={R.raw.user1_file1_2};
-    int fileIshaWitr[]={R.raw.user1_file1_3};
-    int fileMaghribFarz3[]={R.raw.user1_file1_3};
-    int fileMaghribSunnah2[]={R.raw.user1_file1_2};
-    int fileMaghribNafil2[]={R.raw.user1_file1_2};
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
 
-    int fjrTime=0,zuhrTime=0,asrTime=0,mgbTime=0,ishaTime=0;
 
-    int qayamAvg=1,rukuAvg=2,qoumAvg=3,sajdaAvg=5,tashAvg=12;
+
+
+
+
+    int qayamAvg = 1, rukuAvg = 2, qoumAvg = 3, sajdaAvg = 5, tashAvg = 12;
     String lastTime[];
     BarChart barChart;
     ArrayList<BarEntry> barEntriesArrayList;
     ArrayList<String> labelNames;
-    ArrayList<SalahPostureNames> PostureNamesArrayList=new ArrayList<SalahPostureNames>();
-    CardView fajrStats,zuhrStats,asrStats,maghribStats,ishaStats;
-    String completeness="No",correctness="No";
-    String []split_time1;
-    String []split_time2;
-    InputStream inputStream;
-    BufferedReader reader;
-    int qayamT=0,rukuT=0,qoumT=0,sajdaT=0,jalsaT=0,tashT=0;
-    String s1="";
-    String s2="";
-    String t1="";
-    String t2="";
-    String token_value="";
-    String token_name="";
-    int total_qayam=0,total_ruku=0,total_qoum=0,total_sajda=0,total_jalsa=0,total_tash=0;
+    ArrayList<SalahPostureNames> PostureNamesArrayList = new ArrayList<SalahPostureNames>();
+    CardView fajrStats, zuhrStats, asrStats, maghribStats, ishaStats;
+    String completeness = "No", correctness = "No";
+
     BarChart mChart;
-    String mlUrl = "https://mlint.herokuapp.com/val";
-    String reasonerUrl = "https://mlint.herokuapp.com/reasoner";
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,108 +80,110 @@ public class dailyStats extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view= inflater.inflate(R.layout.fragment_daily_stats, container, false);
-
-        SalahTimes();
-        //save_data();
+        View view = inflater.inflate(R.layout.fragment_daily_stats, container, false);
 
 
-        fajrStats=view.findViewById(R.id.fajrStats);
+
+
+        getFirebaseData();
+
+
+        fajrStats = view.findViewById(R.id.fajrStats);
         fajrStats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getAvgTime(fileFajarFarz2);
+
                 // read fajar file and pass averages to viewsalah screen
-                Intent intent=new Intent(getActivity(),ViewSalah.class);
-                intent.putExtra("sel_salah","Fajr");
-                intent.putExtra("sel_rakah","2");
+                Intent intent = new Intent(getActivity(), ViewSalah.class);
+                intent.putExtra("sel_salah", "Fajr");
+                intent.putExtra("sel_rakah", "2");
+                intent.putExtra("whichScreen", "dailyStats");
 //                intent.putExtra("qayamAvg",String.valueOf(total_qayam));
 //                intent.putExtra("rukuAvg",String.valueOf(total_ruku));
 //                intent.putExtra("qoumAvg",String.valueOf(total_qoum));
 //                intent.putExtra("sajdaAvg",String.valueOf(total_sajda));
 //                intent.putExtra("tashAvg",String.valueOf(total_tash));
-                intent.putExtra("completeness","Yes");
-                intent.putExtra("correctness","Yes");
+                intent.putExtra("completeness", "Yes");
+                intent.putExtra("correctness", "Yes");
                 startActivity(intent);
 
             }
         });
-        zuhrStats=view.findViewById(R.id.zuhrStats);
+        zuhrStats = view.findViewById(R.id.zuhrStats);
         zuhrStats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getAvgTime(fileZuhrFarz4);
+
                 // read zuhr file and pass averages to viewsalah screen
-                Intent intent=new Intent(getActivity(),ViewSalah.class);
-                intent.putExtra("sel_salah","Zuhr");
-                intent.putExtra("sel_rakah","4");
-//                intent.putExtra("qayamAvg",String.valueOf(total_qayam));
-//                intent.putExtra("rukuAvg",String.valueOf(0));
-//                intent.putExtra("qoumAvg",String.valueOf(total_qoum));
-//                intent.putExtra("sajdaAvg",String.valueOf(total_sajda));
-//                intent.putExtra("tashAvg",String.valueOf(total_tash));
-                intent.putExtra("completeness","No");
-                intent.putExtra("correctness","No");
+                Intent intent = new Intent(getActivity(), ViewSalah.class);
+                intent.putExtra("sel_salah", "Zuhr");
+                intent.putExtra("sel_rakah", "4");
+                intent.putExtra("whichScreen", "dailyStats");
+
+
                 startActivity(intent);
 
             }
         });
-        asrStats=view.findViewById(R.id.asrStats);
+        asrStats = view.findViewById(R.id.asrStats);
         asrStats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getAvgTime(fileAsarFarz4);
+
                 // read asr file and pass averages to viewsalah screen
-                Intent intent=new Intent(getActivity(),ViewSalah.class);
-                intent.putExtra("sel_salah","Asr");
-                intent.putExtra("sel_rakah","4");
+                Intent intent = new Intent(getActivity(), ViewSalah.class);
+                intent.putExtra("sel_salah", "Asr");
+                intent.putExtra("sel_rakah", "4");
+                intent.putExtra("whichScreen", "dailyStats");
 //                intent.putExtra("qayamAvg",String.valueOf(total_qayam));
 //                intent.putExtra("rukuAvg",String.valueOf(total_ruku));
 //                intent.putExtra("qoumAvg",String.valueOf(total_qoum));
 //                intent.putExtra("sajdaAvg",String.valueOf(total_sajda));
 //                intent.putExtra("tashAvg",String.valueOf(total_tash));
-                intent.putExtra("completeness","Yes");
-                intent.putExtra("correctness","No");
+                intent.putExtra("completeness", "Yes");
+                intent.putExtra("correctness", "No");
                 startActivity(intent);
 
             }
         });
-        maghribStats=view.findViewById(R.id.mgbStats);
+        maghribStats = view.findViewById(R.id.mgbStats);
         maghribStats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getAvgTime(fileMaghribFarz3);
+
                 // read mgb file and pass averages to viewsalah screen
-                Intent intent=new Intent(getActivity(),ViewSalah.class);
-                intent.putExtra("sel_salah","Maghrib");
-                intent.putExtra("sel_rakah","3");
+                Intent intent = new Intent(getActivity(), ViewSalah.class);
+                intent.putExtra("sel_salah", "Maghrib");
+                intent.putExtra("sel_rakah", "3");
+                intent.putExtra("whichScreen", "dailyStats");
 //                intent.putExtra("qayamAvg",String.valueOf(total_qayam));
 //                intent.putExtra("rukuAvg",String.valueOf(total_ruku));
 //                intent.putExtra("qoumAvg",String.valueOf(total_qoum));
 //                intent.putExtra("sajdaAvg",String.valueOf(total_sajda));
 //                intent.putExtra("tashAvg",String.valueOf(total_tash));
-                intent.putExtra("completeness","Yes");
-                intent.putExtra("correctness","No");
+                intent.putExtra("completeness", "Yes");
+                intent.putExtra("correctness", "No");
                 startActivity(intent);
 
             }
         });
-        ishaStats=view.findViewById(R.id.ishaStats);
+        ishaStats = view.findViewById(R.id.ishaStats);
         ishaStats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getAvgTime(fileIshaFarz4);
+
                 // read isha file and pass averages to viewsalah screen
-                Intent intent=new Intent(getActivity(),ViewSalah.class);
-                intent.putExtra("sel_salah","Isha");
-                intent.putExtra("sel_rakah","4");
+                Intent intent = new Intent(getActivity(), ViewSalah.class);
+                intent.putExtra("sel_salah", "Isha");
+                intent.putExtra("sel_rakah", "4");
+                intent.putExtra("whichScreen", "dailyStats");
 //                intent.putExtra("qayamAvg",String.valueOf(total_qayam));
 //                intent.putExtra("rukuAvg",String.valueOf(total_qoum));
 //                intent.putExtra("qoumAvg",String.valueOf(0));
 //                intent.putExtra("sajdaAvg",String.valueOf(0));
 //                intent.putExtra("tashAvg",String.valueOf(total_tash));
-                intent.putExtra("completeness","Yes");
-                intent.putExtra("correctness","No");
+                intent.putExtra("completeness", "Yes");
+                intent.putExtra("correctness", "No");
                 startActivity(intent);
 
             }
@@ -221,13 +196,12 @@ public class dailyStats extends Fragment {
         mChart.setPinchZoom(false);
 
         // empty labels so that the names are spread evenly
-        String[] labels = {"","Fajar","Zuhr","Asar","Maghrib","Isha", ""};
+        String[] labels = {"", "Fajar", "Zuhr", "Asar", "Maghrib", "Isha", ""};
         XAxis xAxis = mChart.getXAxis();
         xAxis.setCenterAxisLabels(true);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setDrawGridLines(true);
         xAxis.setGranularity(1f); // only intervals of 1 day
-
 
 
         xAxis.setAxisMinimum(1f);
@@ -239,17 +213,14 @@ public class dailyStats extends Fragment {
         leftAxis.setLabelCount(8, true);
 
 
-
         mChart.getAxisLeft().setEnabled(false);
         mChart.getLegend().setEnabled(false);
 
-        float[] farz4 = {0,4,4,0,4};
-        float[] sunnah4 = {0,5,5,0,5};
-        float[] sunnah2 = {2,2,0,3,2};
-        float[] nafal2 = {2,2,0,1,2};
-        float[] farz3 = {0,0,0,3,4};
-
-
+        float[] farz4 = {0, 4, 4, 0, 4};
+        float[] sunnah4 = {0, 5, 5, 0, 5};
+        float[] sunnah2 = {2, 2, 0, 3, 2};
+        float[] nafal2 = {2, 2, 0, 1, 2};
+        float[] farz3 = {0, 0, 0, 3, 4};
 
 
         ArrayList<BarEntry> farzbar4 = new ArrayList<>();
@@ -286,7 +257,6 @@ public class dailyStats extends Fragment {
         dataSets.add(set2);
 
 
-
         BarData data = new BarData(dataSets);
         float groupSpace = 0.2f;
         float barSpace = 0f;
@@ -304,228 +274,45 @@ public class dailyStats extends Fragment {
 
         return view;
     }
-    private void getAvgTime(int [] array){
 
-
-        inputStream = getResources().openRawResource(array[0]);
-        reader = new BufferedReader(new InputStreamReader(inputStream, Charset.forName("UTF-8")));
-        String line = "";
-        String line1 = "";
-        try {
-
-            while ((line = reader.readLine()) != null) {
-
-                // Split the line into different tokens (using the comma as a separator).
-                String[] tokens = line.split("\n");
-
-                for (int i = 0; i < tokens.length; i++) {
-                    String[] tokens2 = tokens[i].split(",");
-                    token_value=tokens2[0];
-                    token_name=tokens2[1];
-                    if(!s1.equals(tokens2[1]) & s1=="" & t1=="") {
-                        t1 = tokens2[0];
-                        s1 = tokens2[1];
-
-
-
-                    } else if (!s1.equals(tokens2[1]) & s2=="" & t2=="") {
-                        t2 = tokens2[0];
-                        s2 = tokens2[1];
-                        split_time1=t1.split(":");
-                        split_time2=t2.split(":");
-                        int a=Integer.parseInt(split_time1[2]);
-                        int b=Integer.parseInt(split_time2[2]);
-                        if(s1.equals("Qayam")) {
-
-
-                            if((b-a)>0) {
-                                qayamT=b-a;
-                            }
-                            System.out.println("qayam : "+qayamT);
-                            total_qayam+=qayamT;
-                            //qayamT=0;
-                        }
-                        if(s1.equals("Ruku")) {
-                            if((b-a)>0) {
-                                rukuT = b - a;
-                            }
-                            System.out.println("ruku : "+rukuT);
-                            total_ruku+=rukuT;
-                            //rukuT=0;
-                        }
-                        if(s1.equals("Qoum")) {
-                            if((b-a)>0) {
-                                qoumT = b - a;
-                            }
-                            System.out.println("qoum : "+qoumT);
-                            total_qoum+=qoumT;
-                            //qoumT=0;
-
-                        }
-                        if(s1.equals("Sajda")) {
-                            if((b-a)>0) {
-                                sajdaT = b - a;
-                            }
-                            System.out.println("sajda : "+sajdaT);
-                            total_sajda+=sajdaT;
-                            //sajdaT=0;
-                        }
-                        if(s1.equals("Jalsa")) {
-                            if((b-a)>0) {
-                                jalsaT = b - a;
-                            }
-                            System.out.println("jalsa : "+jalsaT);
-                            total_jalsa+=jalsaT;
-                            //jalsaT=0;
-                        }
-                        if(s1.equals("Tashahud")) {
-                            if((b-a)>0) {
-                                tashT = b - a;
-                            }
-                            System.out.println("tashahud : "+tashT);
-                            total_tash+=tashT;
-                            //tashT=0;
-                        }
-                        line1=t2;
-                        s1=s2;
-                        t1=t2;
-                        s2="";
-                        t2="";
-
+    private void getFirebaseData() {
+        FirebaseDatabase firebaseDatabase;
+        DatabaseReference databaseReference;
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("UserBio");
+        databaseReference.child("user123").child("firebasePrayer").child("zuhr").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                String value = snapshot.getValue(String.class);
+//                System.out.println("AAAAAAA : " + value);
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    String stringValue = ds.child("salahUnit").getValue(String.class);
+                    Log.i("SalahUnitttt", stringValue);
+                    if(stringValue.equalsIgnoreCase("sunnah4")){
+                        shared.isZuhrSunnah4Prayed=true;
                     }
-
+                    if(stringValue.equalsIgnoreCase("farz4")){
+                        shared.isZuhrFarz4Prayed=true;
+                    }
+                    if(stringValue.equalsIgnoreCase("sunnah2")){
+                        shared.isZuhrSunnah2Prayed=true;
+                    }
+                    if(stringValue.equalsIgnoreCase("nafl2")){
+                        shared.isZuhrNafl2Prayed=true;
+                    }
+                    System.out.println("shared.isZuhrFarz4Prayed : "+shared.isZuhrFarz4Prayed);
+                    System.out.println(" shared.isZuhrSunnah4Prayed : "+ shared.isZuhrSunnah4Prayed);
                 }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                System.out.println("FAILED");
 
             }
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
-        System.out.println("line : "+line1);
-        System.out.println("token : "+token_value);
-        split_time1=line1.split(":");
-        split_time2=token_value.split(":");
-        int a=Integer.parseInt(split_time1[2]);
-        int b=Integer.parseInt(split_time2[2]);
-        tashT=b-a;
-        System.out.println("tashahud : "+tashT);
-
-        total_tash+=tashT;
-
-        total_qayam=total_qayam/2;
-        total_ruku=total_ruku/2;
-        total_qoum=total_qoum/2;
-        total_sajda=total_sajda/2;
-        total_jalsa=total_jalsa/2;
-        total_tash=total_tash/2;
-        System.out.println("avg qayam: "+total_qayam);
-        System.out.println("avg ruku: "+total_ruku);
-        System.out.println("avg qoum: "+total_qoum);
-        System.out.println("avg sajda: "+total_sajda);
-        System.out.println("avg jalsa: "+total_jalsa);
-        System.out.println("avg jalsa: "+total_tash);
-    }
-    private void SalahTimes(){
-        // fajar
-        int fjrSunnah=calculatTime(fileFajarSunnah2);
-        int fjrFarz=calculatTime(fileFajarFarz2);
-        fjrTime=fjrSunnah+fjrFarz;
-        //Zuhr
-        int zuhrSunnah4=calculatTime(fileZuhrSunnah4);
-        int zuhrFarz4=calculatTime(fileZuhrFarz4);
-        int zuhrSunnah2=calculatTime(fileZuhrSunnah2);
-        int zuhrNafil2=calculatTime(fileZuhrNafil2);
-        zuhrTime=zuhrSunnah4+zuhrFarz4+zuhrSunnah2+zuhrNafil2;
-        //Asar
-        int asarSunnah4=calculatTime(fileAsarSunnah4);
-        int asarFarz4=calculatTime(fileAsarFarz4);
-        asrTime=asarSunnah4+asarFarz4;
-        //Maghrib
-        int mgbFarz3=calculatTime(fileMaghribFarz3);
-        int mgbSunnah2=calculatTime(fileMaghribSunnah2);
-        int mgbNafil2=calculatTime(fileMaghribNafil2);
-        mgbTime=mgbFarz3+mgbSunnah2+mgbNafil2;
-        //Isha
-        int ishaSunnah4=calculatTime(fileIshaSunnah4);
-        int ishaFarz4=calculatTime(fileIshaFarz4);
-        int ishaSunnah2=calculatTime(fileIshaSunnah2);
-        int ishaNafil2=calculatTime(fileIshaNafil2);
-        int ishaWitr=calculatTime(fileIshaWitr);
-        ishaTime=ishaSunnah4+ishaFarz4+ishaSunnah2+ishaNafil2+ishaWitr+ishaNafil2;
+        });
 
     }
-    private int calculatTime(int [] array){
-        InputStream is;
-        BufferedReader reader;
-        int unitSum=0;
-            is = getResources().openRawResource(array[0]);
-            reader = new BufferedReader(
-                    new InputStreamReader(is, Charset.forName("UTF-8")));
-            // diffmin is returning minutes by extracting them from file
-            long diffmin=filereading(reader);
-            unitSum+=diffmin;
-        return unitSum;
-
-    }
-    private long filereading(BufferedReader reader) {
-
-        String firstLine="",firstLineF="",lastline="",lastlineF="";
-        String firstTime[],lastTime[];
-        String startTime="",endTime="";
-
-        // first line
-        try {
-            while ((firstLine = reader.readLine()) != null) {
-                firstLineF=firstLine;
-                break;
-            }
-            firstTime=firstLineF.split(",");
-            startTime = firstTime[0];
-        } catch (IOException e1) {        }
-        // last line
-
-        try {
-            while ((lastline = reader.readLine()) != null) {
-                lastlineF=lastline;
-            }
-            lastTime=lastlineF.split(",");
-            endTime = lastTime[0];
-        } catch (IOException e1){        }
-        SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
-        Date d1 = null;
-        Date d2 = null;
-        try {
-            d1 = format.parse(startTime);
-            d2 = format.parse(endTime);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        long diff = d2.getTime() - d1.getTime();
-        long diffSeconds = diff / 1000 % 60;
-        long diffMinutes = diff / (60 * 1000) % 60;
-        long diffHours = diff / (60 * 60 * 1000);
-        return diffMinutes;
-    }
-    private void save_data(){
-    firebaseDatabase = FirebaseDatabase.getInstance();
-    databaseReference = firebaseDatabase.getReference("UserBio").child("huma24");
-    databaseReference.addValueEventListener(new ValueEventListener() {
-        @Override
-        public void onDataChange(@NonNull DataSnapshot snapshot) {
-//            String value = snapshot.getValue(String.class);
-//            System.out.println("AAAAAAA : "+value);
 
 
-
-
-        }
-
-        @Override
-        public void onCancelled(@NonNull DatabaseError error) {
-            System.out.println("FAILED");
-
-        }
-    });
-
-    }
 
 }

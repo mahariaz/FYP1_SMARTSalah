@@ -6,7 +6,7 @@ public class PModel {
     @SerializedName("salahName")
     String salahName;
     @SerializedName("rakahNumber")
-    String rakahNumber;
+    int rakahNumber;
     @SerializedName("missedPosture")
     String missedPosture;
     @SerializedName("missedRakah")
@@ -14,19 +14,79 @@ public class PModel {
     @SerializedName("salahStatus")
     String salahStatus;
     @SerializedName("qayamAvg")
-    String qayamAvg;
+    int qayamAvg;
     @SerializedName("rukuAvg")
-    String rukuAvg;
+    int rukuAvg;
+
+
+
     @SerializedName("qoumAvg")
-    String qoumAvg;
+    int qoumAvg;
     @SerializedName("sajdaAvg")
-    String sajdaAvg;
+    int sajdaAvg;
     @SerializedName("jalsaAvg")
-    String jalsaAvg;
+    int jalsaAvg;
     @SerializedName("tashAvg")
-    String tashAvg;
+    int tashAvg;
     @SerializedName("salahUnit")
     String salahUnit;
+    @SerializedName("date1")
+    String date1;
+    @SerializedName("salahUnitTime")
+    int salahUnitTime;
+    @SerializedName("extraRakah")
+    String extraRakah;
+    @SerializedName("extraPosture")
+    String extraPosture;
+
+    public PModel() {
+
+    }
+
+
+    public PModel(String salahName, int rakahNumber, String missedPosture, String missedRakah, String salahStatus, int qayamAvg, int rukuAvg, int qoumAvg, int sajdaAvg, int jalsaAvg, int tashAvg, String salahUnit, int salahUnitTime, String extraPosture,String extraRakah,String date1) {
+        this.salahName = salahName;
+        this.rakahNumber = rakahNumber;
+        this.missedPosture = missedPosture;
+        this.missedRakah = missedRakah;
+        this.salahStatus = salahStatus;
+        this.qayamAvg = qayamAvg;
+        this.rukuAvg = rukuAvg;
+        this.qoumAvg = qoumAvg;
+        this.sajdaAvg = sajdaAvg;
+        this.jalsaAvg = jalsaAvg;
+        this.tashAvg = tashAvg;
+        this.salahUnit = salahUnit;
+        this.date1 = date1;
+        this.salahUnitTime=salahUnitTime;
+        this.extraPosture=extraPosture;
+        this.extraRakah=extraRakah;
+
+    }
+
+    public String getExtraRakah() {
+        return extraRakah;
+    }
+
+    public void setExtraRakah(String extraRakah) {
+        this.extraRakah = extraRakah;
+    }
+
+    public String getExtraPosture() {
+        return extraPosture;
+    }
+
+    public void setExtraPosture(String extraPosture) {
+        this.extraPosture = extraPosture;
+    }
+
+    public int getSalahUnitTime() {
+        return salahUnitTime;
+    }
+
+    public void setSalahUnitTime(int salahUnitTime) {
+        this.salahUnitTime = salahUnitTime;
+    }
 
     public String getSalahName() {
         return salahName;
@@ -36,11 +96,11 @@ public class PModel {
         this.salahName = salahName;
     }
 
-    public String getRakahNumber() {
+    public int getRakahNumber() {
         return rakahNumber;
     }
 
-    public void setRakahNumber(String rakahNumber) {
+    public void setRakahNumber(int rakahNumber) {
         this.rakahNumber = rakahNumber;
     }
 
@@ -68,51 +128,51 @@ public class PModel {
         this.salahStatus = salahStatus;
     }
 
-    public String getQayamAvg() {
+    public int getQayamAvg() {
         return qayamAvg;
     }
 
-    public void setQayamAvg(String qayamAvg) {
+    public void setQayamAvg(int qayamAvg) {
         this.qayamAvg = qayamAvg;
     }
 
-    public String getRukuAvg() {
+    public int getRukuAvg() {
         return rukuAvg;
     }
 
-    public void setRukuAvg(String rukuAvg) {
+    public void setRukuAvg(int rukuAvg) {
         this.rukuAvg = rukuAvg;
     }
 
-    public String getQoumAvg() {
+    public int getQoumAvg() {
         return qoumAvg;
     }
 
-    public void setQoumAvg(String qoumAvg) {
+    public void setQoumAvg(int qoumAvg) {
         this.qoumAvg = qoumAvg;
     }
 
-    public String getSajdaAvg() {
+    public int getSajdaAvg() {
         return sajdaAvg;
     }
 
-    public void setSajdaAvg(String sajdaAvg) {
+    public void setSajdaAvg(int sajdaAvg) {
         this.sajdaAvg = sajdaAvg;
     }
 
-    public String getJalsaAvg() {
+    public int getJalsaAvg() {
         return jalsaAvg;
     }
 
-    public void setJalsaAvg(String jalsaAvg) {
+    public void setJalsaAvg(int jalsaAvg) {
         this.jalsaAvg = jalsaAvg;
     }
 
-    public String getTashAvg() {
+    public int getTashAvg() {
         return tashAvg;
     }
 
-    public void setTashAvg(String tashAvg) {
+    public void setTashAvg(int tashAvg) {
         this.tashAvg = tashAvg;
     }
 
@@ -124,22 +184,11 @@ public class PModel {
         this.salahUnit = salahUnit;
     }
 
-    public PModel() {
-
+    public String getDate1() {
+        return date1;
     }
 
-    public PModel(String salahName, String rakahNumber, String missedPosture, String missedRakah, String salahStatus, String qayamAvg, String rukuAvg, String qoumAvg, String sajdaAvg, String jalsaAvg, String tashAvg, String salahUnit) {
-        this.salahName = salahName;
-        this.rakahNumber = rakahNumber;
-        this.missedPosture = missedPosture;
-        this.missedRakah = missedRakah;
-        this.salahStatus = salahStatus;
-        this.qayamAvg = qayamAvg;
-        this.rukuAvg = rukuAvg;
-        this.qoumAvg = qoumAvg;
-        this.sajdaAvg = sajdaAvg;
-        this.jalsaAvg = jalsaAvg;
-        this.tashAvg = tashAvg;
-        this.salahUnit = salahUnit;
+    public void setDate1(String date1) {
+        this.date1 = date1;
     }
 }

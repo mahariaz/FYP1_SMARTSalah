@@ -35,6 +35,10 @@ public class shared {
     public static String age="12";
     public static String height="4.10";
     public static Uri  selectedImage;
+    public static Boolean isZuhrSunnah4Prayed=false;
+    public static Boolean isZuhrFarz4Prayed=false;
+    public static Boolean isZuhrSunnah2Prayed=false;
+    public static Boolean isZuhrNafl2Prayed=false;
 
 
 

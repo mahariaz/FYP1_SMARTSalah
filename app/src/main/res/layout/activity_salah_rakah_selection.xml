@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:weightSum="2">
+        android:weightSum="2.5">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -60,7 +60,7 @@
 
             </TextView>
             <LinearLayout
-                android:layout_weight="0.9"
+                android:layout_weight="0.7"
                 android:layout_width="match_parent"
                 android:weightSum="3"
                 android:orientation="horizontal"
@@ -163,7 +163,7 @@
 
             </LinearLayout>
             <LinearLayout
-                android:layout_weight="0.9"
+                android:layout_weight="0.7"
                 android:weightSum="3"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -282,6 +282,7 @@
 
             </TextView>
             <LinearLayout
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:weightSum="4"
@@ -338,16 +339,16 @@
                         android:id="@+id/r2_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignBottom="@id/r2_circle"
                         android:layout_alignLeft="@id/r2_circle"
-                        android:layout_alignRight="@id/r2_circle"
                         android:layout_alignTop="@id/r2_circle"
+                        android:layout_alignRight="@id/r2_circle"
+                        android:layout_alignBottom="@id/r2_circle"
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:padding="10dp"
-                        android:textStyle="bold"
+                        android:text="2"
                         android:textColor="@color/black"
-                        android:text="2" />
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
                 <RelativeLayout
@@ -410,6 +411,158 @@
                         android:textStyle="bold"
                         android:textColor="@color/black"
                         android:text="4" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:weightSum="2"
+            android:orientation="vertical"
+            android:layout_weight="0.5">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text="What Salah Unit you're performing?"
+                android:textSize="20dp"
+                android:layout_weight="0.5"
+                >
+
+            </TextView>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="4"
+                android:layout_height="0dp"
+                android:layout_weight="1.5">
+                <RelativeLayout
+                    android:id="@+id/rel2"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/sunnah_circle"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@color/white"
+
+                        app:civ_border_color="#FF000000"
+                        app:civ_border_width="2dp" />
+
+
+                    <TextView
+                        android:id="@+id/sunnah_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@id/sunnah_circle"
+                        android:layout_alignTop="@id/sunnah_circle"
+                        android:layout_alignRight="@id/sunnah_circle"
+                        android:layout_alignBottom="@id/sunnah_circle"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="S"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/farz_circle"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@color/white"
+                        app:civ_border_width="2dp"
+                        app:civ_border_color="#FF000000"/>
+
+
+                    <TextView
+                        android:id="@+id/farz_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@id/farz_circle"
+                        android:layout_alignTop="@id/farz_circle"
+                        android:layout_alignRight="@id/farz_circle"
+                        android:layout_alignBottom="@id/farz_circle"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="F"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/nafl2_circle"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@color/white"
+                        app:civ_border_width="2dp"
+                        app:civ_border_color="#FF000000"/>
+
+
+                    <TextView
+                        android:id="@+id/nafl2_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@id/nafl2_circle"
+                        android:layout_alignTop="@id/nafl2_circle"
+                        android:layout_alignRight="@id/nafl2_circle"
+                        android:layout_alignBottom="@id/nafl2_circle"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="N"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/witr_circle"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@color/white"
+                        app:civ_border_width="2dp"
+                        app:civ_border_color="#FF000000"/>
+
+
+                    <TextView
+                        android:id="@+id/witr_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@id/witr_circle"
+                        android:layout_alignTop="@id/witr_circle"
+                        android:layout_alignRight="@id/witr_circle"
+                        android:layout_alignBottom="@id/witr_circle"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="W"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
 

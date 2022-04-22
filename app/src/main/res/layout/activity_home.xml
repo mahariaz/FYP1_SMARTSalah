@@ -193,6 +193,7 @@
                     >
 
                 <LinearLayout
+                    android:id="@+id/weekLL"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -256,102 +257,51 @@
                     </RelativeLayout>
 
                 </androidx.cardview.widget.CardView>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="More"
-                    android:textSize="20dp"
-                    android:layout_marginLeft="30dp"
-                    android:textColor="@color/black">
-
-                </TextView>
-                <LinearLayout
+                <androidx.cardview.widget.CardView
+                    android:layout_weight="1"
+                    android:id="@+id/supp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="2"
-                    android:orientation="horizontal">
-                    <androidx.cardview.widget.CardView
-                        android:layout_weight="1"
-                        android:id="@+id/supTile"
-                        android:layout_width="0dp"
-                        android:layout_height="220dp"
-                        app:cardElevation="10dp"
-                        app:cardCornerRadius="20dp"
-                        app:cardBackgroundColor="@color/white"
-                        app:cardMaxElevation="12dp"
-                        app:cardPreventCornerOverlap="true"
-                        app:cardUseCompatPadding="true"
-                        >
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:id="@+id/supptv"
-                                android:padding="10dp"
-                                android:textSize="20dp"
-                                android:textColor="@color/black"
-                                android:textStyle="bold"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Supplications"
-                                >
+                    android:layout_height="120dp"
+                    app:cardElevation="10dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardMaxElevation="12dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
+                    >
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/suppTv"
+                            android:padding="10dp"
+                            android:textSize="20dp"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Supplications"
+                            >
 
-                            </TextView>
-                            <ImageView
-                                android:layout_centerInParent="true"
-                                android:layout_alignParentBottom="true"
-                                android:layout_margin="10dp"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:src="@drawable/supp_img">
+                        </TextView>
 
-                            </ImageView>
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:src="@drawable/supp_img">
 
-                        </RelativeLayout>
+                        </ImageView>
 
-                    </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView
-                        android:layout_weight="1"
-                        android:id="@+id/historyTile"
-                        android:layout_width="0dp"
-                        android:layout_height="220dp"
-                        app:cardElevation="10dp"
-                        app:cardCornerRadius="20dp"
-                        app:cardBackgroundColor="@color/white"
-                        app:cardMaxElevation="12dp"
-                        app:cardPreventCornerOverlap="true"
-                        app:cardUseCompatPadding="true"
-                        >
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:id="@+id/historytv"
-                                android:padding="10dp"
-                                android:textSize="20dp"
-                                android:textColor="@color/black"
-                                android:textStyle="bold"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="History"
-                                >
+                    </RelativeLayout>
 
-                            </TextView>
-                            <ImageView
-                                android:layout_centerInParent="true"
-                                android:layout_alignParentBottom="true"
-                                android:layout_margin="10dp"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:src="@drawable/history_img">
+                </androidx.cardview.widget.CardView>
 
-                            </ImageView>
 
-                        </RelativeLayout>
-
-                    </androidx.cardview.widget.CardView>
-
-                </LinearLayout>
 
             </LinearLayout>
 

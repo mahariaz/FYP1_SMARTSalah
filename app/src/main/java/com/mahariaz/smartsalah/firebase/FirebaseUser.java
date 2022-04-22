@@ -38,13 +38,13 @@ public class FirebaseUser {
     String email;
 
 
-
-    public FirebaseUser(String dp, String username, String gender, String height, String age, String email) {
+    public FirebaseUser(String age, String dp, String email, String gender, String height,String username, FirebasePrayer firebasePrayer) {
         this.dp = dp;
         this.username = username;
         this.gender = gender;
         this.height = height;
         this.age = age;
+        this.firebasePrayer = firebasePrayer;
         this.email = email;
     }
 

@@ -34,6 +34,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -134,6 +135,22 @@ public class Home extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        LinearLayout weekLL=findViewById(R.id.weekLL);
+        weekLL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Home.this,Highlights.class);
+                startActivity(intent);
+            }
+        });
+        CardView supp=findViewById(R.id.supp);
+        supp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Home.this,Supplications.class);
+                startActivity(intent);
+            }
+        });
 
 
     }
@@ -155,6 +172,11 @@ public class Home extends AppCompatActivity {
         pieChartFarz.setDrawHoleEnabled(true);
         pieChartFarz.getDescription().setEnabled(false);
         pieChartFarz.setDrawSliceText(false);
+        Legend legend = pieChartFarz.getLegend();
+        legend.setForm(Legend.LegendForm.SQUARE);
+        legend.setTextSize(12);
+        legend.setFormSize(15);
+        legend.setFormToTextSpace(2);
 
 
 
@@ -166,6 +188,11 @@ public class Home extends AppCompatActivity {
         ArrayList<Integer> colors = new ArrayList<>();
         colors.add(Color.parseColor("#95b8d1"));
         colors.add(Color.parseColor("#b8e0d2"));
+        Legend legend = pieChartSunnah.getLegend();
+        legend.setForm(Legend.LegendForm.SQUARE);
+        legend.setTextSize(12);
+        legend.setFormSize(15);
+        legend.setFormToTextSpace(2);
         PieDataSet dataSet = new PieDataSet(entries, "");
         dataSet.setColors(colors);
         PieData data = new PieData(dataSet);
@@ -179,17 +206,23 @@ public class Home extends AppCompatActivity {
     private void weekStatusPieChart() {
         ArrayList<PieEntry> entries = new ArrayList<>();
         entries.add(new PieEntry(0.3f, "Complete"));
-        entries.add(new PieEntry(0.3f, "Correct"));
+        entries.add(new PieEntry(0.3f, "Error"));
         entries.add(new PieEntry(0.7f, "Missed"));
         ArrayList<Integer> colors = new ArrayList<>();
         colors.add(Color.parseColor("#B8D8BE"));
         colors.add(Color.parseColor("#d1cfe2"));
         colors.add(Color.parseColor("#f6ac69"));
+        Legend legend = weekPie.getLegend();
+        legend.setForm(Legend.LegendForm.SQUARE);
+        legend.setTextSize(12);
+        legend.setFormSize(15);
+        legend.setFormToTextSpace(2);
 
         PieDataSet dataSet = new PieDataSet(entries, "");
         dataSet.setColors(colors);
         PieData data = new PieData(dataSet);
         data.setValueFormatter(new PercentFormatter(weekPie));
+        data.setValueTextSize(15f);
         weekPie.setData(data);
         weekPie.invalidate();
         weekPie.animateY(1400, Easing.EaseInOutQuad);

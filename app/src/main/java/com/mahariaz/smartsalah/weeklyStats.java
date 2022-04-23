@@ -231,6 +231,12 @@ public class weeklyStats extends Fragment {
         ishaTimeSpent=ishaSunnah4+ishaFarz4+ishaSunnah2+ishaNafil2+ishaWitr+ishaNafil2;
         shared.ishaweek1=ishaTimeSpent;
 
+        shared.sunnah2Time=zuhrSunnah2;
+        shared.farz2Time=zuhrNafil2;
+        shared.farz3Time=mgbFarz3;
+        shared.sunnah4Time=zuhrSunnah4;
+        shared.farz4Time=zuhrFarz4;
+
 
     }
     private int calculateTime(int [] array) {

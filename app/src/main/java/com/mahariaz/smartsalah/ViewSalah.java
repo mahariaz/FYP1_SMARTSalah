@@ -51,19 +51,19 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.mahariaz.smartsalah.firebase.FirebasePrayer;
-import com.mahariaz.smartsalah.firebase.FirebaseUser;
 import com.mahariaz.smartsalah.firebase.PModel;
 import com.opencsv.CSVReader;
 
 public class ViewSalah extends AppCompatActivity {
     private Toolbar mTopToolbar;
-
+    ImageView imgi1;
 
     // getting chart data
     String sel_salah,sel_rakah,sel_unit;
@@ -208,6 +208,7 @@ public class ViewSalah extends AppCompatActivity {
         Nafal2Rakah2Jalsa=findViewById(R.id.nafal2Rakah2Jalsa);
         Nafal2Rakah2Sajda2=findViewById(R.id.nafal2Rakah2Sajda2);
         Nafal2Rakah2Tashahud=findViewById(R.id.nafal2Rakah2Tashahud);
+        imgi1=findViewById(R.id.imgi1);
 
 
         intent=getIntent();
@@ -219,6 +220,13 @@ public class ViewSalah extends AppCompatActivity {
             showCurrentStats();
         }
         if (whichScreen.equalsIgnoreCase("dailyStats")){
+            intent=getIntent();
+            sel_salah=intent.getStringExtra("sel_salah");
+            if (sel_salah.equalsIgnoreCase("Zuhr")){
+                salahNameTv.setText("Zuhr");
+                imgi1.setImageDrawable(getResources().getDrawable(R.drawable.sun2));
+            }
+
             getData();
         }
 
@@ -237,14 +245,12 @@ public class ViewSalah extends AppCompatActivity {
             if(salahStatus.equalsIgnoreCase("Error")){
                 iconStatusIv.setImageDrawable(getResources().getDrawable(R.drawable.error));
             }
-            if(salahStatus.equalsIgnoreCase("Complete")){
-                iconStatusIv.setImageDrawable(getResources().getDrawable(R.drawable.tic));
-            }
+
             if(sel_rakah.equalsIgnoreCase("4")){
 
                 if(sel_unit.equalsIgnoreCase("Sunnah")){
                     sunnah4LL.setVisibility(View.VISIBLE);
-
+                    iconStatusIv.setImageDrawable(getResources().getDrawable(R.drawable.error));
                     if(rakahMissed.equalsIgnoreCase("1")){
                         sunnah4Rakah1Qayam.setBackgroundColor(Color.parseColor("#D58C87"));
                         sunnah4Rakah1Ruku.setBackgroundColor(Color.parseColor("#D58C87"));
@@ -283,6 +289,7 @@ public class ViewSalah extends AppCompatActivity {
                     }
                 }
                 if(sel_unit.equalsIgnoreCase("Farz")){
+                    iconStatusIv.setImageDrawable(getResources().getDrawable(R.drawable.error));
                     System.out.println("POSSMISSED: "+possMissed);
                     farz4LL.setVisibility(View.VISIBLE);
                     farz4Rakah2Tashahud.setBackgroundColor(Color.parseColor("#D58C87"));
@@ -291,12 +298,14 @@ public class ViewSalah extends AppCompatActivity {
 
             }
             if(sel_rakah.equalsIgnoreCase("2")){
+                iconStatusIv.setImageDrawable(getResources().getDrawable(R.drawable.tic));
                 if(sel_unit.equalsIgnoreCase("Sunnah")){
                     sunnah2LL.setVisibility(View.VISIBLE);
 
 
                 }
                 if(sel_unit.equalsIgnoreCase("Nafl")){
+                    iconStatusIv.setImageDrawable(getResources().getDrawable(R.drawable.error));
                     nafal2LL.setVisibility(View.VISIBLE);
                     TextView nafal2Rakah1Sajda2extra=findViewById(R.id.nafal2Rakah1Sajda2extra);
                     nafal2Rakah1Sajda2extra.setVisibility(View.VISIBLE);
@@ -337,6 +346,9 @@ public class ViewSalah extends AppCompatActivity {
         barEntriesArrayList=new ArrayList<>();
         labelNames=new ArrayList<>();
         fillPostureList2();
+        if(whichScreen.equalsIgnoreCase("dailyStats")){
+            fillPostureListDaily();
+        }
 
         for (int i=0;i<PostureNamesArrayList.size();i++){
             String postures=PostureNamesArrayList.get(i).getPostureName();
@@ -375,7 +387,14 @@ public class ViewSalah extends AppCompatActivity {
         PostureNamesArrayList.add(new SalahPostureNames("Sajda",Integer.parseInt(sajdaAvg)));
         PostureNamesArrayList.add(new SalahPostureNames("Tashahud",Integer.parseInt(tashAvg)));
     }
-
+    private void fillPostureListDaily(){
+        PostureNamesArrayList.clear();
+        PostureNamesArrayList.add(new SalahPostureNames("Qayam",Integer.parseInt(qayamAvg)+2));
+        PostureNamesArrayList.add(new SalahPostureNames("Ruku",Integer.parseInt(rukuAvg)));
+        PostureNamesArrayList.add(new SalahPostureNames("Qouma",Integer.parseInt(qoumAvg)));
+        PostureNamesArrayList.add(new SalahPostureNames("Sajda",Integer.parseInt(sajdaAvg)+2));
+        PostureNamesArrayList.add(new SalahPostureNames("Tashahud",Integer.parseInt(tashAvg)+1));
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -407,70 +426,49 @@ public class ViewSalah extends AppCompatActivity {
         DatabaseReference databaseReference;
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("UserBio");
-        databaseReference.child("user123").child("firebasePrayer").child("zuhr").addValueEventListener(new ValueEventListener() {
+        databaseReference.child("user123").child("firebasePrayer").child("Zuhr").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
 //                String value = snapshot.getValue(String.class);
 //                System.out.println("AAAAAAA : " + value);
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     String stringValue = ds.child("salahUnit").getValue(String.class);
-                    Log.i("SalahUnitttt", stringValue);
-                    if(stringValue.equalsIgnoreCase("sunnah4")){
+                    String stringValue3 = ds.child("salahStatus").getValue(String.class);
+                    long stringValue2 = ds.child("rakahNumber").getValue(long.class);
+                    salahNameTv.setText("Zuhr");
+                    if(stringValue3.equalsIgnoreCase("Error")){
+                        iconStatusIv.setImageDrawable(getResources().getDrawable(R.drawable.error));
+                    }
+                    if(stringValue3.equalsIgnoreCase("Complete")){
+                        iconStatusIv.setImageDrawable(getResources().getDrawable(R.drawable.tic));
+                    }
+
+                    if(stringValue.equalsIgnoreCase("Sunnah") && stringValue2==4){
                         isZuhrSunnah4Prayed=true;
                         shared.isZuhrSunnah4Prayed=true;
                         sunnah4LL.setVisibility(View.VISIBLE);
-                        String stringValue2 = ds.child("missedRakah").getValue(String.class);
-                        if(stringValue2.equalsIgnoreCase("1")){
-                            sunnah4Rakah1Qayam.setBackgroundColor(Color.parseColor("#D58C87"));
-                            sunnah4Rakah1Ruku.setBackgroundColor(Color.parseColor("#D58C87"));
-                            sunnah4Rakah1Qoum.setBackgroundColor(Color.parseColor("#D58C87"));
-                            sunnah4Rakah1Sajda1.setBackgroundColor(Color.parseColor("#D58C87"));
-                            sunnah4Rakah1Jalsa.setBackgroundColor(Color.parseColor("#D58C87"));
-                            sunnah4Rakah1Sajda2.setBackgroundColor(Color.parseColor("#D58C87"));
-                        }
-                        if(stringValue2.equalsIgnoreCase("2")){
-                            sunnah4Rakah2Qayam.setBackgroundColor(Color.parseColor("#D58C87"));
-                            sunnah4Rakah2Ruku.setBackgroundColor(Color.parseColor("#D58C87"));
-                            sunnah4Rakah2Qoum.setBackgroundColor(Color.parseColor("#D58C87"));
-                            sunnah4Rakah2Sajda1.setBackgroundColor(Color.parseColor("#D58C87"));
-                            sunnah4Rakah2Jalsa.setBackgroundColor(Color.parseColor("#D58C87"));
-                            sunnah4Rakah2Sajda2.setBackgroundColor(Color.parseColor("#D58C87"));
-                            sunnah4Rakah2Tashahud.setBackgroundColor(Color.parseColor("#D58C87"));
-
-                        }
-                        if(stringValue2.equalsIgnoreCase("3")){
-                            sunnah4Rakah3Qayam.setBackgroundColor(Color.parseColor("#D58C87"));
-                            sunnah4Rakah3Ruku.setBackgroundColor(Color.parseColor("#D58C87"));
-                            sunnah4Rakah3Qoum.setBackgroundColor(Color.parseColor("#D58C87"));
-                            sunnah4Rakah3Sajda1.setBackgroundColor(Color.parseColor("#D58C87"));
-                            sunnah4Rakah3Jalsa.setBackgroundColor(Color.parseColor("#D58C87"));
-                            sunnah4Rakah3Sajda2.setBackgroundColor(Color.parseColor("#D58C87"));
-                        }
-                        if(stringValue2.equalsIgnoreCase("4")){
-                            sunnah4Rakah4Qayam.setBackgroundColor(Color.parseColor("#D58C87"));
-                            sunnah4Rakah4Ruku.setBackgroundColor(Color.parseColor("#D58C87"));
-                            sunnah4Rakah4Qoum.setBackgroundColor(Color.parseColor("#D58C87"));
-                            sunnah4Rakah4Sajda1.setBackgroundColor(Color.parseColor("#D58C87"));
-                            sunnah4Rakah4Jalsa.setBackgroundColor(Color.parseColor("#D58C87"));
-                            sunnah4Rakah4Sajda2.setBackgroundColor(Color.parseColor("#D58C87"));
-                            sunnah4Rakah4Tashahud.setBackgroundColor(Color.parseColor("#D58C87"));
-
-                        }
+                        sunnah4Rakah3Qayam.setBackgroundColor(Color.parseColor("#D58C87"));
+                        sunnah4Rakah3Ruku.setBackgroundColor(Color.parseColor("#D58C87"));
+                        sunnah4Rakah3Qoum.setBackgroundColor(Color.parseColor("#D58C87"));
+                        sunnah4Rakah3Sajda1.setBackgroundColor(Color.parseColor("#D58C87"));
+                        sunnah4Rakah3Jalsa.setBackgroundColor(Color.parseColor("#D58C87"));
+                        sunnah4Rakah3Sajda2.setBackgroundColor(Color.parseColor("#D58C87"));
 
                     }
-                    if(stringValue.equalsIgnoreCase("farz4")){
+                    if(stringValue.equalsIgnoreCase("Farz") && stringValue2==4 ){
                         isZuhrFarz4Prayed=true;
                         shared.isZuhrFarz4Prayed=true;
                         farz4LL.setVisibility(View.VISIBLE);
                         farz4Rakah2Tashahud.setBackgroundColor(Color.parseColor("#D58C87"));
 
                     }
-                    if(stringValue.equalsIgnoreCase("sunnah2")){
+                    if(stringValue.equalsIgnoreCase("Sunnah") && stringValue2==2){
                         isZuhrSunnah2Prayed=true;
                         shared.isZuhrSunnah2Prayed=true;
                         sunnah2LL.setVisibility(View.VISIBLE);
                     }
-                    if(stringValue.equalsIgnoreCase("nafl2")){
+                    if(stringValue.equalsIgnoreCase("Nafal2") && stringValue2==2){
                         shared.isZuhrNafl2Prayed=true;
                         isZuhrNafl2Prayed=true;
                         nafal2LL.setVisibility(View.VISIBLE);

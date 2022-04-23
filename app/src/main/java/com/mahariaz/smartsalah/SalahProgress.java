@@ -136,7 +136,18 @@ public class SalahProgress extends AppCompatActivity {
                                                             }
                                                         }, 1000 * i);
                                                     }
-                                                    else if(pos.get(i).equalsIgnoreCase("Sajda")){
+                                                    else if(pos.get(i).equalsIgnoreCase("Jalsa")){
+                                                        handler1.postDelayed(new Runnable() {
+
+                                                            @Override
+                                                            public void run() {
+                                                                posturepic.setImageDrawable(getResources().getDrawable(R.drawable.tashpic));
+                                                                posName.setText("Jalsa");
+
+                                                            }
+                                                        }, 1000 * i);
+                                                    }
+                                                    else if(pos.get(i).equalsIgnoreCase("Tashahud")){
                                                         handler1.postDelayed(new Runnable() {
 
                                                             @Override
@@ -457,7 +468,10 @@ public class SalahProgress extends AppCompatActivity {
                                 rakahextra.equalsIgnoreCase("None") &&
                                 rakahMissed.equalsIgnoreCase("None")){
                             salahStatus="Complete";
-                        }else{
+                        }else if(!posmiss.equalsIgnoreCase("None") ){
+                            salahStatus="Error";
+                        }
+                        else{
                             salahStatus="Error";
                         }
 

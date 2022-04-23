@@ -40,6 +40,8 @@ public class shared {
     public static Boolean isZuhrSunnah2Prayed=false;
     public static Boolean isZuhrNafl2Prayed=false;
 
+    public static int sunnah2Time,farz2Time,sunnah4Time,farz4Time,farz3Time;
+
 
 
     public static final Uri getUriToDrawable(@NonNull Context context,

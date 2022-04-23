@@ -40,10 +40,9 @@
                 android:padding="10dp">
 
                 <ImageView
-                    android:id="@+id/fjrmoon"
+                    android:id="@+id/imgi1"
                     android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/supp_img">
+                    android:layout_height="50dp">
 
                 </ImageView>
 
@@ -53,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
-                    android:layout_toRightOf="@+id/fjrmoon"
+                    android:layout_toRightOf="@+id/imgi1"
                     android:textColor="@color/black"
                     android:textSize="20dp"
                     android:textStyle="bold">
@@ -85,6 +84,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Posture Average Time"
+                android:textSize="20dp"
+                android:layout_gravity="center">
+
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time(sec)"
+                android:textSize="15dp"
+                >
+
+            </TextView>
             <LinearLayout
                 android:padding="10dp"
                 android:layout_margin="10dp"

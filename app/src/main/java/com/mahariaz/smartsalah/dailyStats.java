@@ -216,45 +216,45 @@ public class dailyStats extends Fragment {
         mChart.getAxisLeft().setEnabled(false);
         mChart.getLegend().setEnabled(false);
 
-        float[] farz4 = {0, 4, 4, 0, 4};
-        float[] sunnah4 = {0, 5, 5, 0, 5};
-        float[] sunnah2 = {2, 2, 0, 3, 2};
-        float[] nafal2 = {2, 2, 0, 1, 2};
-        float[] farz3 = {0, 0, 0, 3, 4};
+        float[] val1 = {0, shared.sunnah4Time+1, shared.sunnah4Time+2, 0, shared.sunnah4Time+1};
+        float[] val2 = {0, shared.farz4Time+1, shared.farz4Time+1, 0, shared.farz4Time};
+        float[] val3 = {shared.sunnah2Time+1, shared.sunnah2Time+1, 0, shared.sunnah2Time, shared.sunnah2Time+1};
+        float[] val4 = {shared.sunnah2Time+1, shared.sunnah2Time+2, shared.sunnah2Time+1, shared.sunnah2Time, shared.sunnah2Time};
+        float[] val5 = {0, 0, 0, shared.farz3Time+2, shared.farz3Time+1};
 
 
-        ArrayList<BarEntry> farzbar4 = new ArrayList<>();
-        ArrayList<BarEntry> farzbar3 = new ArrayList<>();
-        ArrayList<BarEntry> sunnahbar4 = new ArrayList<>();
-        ArrayList<BarEntry> sunnahbar2 = new ArrayList<>();
-        ArrayList<BarEntry> nafalbar = new ArrayList<>();
+        ArrayList<BarEntry> sunnah4Bar = new ArrayList<>();
+        ArrayList<BarEntry> farz4Bar = new ArrayList<>();
+        ArrayList<BarEntry> sunnah2Bar = new ArrayList<>();
+        ArrayList<BarEntry> nafl2Bar = new ArrayList<>();
+        ArrayList<BarEntry> farz3Bar = new ArrayList<>();
 
-        for (int i = 0; i < farz4.length; i++) {
-            farzbar4.add(new BarEntry(i, farz4[i]));
-            farzbar3.add(new BarEntry(i, farz3[i]));
-            sunnahbar4.add(new BarEntry(i, sunnah4[i]));
-            sunnahbar2.add(new BarEntry(i, sunnah2[i]));
-            nafalbar.add(new BarEntry(i, nafal2[i]));
+        for (int i = 0; i < val1.length; i++) {
+            sunnah4Bar.add(new BarEntry(i, val1[i]));
+            farz4Bar.add(new BarEntry(i, val2[i]));
+            sunnah2Bar.add(new BarEntry(i, val3[i]));
+            nafl2Bar.add(new BarEntry(i, val4[i]));
+            farz3Bar.add(new BarEntry(i, val5[i]));
 //
         }
-        BarDataSet set5 = new BarDataSet(sunnahbar2, "barTwo");
-        set5.setColor(Color.parseColor("#809bce"));
-        BarDataSet set6 = new BarDataSet(nafalbar, "barTwo");
-        set6.setColor(Color.parseColor("#95b8d1"));
-        BarDataSet set1 = new BarDataSet(farzbar4, "barOne");
-        set1.setColor(Color.parseColor("#b8e0d2"));
-        BarDataSet set4 = new BarDataSet(sunnahbar4, "barTwo");
+        BarDataSet set1 = new BarDataSet(sunnah4Bar, "barTwo");
+        set1.setColor(Color.parseColor("#809bce"));
+        BarDataSet set2 = new BarDataSet(farz4Bar, "barTwo");
+        set2.setColor(Color.parseColor("#95b8d1"));
+        BarDataSet set3 = new BarDataSet(sunnah2Bar, "barOne");
+        set3.setColor(Color.parseColor("#b8e0d2"));
+        BarDataSet set4 = new BarDataSet(nafl2Bar, "barTwo");
         set4.setColor(Color.parseColor("#d6eadf"));
-        BarDataSet set2 = new BarDataSet(farzbar3, "barTwo");
-        set2.setColor(Color.parseColor("#eac4d5"));
+        BarDataSet set5 = new BarDataSet(farz3Bar, "barTwo");
+        set5.setColor(Color.parseColor("#eac4d5"));
 
 
         ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
-        dataSets.add(set5);
-        dataSets.add(set6);
         dataSets.add(set1);
-        dataSets.add(set4);
         dataSets.add(set2);
+        dataSets.add(set3);
+        dataSets.add(set4);
+        dataSets.add(set5);
 
 
         BarData data = new BarData(dataSets);

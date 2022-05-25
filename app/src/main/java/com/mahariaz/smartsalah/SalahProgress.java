@@ -33,6 +33,7 @@ import com.mahariaz.smartsalah.firebase.PModel;
 
 import org.json.CDL;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -42,6 +43,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.nio.charset.Charset;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -56,6 +58,9 @@ import java.util.Map;
 public class SalahProgress extends AppCompatActivity {
     String url1 = "https://mlint.herokuapp.com/val";
     String url2 = "https://mlint.herokuapp.com/reasoner";
+
+//    String url1 = "https://tizenint.herokuapp.com/val";
+//    String url2 = "https://tizenint.herokuapp.com/reasoner";
     String fileNumber;
     private Toolbar mTopToolbar;
     TextView posName;
@@ -66,7 +71,7 @@ public class SalahProgress extends AppCompatActivity {
     ImageView posturepic;
     String whichScreen="SalahProgress";
     int qayamAvg,rukuAvg,qoumAvg,sajdaAvg,jalsaAvg,tashAvg,salahUnitTime;
-    String possMissed,extraPosture,extraRakah,salahStatus,rakahMissed;
+    String possMissed="",extraPosture="",extraRakah="",salahStatus="",rakahMissed="";
     ArrayList<String> pos=new ArrayList<>();
 
 
@@ -87,7 +92,7 @@ public class SalahProgress extends AppCompatActivity {
 
                                     try {
                                         JSONObject jsonObject1 = new JSONObject(response);
-                                        System.out.println(jsonObject1);
+                                        System.out.println("JSONNNNN!!!!!!!!: "+jsonObject1);
                                         conversion(getApplicationContext(),jsonObject1);
                                         final Runnable runnable = new Runnable() {
                                             @Override
@@ -221,7 +226,7 @@ public class SalahProgress extends AppCompatActivity {
 
                                             try {
                                                 JSONObject jsonObject = new JSONObject(response);
-                                                System.out.println(jsonObject);
+                                                System.out.println("Reasonerrrrr"+jsonObject);
                                                 conversion1(getApplicationContext(), jsonObject);
 
                                                 //
@@ -266,8 +271,8 @@ public class SalahProgress extends AppCompatActivity {
                 intent.putExtra("sel_salah",sel_salah);
                 intent.putExtra("sel_rakah",sel_rakah);
                 intent.putExtra("sel_unit",sel_unit);
-                intent.putExtra("rakahMissed",rakahMissed);
-                intent.putExtra("possMised",possMissed);
+                intent.putExtra("rakahMissed","1AND3AND4AND");
+                intent.putExtra("possMissed",possMissed);
                 intent.putExtra("salahStatus",salahStatus);
                 intent.putExtra("whichScreen","SalahProgress");
                 intent.putExtra("qayamAvg",String.valueOf(qayamAvg));
@@ -409,6 +414,7 @@ public class SalahProgress extends AppCompatActivity {
         }
 
     }
+
     public void conversion1(Context hContext, JSONObject jsonObject) {
         String hFileName;
         try {
@@ -431,6 +437,13 @@ public class SalahProgress extends AppCompatActivity {
         getReasonerData();
     }
     private void getReasonerData() {
+        ArrayList<String> saveRakahCount=new ArrayList<>();
+        ArrayList<String> standardRakahCount=new ArrayList<>();
+        standardRakahCount.add("1");
+        standardRakahCount.add("2");
+        standardRakahCount.add("3");
+        standardRakahCount.add("4");
+
         String path="/data/data/com.mahariaz.smartsalah/files/Temp2.csv";
         File myFile = new File(path);
         String line="";
@@ -450,24 +463,29 @@ public class SalahProgress extends AppCompatActivity {
                         rakahcount=tokens2[2];
                         rakahextra=tokens2[3];
                         status=tokens2[4];
-                        System.out.println("Rakah Number: "+rakahcount);
-                        System.out.println("Status: "+status);
-                        System.out.println("Extra Posture: "+extrapos);
-                        System.out.println("Posture Miss: "+posmiss);
-                        System.out.println("Rakah Extra: "+ rakahextra);
-                        extraPosture+=extrapos+"IN"+rakahcount;
-                        possMissed+=posmiss+"IN"+rakahcount;
+                        extraPosture+=extrapos+"IN"+rakahcount+"-";
+                        possMissed+=posmiss+"IN"+rakahcount+"-";
                         extraRakah=rakahextra;
-                        if (sel_rakah.equalsIgnoreCase("4") && sel_unit.equalsIgnoreCase("Sunnah")){
-                            rakahMissed="3";
-                        }else{
-                            rakahMissed="None";
-                        }
+                        System.out.println("possMissedString: "+ possMissed);
+
+                        saveRakahCount.add(rakahcount);
+
+
+                        System.out.println("saveRakahCount : "+saveRakahCount);
+
+                        System.out.println("RakahMissed : "+rakahMissed);
+
+
+
                         if(extrapos.equalsIgnoreCase("None")&&
                                 posmiss.equalsIgnoreCase("None") &&
                                 rakahextra.equalsIgnoreCase("None") &&
                                 rakahMissed.equalsIgnoreCase("None")){
                             salahStatus="Complete";
+                            extraPosture="";
+                            possMissed="";
+                            rakahMissed="";
+
                         }else if(!posmiss.equalsIgnoreCase("None") ){
                             salahStatus="Error";
                         }
@@ -480,6 +498,7 @@ public class SalahProgress extends AppCompatActivity {
 
 
                     }
+
                 }
                 num++;
             }
@@ -488,8 +507,25 @@ public class SalahProgress extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        // applying followed by on rakah count to check missed rakah
+
+        if (sel_rakah.equalsIgnoreCase("4")){
+            for (int j=0;j<standardRakahCount.size();j++){
+                if (!saveRakahCount.contains(standardRakahCount.get(j))){
+                    rakahMissed+=standardRakahCount.get(j)+"AND";
+                }
+            }
+
+//            if(!saveRakahCount.contains("1")){
+//                rakahMissed+="1";
+//            }
+
+
+        }
+
         save_data();
     }
+
     private void getAvgTime() {
         System.out.println("INSIDE GETAVGTIME");
         String[] split_time1;
@@ -675,8 +711,8 @@ public class SalahProgress extends AppCompatActivity {
         if (sel_salah.equalsIgnoreCase("Zuhr")){
             PModel zuhrPModel = new PModel(sel_salah, Integer.parseInt(sel_rakah), possMissed, rakahMissed, salahStatus, qayamAvg, rukuAvg, qoumAvg, sajdaAvg, jalsaAvg,tashAvg,sel_unit,salahUnitTime,extraPosture,extraRakah,"2022-04-22");
             FirebasePrayer firebasePrayer = new FirebasePrayer(zuhrPModel, zuhrPModel, zuhrPModel, zuhrPModel, zuhrPModel);
-            FirebaseUser firebaseUser = new FirebaseUser("21", "", "mahariaz@gmail.com", "female", "4.10","mahnooor" ,firebasePrayer);
-            //databaseReference.child(firebaseUser.getUsername()).setValue(firebaseUser);
+//            FirebaseUser firebaseUser = new FirebaseUser("21", "", "mahariaz@gmail.com", "female", "4.10","mahnooor" ,firebasePrayer);
+//            //databaseReference.child(firebaseUser.getUsername()).setValue(firebaseUser);
             databaseReference.child("user123").child("firebasePrayer").child(sel_salah).push().setValue(zuhrPModel);
 
         }

@@ -131,7 +131,7 @@
                             android:id="@+id/zuhrIcon"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:src="@drawable/sunn">
+                            android:src="@drawable/sun2">
 
                         </ImageView>
                         <TextView

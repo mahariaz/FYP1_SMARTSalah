@@ -72,7 +72,7 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
         fajar_circle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sel_salah="Fajar";
+                sel_salah="Fajr";
                 fajar_circle.setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
                 zuhr_circle.setColorFilter(0,PorterDuff.Mode.SRC_ATOP);
                 asr_circle.setColorFilter(0,PorterDuff.Mode.SRC_ATOP);
@@ -285,9 +285,12 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
                 r1_circle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
             }
         });
+
+
         farzCircle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // file selection from server
                 if (sel_rakah.equalsIgnoreCase("4")){
                     fileNumber="3";
                 }

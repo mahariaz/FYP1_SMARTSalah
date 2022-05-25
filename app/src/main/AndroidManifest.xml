@@ -81,7 +81,9 @@
             android:exported="true"></activity>
         <activity
             android:name=".ViewSalah"
-            android:exported="true" />
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".Home"
             android:exported="true">

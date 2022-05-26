@@ -18,116 +18,124 @@
         android:background="#009688"
         />
 
-    <LinearLayout
-        android:layout_margin="20dp"
-        android:padding="20dp"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical"
-        android:weightSum="2"
-        android:gravity="center"
-        android:layout_weight="2.7">
+        android:layout_margin="20dp"
+        android:layout_weight="2.7"
+        android:padding="20dp">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center">
+
+        </ProgressBar>
 
         <ImageView
             android:id="@+id/posturepic"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1.9"
-            >
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true">
+
         </ImageView>
+
         <TextView
-            android:textSize="30dp"
             android:id="@+id/posName"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"
-            android:text="posture">
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="">
 
         </TextView>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_margin="20dp"
-        android:padding="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:weightSum="4"
- >
-        <TextView
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/rakah1"
-            android:textSize="15dp"
-            android:visibility="gone">
+    </RelativeLayout>
 
-        </TextView>
-        <ProgressBar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:id="@+id/bar1"
-            android:visibility="gone">
+<!--    <LinearLayout-->
+<!--        android:layout_margin="20dp"-->
+<!--        android:padding="20dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        android:weightSum="4"-->
+<!-- >-->
+<!--        <TextView-->
+<!--            android:gravity="center"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/rakah1"-->
+<!--            android:textSize="15dp"-->
+<!--            android:visibility="gone">-->
 
-        </ProgressBar>
-        <TextView
-            android:visibility="gone"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Rakah2"
-            android:id="@+id/rakah2"
-            android:textSize="15dp">
+<!--        </TextView>-->
+<!--        <ProgressBar-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            style="@style/Widget.AppCompat.ProgressBar.Horizontal"-->
+<!--            android:id="@+id/bar1"-->
+<!--            android:visibility="gone">-->
 
-        </TextView>
-        <ProgressBar
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:id="@+id/bar2">
+<!--        </ProgressBar>-->
+<!--        <TextView-->
+<!--            android:visibility="gone"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Rakah2"-->
+<!--            android:id="@+id/rakah2"-->
+<!--            android:textSize="15dp">-->
 
-        </ProgressBar>
-        <TextView
-            android:visibility="gone"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Rakah3"
-            android:id="@+id/rakah3"
-            android:textSize="15dp">
+<!--        </TextView>-->
+<!--        <ProgressBar-->
+<!--            android:visibility="gone"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            style="@style/Widget.AppCompat.ProgressBar.Horizontal"-->
+<!--            android:id="@+id/bar2">-->
 
-        </TextView>
-        <ProgressBar
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:id="@+id/bar3">
+<!--        </ProgressBar>-->
+<!--        <TextView-->
+<!--            android:visibility="gone"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Rakah3"-->
+<!--            android:id="@+id/rakah3"-->
+<!--            android:textSize="15dp">-->
 
-        </ProgressBar>
-        <TextView
-            android:visibility="gone"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Rakah4"
-            android:id="@+id/rakah4"
-            android:textSize="15dp">
+<!--        </TextView>-->
+<!--        <ProgressBar-->
+<!--            android:visibility="gone"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            style="@style/Widget.AppCompat.ProgressBar.Horizontal"-->
+<!--            android:id="@+id/bar3">-->
 
-        </TextView>
-        <ProgressBar
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:id="@+id/bar4">
+<!--        </ProgressBar>-->
+<!--        <TextView-->
+<!--            android:visibility="gone"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Rakah4"-->
+<!--            android:id="@+id/rakah4"-->
+<!--            android:textSize="15dp">-->
 
-        </ProgressBar>
-    </LinearLayout>
+<!--        </TextView>-->
+<!--        <ProgressBar-->
+<!--            android:visibility="gone"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            style="@style/Widget.AppCompat.ProgressBar.Horizontal"-->
+<!--            android:id="@+id/bar4">-->
+
+<!--        </ProgressBar>-->
+<!--    </LinearLayout>-->
 
     <LinearLayout
         android:layout_margin="20dp"
@@ -139,6 +147,7 @@
 
         <Button
             android:id="@+id/end_salah_btn"
+            android:enabled="false"
             android:layout_width="150dp"
             android:layout_marginTop="10dp"
             android:layout_height="wrap_content"

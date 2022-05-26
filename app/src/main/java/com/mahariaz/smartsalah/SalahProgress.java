@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -73,13 +74,19 @@ public class SalahProgress extends AppCompatActivity {
     int qayamAvg,rukuAvg,qoumAvg,sajdaAvg,jalsaAvg,tashAvg,salahUnitTime;
     String possMissed="",extraPosture="",extraRakah="",salahStatus="",rakahMissed="";
     ArrayList<String> pos=new ArrayList<>();
-
+    String salahPerformedTime="";
+    ProgressBar progressBar;
+    Button end_salah,view_salah;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_salah_progress);
         posName=findViewById(R.id.posName);
+        progressBar=findViewById(R.id.progressBar);
+        view_salah=findViewById(R.id.view_salah_btn);
+        end_salah=findViewById(R.id.end_salah_btn);
+
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
@@ -89,6 +96,7 @@ public class SalahProgress extends AppCompatActivity {
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
+                                    progressBar.setVisibility(View.GONE);
 
                                     try {
                                         JSONObject jsonObject1 = new JSONObject(response);
@@ -164,11 +172,15 @@ public class SalahProgress extends AppCompatActivity {
                                                         }, 1000 * i);
                                                     }
 
+
                                                 }
                                             }
                                         };
                                         final Handler handler = new Handler();
                                         handler.postDelayed(runnable, 5000);
+                                        end_salah.setEnabled(true);
+
+
 
 //
                                     } catch (Exception e) {
@@ -201,6 +213,7 @@ public class SalahProgress extends AppCompatActivity {
                 }
             }
         });
+
         salahUnitTime=calculateUnitTime();
         postureName2.addAll(pics);
 
@@ -209,9 +222,9 @@ public class SalahProgress extends AppCompatActivity {
         get_intents();
         posturepic=findViewById(R.id.posturepic);
 
-        Button view_salah=findViewById(R.id.view_salah_btn);
-        Button end_salah=findViewById(R.id.end_salah_btn);
+
         end_salah.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 AsyncTask.execute(new Runnable() {
@@ -252,17 +265,14 @@ public class SalahProgress extends AppCompatActivity {
                             e1.printStackTrace();
                         }
                     }
-                });                // run reasoner
-                getAvgTime();
-                // json-obj=> file/parse
-                // read the file and get avg times of postures and othr variables
-                // pass intents to ViewSalah from SalahProgress
-
-
-
+                });// run reasoner
 
                 view_salah.setEnabled(true);
+                getAvgTime();
+
+
             }
+
         });
         view_salah.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -527,16 +537,20 @@ public class SalahProgress extends AppCompatActivity {
     }
 
     private void getAvgTime() {
-        System.out.println("INSIDE GETAVGTIME");
-        String[] split_time1;
-        String[] split_time2;
+        // calculaing average time spent on  each posture
+        String[] minute;
+        String[] second;
 
         int qayamT = 0, rukuT = 0, qoumT = 0, sajdaT = 0, jalsaT = 0, tashT = 0;
         String token_value = "";
         String token_name = "";
+        /* variables for adding up individual posture times
+        and then storing them as average in the following variables*/
         int total_qayam = 0, total_ruku = 0, total_qoum = 0, total_sajda = 0, total_jalsa = 0, total_tash = 0;
+
+        /* path where the file is residing in the phone */
         String path="/data/data/com.mahariaz.smartsalah/files/Temp1.csv";
-        System.out.println("PATHHHHH"+path);
+
         File myFile = new File(path);
         try {
             FileInputStream inputStream = new FileInputStream(myFile);
@@ -548,14 +562,14 @@ public class SalahProgress extends AppCompatActivity {
             String pos2="";
             String tme2="";
             while ((line = reader.readLine()) != null) {
-                System.out.println("ACTUAL CODE");
+
                 // Split the line into different tokens (using the comma as a separator).
                 if (num!=0) {
                     String[] tokens = line.split("\n");
                     for (int i = 0; i < tokens.length; i++) {
                         String[] tokens2 = tokens[i].split(",");
-                        token_value = tokens2[3];
-                        token_name = tokens2[1];
+                        token_value = tokens2[3]; // timestamp at this index
+                        token_name = tokens2[1];  // posture at this index
 
                         if (pos1=="" && tme1=="") {
                             pos1=token_name;
@@ -563,10 +577,13 @@ public class SalahProgress extends AppCompatActivity {
                         } else {
                             pos2=token_name;
                             tme2=token_value;
-                            split_time1 = tme1.split(":");
-                            split_time2 = tme2.split(":");
-                            int a = Integer.parseInt(split_time1[2]);
-                            int b = Integer.parseInt(split_time2[2]);
+                            minute = tme1.split(":");
+                            second = tme2.split(":");
+
+                            /*converting minutes and seconds
+                            from string to integer for computation*/
+                            int a = Integer.parseInt(minute[2]); // minutes
+                            int b = Integer.parseInt(second[2]); // seconds
 
                             if(pos1.equals("Qayam")) {
                                 if((b-a)>0) {
@@ -574,41 +591,41 @@ public class SalahProgress extends AppCompatActivity {
                                 }
                                 total_qayam+=qayamT;
 
-//                                System.out.println("Qayam time: "+ qayamT);
+
                             } else if(pos1.equals("Ruku")) {
                                 if((b-a)>0) {
                                     rukuT=b-a;
                                 }
                                 total_ruku+=rukuT;
-//                                System.out.println("Ruku time: "+ rukuT);
+
                             }
                             else if(pos1.equals("Qoum")) {
                                 if((b-a)>0) {
                                     qoumT=b-a;
                                 }
                                 total_qoum+=qoumT;
-//                                System.out.println("Qoum time: "+ qoumT);
+
                             }
                             else if(pos1.equals("Sajda")) {
                                 if((b-a)>0) {
                                     sajdaT=b-a;
                                 }
                                 total_sajda+=sajdaT;
-//                                System.out.println("Sajda time: "+ sajdaT);
+
                             }
                             else if(pos1.equals("Jalsa")) {
                                 if((b-a)>0) {
                                     jalsaT=b-a;
                                 }
                                 total_jalsa+=jalsaT;
-//                                System.out.println("Jalsa time: "+ jalsaT);
+
                             }
                             else if(pos1.equals("Tashahud")) {
                                 if((b-a)>0) {
                                     tashT=b-a;
                                 }
                                 total_tash+=tashT;
-//                                System.out.println("Tashahud time: "+ tashT);
+
                             }
                             pos1=pos2;
                             tme1=tme2;
@@ -644,10 +661,11 @@ public class SalahProgress extends AppCompatActivity {
 
 
     private int calculateUnitTime() {
-        System.out.println("INSIDE UNIT TIME ");
+        /* calculating total time spent in one Salah */
         String path="/data/data/com.mahariaz.smartsalah/files/Temp1.csv";
-        System.out.println("PATHHHHH"+path);
         File myFile = new File(path);
+        /* variables to extract first and last line of file
+        * as it's the starting and ending time of Salah */
         String firstLine="",firstLineF="",lastline="",lastlineF="";
         String firstTime[],lastTime[];
         String startTime="",endTime="";
@@ -658,7 +676,7 @@ public class SalahProgress extends AppCompatActivity {
             e.printStackTrace();
         }
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, Charset.forName("UTF-8")));
-        // first line
+        // first line : starting time of Salah
         int i=0;
         try {
             while ((firstLine = reader.readLine()) != null) {
@@ -668,13 +686,24 @@ public class SalahProgress extends AppCompatActivity {
                 }
                 firstLineF=firstLine;
 
+
                 i++;
             }
+            /* splitting file line i-e
+            Zuhr,Qayam,4, 2021-11-19 12:24:14:130,Sunnah
+             */
+
             firstTime=firstLineF.split(",");
-            startTime = firstTime[3];
-            System.out.println("Fisrt time : "+startTime);
+            startTime = firstTime[3]; // timestamp at this index
+            /*extracting only time from timestamp on
+            which salah is performed*/
+            String tempStartTime=startTime;
+            String perSalahTime[]=tempStartTime.split(" ");
+            salahPerformedTime=perSalahTime[1];
+            System.out.println("per salah time : "+salahPerformedTime);
+
         } catch (IOException e1) {        }
-        // last line
+        // last line : end time of Salah
 
         try {
             while ((lastline = reader.readLine()) != null) {

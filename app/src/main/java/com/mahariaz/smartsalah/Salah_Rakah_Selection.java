@@ -22,9 +22,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,7 +47,7 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
     Boolean isSalahSelected=false;
     String fileNumber;
 
-
+    String url = "https://api.aladhan.com/v1/calendar?latitude=33.738045&longitude=73.084488&method=2&month=5&year=2022";
     private Toolbar mTopToolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -348,11 +350,50 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // create object of MyAsyncTasks class and execute it
-//                MyAsyncTasks myAsyncTasks = new MyAsyncTasks();
-//                myAsyncTasks.execute();
-                String data = DataRepo.getData();
-                Log.d("maha : tag",data);
+                // getting timeliness
+                AsyncTask.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+
+                            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                                    new Response.Listener<String>() {
+                                        @Override
+                                        public void onResponse(String response) {
+
+                                            try {
+                                                JSONObject jsonObject = new JSONObject(response);
+                                                System.out.println("TIMELINESS "+jsonObject);
+                                                //conversion1(getApplicationContext(), jsonObject);
+
+                                                //
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+
+                                        }
+                                    },
+                                    new Response.ErrorListener() {
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+                                            Toast.makeText(Salah_Rakah_Selection.this, "ERROR!!!", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }) {
+
+
+                            };
+                            RequestQueue queue = Volley.newRequestQueue(Salah_Rakah_Selection.this);
+                            queue.add(stringRequest);
+
+                        } catch (Exception e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                });
+
+
+//                String data = DataRepo.getData();
+//                Log.d("maha : tag",data);
 
 
                 Intent intent=new Intent(Salah_Rakah_Selection.this,SalahProgress.class);

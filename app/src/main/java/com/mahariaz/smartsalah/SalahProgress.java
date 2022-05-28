@@ -59,8 +59,10 @@ import java.util.Map;
 public class SalahProgress extends AppCompatActivity {
     String url1 = "https://mlint.herokuapp.com/val";
     String url2 = "https://mlint.herokuapp.com/reasoner";
+    String url = "https://api.aladhan.com/v1/calendar?latitude=33.738045&longitude=73.084488&method=2&month=5&year=2022";
 
-//    String url1 = "https://tizenint.herokuapp.com/val";
+
+    //    String url1 = "https://tizenint.herokuapp.com/val";
 //    String url2 = "https://tizenint.herokuapp.com/reasoner";
     String fileNumber;
     private Toolbar mTopToolbar;
@@ -78,6 +80,7 @@ public class SalahProgress extends AppCompatActivity {
     ProgressBar progressBar;
     Button end_salah,view_salah;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,11 +89,26 @@ public class SalahProgress extends AppCompatActivity {
         progressBar=findViewById(R.id.progressBar);
         view_salah=findViewById(R.id.view_salah_btn);
         end_salah=findViewById(R.id.end_salah_btn);
+        //String data = DataRepo.getData();
+        FileOutputStream fout = null;
+        try {
+            fout = new FileOutputStream(new File(getFilesDir(), "adef.txt"));
+            String s = "Installed";
+            byte b[]=s.getBytes();
+            fout.write(s.getBytes());
+            fout.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
                 try {
+                    String whichJson="Values";
 
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, url1,
                             new Response.Listener<String>() {
@@ -214,7 +232,7 @@ public class SalahProgress extends AppCompatActivity {
             }
         });
 
-        salahUnitTime=calculateUnitTime();
+
         postureName2.addAll(pics);
 
         mTopToolbar = (Toolbar) findViewById(R.id.my_toolbar);
@@ -231,7 +249,7 @@ public class SalahProgress extends AppCompatActivity {
                     @Override
                     public void run() {
                         try {
-
+                            String whichJson="Reasoner";
                             StringRequest stringRequest = new StringRequest(Request.Method.GET, url2,
                                     new Response.Listener<String>() {
                                         @Override
@@ -240,9 +258,9 @@ public class SalahProgress extends AppCompatActivity {
                                             try {
                                                 JSONObject jsonObject = new JSONObject(response);
                                                 System.out.println("Reasonerrrrr"+jsonObject);
+
                                                 conversion1(getApplicationContext(), jsonObject);
 
-                                                //
                                             } catch (Exception e) {
                                                 e.printStackTrace();
                                             }
@@ -268,7 +286,7 @@ public class SalahProgress extends AppCompatActivity {
                 });// run reasoner
 
                 view_salah.setEnabled(true);
-                getAvgTime();
+
 
 
             }
@@ -281,7 +299,7 @@ public class SalahProgress extends AppCompatActivity {
                 intent.putExtra("sel_salah",sel_salah);
                 intent.putExtra("sel_rakah",sel_rakah);
                 intent.putExtra("sel_unit",sel_unit);
-                intent.putExtra("rakahMissed","1AND3AND4AND");
+                intent.putExtra("rakahMissed",rakahMissed);
                 intent.putExtra("possMissed",possMissed);
                 intent.putExtra("salahStatus",salahStatus);
                 intent.putExtra("whichScreen","SalahProgress");
@@ -307,6 +325,48 @@ public class SalahProgress extends AppCompatActivity {
     protected void onStart()
     {
         super.onStart();
+        // here the second async task for the time of Salah performance
+        // getting timeliness
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    String whichJson="Timeliness";
+                    StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+
+                                    try {
+                                        JSONObject jsonObject = new JSONObject(response);
+                                        System.out.println("TIMELINESS "+jsonObject);
+                                        TmelinessConversion(getApplicationContext(), jsonObject);
+
+
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+
+                                }
+                            },
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Toast.makeText(SalahProgress.this, "ERROR!!!", Toast.LENGTH_SHORT).show();
+                                }
+                            }) {
+
+
+                    };
+                    RequestQueue queue = Volley.newRequestQueue(SalahProgress.this);
+                    queue.add(stringRequest);
+
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+
     }
 
 
@@ -369,25 +429,64 @@ public class SalahProgress extends AppCompatActivity {
 
     }
     public void conversion(Context hContext, JSONObject jsonObject) {
+        String hFileName="Temp1.csv";
 
-        String hFileName;
+
         try {
             JSONObject hJsonObject = new JSONObject(jsonObject.toString());
             JSONArray hJsonArray = hJsonObject.toJSONArray(hJsonObject.names());
-
             String hCsvString = CDL.toString(hJsonArray);
+            FileOutputStream fout = null;
+            try {
+                fout = new FileOutputStream(new File(getFilesDir(), "Temp1.csv"));
+                fout.write(hCsvString.getBytes());
+                fout.close();
+                System.out.println("file written");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-            hFileName = "Temp1.csv";
-            FileOutputStream hFileOutputStream = hContext.openFileOutput(
-                    hFileName,
-                    Context.MODE_PRIVATE
-            );
-            hFileOutputStream.write(hCsvString.getBytes());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        getValueData();
 
+    }
+    public void TmelinessConversion(Context hContext, JSONObject jsonObject) {
+        try {
+            System.out.println("mmmmmmmmm : "+jsonObject.getJSONArray("data"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    public void conversion1(Context hContext, JSONObject jsonObject) {
+        String hFileName="Temp2.csv";
+        try {
+            JSONObject hJsonObject = new JSONObject(jsonObject.toString());
+            JSONArray hJsonArray = hJsonObject.toJSONArray(hJsonObject.names());
+            String hCsvString = CDL.toString(hJsonArray);
+            FileOutputStream fout = null;
+            try {
+                fout = new FileOutputStream(new File(getFilesDir(), hFileName));
+                fout.write(hCsvString.getBytes());
+                fout.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         } catch (Exception e) {
 
         }
+        getReasonerData();
+
+    }
+    public void getValueData(){
         String path="/data/data/com.mahariaz.smartsalah/files/Temp1.csv";
         File myFile = new File(path);
         String line="";
@@ -422,30 +521,13 @@ public class SalahProgress extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        getAvgTime();
+
+
 
     }
 
-    public void conversion1(Context hContext, JSONObject jsonObject) {
-        String hFileName;
-        try {
-            JSONObject hJsonObject = new JSONObject(jsonObject.toString());
-            JSONArray hJsonArray = hJsonObject.toJSONArray(hJsonObject.names());
 
-            String hCsvString = CDL.toString(hJsonArray);
-
-            hFileName = "Temp2.csv";
-            FileOutputStream hFileOutputStream = hContext.openFileOutput(
-                    hFileName,
-                    Context.MODE_PRIVATE
-            );
-            hFileOutputStream.write(hCsvString.getBytes());
-
-
-        } catch (Exception e) {
-
-        }
-        getReasonerData();
-    }
     private void getReasonerData() {
         ArrayList<String> saveRakahCount=new ArrayList<>();
         ArrayList<String> standardRakahCount=new ArrayList<>();
@@ -657,6 +739,7 @@ public class SalahProgress extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        salahUnitTime=calculateUnitTime();
     }
 
 

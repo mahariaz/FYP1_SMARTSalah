@@ -47,7 +47,6 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
     Boolean isSalahSelected=false;
     String fileNumber;
 
-    String url = "https://api.aladhan.com/v1/calendar?latitude=33.738045&longitude=73.084488&method=2&month=5&year=2022";
     private Toolbar mTopToolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -350,46 +349,7 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // getting timeliness
-                AsyncTask.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
 
-                            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                                    new Response.Listener<String>() {
-                                        @Override
-                                        public void onResponse(String response) {
-
-                                            try {
-                                                JSONObject jsonObject = new JSONObject(response);
-                                                System.out.println("TIMELINESS "+jsonObject);
-                                                //conversion1(getApplicationContext(), jsonObject);
-
-                                                //
-                                            } catch (Exception e) {
-                                                e.printStackTrace();
-                                            }
-
-                                        }
-                                    },
-                                    new Response.ErrorListener() {
-                                        @Override
-                                        public void onErrorResponse(VolleyError error) {
-                                            Toast.makeText(Salah_Rakah_Selection.this, "ERROR!!!", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }) {
-
-
-                            };
-                            RequestQueue queue = Volley.newRequestQueue(Salah_Rakah_Selection.this);
-                            queue.add(stringRequest);
-
-                        } catch (Exception e1) {
-                            e1.printStackTrace();
-                        }
-                    }
-                });
 
 
 //                String data = DataRepo.getData();

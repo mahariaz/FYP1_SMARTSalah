@@ -30,21 +30,29 @@ public class PModel {
     int tashAvg;
     @SerializedName("salahUnit")
     String salahUnit;
-    @SerializedName("date1")
-    String date1;
+
+
+    @SerializedName("currDate")
+    String currDate;
     @SerializedName("salahUnitTime")
     int salahUnitTime;
     @SerializedName("extraRakah")
     String extraRakah;
     @SerializedName("extraPosture")
     String extraPosture;
+    @SerializedName("salahTimelinessStatus")
+    String salahTimelinessStatus;
 
     public PModel() {
 
     }
 
 
-    public PModel(String salahName, int rakahNumber, String missedPosture, String missedRakah, String salahStatus, int qayamAvg, int rukuAvg, int qoumAvg, int sajdaAvg, int jalsaAvg, int tashAvg, String salahUnit, int salahUnitTime, String extraPosture,String extraRakah,String date1) {
+    public PModel(String salahName, int rakahNumber, String missedPosture,
+                  String missedRakah, String salahStatus, int qayamAvg,
+                  int rukuAvg, int qoumAvg, int sajdaAvg, int jalsaAvg,
+                  int tashAvg, String salahUnit, int salahUnitTime,
+                  String extraPosture,String extraRakah,String currDate,String salahTimelinessStatus) {
         this.salahName = salahName;
         this.rakahNumber = rakahNumber;
         this.missedPosture = missedPosture;
@@ -57,10 +65,11 @@ public class PModel {
         this.jalsaAvg = jalsaAvg;
         this.tashAvg = tashAvg;
         this.salahUnit = salahUnit;
-        this.date1 = date1;
+        this.currDate = currDate;
         this.salahUnitTime=salahUnitTime;
         this.extraPosture=extraPosture;
         this.extraRakah=extraRakah;
+        this.salahTimelinessStatus=salahTimelinessStatus;
 
     }
 
@@ -184,11 +193,20 @@ public class PModel {
         this.salahUnit = salahUnit;
     }
 
-    public String getDate1() {
-        return date1;
+    public String getCurrDate() {
+        return currDate;
     }
 
-    public void setDate1(String date1) {
-        this.date1 = date1;
+    public void setCurrDate(String currDate) {
+        this.currDate = currDate;
+    }
+
+
+    public String getSalahTimelinessStatus() {
+        return salahTimelinessStatus;
+    }
+
+    public void setSalahTimelinessStatus(String salahTimelinessStatus) {
+        this.salahTimelinessStatus = salahTimelinessStatus;
     }
 }

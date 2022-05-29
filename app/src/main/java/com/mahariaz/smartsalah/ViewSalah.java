@@ -232,14 +232,12 @@ public class ViewSalah extends AppCompatActivity {
         it will fetch data of today's performed Salahs from firebase*/
         if (whichScreen.equalsIgnoreCase("dailyStats")){
             intent=getIntent();
-
             /* setting the name of Salah as heading*/
             sel_salah=intent.getStringExtra("sel_salah");
             for (int i=0;i<salahNames.length;i++) {
                 System.out.println("selected salah : "+sel_salah);
                 if (sel_salah.equalsIgnoreCase(salahNames[i])) {
                     salahNameTv.setText(salahNames[i]);
-                    imgi1.setImageDrawable(getResources().getDrawable(salahIcons[i]));
                 }
             }
 
@@ -707,28 +705,27 @@ public class ViewSalah extends AppCompatActivity {
     }
 
     private void getData() {
+        qayamAvg="0";
+        rukuAvg="0";sajdaAvg="0";
         System.out.println("inside getdata");
         FirebaseDatabase firebaseDatabase;
         DatabaseReference databaseReference;
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("UserBio");
-        databaseReference.child("user123").child("firebasePrayer").child("zuhr").addValueEventListener(new ValueEventListener() {
+        databaseReference.child("user123").child("firebasePrayer").child("Zuhr").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
 //                String value = snapshot.getValue(String.class);
 //                System.out.println("AAAAAAA : " + value);
                 System.out.println("HELOOOOOOOOOO");
+                /*
                 for (DataSnapshot ds : snapshot.getChildren()) {
-                    String stringValue = ds.child("salahUnit").getValue(String.class);
-                    String stringValue3 = ds.child("salahStatus").getValue(String.class);
-                    System.out.println("CHECKKKK : "+stringValue3);
-                    String stringValue4 = ds.child("rakah2").child("PostureMiss").getValue(String.class);
-                    System.out.println("PosturMissssssss : "+stringValue4);
-                    if (stringValue4.equalsIgnoreCase("Tashahud")){
-                        sunnah4Rakah2Tashahud.setBackgroundColor(Color.parseColor("#FF0040"));
+                    String salahUnit1 = ds.child("salahUnit").getValue(String.class);
+                    String salahStatus1 = ds.child("salahStatus").getValue(String.class);
+                    String currDate1 = ds.child("currDate").getValue(String.class);
 
-                    }
+
                     String stringValue2temp = ds.child("rakahNumber").getValue(String.class);
                     int stringValue2=Integer.parseInt(stringValue2temp);
                     salahNameTv.setText("Zuhr");
@@ -771,9 +768,8 @@ public class ViewSalah extends AppCompatActivity {
                         nafal2Rakah1Sajda2extra.setVisibility(View.VISIBLE);
                         nafal2Rakah1Sajda2extra.setBackgroundColor(Color.parseColor("#D58C87"));
                     }
-                    System.out.println("shared.isZuhrFarz4Prayed : "+shared.isZuhrFarz4Prayed);
-                    System.out.println(" shared.isZuhrSunnah4Prayed : "+ shared.isZuhrSunnah4Prayed);
-                }
+
+                }*/
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

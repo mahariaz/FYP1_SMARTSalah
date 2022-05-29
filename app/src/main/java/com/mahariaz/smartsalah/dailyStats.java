@@ -96,15 +96,7 @@ public class dailyStats extends Fragment {
                 // read fajar file and pass averages to viewsalah screen
                 Intent intent = new Intent(getActivity(), ViewSalah.class);
                 intent.putExtra("sel_salah", "Fajr");
-                intent.putExtra("sel_rakah", "2");
                 intent.putExtra("whichScreen", "dailyStats");
-//                intent.putExtra("qayamAvg",String.valueOf(total_qayam));
-//                intent.putExtra("rukuAvg",String.valueOf(total_ruku));
-//                intent.putExtra("qoumAvg",String.valueOf(total_qoum));
-//                intent.putExtra("sajdaAvg",String.valueOf(total_sajda));
-//                intent.putExtra("tashAvg",String.valueOf(total_tash));
-                intent.putExtra("completeness", "Yes");
-                intent.putExtra("correctness", "Yes");
                 startActivity(intent);
 
             }
@@ -117,7 +109,6 @@ public class dailyStats extends Fragment {
                 // read zuhr file and pass averages to viewsalah screen
                 Intent intent = new Intent(getActivity(), ViewSalah.class);
                 intent.putExtra("sel_salah", "Zuhr");
-                intent.putExtra("sel_rakah", "4");
                 intent.putExtra("whichScreen", "dailyStats");
 
 
@@ -133,15 +124,7 @@ public class dailyStats extends Fragment {
                 // read asr file and pass averages to viewsalah screen
                 Intent intent = new Intent(getActivity(), ViewSalah.class);
                 intent.putExtra("sel_salah", "Asr");
-                intent.putExtra("sel_rakah", "4");
                 intent.putExtra("whichScreen", "dailyStats");
-//                intent.putExtra("qayamAvg",String.valueOf(total_qayam));
-//                intent.putExtra("rukuAvg",String.valueOf(total_ruku));
-//                intent.putExtra("qoumAvg",String.valueOf(total_qoum));
-//                intent.putExtra("sajdaAvg",String.valueOf(total_sajda));
-//                intent.putExtra("tashAvg",String.valueOf(total_tash));
-                intent.putExtra("completeness", "Yes");
-                intent.putExtra("correctness", "No");
                 startActivity(intent);
 
             }
@@ -154,15 +137,7 @@ public class dailyStats extends Fragment {
                 // read mgb file and pass averages to viewsalah screen
                 Intent intent = new Intent(getActivity(), ViewSalah.class);
                 intent.putExtra("sel_salah", "Maghrib");
-                intent.putExtra("sel_rakah", "3");
                 intent.putExtra("whichScreen", "dailyStats");
-//                intent.putExtra("qayamAvg",String.valueOf(total_qayam));
-//                intent.putExtra("rukuAvg",String.valueOf(total_ruku));
-//                intent.putExtra("qoumAvg",String.valueOf(total_qoum));
-//                intent.putExtra("sajdaAvg",String.valueOf(total_sajda));
-//                intent.putExtra("tashAvg",String.valueOf(total_tash));
-                intent.putExtra("completeness", "Yes");
-                intent.putExtra("correctness", "No");
                 startActivity(intent);
 
             }
@@ -175,15 +150,7 @@ public class dailyStats extends Fragment {
                 // read isha file and pass averages to viewsalah screen
                 Intent intent = new Intent(getActivity(), ViewSalah.class);
                 intent.putExtra("sel_salah", "Isha");
-                intent.putExtra("sel_rakah", "4");
                 intent.putExtra("whichScreen", "dailyStats");
-//                intent.putExtra("qayamAvg",String.valueOf(total_qayam));
-//                intent.putExtra("rukuAvg",String.valueOf(total_qoum));
-//                intent.putExtra("qoumAvg",String.valueOf(0));
-//                intent.putExtra("sajdaAvg",String.valueOf(0));
-//                intent.putExtra("tashAvg",String.valueOf(total_tash));
-                intent.putExtra("completeness", "Yes");
-                intent.putExtra("correctness", "No");
                 startActivity(intent);
 
             }

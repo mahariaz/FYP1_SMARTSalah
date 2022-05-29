@@ -1,5 +1,6 @@
 package com.mahariaz.smartsalah;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -8,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -46,6 +48,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Array;
 import java.nio.charset.Charset;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -59,7 +62,7 @@ import java.util.Map;
 public class SalahProgress extends AppCompatActivity {
     String url1 = "https://mlint.herokuapp.com/val";
     String url2 = "https://mlint.herokuapp.com/reasoner";
-    String url = "https://api.aladhan.com/v1/calendar?latitude=33.738045&longitude=73.084488&method=2&month=5&year=2022";
+    String url;
 
 
     //    String url1 = "https://tizenint.herokuapp.com/val";
@@ -74,12 +77,12 @@ public class SalahProgress extends AppCompatActivity {
     ImageView posturepic;
     String whichScreen="SalahProgress";
     int qayamAvg,rukuAvg,qoumAvg,sajdaAvg,jalsaAvg,tashAvg,salahUnitTime;
-    String possMissed="",extraPosture="",extraRakah="",salahStatus="",rakahMissed="";
+    String possMissed="",extraPosture="",extraRakah="",salahStatus="",rakahMissed="",salahTimelinessStatus;
     ArrayList<String> pos=new ArrayList<>();
     String salahPerformedTime="";
     ProgressBar progressBar;
     Button end_salah,view_salah;
-
+    String currDate,currTime,currTime24;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,19 +92,23 @@ public class SalahProgress extends AppCompatActivity {
         progressBar=findViewById(R.id.progressBar);
         view_salah=findViewById(R.id.view_salah_btn);
         end_salah=findViewById(R.id.end_salah_btn);
-        //String data = DataRepo.getData();
-        FileOutputStream fout = null;
-        try {
-            fout = new FileOutputStream(new File(getFilesDir(), "adef.txt"));
-            String s = "Installed";
-            byte b[]=s.getBytes();
-            fout.write(s.getBytes());
-            fout.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        // step 1: getting todays date
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String currDateTemp=dateFormat.format(new Date());
+        String dateTokens[]=currDateTemp.split("-");
+        currDate=dateTokens[2]+"-"+dateTokens[1]+"-"+dateTokens[0];
+        // step 2: at what time you are performing Salah
+        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm");
+        currTime=timeFormat.format(new Date());
+        SimpleDateFormat timeFormat2 = new SimpleDateFormat("HH:mm");
+        currTime24=timeFormat2.format(new Date());
+
+
+        // the lot lang value of your location
+
+        // Original url"https://api.aladhan.com/v1/calendar?latitude=33.738045&longitude=73.084488&method=2&month=5&year=2022";
+        url="https://api.aladhan.com/v1/calendar?latitude=33.738045&longitude=73.084488&method=2&month="+dateTokens[1]+"&year="+dateTokens[1]+"";
+
 
 
         AsyncTask.execute(new Runnable() {
@@ -312,7 +319,8 @@ public class SalahProgress extends AppCompatActivity {
                 intent.putExtra("salahUnitTime",String.valueOf(salahUnitTime));
                 intent.putExtra("extraPosture",extraPosture);
                 intent.putExtra("extraRakah",extraRakah);
-                intent.putExtra("date1","2022-04-22");
+                intent.putExtra("salahTimelinessStatus",salahTimelinessStatus);
+                intent.putExtra("currDate",currDate);
 
                 startActivity(intent);
 
@@ -455,11 +463,103 @@ public class SalahProgress extends AppCompatActivity {
 
     }
     public void TmelinessConversion(Context hContext, JSONObject jsonObject) {
+        String salahPresTime24="",salahNextTime24="",salahPresTime="",salahNextTime="";
+        // getting what salah you have performed
+        String selSalah="",nextSalah="";
+        /* Matching the naming convention of salah names
+        with json object's salah names as our is different */
+        if(sel_salah.equalsIgnoreCase("Fajr")){
+            selSalah="Fajr";
+        }
+        if(sel_salah.equalsIgnoreCase("Zuhr")){
+            selSalah="Dhuhr";
+            nextSalah="Asr";
+        }
+        if(sel_salah.equalsIgnoreCase("Asr")){
+            selSalah="Asr";
+            nextSalah="Maghrib";
+        }
+        if(sel_salah.equalsIgnoreCase("Maghreb")){
+            selSalah="Maghrib";
+            nextSalah="Isha";
+        }
+        if(sel_salah.equalsIgnoreCase("Isha")){
+            selSalah="Isha";
+            nextSalah="Midnight";
+        }
+
+
         try {
-            System.out.println("mmmmmmmmm : "+jsonObject.getJSONArray("data"));
+            JSONArray arr=jsonObject.getJSONArray("data");
+            for (int i=0;i<arr.length();i++){
+                JSONObject jsonObject1=arr.getJSONObject(i);
+                /* jsonObject1 contains: timings,date at first two
+                indexes which are json objects themselves*/
+
+                //extracting date
+                JSONObject obj1=jsonObject1.getJSONObject("date");
+                /* gregorian is another jason object inside date object which
+                further contains the actual date in the format 01-01-2020*/
+                JSONObject obj2=obj1.getJSONObject("gregorian");
+                // extracting the date which we want to compare with today's date
+                String d =obj2.getString("date");
+                /*this will extract that object in which today's date is written
+                which means today's salah prescribed time */
+
+                if (d.equalsIgnoreCase(currDate)){
+                    JSONObject jsonObject2=jsonObject1.getJSONObject("timings");
+                    /* getting prescribed time of Salah from json object 'timings'
+                    for instance "Fajr":"04:06" */
+                     salahPresTime24=jsonObject2.getString(selSalah);
+                     salahNextTime24=jsonObject2.getString(nextSalah); // getting prescribed time of next Salah
+                    String sunriseTime=jsonObject2.getString("Sunrise");
+                    /*converting Salah prescribed time and nextSalahTime
+                    from 24 hr to 12 hr format */
+
+                    final SimpleDateFormat sdf = new SimpleDateFormat("H:mm");
+                    final SimpleDateFormat sdfNext = new SimpleDateFormat("H:mm");
+                    final Date dateObj,dateObjNext;
+                    try {
+                        dateObj = sdf.parse(salahPresTime24);
+                        dateObjNext = sdfNext.parse(salahNextTime24);
+                        salahPresTime=new SimpleDateFormat("hh:mm").format(dateObj);
+                        salahNextTime=new SimpleDateFormat("hh:mm").format(dateObjNext);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        // computing your salah status i-e onTime/lateTime
+        // converting three string times to Date for comparison
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        try {
+            Date currTimeCmp = sdf.parse(currTime24);
+            Date salahPresTimeCmp = sdf.parse(salahPresTime24);
+            Date salahNextTimeCmp = sdf.parse(salahNextTime24);
+            // printing
+            System.out.println("salah name : "+sel_salah);
+            System.out.println("pres time : "+salahPresTime);
+            System.out.println("end time: "+salahNextTimeCmp+"   "+salahNextTime24);
+            System.out.println("you prayed at : "+currTimeCmp+"   "+currTime24);
+            // formula: currTime < nextSalahTime and currTime > salahPresTime
+            if (currTimeCmp.after(salahPresTimeCmp) && currTimeCmp.before(salahNextTimeCmp)){
+                System.out.println("OnTime: "+currTime24+" "+salahPresTime24+" "+salahNextTime24);
+                salahTimelinessStatus="OnTime";
+            }else{
+                System.out.println("Late: "+currTime24+" "+salahPresTime24+" "+salahNextTime24);
+                salahTimelinessStatus="Late";
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+
 
 
     }
@@ -584,12 +684,7 @@ public class SalahProgress extends AppCompatActivity {
                         else{
                             salahStatus="Error";
                         }
-
-
-
-
-
-                    }
+                   }
 
                 }
                 num++;
@@ -817,22 +912,17 @@ public class SalahProgress extends AppCompatActivity {
         DatabaseReference databaseReference;
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("UserBio");
-
-
-        Log.d("Testing ", databaseReference.toString());
         if (sel_salah.equalsIgnoreCase("Zuhr")){
-            PModel zuhrPModel = new PModel(sel_salah, Integer.parseInt(sel_rakah), possMissed, rakahMissed, salahStatus, qayamAvg, rukuAvg, qoumAvg, sajdaAvg, jalsaAvg,tashAvg,sel_unit,salahUnitTime,extraPosture,extraRakah,"2022-04-22");
-            FirebasePrayer firebasePrayer = new FirebasePrayer(zuhrPModel, zuhrPModel, zuhrPModel, zuhrPModel, zuhrPModel);
+            PModel zuhrPModel = new PModel(sel_salah, Integer.parseInt(sel_rakah),
+                    possMissed, rakahMissed, salahStatus, qayamAvg, rukuAvg,
+                    qoumAvg, sajdaAvg, jalsaAvg,tashAvg,sel_unit,salahUnitTime,
+                    extraPosture,extraRakah,currDate,salahTimelinessStatus);
+//            FirebasePrayer firebasePrayer = new FirebasePrayer(zuhrPModel, zuhrPModel, zuhrPModel, zuhrPModel, zuhrPModel);
 //            FirebaseUser firebaseUser = new FirebaseUser("21", "", "mahariaz@gmail.com", "female", "4.10","mahnooor" ,firebasePrayer);
 //            //databaseReference.child(firebaseUser.getUsername()).setValue(firebaseUser);
             databaseReference.child("user123").child("firebasePrayer").child(sel_salah).push().setValue(zuhrPModel);
 
         }
-
-
-
-        Log.d("Testing ", "User inserted");
-
     }
 
 

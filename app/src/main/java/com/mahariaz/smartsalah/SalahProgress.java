@@ -88,6 +88,7 @@ public class SalahProgress extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_salah_progress);
+        // delete it from here and uncomment from below
         posName=findViewById(R.id.posName);
         progressBar=findViewById(R.id.progressBar);
         view_salah=findViewById(R.id.view_salah_btn);
@@ -470,6 +471,7 @@ public class SalahProgress extends AppCompatActivity {
         with json object's salah names as our is different */
         if(sel_salah.equalsIgnoreCase("Fajr")){
             selSalah="Fajr";
+            nextSalah="Sunrise";
         }
         if(sel_salah.equalsIgnoreCase("Zuhr")){
             selSalah="Dhuhr";
@@ -479,7 +481,7 @@ public class SalahProgress extends AppCompatActivity {
             selSalah="Asr";
             nextSalah="Maghrib";
         }
-        if(sel_salah.equalsIgnoreCase("Maghreb")){
+        if(sel_salah.equalsIgnoreCase("Maghrib")){
             selSalah="Maghrib";
             nextSalah="Isha";
         }
@@ -512,7 +514,6 @@ public class SalahProgress extends AppCompatActivity {
                     for instance "Fajr":"04:06" */
                      salahPresTime24=jsonObject2.getString(selSalah);
                      salahNextTime24=jsonObject2.getString(nextSalah); // getting prescribed time of next Salah
-                    String sunriseTime=jsonObject2.getString("Sunrise");
                     /*converting Salah prescribed time and nextSalahTime
                     from 24 hr to 12 hr format */
 
@@ -674,9 +675,9 @@ public class SalahProgress extends AppCompatActivity {
                                 rakahextra.equalsIgnoreCase("None") &&
                                 rakahMissed.equalsIgnoreCase("None")){
                             salahStatus="Complete";
-                            extraPosture="";
-                            possMissed="";
-                            rakahMissed="";
+                            extraPosture="None";
+                            possMissed="None";
+                            rakahMissed="None";
 
                         }else if(!posmiss.equalsIgnoreCase("None") ){
                             salahStatus="Error";
@@ -702,12 +703,6 @@ public class SalahProgress extends AppCompatActivity {
                     rakahMissed+=standardRakahCount.get(j)+"AND";
                 }
             }
-
-//            if(!saveRakahCount.contains("1")){
-//                rakahMissed+="1";
-//            }
-
-
         }
 
         save_data();
@@ -912,7 +907,7 @@ public class SalahProgress extends AppCompatActivity {
         DatabaseReference databaseReference;
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("UserBio");
-        if (sel_salah.equalsIgnoreCase("Zuhr")){
+        if (sel_salah.equalsIgnoreCase(sel_salah)){
             PModel zuhrPModel = new PModel(sel_salah, Integer.parseInt(sel_rakah),
                     possMissed, rakahMissed, salahStatus, qayamAvg, rukuAvg,
                     qoumAvg, sajdaAvg, jalsaAvg,tashAvg,sel_unit,salahUnitTime,

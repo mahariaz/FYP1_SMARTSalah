@@ -91,16 +91,16 @@
                         </TextView>
                     </RelativeLayout>
 
-                    <ImageView
-                        android:layout_marginTop="30dp"
-                        android:id="@+id/fjrtic"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="20dp"
-                        android:src="@drawable/tic">
+<!--                    <ImageView-->
+<!--                        android:id="@+id/fjrtic"-->
+<!--                        android:layout_width="50dp"-->
+<!--                        android:layout_height="50dp"-->
+<!--                        android:layout_alignParentRight="true"-->
+<!--                        android:layout_marginTop="30dp"-->
+<!--                        android:layout_marginRight="20dp"-->
+<!--                        android:src="@drawable/tic">-->
 
-                    </ImageView>
+<!--                    </ImageView>-->
 
 
                 </RelativeLayout>
@@ -148,16 +148,16 @@
                         </TextView>
                     </RelativeLayout>
 
-                    <ImageView
-                        android:id="@+id/zuhrtic"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginTop="30dp"
-                        android:layout_marginRight="20dp"
-                        android:src="@drawable/error">
+<!--                    <ImageView-->
+<!--                        android:id="@+id/zuhrtic"-->
+<!--                        android:layout_width="50dp"-->
+<!--                        android:layout_height="50dp"-->
+<!--                        android:layout_alignParentRight="true"-->
+<!--                        android:layout_marginTop="30dp"-->
+<!--                        android:layout_marginRight="20dp"-->
+<!--                        android:src="@drawable/error">-->
 
-                    </ImageView>
+<!--                    </ImageView>-->
 
 
                 </RelativeLayout>
@@ -205,16 +205,16 @@
                         </TextView>
                     </RelativeLayout>
 
-                    <ImageView
-                        android:layout_marginTop="30dp"
-                        android:id="@+id/asrtic"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="20dp"
-                        android:src="@drawable/tic">
+<!--                    <ImageView-->
+<!--                        android:id="@+id/asrtic"-->
+<!--                        android:layout_width="50dp"-->
+<!--                        android:layout_height="50dp"-->
+<!--                        android:layout_alignParentRight="true"-->
+<!--                        android:layout_marginTop="30dp"-->
+<!--                        android:layout_marginRight="20dp"-->
+<!--                        android:src="@drawable/tic">-->
 
-                    </ImageView>
+<!--                    </ImageView>-->
 
 
                 </RelativeLayout>
@@ -262,16 +262,16 @@
                         </TextView>
                     </RelativeLayout>
 
-                    <ImageView
-                        android:layout_marginTop="30dp"
-                        android:id="@+id/mgbtic"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="20dp"
-                        android:src="@drawable/tic">
+<!--                    <ImageView-->
+<!--                        android:id="@+id/mgbtic"-->
+<!--                        android:layout_width="50dp"-->
+<!--                        android:layout_height="50dp"-->
+<!--                        android:layout_alignParentRight="true"-->
+<!--                        android:layout_marginTop="30dp"-->
+<!--                        android:layout_marginRight="20dp"-->
+<!--                        android:src="@drawable/tic">-->
 
-                    </ImageView>
+<!--                    </ImageView>-->
 
 
                 </RelativeLayout>
@@ -320,16 +320,16 @@
                         </TextView>
                     </RelativeLayout>
 
-                    <ImageView
-                        android:layout_marginTop="30dp"
-                        android:id="@+id/ishatic"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="20dp"
-                        android:src="@drawable/tic">
+<!--                    <ImageView-->
+<!--                        android:id="@+id/ishatic"-->
+<!--                        android:layout_width="50dp"-->
+<!--                        android:layout_height="50dp"-->
+<!--                        android:layout_alignParentRight="true"-->
+<!--                        android:layout_marginTop="30dp"-->
+<!--                        android:layout_marginRight="20dp"-->
+<!--                        android:src="@drawable/tic">-->
 
-                    </ImageView>
+<!--                    </ImageView>-->
 
 
                 </RelativeLayout>

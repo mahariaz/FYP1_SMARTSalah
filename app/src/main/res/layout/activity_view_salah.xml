@@ -60,16 +60,27 @@
                 </TextView>
             </RelativeLayout>
 
-            <ImageView
-                android:id="@+id/iconStatusIv"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+<!--            <ImageView-->
+<!--                android:id="@+id/iconStatusIv"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_alignParentRight="true"-->
+<!--                android:layout_marginTop="30dp"-->
+<!--                android:layout_marginRight="20dp">-->
+
+<!--            </ImageView>-->
+
+
+            <TextView
+                android:id="@+id/timetv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="30dp"
-                android:layout_marginRight="20dp">
+                android:layout_marginRight="20dp"
+                >
 
-            </ImageView>
-
+            </TextView>
 
         </RelativeLayout>
 
@@ -1375,6 +1386,18 @@
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_toRightOf="@+id/farz3Rakah3Jalsa"
+                            android:background="#D3B4D88A"
+                            android:gravity="center"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:id="@+id/farz3Rakah3Tashahud"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/farz3Rakah3Sajda2"
                             android:background="#D3B4D88A"
                             android:gravity="center"
                             android:text="S"

@@ -85,7 +85,7 @@ public class dailyStats extends Fragment {
 
 
 
-        getFirebaseData();
+
 
 
         fajrStats = view.findViewById(R.id.fajrStats);
@@ -163,7 +163,7 @@ public class dailyStats extends Fragment {
         mChart.setPinchZoom(false);
 
         // empty labels so that the names are spread evenly
-        String[] labels = {"", "Fajar", "Zuhr", "Asar", "Maghrib", "Isha", ""};
+        String[] labels = {"", "Fajar", "Zuhr", "Asar", "Maghreb", "Isha", ""};
         XAxis xAxis = mChart.getXAxis();
         xAxis.setCenterAxisLabels(true);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -242,43 +242,6 @@ public class dailyStats extends Fragment {
         return view;
     }
 
-    private void getFirebaseData() {
-        FirebaseDatabase firebaseDatabase;
-        DatabaseReference databaseReference;
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("UserBio");
-        databaseReference.child("user123").child("firebasePrayer").child("zuhr").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                String value = snapshot.getValue(String.class);
-//                System.out.println("AAAAAAA : " + value);
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    String stringValue = ds.child("salahUnit").getValue(String.class);
-                    Log.i("SalahUnitttt", stringValue);
-                    if(stringValue.equalsIgnoreCase("sunnah4")){
-                        shared.isZuhrSunnah4Prayed=true;
-                    }
-                    if(stringValue.equalsIgnoreCase("farz4")){
-                        shared.isZuhrFarz4Prayed=true;
-                    }
-                    if(stringValue.equalsIgnoreCase("sunnah2")){
-                        shared.isZuhrSunnah2Prayed=true;
-                    }
-                    if(stringValue.equalsIgnoreCase("nafl2")){
-                        shared.isZuhrNafl2Prayed=true;
-                    }
-                    System.out.println("shared.isZuhrFarz4Prayed : "+shared.isZuhrFarz4Prayed);
-                    System.out.println(" shared.isZuhrSunnah4Prayed : "+ shared.isZuhrSunnah4Prayed);
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                System.out.println("FAILED");
-
-            }
-        });
-
-    }
 
 
 

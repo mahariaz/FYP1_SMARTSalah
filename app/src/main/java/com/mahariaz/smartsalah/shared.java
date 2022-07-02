@@ -34,24 +34,15 @@ public class shared {
     public static String gender="female";
     public static String age="12";
     public static String height="4.10";
+    public static String fname="Maha";
+    public static String lname="Riaz";
     public static Uri  selectedImage;
-    public static Boolean isZuhrSunnah4Prayed=false;
-    public static Boolean isZuhrFarz4Prayed=false;
-    public static Boolean isZuhrSunnah2Prayed=false;
-    public static Boolean isZuhrNafl2Prayed=false;
 
     public static int sunnah2Time,farz2Time,sunnah4Time,farz4Time,farz3Time;
 
 
 
-    public static final Uri getUriToDrawable(@NonNull Context context,
-                                             @AnyRes int drawableId) {
-        Uri imageUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE
-                + "://" + context.getResources().getResourcePackageName(drawableId)
-                + '/' + context.getResources().getResourceTypeName(drawableId)
-                + '/' + context.getResources().getResourceEntryName(drawableId) );
-        return imageUri;
-    }
+
 
 
 

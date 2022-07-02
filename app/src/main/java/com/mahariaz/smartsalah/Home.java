@@ -83,8 +83,8 @@ public class Home extends AppCompatActivity {
         listItems.add(new The_Slide_Items_Model_Class(R.drawable.item3,"Slider 3 Title"));
         listItems.add(new The_Slide_Items_Model_Class(R.drawable.item4,"Slider 4 Title"));
         listItems.add(new The_Slide_Items_Model_Class(R.drawable.item5,"Slider 5 Title"));
-        The_Slide_items_Pager_Adapter itemsPager_adapter = new The_Slide_items_Pager_Adapter(this, listItems);
-        page.setAdapter(itemsPager_adapter);
+//        The_Slide_items_Pager_Adapter itemsPager_adapter = new The_Slide_items_Pager_Adapter(this, listItems);
+//        page.setAdapter(itemsPager_adapter);
         tabLayout.setupWithViewPager(page,true);
 
         pieChartFarz = findViewById(R.id.farzPie);

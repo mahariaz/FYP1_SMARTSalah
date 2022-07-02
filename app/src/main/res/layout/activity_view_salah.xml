@@ -164,8 +164,6 @@
                         android:id="@+id/sunnah4Rakah1Tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
-
                         android:text="Rakah1">
 
                     </TextView>
@@ -489,7 +487,7 @@
                         android:id="@+id/sunnah4Rakah4Tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rakah3">
+                        android:text="Rakah4">
 
                     </TextView>
 
@@ -950,7 +948,7 @@
                         android:id="@+id/farz4Rakah4Tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rakah3">
+                        android:text="Rakah4">
 
                     </TextView>
 

@@ -293,6 +293,7 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // file selection from server
+                /*
                 if (sel_rakah.equalsIgnoreCase("4")){
                     fileNumber="3";
                 }
@@ -302,6 +303,8 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
                 if (sel_rakah.equalsIgnoreCase("3")){
                     fileNumber="2";
                 }
+                */
+
                 sel_unit="Farz";
                 farzCircle.setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
                 nafl2Circle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
@@ -313,12 +316,15 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
         sunnahCircle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*
                 if (sel_rakah.equalsIgnoreCase("4")){
                     fileNumber="1";
                 }
                 if (sel_rakah.equalsIgnoreCase("2")){
                     fileNumber="6";
                 }
+                */
+
                 sel_unit="Sunnah";
                 sunnahCircle.setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
                 farzCircle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
@@ -329,9 +335,12 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
         nafl2Circle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*
                 if (sel_rakah.equalsIgnoreCase("2")){
                     fileNumber="2";
                 }
+
+                 */
                 sel_unit="Nafl";
                 nafl2Circle.setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
                 farzCircle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
@@ -342,9 +351,12 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
         witrCircle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*
                 if (sel_rakah.equalsIgnoreCase("3")){
                     fileNumber="2";
                 }
+
+                 */
                 sel_unit="Witr";
                 witrCircle.setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
                 farzCircle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
@@ -370,7 +382,7 @@ public class Salah_Rakah_Selection extends AppCompatActivity {
                 intent.putExtra("sel_salah",sel_salah);
                 intent.putExtra("sel_rakah",sel_rakah);
                 intent.putExtra("sel_unit",sel_unit);
-                intent.putExtra("fileNumber",fileNumber);
+                //intent.putExtra("fileNumber",fileNumber);
 
 
                 startActivity(intent);

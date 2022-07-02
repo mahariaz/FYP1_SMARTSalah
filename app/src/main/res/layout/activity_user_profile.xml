@@ -20,51 +20,27 @@
         app:title="User Profile"
         android:background="#009688"
         />
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="0.2"
-        android:gravity="center_vertical"
-        android:layout_margin="50dp"
 
-
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="My Profile"
-            android:textColor="@color/black"
-            android:textSize="25dp"
-            android:textStyle="bold">
-
-        </TextView>
-
-    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.4"
+        android:layout_weight="0.5"
         android:gravity="center"
-
         >
-
         <ImageView
             android:id="@+id/dp"
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:layout_margin="50dp"
             android:background="@drawable/cam_button">
-
         </ImageView>
-
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.4"
-        android:layout_margin="50dp"
-        android:gravity="center_vertical"
+        android:padding="20dp"
         android:orientation="vertical">
 
         <EditText
@@ -93,12 +69,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="15dp"
             android:text="gender">
 
         </TextView>
         <RadioGroup
+            android:id="@+id/radio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -116,17 +93,76 @@
                 android:text="male"
                 />
         </RadioGroup>
-        <Button
-            android:id="@+id/save_profile"
+        <EditText
+            android:id="@+id/age"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:backgroundTint="#3F4FA8"
-            android:text="Save">
+            android:hint="how old are you?"
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="15dp">
+        </EditText>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:text="height">
+
+        </TextView>
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+        >
+        <gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner
+            android:id="@+id/spinner_ft"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            app:DoneSearchTintColor="#009688"
+            app:RevealEmptyText="Touch to select"
+            app:RevealViewBackgroundColor="#009688"
+            app:SearchViewBackgroundColor="@android:color/secondary_text_dark"
+            app:ShowBorders="false"
+            app:SpinnerExpandHeight="300dp"
+            app:StartSearchTintColor="@android:color/white" />
+        <gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner
+            android:id="@+id/spinner_in"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            app:DoneSearchTintColor="#009688"
+            app:RevealEmptyText="Touch to select"
+            app:RevealViewBackgroundColor="#009688"
+            app:SearchViewBackgroundColor="@android:color/secondary_text_dark"
+            app:ShowBorders="false"
+            app:SpinnerExpandHeight="300dp"
+            app:StartSearchTintColor="@android:color/white" />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_weight="0.1">
+        <Button
+            android:id="@+id/save"
+            android:padding="20dp"
+            android:layout_margin="20dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Continue"
+            android:backgroundTint="@color/teal_200"
+            android:background="@drawable/roundbtn">
 
         </Button>
-
-
 
 
     </LinearLayout>

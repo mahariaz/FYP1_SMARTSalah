@@ -22,6 +22,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -60,13 +61,18 @@ import java.util.Map;
 
 
 public class SalahProgress extends AppCompatActivity {
-    String url1 = "https://mlint.herokuapp.com/val";
-    String url2 = "https://mlint.herokuapp.com/reasoner";
+    // working fine
+//    String url1 = "https://mlint.herokuapp.com/val";
+//    String url2 = "https://mlint.herokuapp.com/reasoner";
     String url;
 
+    // working fine
+//    String url1 = "https://inttizen.herokuapp.com/val";
+//    String url2 = "https://inttizen.herokuapp.com/reasoner";
 
-    //    String url1 = "https://tizenint.herokuapp.com/val";
-//    String url2 = "https://tizenint.herokuapp.com/reasoner";
+    //not working
+    String url1 = "https://tempint.herokuapp.com/val";
+    String url2 = "https://tempint.herokuapp.com/reasoner";
     String fileNumber;
     private Toolbar mTopToolbar;
     TextView posName;
@@ -123,10 +129,13 @@ public class SalahProgress extends AppCompatActivity {
                                 @Override
                                 public void onResponse(String response) {
                                     progressBar.setVisibility(View.GONE);
+                                    Log.d("Response ",response.toString());
 
                                     try {
                                         JSONObject jsonObject1 = new JSONObject(response);
+
                                         System.out.println("JSONNNNN!!!!!!!!: "+jsonObject1);
+
                                         conversion(getApplicationContext(),jsonObject1);
                                         final Runnable runnable = new Runnable() {
                                             @Override
@@ -218,6 +227,7 @@ public class SalahProgress extends AppCompatActivity {
                             new Response.ErrorListener() {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
+                                    Log.d("This is the err",error.toString());
                                     Toast.makeText(SalahProgress.this, "ERROR!!!", Toast.LENGTH_SHORT).show();
                                 }
                             }) {
@@ -225,13 +235,15 @@ public class SalahProgress extends AppCompatActivity {
                         @Override
                         protected Map<String, String> getParams() {
                             Map<String, String> params = new HashMap<String, String>();
-                            params.put("num", fileNumber);
+//                            params.put("num", "6");
 
                             return params;
                         }
 
                     };
                     RequestQueue queue = Volley.newRequestQueue(SalahProgress.this);
+                    stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
                     queue.add(stringRequest);
 
                 } catch (Exception e1) {
@@ -321,6 +333,7 @@ public class SalahProgress extends AppCompatActivity {
                 intent.putExtra("extraPosture",extraPosture);
                 intent.putExtra("extraRakah",extraRakah);
                 intent.putExtra("salahTimelinessStatus",salahTimelinessStatus);
+
                 intent.putExtra("currDate",currDate);
 
                 startActivity(intent);
@@ -387,7 +400,7 @@ public class SalahProgress extends AppCompatActivity {
         sel_salah=intent.getStringExtra("sel_salah");
         sel_rakah=intent.getStringExtra("sel_rakah");
         sel_unit=intent.getStringExtra("sel_unit");
-        fileNumber=intent.getStringExtra("fileNumber");
+        //fileNumber=intent.getStringExtra("fileNumber");
         shared.curr_rakah=sel_rakah;
         shared.curr_salah=sel_salah;
         //System.out.println("sel_rakah : "+shared.curr_rakah+"  sel_salaah : "+shared.curr_salah);
@@ -858,6 +871,7 @@ public class SalahProgress extends AppCompatActivity {
                     break;
                 }
                 firstLineF=firstLine;
+                System.out.println("check first line : "+firstLineF);
 
 
                 i++;
@@ -873,7 +887,8 @@ public class SalahProgress extends AppCompatActivity {
             String tempStartTime=startTime;
             String perSalahTime[]=tempStartTime.split(" ");
             salahPerformedTime=perSalahTime[1];
-            System.out.println("per salah time : "+salahPerformedTime);
+            System.out.println("salahPerformedTime : "+perSalahTime[1]);
+
 
         } catch (IOException e1) {        }
         // last line : end time of Salah
@@ -881,6 +896,7 @@ public class SalahProgress extends AppCompatActivity {
         try {
             while ((lastline = reader.readLine()) != null) {
                 lastlineF=lastline;
+                System.out.println("check last line : "+lastlineF);
             }
             lastTime=lastlineF.split(",");
             endTime = lastTime[3];

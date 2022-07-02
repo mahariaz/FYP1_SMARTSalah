@@ -64,9 +64,6 @@
             android:name=".WhatGender"
             android:exported="false" />
         <activity
-            android:name=".tell"
-            android:exported="false" />
-        <activity
             android:name=".BaseForFragment"
             android:exported="false" />
         <activity
@@ -97,6 +94,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".change_pass"
@@ -113,7 +111,9 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true" />
+            android:exported="true">
+
+        </activity>
     </application>
 
 </manifest>

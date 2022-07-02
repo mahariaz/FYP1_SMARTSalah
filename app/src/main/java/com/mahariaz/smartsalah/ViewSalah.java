@@ -289,6 +289,8 @@ public class ViewSalah extends AppCompatActivity {
 
     private void showCurrentStats() {
 
+
+
         /* loop for the specific name of salah to be appeared when clicked*/
         for (int k=0;k<salahNames.length;k++) {
 
@@ -296,13 +298,9 @@ public class ViewSalah extends AppCompatActivity {
                 // writing the salah name as head
                 salahNameTv.setText(salahNames[k]);
                 imgi1.setImageDrawable(getResources().getDrawable(salahIcons[k]));
-                // based on salah status, use iconography on head
-                if (salahStatus.equalsIgnoreCase("Error")) {
-//                    iconStatusIv.setImageDrawable(getResources().getDrawable(R.drawable.error));
-                }
-                if (salahStatus.equalsIgnoreCase("Complete")) {
-//                    iconStatusIv.setImageDrawable(getResources().getDrawable(R.drawable.tic));
-                }
+                // show timeliness status
+                timetv.setText(timelinessStatus);
+
 
                 // Salah Instance=4
                 if (sel_rakah.equalsIgnoreCase("4")) {
@@ -777,6 +775,7 @@ public class ViewSalah extends AppCompatActivity {
         rakahMissedString=intent.getStringExtra("rakahMissed");
         date1=intent.getStringExtra("date1");
         whichScreen=intent.getStringExtra("whichScreen");
+        timelinessStatus=intent.getStringExtra("salahTimelinessStatus");
     }
 
 

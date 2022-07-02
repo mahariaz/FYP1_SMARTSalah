@@ -27,7 +27,7 @@ public class The_Slide_items_Pager_Adapter extends PagerAdapter {
 
         ImageView featured_image = sliderLayout.findViewById(R.id.my_featured_image);
 
-        featured_image.setImageResource(theSlideItemsModelClassList.get(position).getFeatured_image());
+       // featured_image.setImageResource(theSlideItemsModelClassList.get(position).getFeatured_image());
 
         container.addView(sliderLayout);
         return sliderLayout;

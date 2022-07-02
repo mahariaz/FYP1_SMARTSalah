@@ -13,10 +13,13 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -36,37 +39,70 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 
+import gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner;
+import gr.escsoft.michaelprimez.searchablespinner.interfaces.OnItemSelectedListener;
 
 
 public class UserProfile extends AppCompatActivity {
-    EditText fname_field, lname_field;
-    public String fname, lname, gender, dp;
+    EditText fname_field, lname_field, age_field;
+    public String fname, lname, gender, dp,age,in,ft;
     Button save_button;
     FirebaseDatabase rootNode;
     DatabaseReference reference;
     ImageView iv;
     Uri selectedImage = null;
-
+    SearchableSpinner spinner_ft,spinner_in;
     public static final int CAMERA_ACTION_CODE = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
-        fname_field = findViewById(R.id.fname);
-        lname_field = findViewById(R.id.lname);
-        //register user
-        save_button = findViewById(R.id.save_profile);
+        save_button = findViewById(R.id.save);
+        fname_field=findViewById(R.id.fname);
+        lname_field=findViewById(R.id.lname);
+        age_field=findViewById(R.id.age);
+        //spinner_ft
+        spinner_ft = (SearchableSpinner) findViewById(R.id.spinner_ft);
+        ArrayAdapter<String> Adapter_ft = new ArrayAdapter<String>(UserProfile.this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.ft));
+        Adapter_ft.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_ft.setAdapter(Adapter_ft);
+        //spinner_in
+        spinner_in = (SearchableSpinner) findViewById(R.id.spinner_in);
+        ArrayAdapter<String> Adapter_in = new ArrayAdapter<String>(UserProfile.this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.in));
+        Adapter_in.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_in.setAdapter(Adapter_in);
+        spinner_ft.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(View view, int position, long id) {
+                ft = spinner_ft.getSelectedItem().toString();
+            }
+            @Override
+            public void onNothingSelected() {
+            }
+        });
+        spinner_in.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(View view, int position, long id) {
+                in = spinner_in.getSelectedItem().toString();
+            }
+            @Override
+            public void onNothingSelected() {
+            }
+        });
         save_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                fname = fname_field.getText().toString();
-                lname = lname_field.getText().toString();
-                //register_bio();
-                Intent intent = new Intent(UserProfile.this, Home.class);
+                fname=fname_field.getText().toString();
+                lname=lname_field.getText().toString();
+                age=age_field.getText().toString();
+                System.out.println("my output "+fname+"    "+lname+"   "+age+"   "+ft+"   "+in);
+                shared.fname=fname;
+                shared.lname=lname;
+                shared.age=age;
+                Intent intent = new Intent(UserProfile.this, signUp.class);
                 startActivity(intent);
-
             }
         });
         findViewById(R.id.dp).setOnClickListener(view -> {
@@ -81,56 +117,18 @@ public class UserProfile extends AppCompatActivity {
     }
 
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 200 && resultCode == RESULT_OK) {
             selectedImage = data.getData();
+            shared.selectedImage=selectedImage;
             iv = findViewById(R.id.dp);
             iv.setImageURI(selectedImage);
 
 
         }
     }
-    /*public void register_bio(){
 
-        StorageReference storage = FirebaseStorage.getInstance().getReference();
-        String uniqueID = UUID.randomUUID().toString();
-        storage = storage.child("UserDP/"+uniqueID+".jpg");
-        System.out.println("iiiiiiiii"+selectedImage);
-        storage.putFile(selectedImage)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Task<Uri> task = taskSnapshot.getStorage().getDownloadUrl();
-                        task
-                                .addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                    @Override
-                                    public void onSuccess(Uri uri) {
-                                        dp = uri.toString();
-
-                                        FirebaseDatabase fstorage = FirebaseDatabase.getInstance();
-                                        DatabaseReference DBREF = fstorage.getReference("UserBio");
-                                        rootNode = FirebaseDatabase.getInstance();
-                                        reference = rootNode.getInstance().getReference("UserBio");
-                                        UserBioStorage userBioStorage = new UserBioStorage(dp,shared.email,shared.username, fname, lname, "male");
-                                        reference.child(shared.username).setValue(userBioStorage);
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-
-                                    }
-                                });
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-
-                    }
-                });
-
-    }*/
 }

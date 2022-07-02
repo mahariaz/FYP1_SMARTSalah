@@ -20,39 +20,12 @@ public class BaseForFragment extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_for_fragment);
-        tabLayout=(TabLayout) findViewById(R.id.tabLayout);
-        viewPager = (ViewPager) findViewById(R.id.viewPager);
-        tabLayout.setupWithViewPager(viewPager, true);
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.tab_selector));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.tab_selector));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.tab_selector));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-        final TabLayoutAdapter adapter = new TabLayoutAdapter(this, getSupportFragmentManager(), tabLayout.getTabCount());
-        viewPager.setAdapter(adapter);
-
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
 
         Button startNow=findViewById(R.id.start_now);
         startNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(BaseForFragment.this,tell.class);
+                Intent intent=new Intent(BaseForFragment.this,UserProfile.class);
                 startActivity(intent);
             }
         });
@@ -60,7 +33,6 @@ public class BaseForFragment extends AppCompatActivity {
         already_acc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent=new Intent(BaseForFragment.this,login.class);
                 Intent intent=new Intent(BaseForFragment.this,login.class);
                 startActivity(intent);
             }

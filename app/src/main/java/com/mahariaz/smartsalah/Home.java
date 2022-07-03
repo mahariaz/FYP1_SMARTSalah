@@ -49,10 +49,14 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.TimerTask;
 
 public class Home extends AppCompatActivity {
@@ -66,9 +70,11 @@ public class Home extends AppCompatActivity {
     private Toolbar toolbar;
 
 
+
     private NavigationView nvDrawer;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    TextView prayedSalahTv;
 
 
     @Override
@@ -77,6 +83,8 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         page = findViewById(R.id.viewPager) ;
         tabLayout = findViewById(R.id.tabLayout);
+        prayedSalahTv=findViewById(R.id.prayedSalah);
+
         listItems = new ArrayList<>() ;
         listItems.add(new The_Slide_Items_Model_Class(R.drawable.item1,"Slider 1 Title"));
         listItems.add(new The_Slide_Items_Model_Class(R.drawable.item2,"Slider 2 Title"));
@@ -158,6 +166,8 @@ public class Home extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        getPrayedPrayers();
+
 
 
     }
@@ -304,6 +314,70 @@ public class Home extends AppCompatActivity {
                 }
             });
         }
+    }
+    private void getPrayedPrayers(){
+        // step 1: getting todays date
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String currDateTemp=dateFormat.format(new Date());
+        String dateTokens[]=currDateTemp.split("-");
+        String currDate=dateTokens[2]+"-"+dateTokens[1]+"-"+dateTokens[0];
+        System.out.println("currDate : "+currDate);
+        String salahNames[]={"Fajr","Zuhr","Asr","Maghrib","Isha"};
+        ArrayList<String> uniqueSalah=new ArrayList<>();
+        FirebaseDatabase firebaseDatabase;
+        DatabaseReference databaseReference;
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("UserBio");
+        databaseReference.child(shared.username).child("firebasePrayer").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    System.out.println("inside snapshot");
+                    System.out.println("cccccccccc"+snapshot.getKey()+ds.getChildrenCount() + "");
+                    String name = ds.getKey();
+                    System.out.println("childNm : "+name);
+
+                    DatabaseReference databaseReference2;
+                    databaseReference2 = firebaseDatabase.getReference("UserBio");
+                    databaseReference2.child(shared.username).child("firebasePrayer").child(name).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    for (DataSnapshot ds2 : snapshot.getChildren()) {
+                                        String fetchedDate=ds2.child("currDate").getValue(String.class);
+                                        String fetchedName=ds2.child("salahName").getValue(String.class);
+                                        String fetchedTime=ds2.child("salahTimelinessStatus").getValue(String.class);
+                                        System.out.println("feted date : "+fetchedDate);
+                                        if(fetchedDate.equalsIgnoreCase(currDate) && fetchedTime.equalsIgnoreCase("OnTime")){
+                                            uniqueSalah.add(fetchedName);
+                                        }
+                                        System.out.println("uni : "+uniqueSalah);
+                                        Set<String> set = new HashSet<>(uniqueSalah);
+                                        uniqueSalah.clear();
+                                        uniqueSalah.addAll(set);
+                                        System.out.println("uniDupRmv : "+uniqueSalah);
+                                        String s=String.valueOf(uniqueSalah.size());
+                                        prayedSalahTv.setText(s);
+
+
+                                    }
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                System.out.println("FAILED");
+
+            }
+        });
+
+
     }
 
 

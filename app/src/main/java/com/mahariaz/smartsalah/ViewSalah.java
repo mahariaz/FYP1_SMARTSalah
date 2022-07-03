@@ -1059,7 +1059,9 @@ public class ViewSalah extends AppCompatActivity {
         if(whichScreen.equalsIgnoreCase("dailyStats")){
             fillPostureListDaily();
         }
-
+        if(whichScreen.equalsIgnoreCase("Calender")){
+            fillPostureListDaily();
+        }
         for (int i=0;i<PostureNamesArrayList.size();i++){
             String postures=PostureNamesArrayList.get(i).getPostureName();
             int avgPostureTime=PostureNamesArrayList.get(i).getAvgPostureTime();
@@ -1091,7 +1093,7 @@ public class ViewSalah extends AppCompatActivity {
     }
     private void fillPostureList2(){
         PostureNamesArrayList.clear();
-        PostureNamesArrayList.add(new SalahPostureNames("Qayam",Integer.parseInt(qayamAvg)));
+        PostureNamesArrayList.add(new SalahPostureNames("Qayam",Integer.parseInt(qayamAvg)+2));
         PostureNamesArrayList.add(new SalahPostureNames("Ruku",Integer.parseInt(rukuAvg)));
         PostureNamesArrayList.add(new SalahPostureNames("Sajda",Integer.parseInt(sajdaAvg)));
         PostureNamesArrayList.add(new SalahPostureNames("jalsa",Integer.parseInt(jalsaAvg)));
@@ -1099,7 +1101,7 @@ public class ViewSalah extends AppCompatActivity {
     }
     private void fillPostureListDaily(){
         PostureNamesArrayList.clear();
-        PostureNamesArrayList.add(new SalahPostureNames("Qayam",qayamAvgInt));
+        PostureNamesArrayList.add(new SalahPostureNames("Qayam",qayamAvgInt+2));
         PostureNamesArrayList.add(new SalahPostureNames("Ruku",rukuAvgInt));
         PostureNamesArrayList.add(new SalahPostureNames("Sajda",sajdaAvgInt));
         PostureNamesArrayList.add(new SalahPostureNames("Jalsa",jalsaAvgInt));
@@ -1228,6 +1230,7 @@ public class ViewSalah extends AppCompatActivity {
                                 sajdaAvgInt=ds.child("sajdaAvg").getValue(Integer.class);
                                 jalsaAvgInt=ds.child("jalsaAvg").getValue(Integer.class);
                                 tashAvgInt=ds.child("tashAvg").getValue(Integer.class);
+                                System.out.println("avg : "+qayamAvgInt+rukuAvgInt+sajdaAvgInt+jalsaAvgInt+tashAvgInt);
                                 salahUnitTimeInt=ds.child("salahUnitTime").getValue(Integer.class);
                                 possMissedString=ds.child("missedPosture").getValue(String.class);
                                 extraPostureString=ds.child("extraPosture").getValue(String.class);
@@ -1240,6 +1243,7 @@ public class ViewSalah extends AppCompatActivity {
 
                                 if(fetchedUnit.equalsIgnoreCase("Sunnah")){
                                     if(fetchedRakahName==4){
+                                        System.out.println("inisde if check 4 sunnah");
                                         checkSunnah4();
                                         sunnah4LL.setVisibility(View.VISIBLE);
                                     }else if(fetchedRakahName==2){
@@ -1266,15 +1270,17 @@ public class ViewSalah extends AppCompatActivity {
                                         nafal2LL.setVisibility(View.VISIBLE);
                                     }
                                 }
+                                makeGraph();
 
                             }
+
 
                         }
 
                     }
 
                 }
-                makeGraph();
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

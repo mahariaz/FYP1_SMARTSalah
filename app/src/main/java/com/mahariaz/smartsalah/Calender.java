@@ -164,6 +164,9 @@ public class Calender extends AppCompatActivity {
             public void onClick(View v) {
                 sel_unit="Sunnah";
                 sunnah_circle.setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
+                farz_circle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
+                nafal_circle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
+                witr_circle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
             }
         });
         farz_circle.setOnClickListener(new View.OnClickListener() {
@@ -171,6 +174,9 @@ public class Calender extends AppCompatActivity {
             public void onClick(View v) {
                 sel_unit="Farz";
                 farz_circle.setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
+                nafal_circle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
+                witr_circle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
+                sunnah_circle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
             }
         });
         nafal_circle.setOnClickListener(new View.OnClickListener() {
@@ -178,6 +184,9 @@ public class Calender extends AppCompatActivity {
             public void onClick(View v) {
                 sel_unit="Nafl";
                 nafal_circle.setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
+                sunnah_circle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
+                witr_circle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
+                farz_circle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
             }
         });
         witr_circle.setOnClickListener(new View.OnClickListener() {
@@ -185,6 +194,9 @@ public class Calender extends AppCompatActivity {
             public void onClick(View v) {
                 sel_unit="Witr";
                 witr_circle.setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
+                nafal_circle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
+                sunnah_circle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
+                farz_circle.setColorFilter(0, PorterDuff.Mode.SRC_ATOP);
             }
         });
         calendar = (CalendarView)

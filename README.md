@@ -22,10 +22,10 @@ App.py is also a python file which is a deploy on heroku cloud that takes sensor
 3)app:
 This folder contain Initial and Basic layout files of our SmartSalah app.
 
-4) Salah Track Tizen app:
+4)Salah Track Tizen app:
 This app is used to get sensor readings(accelerometer) of person performing Salah. These sensor readings are sent to heroku cloud where android application is deploy
 
-5) knowledge Base:
+5)knowledge Base:
 This file contain ontology which is knowledge based reasoner that tells completness and correctness of Salah.
 #Knowledge Graph Code
 

@@ -4,17 +4,17 @@ This repository have two more sub-branches:
 
 FYP_Branch ()testing Branch)
 
-FYP_Branch2(Implementation Branch):
+Testing_FYP2:
 This branch contain our SMARTSalah application which include following features:
-● Salah activity summaries on daily, weekly, and monthly basis
-● Time duration dedicated to each step of performed Salah
-● Visuals and graphs for displaying the average time spent on Salah
-● Stats of missed/qaza prayers
-● History of previously performed prayers along with their summaries
+1. Salah activity summaries on daily, weekly, and monthly basis
+2. Time duration dedicated to each step of performed Salah
+3. Visuals and graphs for displaying the average time spent on Salah
+4. Stats of missed/qaza prayers
+5. History of previously performed prayers along with their summaries
 
 The master contains:
 
-1) ML_Model File:
+1)ML_Model File:
 It is a python file that contain all Models we trained and save model as pickel file.
 
 2)App.py:

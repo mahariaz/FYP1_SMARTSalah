@@ -3,6 +3,7 @@
 This repository have two more sub-branches:
 
 Testing_FYP2 Branch:
+
 This branch contain our SMARTSalah application which include following features:
 1. Salah activity summaries on daily, weekly, and monthly basis
 2. Time duration dedicated to each step of performed Salah

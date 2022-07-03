@@ -14,18 +14,23 @@ This branch contain our SMARTSalah application which include following features:
 Master Branch:
 
 1)ML_Model File:
+
 It is a python file that contain all Models we trained and save model as pickel file.
 
 2)App.py:
+
 App.py is also a python file which is a deploy on heroku cloud that takes sensor readings do predictions and send results to android application.
 
 3)app:
+
 This folder contain Initial and Basic layout files of our SmartSalah app.
 
 4)Salah Track Tizen app:
+
 This app is used to get sensor readings(accelerometer) of person performing Salah. These sensor readings are sent to heroku cloud where android application is deploy
 
 5)knowledge Base:
+
 This file contain ontology which is knowledge based reasoner that tells completness and correctness of Salah.
 #Knowledge Graph Code
 

@@ -24,9 +24,9 @@ public class Calender extends AppCompatActivity {
     Boolean rakah_nd_salah_selected=false;
     CalendarView calendar;
     TextView date_view;
-    String Date,sel_salah,sel_rakah;
+    String Date,sel_salah,sel_rakah,sel_unit;
     CircleImageView fajar_circle,zuhr_circle,asr_circle,maghreb_circle,isha_circle;
-    CircleImageView r1_circle,r2_circle,r3_circle,r4_circle;
+    CircleImageView r1_circle,r2_circle,r3_circle,r4_circle,sunnah_circle,farz_circle,nafal_circle,witr_circle;
     private Button stats;
     private Toolbar mTopToolbar;
     @Override
@@ -46,6 +46,10 @@ public class Calender extends AppCompatActivity {
         r2_circle=findViewById(R.id.r2_circle);
         r3_circle=findViewById(R.id.r3_circle);
         r4_circle=findViewById(R.id.r4_circle);
+        sunnah_circle=findViewById(R.id.sunnah_circle);
+        farz_circle=findViewById(R.id.farz_circle);
+        nafal_circle=findViewById(R.id.nafal_circle);
+        witr_circle=findViewById(R.id.witr_circle);
         fajar_circle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -155,6 +159,34 @@ public class Calender extends AppCompatActivity {
                 r4_circle.setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
             }
         });
+        sunnah_circle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sel_unit="Sunnah";
+                sunnah_circle.setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
+            }
+        });
+        farz_circle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sel_unit="Farz";
+                farz_circle.setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
+            }
+        });
+        nafal_circle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sel_unit="Nafl";
+                nafal_circle.setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
+            }
+        });
+        witr_circle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sel_unit="Witr";
+                witr_circle.setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
+            }
+        });
         calendar = (CalendarView)
                 findViewById(R.id.calendar);
         date_view = (TextView)
@@ -163,7 +195,7 @@ public class Calender extends AppCompatActivity {
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view,int year,int month,int dayOfMonth){
-                Date= year + "-"+ (month + 1) + "-" + dayOfMonth;
+                Date= "0"+dayOfMonth + "-0"+ (month + 1) + "-" + year;
                 // set this date in TextView for Display
                 date_view.setText(Date);
                 if (rakah_nd_salah_selected){
@@ -175,11 +207,17 @@ public class Calender extends AppCompatActivity {
         stats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // fetch data from firebase
 
-                Intent intent=new Intent(Calender.this,Salah_stats_history.class);
-                intent.putExtra("date",Date);
-                intent.putExtra("sel_salah",sel_salah);
-                intent.putExtra("sel_rakah",sel_rakah);
+
+
+                Intent intent=new Intent(Calender.this,ViewSalah.class);
+                intent.putExtra("histDate",Date);
+                intent.putExtra("histSalahName",sel_salah);
+                intent.putExtra("histRakahName",sel_rakah);
+                intent.putExtra("histUnitName",sel_unit);
+                intent.putExtra("whichScreen","Calender");
+
                 startActivity(intent);
 
 

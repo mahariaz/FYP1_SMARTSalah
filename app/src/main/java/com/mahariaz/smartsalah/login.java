@@ -33,10 +33,7 @@ public class login extends AppCompatActivity {
     EditText email_field,password_field,uname_field;
     String email_login,password_login,uname;
     SharedPreferences sp;
-    private static final String TAG = "GoogleActivity";
-    private static final int RC_SIGN_IN = 9001;
 
-//    private GoogleSignInClient mGoogleSignInClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +43,11 @@ public class login extends AppCompatActivity {
         email_field=findViewById(R.id.email_field);
         password_field=findViewById(R.id.pass_field);
         uname_field=findViewById(R.id.uname_field);
-        /*sp = getSharedPreferences("login",MODE_PRIVATE);
+        sp = getSharedPreferences("login",MODE_PRIVATE);
         if(sp.getBoolean("logged",false )){
             Intent intent=new Intent(login.this,Home.class);
             startActivity(intent);
-        }*/
+        }
         login=findViewById(R.id.login_button);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +80,7 @@ public class login extends AppCompatActivity {
                                 if (task.isSuccessful()){
                                     Intent intent=new Intent(login.this,Home.class);
                                     startActivity(intent);
-                                    //sp.edit().putBoolean("logged",true).apply();
+                                    sp.edit().putBoolean("logged",true).apply();
 
                                 }else{
                                     Toast.makeText(login.this,"Register First",Toast.LENGTH_SHORT).show();

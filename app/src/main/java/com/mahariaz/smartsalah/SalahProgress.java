@@ -61,18 +61,15 @@ import java.util.Map;
 
 
 public class SalahProgress extends AppCompatActivity {
-    // working fine
-//    String url1 = "https://mlint.herokuapp.com/val";
-//    String url2 = "https://mlint.herokuapp.com/reasoner";
+
     String url;
 
-    // working fine
-//    String url1 = "https://inttizen.herokuapp.com/val";
-//    String url2 = "https://inttizen.herokuapp.com/reasoner";
 
+
+    int reasonerLines=0;
     //not working
-    String url1 = "https://tempint.herokuapp.com/val";
-    String url2 = "https://tempint.herokuapp.com/reasoner";
+    String url1 = "https://appintegration.herokuapp.com/val";
+    String url2 = "https://appintegration.herokuapp.com/reasoner";
     String fileNumber;
     private Toolbar mTopToolbar;
     TextView posName;
@@ -83,7 +80,7 @@ public class SalahProgress extends AppCompatActivity {
     ImageView posturepic;
     String whichScreen="SalahProgress";
     int qayamAvg,rukuAvg,qoumAvg,sajdaAvg,jalsaAvg,tashAvg,salahUnitTime;
-    String possMissed="",extraPosture="",extraRakah="",salahStatus="",rakahMissed="",salahTimelinessStatus;
+    String postureExtraString="",postureMissString="",extraRakah="",salahStatus="",rakahMissed="",salahTimelinessStatus;
     ArrayList<String> pos=new ArrayList<>();
     String salahPerformedTime="";
     ProgressBar progressBar;
@@ -94,7 +91,6 @@ public class SalahProgress extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_salah_progress);
-        // delete it from here and uncomment from below
         posName=findViewById(R.id.posName);
         progressBar=findViewById(R.id.progressBar);
         view_salah=findViewById(R.id.view_salah_btn);
@@ -217,7 +213,7 @@ public class SalahProgress extends AppCompatActivity {
 
 
 
-//
+
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
@@ -320,7 +316,7 @@ public class SalahProgress extends AppCompatActivity {
                 intent.putExtra("sel_rakah",sel_rakah);
                 intent.putExtra("sel_unit",sel_unit);
                 intent.putExtra("rakahMissed",rakahMissed);
-                intent.putExtra("possMissed",possMissed);
+                intent.putExtra("possMissed",postureMissString);
                 intent.putExtra("salahStatus",salahStatus);
                 intent.putExtra("whichScreen","SalahProgress");
                 intent.putExtra("qayamAvg",String.valueOf(qayamAvg));
@@ -330,7 +326,7 @@ public class SalahProgress extends AppCompatActivity {
                 intent.putExtra("jalsaAvg",String.valueOf(jalsaAvg));
                 intent.putExtra("tashAvg",String.valueOf(tashAvg));
                 intent.putExtra("salahUnitTime",String.valueOf(salahUnitTime));
-                intent.putExtra("extraPosture",extraPosture);
+                intent.putExtra("extraPosture",postureExtraString);
                 intent.putExtra("extraRakah",extraRakah);
                 intent.putExtra("salahTimelinessStatus",salahTimelinessStatus);
 
@@ -597,7 +593,7 @@ public class SalahProgress extends AppCompatActivity {
         } catch (Exception e) {
 
         }
-        getReasonerData();
+        getReasonerData(jsonObject);
 
     }
     public void getValueData(){
@@ -642,83 +638,89 @@ public class SalahProgress extends AppCompatActivity {
     }
 
 
-    private void getReasonerData() {
-        ArrayList<String> saveRakahCount=new ArrayList<>();
-        ArrayList<String> standardRakahCount=new ArrayList<>();
-        standardRakahCount.add("1");
-        standardRakahCount.add("2");
-        standardRakahCount.add("3");
-        standardRakahCount.add("4");
-
+    private void getReasonerData(JSONObject  jsonObject) {
+        // here calculate the no of lines in temp2: reasonerFile
         String path="/data/data/com.mahariaz.smartsalah/files/Temp2.csv";
         File myFile = new File(path);
         String line="";
-        String extrapos="", posmiss="", rakahcount="", rakahextra="",status="";
-        int num=0;
+        FileInputStream inputStream = null;
         try {
-            FileInputStream inputStream = new FileInputStream(myFile);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, Charset.forName("UTF-8")));
-            while ((line = reader.readLine()) != null) {
-                // Split the line into different tokens (using the comma as a separator).
-                if (num != 0) {
-                    String[] tokens = line.split("\n");
-                    for (int i = 0; i < tokens.length; i++) {
-                        String[] tokens2 = tokens[i].split(",");
-                        extrapos=tokens2[0];
-                        posmiss=tokens2[1];
-                        rakahcount=tokens2[2];
-                        rakahextra=tokens2[3];
-                        status=tokens2[4];
-                        extraPosture+=extrapos+"IN"+rakahcount+"-";
-                        possMissed+=posmiss+"IN"+rakahcount+"-";
-                        extraRakah=rakahextra;
-                        System.out.println("possMissedString: "+ possMissed);
-
-                        saveRakahCount.add(rakahcount);
-
-
-                        System.out.println("saveRakahCount : "+saveRakahCount);
-
-                        System.out.println("RakahMissed : "+rakahMissed);
-
-
-
-                        if(extrapos.equalsIgnoreCase("None")&&
-                                posmiss.equalsIgnoreCase("None") &&
-                                rakahextra.equalsIgnoreCase("None") &&
-                                rakahMissed.equalsIgnoreCase("None")){
-                            salahStatus="Complete";
-                            extraPosture="None";
-                            possMissed="None";
-                            rakahMissed="None";
-
-                        }else if(!posmiss.equalsIgnoreCase("None") ){
-                            salahStatus="Error";
-                        }
-                        else{
-                            salahStatus="Error";
-                        }
-                   }
-
-                }
-                num++;
-            }
+            inputStream = new FileInputStream(myFile);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (IOException e) {
+        }
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, Charset.forName("UTF-8")));
+        while (true) {
+            try {
+                if (!((line = reader.readLine()) != null)) break;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            reasonerLines++;
+        }
+        // Declarations of Rakah Missed
+        ArrayList<String> saveRakahCount=new ArrayList<>();
+        ArrayList<String> standardRakahCount4=new ArrayList<>();
+        ArrayList<String> standardRakahCount3=new ArrayList<>();
+        ArrayList<String> standardRakahCount2=new ArrayList<>();
+        String [] rakahCollection4={"1","2","3","4"};
+        String [] rakahCollection3={"1","2","3"};
+        String [] rakahCollection2={"1","2"};
+        standardRakahCount4.addAll(Arrays.asList(rakahCollection4));
+        standardRakahCount3.addAll(Arrays.asList(rakahCollection3));
+        standardRakahCount2.addAll(Arrays.asList(rakahCollection2));
+
+
+        try {
+            for (int i=1;i<reasonerLines;i++) {
+                String s=String.valueOf(i);
+                JSONObject obj1 = jsonObject.getJSONObject(s);
+                System.out.println("obj1 " + obj1);
+                String PostureExtra = obj1.getString("PostureExtra");
+                String PostureMiss = obj1.getString("PostureMiss");
+                String Rakah = obj1.getString("Rakah");
+                saveRakahCount.add(Rakah);
+                //System.out.println(PostureExtra + " " + PostureMiss + " " + Rakah + " " + RakahExtra + " " + Status);
+                postureExtraString += PostureExtra + "IN" + Rakah + "-";
+                postureMissString += PostureMiss + "IN" + Rakah + "-";
+            }
+            System.out.println("postureExtraString : "+postureExtraString);
+            System.out.println("postureMissString : "+postureMissString);
+            // Salah Status
+            JSONObject obj2 = jsonObject.getJSONObject("1");
+            // it is same for all
+            salahStatus = obj2.getString("Status");
+            extraRakah = obj2.getString("RakahExtra");
+
+        } catch (JSONException e) {
             e.printStackTrace();
         }
-        // applying followed by on rakah count to check missed rakah
 
+        // checks for Rakah Missed
         if (sel_rakah.equalsIgnoreCase("4")){
-            for (int j=0;j<standardRakahCount.size();j++){
-                if (!saveRakahCount.contains(standardRakahCount.get(j))){
-                    rakahMissed+=standardRakahCount.get(j)+"AND";
+            for (int j=0;j<standardRakahCount4.size();j++){
+                if (!saveRakahCount.contains(standardRakahCount4.get(j))){
+                    rakahMissed+=standardRakahCount4.get(j)+"AND";
                 }
             }
         }
-
+        if (sel_rakah.equalsIgnoreCase("3")){
+            for (int j=0;j<standardRakahCount3.size();j++){
+                if (!saveRakahCount.contains(standardRakahCount3.get(j))){
+                    rakahMissed+=standardRakahCount3.get(j)+"AND";
+                }
+            }
+        }
+        if (sel_rakah.equalsIgnoreCase("2")){
+            for (int j=0;j<standardRakahCount2.size();j++){
+                if (!saveRakahCount.contains(standardRakahCount2.get(j))){
+                    rakahMissed+=standardRakahCount2.get(j)+"AND";
+                }
+            }
+        }
         save_data();
+
+
     }
 
     private void getAvgTime() {
@@ -925,13 +927,10 @@ public class SalahProgress extends AppCompatActivity {
         databaseReference = firebaseDatabase.getReference("UserBio");
         if (sel_salah.equalsIgnoreCase(sel_salah)){
             PModel zuhrPModel = new PModel(sel_salah, Integer.parseInt(sel_rakah),
-                    possMissed, rakahMissed, salahStatus, qayamAvg, rukuAvg,
+                    postureMissString, rakahMissed, salahStatus, qayamAvg, rukuAvg,
                     qoumAvg, sajdaAvg, jalsaAvg,tashAvg,sel_unit,salahUnitTime,
-                    extraPosture,extraRakah,currDate,salahTimelinessStatus);
-//            FirebasePrayer firebasePrayer = new FirebasePrayer(zuhrPModel, zuhrPModel, zuhrPModel, zuhrPModel, zuhrPModel);
-//            FirebaseUser firebaseUser = new FirebaseUser("21", "", "mahariaz@gmail.com", "female", "4.10","mahnooor" ,firebasePrayer);
-//            //databaseReference.child(firebaseUser.getUsername()).setValue(firebaseUser);
-            databaseReference.child("user123").child("firebasePrayer").child(sel_salah).push().setValue(zuhrPModel);
+                    postureExtraString,extraRakah,currDate,salahTimelinessStatus);
+            databaseReference.child(shared.username).child("firebasePrayer").child(sel_salah).push().setValue(zuhrPModel);
 
         }
     }

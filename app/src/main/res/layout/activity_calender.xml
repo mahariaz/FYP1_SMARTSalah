@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:weightSum="3.5"
+    android:weightSum="4"
     tools:context=".Calender">
 
 <androidx.appcompat.widget.Toolbar
@@ -30,28 +30,24 @@
     </TextView>
     <LinearLayout
         android:padding="20dp"
-        android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:weightSum="2"
         android:gravity="center"
         android:layout_weight="2">
         <TextView
             android:id="@+id/date_view"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="0.3"
+            android:layout_height="wrap_content"
             android:text="Set the Date"
             android:textColor="@android:color/background_dark"
             android:textStyle="bold" />
 
         <!-- Add CalendarView to display the Calendar -->
         <CalendarView
-            android:layout_weight="1.7"
             android:id="@+id/calendar"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_height="wrap_content">
         </CalendarView>
 
     </LinearLayout>
@@ -61,7 +57,6 @@
         android:layout_width="wrap_content"
         android:weightSum="5"
         android:padding="20dp"
-        android:layout_margin="20dp"
         android:orientation="horizontal"
         android:layout_height="0dp">
         <RelativeLayout
@@ -225,7 +220,6 @@
         android:layout_width="wrap_content"
         android:weightSum="4"
         android:padding="20dp"
-        android:layout_margin="20dp"
         android:orientation="horizontal"
         android:layout_gravity="center"
         android:layout_height="0dp">
@@ -355,24 +349,154 @@
         </RelativeLayout>
 
     </LinearLayout>
-
-
-
-
-
-
-
     <LinearLayout
+        android:layout_weight="0.5"
+        android:layout_width="wrap_content"
+        android:weightSum="4"
         android:padding="20dp"
-        android:layout_margin="20dp"
-        android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_height="0dp"
-        android:layout_weight="0.5">
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_height="0dp">
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/sunnah_circle"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@color/white"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FF000000"/>
+
+
+            <TextView
+                android:id="@+id/s_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/sunnah_circle"
+                android:layout_alignTop="@id/sunnah_circle"
+                android:layout_alignRight="@id/sunnah_circle"
+                android:layout_alignBottom="@id/sunnah_circle"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="S"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/farz_circle"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@color/white"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FF000000"/>
+
+
+            <TextView
+                android:id="@+id/f_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/farz_circle"
+                android:layout_alignTop="@id/farz_circle"
+                android:layout_alignRight="@id/farz_circle"
+                android:layout_alignBottom="@id/farz_circle"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="F"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/nafal_circle"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@color/white"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FF000000"/>
+
+
+            <TextView
+                android:id="@+id/n_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/nafal_circle"
+                android:layout_alignLeft="@id/nafal_circle"
+                android:layout_alignRight="@id/nafal_circle"
+                android:layout_alignTop="@id/nafal_circle"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:text="N" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/witr_circle"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@color/white"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FF000000"/>
+
+
+            <TextView
+                android:id="@+id/w_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/witr_circle"
+                android:layout_alignLeft="@id/witr_circle"
+                android:layout_alignRight="@id/witr_circle"
+                android:layout_alignTop="@id/witr_circle"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:text="W" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
         <Button
+            android:layout_weight="0.3"
+            android:layout_gravity="center"
             android:id="@+id/stats"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:padding="10dp"
             android:enabled="false"
             android:text="Show Stats"
@@ -381,7 +505,6 @@
 
         </Button>
 
-    </LinearLayout>
 
 
 

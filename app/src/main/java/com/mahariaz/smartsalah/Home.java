@@ -64,7 +64,7 @@ public class Home extends AppCompatActivity {
     private PieChart weekPie;
     private DrawerLayout mDrawer;
     private Toolbar toolbar;
-    private static final String ONESIGNAL_APP_ID = "a827ee7e-6beb-4dd5-9c21-f281bed4c4c7";
+
 
     private NavigationView nvDrawer;
     FirebaseDatabase firebaseDatabase;
@@ -83,8 +83,8 @@ public class Home extends AppCompatActivity {
         listItems.add(new The_Slide_Items_Model_Class(R.drawable.item3,"Slider 3 Title"));
         listItems.add(new The_Slide_Items_Model_Class(R.drawable.item4,"Slider 4 Title"));
         listItems.add(new The_Slide_Items_Model_Class(R.drawable.item5,"Slider 5 Title"));
-//        The_Slide_items_Pager_Adapter itemsPager_adapter = new The_Slide_items_Pager_Adapter(this, listItems);
-//        page.setAdapter(itemsPager_adapter);
+        The_Slide_items_Pager_Adapter itemsPager_adapter = new The_Slide_items_Pager_Adapter(this, listItems);
+        page.setAdapter(itemsPager_adapter);
         tabLayout.setupWithViewPager(page,true);
 
         pieChartFarz = findViewById(R.id.farzPie);
@@ -97,7 +97,6 @@ public class Home extends AppCompatActivity {
 
 
 
-        // This will display an Up icon (<-), we will replace it with hamburger later
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Find our drawer view
@@ -148,6 +147,14 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Home.this,Supplications.class);
+                startActivity(intent);
+            }
+        });
+        CardView hist=findViewById(R.id.hist);
+        hist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Home.this,Calender.class);
                 startActivity(intent);
             }
         });

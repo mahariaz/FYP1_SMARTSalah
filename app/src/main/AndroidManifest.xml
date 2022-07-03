@@ -52,18 +52,6 @@
 
         </activity>
         <activity
-            android:name=".WhatDp"
-            android:exported="false" />
-        <activity
-            android:name=".WhatAge"
-            android:exported="false" />
-        <activity
-            android:name=".WhatHeight"
-            android:exported="false" />
-        <activity
-            android:name=".WhatGender"
-            android:exported="false" />
-        <activity
             android:name=".BaseForFragment"
             android:exported="false" />
         <activity
@@ -89,11 +77,7 @@
         <activity
             android:name=".Home"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <activity
@@ -112,6 +96,11 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
     </application>
